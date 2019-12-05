@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "start": "node .routers/index.js",
+    "start": "node ./routers/index.js",
     "start:dev": "nodemon ./routers/index.js"
   },
   "author": "",

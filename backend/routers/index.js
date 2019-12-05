@@ -6,7 +6,7 @@ const PORT = 4000;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.status(200).send('Hellow world');
+  res.status(200).send('Hello world');
 });
 
 const myTroops = {
