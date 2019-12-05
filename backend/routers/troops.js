@@ -1,4 +1,5 @@
 const { Router } = require('express');
+
 const router = Router();
 
 const myTroops = {
@@ -23,7 +24,7 @@ const myTroops = {
   ],
 };
 
-function getTroops(req, res, next) {
+function getTroops(req, res) {
   return res.status(200).send(myTroops);
 }
 
