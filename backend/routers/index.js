@@ -1,17 +1,5 @@
-const express = require('express');
+const troops = require('./troops');
 
-const app = express();
-const PORT = 4000;
-
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.status(200).send('Hello world');
-});
-
-app.use((err, req, res, next) => {
-  res.status(500).send('Something broke!');
-  next(err);
-});
-
-app.listen(PORT);
+module.exports = {
+  troops,
+};
