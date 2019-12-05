@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "start": "node ./routers/index.js",
-    "start:dev": "nodemon ./routers/index.js"
+    "start": "node ./index.js",
+    "start:dev": "nodemon ./index.js"
   },
   "author": "",
   "license": "ISC",
