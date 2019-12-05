@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { View, Image, Text } from 'react-native';
 import commonStyles from '../common/styles';
 import troopAvatar from '../../assets/troop/troop-avatar.jpg';
@@ -11,7 +11,7 @@ function TroopInformation() {
       <Text style={commonStyles.textStyle}>Defence: 35</Text>
       <Text style={commonStyles.textStyle}>Sustenance: 23</Text>
     </View>
-  )
+  );
 }
 
 export default TroopInformation;
