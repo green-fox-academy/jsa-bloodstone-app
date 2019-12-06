@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  View,
-  Text,
-  Dimensions,
+  View, Text, Dimensions,
 } from 'react-native';
 import TouchableImage from './TouchableImage';
 import buttomImage1 from '../../assets/menu/Buildings.png';
