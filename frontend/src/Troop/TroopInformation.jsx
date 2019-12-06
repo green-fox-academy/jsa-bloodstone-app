@@ -3,7 +3,7 @@ import {
   View, Image, Text,
   StyleSheet,
 } from 'react-native';
-import { CardView } from '../components';
+import { CardView } from '../common/components';
 import troopAvatar from '../../assets/troop/troop-avatar.jpg';
 import attackIcon from '../../assets/troop/attack.png';
 import defenceIcon from '../../assets/troop/defence.png';
