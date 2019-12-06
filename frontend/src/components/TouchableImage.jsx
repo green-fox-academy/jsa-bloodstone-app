@@ -6,7 +6,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-export default function TouchableImage({
+function TouchableImage({
   src, name, onPress, isPressed,
 }) {
   const windowsWidth = Dimensions.get('window').width;
@@ -40,3 +40,5 @@ TouchableImage.defaultProps = {
   onPress: null,
   isPressed: '',
 };
+
+export default TouchableImage;
