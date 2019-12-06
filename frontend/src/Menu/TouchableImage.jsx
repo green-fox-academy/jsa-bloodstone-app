@@ -13,7 +13,11 @@ function TouchableImage({
   const LABEL_SIZE = Math.round(windowsWidth / 500) * 10;
 
   return (
-    <TouchableHighlight underlayColor="transparent" onPress={() => onPress(name)} style={{ width: '25%', height: '100%' }}>
+    <TouchableHighlight
+      underlayColor="transparent"
+      onPress={() => onPress(name)}
+      style={{ width: '25%', height: '100%' }}
+    >
       <View style={{
         width: '100%',
         height: '100%',
@@ -23,7 +27,7 @@ function TouchableImage({
       }}
       >
         <Image source={src} style={{ width: '60%', height: '62%' }} />
-        <Text style={{ color: '#55565a', fontSize: LABEL_SIZE }}>{ name }</Text>
+        <Text style={{ color: '#55565a', fontSize: LABEL_SIZE }}>{name}</Text>
       </View>
     </TouchableHighlight>
   );
