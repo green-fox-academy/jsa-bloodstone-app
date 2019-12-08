@@ -26,7 +26,7 @@ function TouchableImage({
         backgroundColor: isPressed === name ? 'rgba(148, 148, 148, .8)' : 'rgba(255, 255, 255, .8)',
       }}
       >
-        <Image source={src} style={{ width: '60%', height: '62%' }} />
+        <Image source={src} style={{ width: '60%', height: '60%' }} />
         <Text style={{ color: '#55565a', fontSize: LABEL_SIZE }}>{name}</Text>
       </View>
     </TouchableHighlight>
