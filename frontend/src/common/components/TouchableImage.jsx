@@ -6,12 +6,12 @@ import {
   Dimensions,
 } from 'react-native';
 
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const LABEL_SIZE = Math.round(WINDOW_WIDTH / 500) * 10;
+
 function TouchableImage({
   src, name, onPress, isPressed,
 }) {
-  const windowsWidth = Dimensions.get('window').width;
-  const LABEL_SIZE = Math.round(windowsWidth / 500) * 10;
-
   return (
     <TouchableHighlight
       underlayColor="transparent"

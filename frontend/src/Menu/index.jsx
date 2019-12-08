@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Dimensions } from 'react-native';
-import TouchableImage from './TouchableImage';
-import buttonImage3 from '../../assets/menu/Battle.png';
-import buttonImage1 from '../../assets/menu/Buildings.png';
-import buttonImage4 from '../../assets/menu/Leaderboard.png';
-import buttonImage2 from '../../assets/menu/Troops.png';
-import { heightRatio, widthRatio } from '../common/const';
+import { TouchableImage } from '../common/components';
+import BuildingMenuIcon from '../../assets/menu/Buildings.png';
+import TroopsMenuIcon from '../../assets/menu/Troops.png';
+import BattleMenuIcon from '../../assets/menu/Battle.png';
+import LeaderMenuIcon from '../../assets/menu/Leaderboard.png';
+
+export const HEIGHT_RATIO = 0.25;
 
 export default function Menu() {
   const [isPressed, setPressed] = useState('Buildings');
 
   useEffect(() => {}, [isPressed]);
+
+  const ICONE_LIST = [
+    { name: 'Buildings', url: BuildingMenuIcon },
+    { name: 'Troops', url: TroopsMenuIcon },
+    { name: 'Battle', url: BattleMenuIcon },
+    { name: 'Leaderboard', url: LeaderMenuIcon },
+  ];
 
   function handlePress(name) {
     setPressed(name);
@@ -41,36 +49,21 @@ export default function Menu() {
       <View
         style={{
           flexDirection: 'row',
-          width: Dimensions.get('window').width * widthRatio,
-          height: Dimensions.get('window').width * heightRatio,
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').width * HEIGHT_RATIO,
           backgroundColor: 'rgba(255, 255, 255, .8)',
           borderRadius: 3,
         }}
       >
-        <TouchableImage
-          src={buttonImage1}
-          name="Buildings"
-          onPress={handlePress}
-          isPressed={isPressed}
-        />
-        <TouchableImage
-          src={buttonImage2}
-          name="Troops"
-          onPress={handlePress}
-          isPressed={isPressed}
-        />
-        <TouchableImage
-          src={buttonImage3}
-          name="Battle"
-          onPress={handlePress}
-          isPressed={isPressed}
-        />
-        <TouchableImage
-          src={buttonImage4}
-          name="Leaderboard"
-          onPress={handlePress}
-          isPressed={isPressed}
-        />
+        {ICONE_LIST.map((element) => (
+          <TouchableImage
+            key={element.url}
+            src={element.url}
+            name={element.name}
+            onPress={handlePress}
+            isPressed={isPressed}
+          />
+        ))}
       </View>
       <View>
         <Text style={{ color: 'black' }}>{isPressed}</Text>
