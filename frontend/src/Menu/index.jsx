@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { TouchableImage } from '../common/components';
-import BuildingMenuIcon from '../../assets/menu/Buildings.png';
-import TroopsMenuIcon from '../../assets/menu/Troops.png';
-import BattleMenuIcon from '../../assets/menu/Battle.png';
-import LeaderMenuIcon from '../../assets/menu/Leaderboard.png';
+import buildingMenuIcon from '../../assets/menu/Buildings.png';
+import troopsMenuIcon from '../../assets/menu/Troops.png';
+import battleMenuIcon from '../../assets/menu/Battle.png';
+import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
 
-export const HEIGHT_RATIO = 0.25;
+const HEIGHT_RATIO = 0.25;
 
 export default function Menu() {
   const [isPressed, setPressed] = useState('Buildings');
 
-  useEffect(() => {}, [isPressed]);
-
-  const ICONE_LIST = [
-    { name: 'Buildings', url: BuildingMenuIcon },
-    { name: 'Troops', url: TroopsMenuIcon },
-    { name: 'Battle', url: BattleMenuIcon },
-    { name: 'Leaderboard', url: LeaderMenuIcon },
+  const ICON_LIST = [
+    { name: 'Buildings', url: buildingMenuIcon },
+    { name: 'Troops', url: troopsMenuIcon },
+    { name: 'Battle', url: battleMenuIcon },
+    { name: 'Leaderboard', url: leaderBoardMenuIcon },
   ];
 
   function handlePress(name) {
@@ -25,10 +23,7 @@ export default function Menu() {
   }
 
   return (
-    <View style={{
-      flexDirection: 'column',
-    }}
-    >
+    <View>
       <View
         style={{
           flexDirection: 'row',
@@ -38,7 +33,7 @@ export default function Menu() {
           borderRadius: 3,
         }}
       >
-        {ICONE_LIST.map((element) => (
+        {ICON_LIST.map((element) => (
           <TouchableImage
             key={element.url}
             src={element.url}
