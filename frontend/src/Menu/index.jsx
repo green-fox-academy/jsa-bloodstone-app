@@ -22,23 +22,6 @@ export default function Menu() {
 
   function handlePress(name) {
     setPressed(name);
-    // switch (isPressed) {
-    //   case 'Buildings':
-    //     // TODO
-    //     break;
-    //   case 'Troops':
-    //     // TODO
-    //     break;
-    //   case 'Battle':
-    //     // TODO
-    //     break;
-    //   case 'Leaderboard':
-    //     // TODO
-    //     break;
-    //   default:
-    //     setPressed('Buildings');
-    //     // TODO
-    // }
   }
 
   return (
