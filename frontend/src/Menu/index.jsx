@@ -8,7 +8,7 @@ import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
 
 const HEIGHT_RATIO = 0.25;
 
-export default function Menu() {
+function Menu() {
   const [isPressed, setPressed] = useState('Buildings');
 
   const ICON_LIST = [
@@ -49,3 +49,5 @@ export default function Menu() {
     </View>
   );
 }
+
+export default Menu;
