@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, Dimensions } from 'react-native';
 import { TouchableImage } from '../common/components';
+import { switchMenu } from '../redux/actionCreator';
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
@@ -9,7 +11,8 @@ import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
 const HEIGHT_RATIO = 0.25;
 
 function Menu() {
-  const [isPressed, setPressed] = useState('Buildings');
+  const isPressed = useSelector((state) => state.menu);
+  const dispatch = useDispatch();
 
   const ICON_LIST = [
     { name: 'Buildings', url: buildingMenuIcon },
@@ -19,7 +22,7 @@ function Menu() {
   ];
 
   function handlePress(name) {
-    setPressed(name);
+    dispatch(switchMenu(name));
   }
 
   return (
