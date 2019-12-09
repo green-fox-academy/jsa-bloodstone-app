@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run:
+          name: install-frontend-dependencies
+          command: 'cd frontend && yarn install'
+      - run:
+          name: install-backend-dependencies
+          command: 'cd backend && yarn install'
+      - run:
+          name: 'run-frontend-lint'
+          command: 'cd frontend && yarn lint'
+      - run:
+          name: 'run-backend-lint'
+          command: 'cd backend && yarn lint'
