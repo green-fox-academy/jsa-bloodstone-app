@@ -5,22 +5,22 @@ import Colors from '../common/colors';
 
 const TabNavigator = createBottomTabNavigator({
   'My Kingdom': Buildings,
-  Settings: Settings,
+  Settings,
 }, {
   initialRouteName: 'My Kingdom',
   order: ['My Kingdom', 'Settings'],
-  tabBarOptions: { 
-    activeTintColor: 'red',
+  tabBarOptions: {
+    activeTintColor: '#ffd700',
     inactiveTintColor: 'white',
     labelStyle: {
-      fontSize: 20,
-      fontWeight: "bold",
+      fontSize: 18,
+      fontWeight: 'bold',
       paddingBottom: 10,
     },
     style: {
       backgroundColor: Colors.tealColor,
     },
-  }
+  },
 });
 
 export default TabNavigator;
