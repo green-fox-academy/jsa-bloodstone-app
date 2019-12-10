@@ -3,23 +3,23 @@ const { Router } = require('express');
 const router = Router();
 
 const myBuildings = {
-  buildings : [
+  buildings: [
     {
       id: 1,
-      type: "townhall",
+      type: 'townhall',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 2,
-      type: "farm",
+      type: 'farm',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
-    }
-  ]
+    },
+  ],
 };
 
 function getBuildings(req, res) {
