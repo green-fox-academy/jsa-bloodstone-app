@@ -9,19 +9,13 @@ import commonStyles from './common/styles';
 
 function App() {
   return (
-    <View style={commonStyles.container}>
-      <Menu />
-      <Troop />
-    </View>
-  );
-}
-
-function reduxApp() {
-  return (
     <Provider store={store}>
-      <App />
+      <View style={commonStyles.container}>
+        <Menu />
+        <Troop />
+      </View>
     </Provider>
   );
 }
 
-export default registerRootComponent(reduxApp);
+export default registerRootComponent(App);
