@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, Dimensions } from 'react-native';
 import { TouchableImage } from '../common/components';
+import { changeDisplayedComponent } from './actionCreator';
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
@@ -9,7 +11,8 @@ import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
 const HEIGHT_RATIO = 0.25;
 
 function Menu() {
-  const [isPressed, setPressed] = useState('Buildings');
+  const activeComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
+  const dispatch = useDispatch();
 
   const ICON_LIST = [
     { name: 'Buildings', url: buildingMenuIcon },
@@ -19,7 +22,7 @@ function Menu() {
   ];
 
   function handlePress(name) {
-    setPressed(name);
+    dispatch(changeDisplayedComponent(name));
   }
 
   return (
@@ -39,12 +42,12 @@ function Menu() {
             src={element.url}
             name={element.name}
             onPress={handlePress}
-            isPressed={isPressed}
+            activeComponent={activeComponent}
           />
         ))}
       </View>
       <View>
-        <Text style={{ color: 'black' }}>{isPressed}</Text>
+        <Text style={{ color: 'black' }}>{activeComponent}</Text>
       </View>
     </View>
   );
