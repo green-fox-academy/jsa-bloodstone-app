@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
   userAvatar: {
     width: 28,
     height: 28,
-    marginLeft: 8,
-    marginRight: 8,
+    marginHorizontal: 8,
   },
   row: {
     flexDirection: 'row',
@@ -29,8 +28,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 20,
     height: 20,
-    marginLeft: 4,
-    marginRight: 4,
+    marginHorizontal: 4,
   },
   rowFlex: {
     flexDirection: 'row',
