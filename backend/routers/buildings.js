@@ -37,13 +37,13 @@ function getBuildings(req, res) {
 
 function getBuildingById(req, res) {
   const buildingId = Number.parseInt(req.params.buildingId, 10);
-  if (!buildingId) {
+  if (Number.isNaN(buildingId) || buildingId <= 0) {
     return res.sendStatus(400);
   }
   return res.status(200).send(mockedOneBuilding);
 }
 
 router.get('/', getBuildings);
-router.get('/:buildingId?', getBuildingById);
+router.get('/:buildingId', getBuildingById);
 
 module.exports = router;
