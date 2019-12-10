@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   textBold: {
     fontSize: 21,
     color: Colors.whiteColor,
-    fontWeight: 'bold',
   },
   userAvatar: {
     width: 32,
