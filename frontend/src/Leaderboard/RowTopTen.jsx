@@ -12,27 +12,28 @@ import Colors from '../common/colors';
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 21,
-    color: Colors.whiteColor,
-  },
-  textBold: {
-    fontSize: 21,
+    fontSize: 14,
     color: Colors.whiteColor,
   },
   userAvatar: {
-    width: 32,
-    height: 32,
+    width: 28,
+    height: 28,
     marginLeft: 8,
     marginRight: 8,
+    marginBottom: -8,
+    marginTop: -8,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   icon: {
-    width: 21,
-    height: 21,
-    margin: 4,
+    width: 20,
+    height: 20,
+    marginLeft: 4,
+    marginRight: 4,
+    marginBottom: -8,
+    marginTop: -8,
   },
   rowFlex: {
     flexDirection: 'row',
@@ -51,9 +52,9 @@ function RowTopTen({
   return (
     <SubCardView style={styles.row}>
       <View style={styles.rowFlex}>
-        <Text style={styles.textBold}>{rank}</Text>
+        <Text style={styles.text}>{rank}</Text>
         <Image style={styles.userAvatar} source={userAvatar} />
-        <Text style={styles.textBold}>{username}</Text>
+        <Text style={styles.text}>{username}</Text>
       </View>
       <View style={styles.rowFlex}>
         <View style={styles.userInfo}>
