@@ -10,12 +10,4 @@ describe('Buildings', () => {
         .expect(200, done);
     });
   });
-
-  describe('GET /kingdom/building', () => {
-    it('should return 404 when accessing non-exist endpoints', (done) => {
-      request(app)
-        .get('/kingdom/building')
-        .expect(404, done);
-    });
-  });
 });
