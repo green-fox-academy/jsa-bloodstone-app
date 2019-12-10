@@ -20,20 +20,17 @@ const styles = StyleSheet.create({
     height: 28,
     marginLeft: 8,
     marginRight: 8,
-    marginBottom: -8,
-    marginTop: -8,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingVertical: 4,
   },
   icon: {
     width: 20,
     height: 20,
     marginLeft: 4,
     marginRight: 4,
-    marginBottom: -8,
-    marginTop: -8,
   },
   rowFlex: {
     flexDirection: 'row',
