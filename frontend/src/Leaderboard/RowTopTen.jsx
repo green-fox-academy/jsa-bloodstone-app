@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   userAvatar: {
     width: 32,
     height: 32,
-    margin: 8,
+    marginLeft: 8,
+    marginRight: 8,
   },
   row: {
     flexDirection: 'row',
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 40,
+    marginRight: 12,
   },
 });
 
