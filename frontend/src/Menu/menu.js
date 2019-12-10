@@ -1,4 +1,4 @@
-import { CHANGE_DIAPLAYED_COMPONENT } from './actionCreator';
+import { CHANGE_DISPLAYED_COMPONENT } from './actionCreator';
 
 const initialState = {
   currentlyDisplayComponent: 'Buildings',
@@ -6,9 +6,9 @@ const initialState = {
 
 export default function menu(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_DIAPLAYED_COMPONENT:
+    case CHANGE_DISPLAYED_COMPONENT:
       return { ...state, currentlyDisplayComponent: action.payload };
     default:
-      return { ...state, currentlyDisplayComponent: 'Buildings' };
+      return state;
   }
 }

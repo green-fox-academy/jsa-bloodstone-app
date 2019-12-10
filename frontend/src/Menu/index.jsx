@@ -11,7 +11,7 @@ import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
 const HEIGHT_RATIO = 0.25;
 
 function Menu() {
-  const activatingComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
+  const activeComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
   const dispatch = useDispatch();
 
   const ICON_LIST = [
@@ -42,12 +42,12 @@ function Menu() {
             src={element.url}
             name={element.name}
             onPress={handlePress}
-            activatingComponent={activatingComponent}
+            activeComponent={activeComponent}
           />
         ))}
       </View>
       <View>
-        <Text style={{ color: 'black' }}>{activatingComponent}</Text>
+        <Text style={{ color: 'black' }}>{activeComponent}</Text>
       </View>
     </View>
   );

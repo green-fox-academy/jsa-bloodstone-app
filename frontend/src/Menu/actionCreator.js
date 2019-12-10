@@ -1,8 +1,8 @@
-export const CHANGE_DIAPLAYED_COMPONENT = 'changeDisplayedComponent';
+export const CHANGE_DISPLAYED_COMPONENT = 'changeDisplayedComponent';
 
 export function changeDisplayedComponent(pageSelected) {
   return {
-    type: CHANGE_DIAPLAYED_COMPONENT,
+    type: CHANGE_DISPLAYED_COMPONENT,
     payload: pageSelected,
   };
 }
