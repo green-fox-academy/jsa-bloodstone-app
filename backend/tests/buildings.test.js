@@ -11,10 +11,10 @@ describe('Buildings', () => {
     });
   });
 
-  describe('GET /kingdom/buildings/non-exist', () => {
+  describe('GET /kingdom/building', () => {
     it('should return 404 when accessing non-exist endpoints', (done) => {
       request(app)
-        .get('/kingdom/buildings/non-exist')
+        .get('/kingdom/building')
         .expect(404, done);
     });
   });
