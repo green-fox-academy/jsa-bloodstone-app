@@ -6,16 +6,15 @@ import store from './store';
 import Troop from './Troop';
 import Menu from './Menu';
 import commonStyles from './common/styles';
-import Leaderboard from './Leaderboard';
+import { createAppContainer } from 'react-navigation';
+import TabNavigator from './Navigation';
+
+const AppContainer = createAppContainer(TabNavigator);
 
 function App() {
   return (
     <Provider store={store}>
-      <View style={commonStyles.container}>
-        <Menu />
-        <Troop />
-        <Leaderboard />
-      </View>
+      <AppContainer />
     </Provider>
   );
 }
