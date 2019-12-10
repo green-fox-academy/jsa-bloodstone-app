@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/kingdom', troops);
-app.use('/kingdom', buildings);
+app.use('/kingdom/buildings', buildings);
 
 app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');

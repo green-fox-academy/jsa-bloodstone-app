@@ -26,6 +26,6 @@ function getBuildings(req, res) {
   return res.status(200).send(myBuildings);
 }
 
-router.get('/buildings', getBuildings);
+router.get('/', getBuildings);
 
 module.exports = router;
