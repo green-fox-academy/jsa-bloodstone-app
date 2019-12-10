@@ -10,7 +10,7 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 const LABEL_SIZE = Math.round(WINDOW_WIDTH / 500) * 10;
 
 function TouchableImage({
-  src, name, onPress, isPressed,
+  src, name, onPress, activatingComponent,
 }) {
   return (
     <TouchableHighlight
@@ -23,7 +23,7 @@ function TouchableImage({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: isPressed === name ? 'rgba(148, 148, 148, .8)' : 'rgba(255, 255, 255, .8)',
+        backgroundColor: activatingComponent === name ? 'rgba(148, 148, 148, .8)' : 'rgba(255, 255, 255, .8)',
       }}
       >
         <Image source={src} style={{ width: '60%', height: '60%' }} />
@@ -37,12 +37,12 @@ TouchableImage.propTypes = {
   src: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   onPress: PropTypes.func,
-  isPressed: PropTypes.string,
+  activatingComponent: PropTypes.string,
 };
 
 TouchableImage.defaultProps = {
   onPress: null,
-  isPressed: '',
+  activatingComponent: '',
 };
 
 export default TouchableImage;

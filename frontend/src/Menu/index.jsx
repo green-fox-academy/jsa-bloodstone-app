@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, Dimensions } from 'react-native';
 import { TouchableImage } from '../common/components';
-import { switchMenu } from '../redux/actionCreator';
+import { changeDisplayedComponent } from './actionCreator';
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
@@ -11,7 +11,7 @@ import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
 const HEIGHT_RATIO = 0.25;
 
 function Menu() {
-  const isPressed = useSelector((state) => state.menu);
+  const activatingComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
   const dispatch = useDispatch();
 
   const ICON_LIST = [
@@ -22,7 +22,7 @@ function Menu() {
   ];
 
   function handlePress(name) {
-    dispatch(switchMenu(name));
+    dispatch(changeDisplayedComponent(name));
   }
 
   return (
@@ -42,12 +42,12 @@ function Menu() {
             src={element.url}
             name={element.name}
             onPress={handlePress}
-            isPressed={isPressed}
+            activatingComponent={activatingComponent}
           />
         ))}
       </View>
       <View>
-        <Text style={{ color: 'black' }}>{isPressed}</Text>
+        <Text style={{ color: 'black' }}>{activatingComponent}</Text>
       </View>
     </View>
   );

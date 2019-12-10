@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import menu from './reducers/menu';
+import menu from './Menu/menu';
 
 const rootReducer = combineReducers({
   menu,
