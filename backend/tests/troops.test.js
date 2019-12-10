@@ -11,10 +11,10 @@ describe('Troops', () => {
     });
   });
 
-  describe('GET /kingdom/non-exists-endpoint', () => {
-    it('should return 404 when accessing non-exists endpoints', (done) => {
+  describe('GET /kingdom/troops/non-exist', () => {
+    it('should return 404 when accessing non-exist endpoints', (done) => {
       request(app)
-        .get('/kingdom/non-exists-endpoint')
+        .get('/kingdom/troops/non-exist')
         .expect(404, done);
     });
   });
