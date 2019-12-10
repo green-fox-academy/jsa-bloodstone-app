@@ -7,8 +7,8 @@ const initialState = {
 export default function menu(state = initialState, action) {
   switch (action.type) {
     case CHANGE_DIAPLAYED_COMPONENT:
-      return {...state, currentlyDisplayComponent: action.payload};
+      return { ...state, currentlyDisplayComponent: action.payload };
     default:
-      return {...state, currentlyDisplayComponent: 'Buildings'};
+      return { ...state, currentlyDisplayComponent: 'Buildings' };
   }
 }
