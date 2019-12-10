@@ -5,7 +5,7 @@ const initialState = {
   message: '',
 };
 
-export default (state = initialState, action) => {
+export default function buildings(state = initialState, action) {
   switch (action.type) {
     case FETCHSTART:
       return { ...state, message: 'loading' };
