@@ -6,7 +6,7 @@ import Colors from '../colors';
 const defaultStyle = {
   marginBottom: 2,
   padding: 12,
-  borderRadius: 5,
+  borderRadius: 10,
   alignSelf: 'stretch',
   backgroundColor: Colors.tealColor,
   flexDirection: 'row',
