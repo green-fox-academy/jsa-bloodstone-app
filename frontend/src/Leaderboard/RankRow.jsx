@@ -62,7 +62,7 @@ function RankRow({
           <Text style={styles.text}>{gold}</Text>
         </View>
         <View style={styles.userInfo}>
-          <Image source={crownIcon} style={styles.icon} />
+          <Image style={styles.icon} source={crownIcon} />
           <Text style={styles.text}>{kingdoms}</Text>
         </View>
       </View>
