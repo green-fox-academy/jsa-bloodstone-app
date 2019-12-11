@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 import Colors from './colors';
 
 export default StyleSheet.create({
@@ -32,5 +33,8 @@ export default StyleSheet.create({
   },
   upgradeButton: {
     backgroundColor: 'orange',
+  },
+  screenStyle: {
+    paddingTop: Constants.statusBarHeight,
   },
 });

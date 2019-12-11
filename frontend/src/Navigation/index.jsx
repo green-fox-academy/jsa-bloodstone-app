@@ -2,12 +2,12 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Settings from '../Settings';
-import Menu from '../Menu';
 import Colors from '../common/colors';
+import MyKingdom from './myKingdom';
 
 const TabNavigator = createBottomTabNavigator({
   MyKingdom: {
-    screen: Menu,
+    screen: MyKingdom,
     navigationOptions: {
       tabBarIcon: () => <Ionicons name="ios-home" size={25} style={{ color: Colors.whiteColor }} />,
       tabBarLabel: 'My Kingdom',
