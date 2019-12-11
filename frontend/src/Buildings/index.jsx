@@ -9,21 +9,24 @@ import FarmIcon from '../../assets/buildings/factory.png';
 import MineIcon from '../../assets/buildings/mine.png';
 
 const styles = StyleSheet.create({
-  textStyle: {
-    fontSize: 15,
-    lineHeight: 20,
-  },
   itemStyle: {
     width: Dimensions.get('screen').width / 3.5,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
+    borderColor: 'black',
   },
   iconStyle:{
     maxWidth: 150,
     maxHeight: 150,
-    height: 100,
-    width: 100,
+    minWidth: 70,
+    minHeight: 70,
+    height: '20%',
+    width: '20%',
+  },
+  textStyle: {
+    fontSize: 15,
+    lineHeight: 20,
   },
 });
 
@@ -52,7 +55,7 @@ function Buildings() {
 
   return (
     <ScrollView>
-      <View style={{ flexDirection: 'row', flexWrap: "wrap" }}>
+      <View style={{ flexDirection: 'row', flexWrap: "wrap", justifyContent:"space-between" }}>
         {buildingsComponent.map((element) =>
           <View key={element.id} style={styles.itemStyle}>
             <Image style={styles.iconStyle} source={getIconImage(element.type)} />
