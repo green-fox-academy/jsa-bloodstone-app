@@ -23,17 +23,15 @@ const mockedUsers = [
 function Leaderboard() {
   return (
     <ScrollView>
-      {
-        mockedUsers.map((user, idx) => (
-          <RankRow
-            key={user.username}
-            rank={idx + 1}
-            username={user.username}
-            gold={user.gold}
-            kingdoms={user.kingdom}
-          />
-        ))
-      }
+      {mockedUsers.map((user, idx) => (
+        <RankRow
+          key={user.username}
+          rank={idx + 1}
+          username={user.username}
+          gold={user.gold}
+          kingdoms={user.kingdom}
+        />
+      ))}
     </ScrollView>
   );
 }
