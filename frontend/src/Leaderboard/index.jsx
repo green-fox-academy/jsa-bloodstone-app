@@ -27,7 +27,7 @@ function Leaderboard() {
         mockedUsers.map((user, idx) => (
           <RankRow
             key={user.username}
-            rank={idx}
+            rank={idx + 1}
             username={user.username}
             gold={user.gold}
             kingdoms={user.kingdom}
