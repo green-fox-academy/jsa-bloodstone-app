@@ -1,13 +1,39 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import RowTopTen from './RowTopTen';
+import RankRow from './RankRow';
+
+const mockedUsers = [
+  {
+    username: 'userA',
+    gold: 10,
+    kingdom: 10,
+  },
+  {
+    username: 'userB',
+    gold: 12,
+    kingdom: 12,
+  },
+  {
+    username: 'userCCCCCCCCCCCcCCC',
+    gold: 12,
+    kingdom: 12,
+  },
+];
 
 function Leaderboard() {
   return (
     <ScrollView>
-      <RowTopTen rank={1} username="fdas" gold={20} crown={10} />
-      <RowTopTen rank={2} username="fdas" gold={20} crown={10} />
-      <RowTopTen rank={3} username="fdas" gold={20} crown={10} />
+      {
+        mockedUsers.map((user, idx) => (
+          <RankRow
+            key={user.username}
+            rank={idx}
+            username={user.username}
+            gold={user.gold}
+            kingdoms={user.kingdom}
+          />
+        ))
+      }
     </ScrollView>
   );
 }
