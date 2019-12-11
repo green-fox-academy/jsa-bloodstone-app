@@ -58,7 +58,7 @@ function RankRow({
       </View>
       <View style={styles.rowFlex}>
         <View style={styles.userInfo}>
-          <Image source={goldIcon} style={styles.icon} />
+          <Image style={styles.icon} source={goldIcon} />
           <Text style={styles.text}>{gold}</Text>
         </View>
         <View style={styles.userInfo}>
