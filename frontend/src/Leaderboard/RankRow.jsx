@@ -54,7 +54,7 @@ function RankRow({
       <View style={styles.rowFlex}>
         <Text style={styles.text}>{rank}</Text>
         <Image style={styles.userAvatar} source={userAvatar} />
-        <Text numberOfLines={1} style={styles.usernameText}>{username}</Text>
+        <Text style={styles.usernameText} numberOfLines={1}>{username}</Text>
       </View>
       <View style={styles.rowFlex}>
         <View style={styles.userInfo}>
