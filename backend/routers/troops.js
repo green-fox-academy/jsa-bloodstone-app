@@ -28,6 +28,6 @@ function getTroops(req, res) {
   return res.status(200).send(myTroops);
 }
 
-router.get('/troops', getTroops);
+router.get('/', getTroops);
 
 module.exports = router;

@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello world');
 });
 
-app.use('/kingdom', troops);
+app.use('/kingdom/troops', troops);
 app.use('/kingdom/buildings', buildings);
 
 app.use((err, req, res, next) => {
