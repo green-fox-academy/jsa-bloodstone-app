@@ -5,6 +5,7 @@ import {
   ScrollView, Dimensions,
   StyleSheet, TouchableHighlight,
 } from 'react-native';
+import { CardView } from '../common/components';
 import { fetching } from './actionCreator';
 import TownhallIcon from '../../assets/buildings/townhall.png';
 import AcademyIcon from '../../assets/buildings/academy.png';
@@ -62,19 +63,25 @@ function Buildings() {
   }
 
   return (
-    <ScrollView>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+    <CardView>
+      <ScrollView style={{
+        flex: 1,
+        witdth: '100%',
+        flexDirection: 'row',
+        borderWidth: 1,
+      }}
+      >
         {buildingsComponent.map((element) => (
           <View key={element.id} style={styles.itemStyle}>
-            <TouchableHighlight onPress={handlePress}>
+            <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
               <Image style={styles.iconStyle} source={getIconImage(element.type)} />
             </TouchableHighlight>
             <Text style={styles.textStyle}>{element.type}</Text>
             <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
           </View>
         ))}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </CardView>
   );
 }
 
