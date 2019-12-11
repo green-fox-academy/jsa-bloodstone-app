@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { useSelector } from 'react-redux';
 import Troop from '../Troop';
+import Leaderboard from '../Leaderboard';
 
 function MainView() {
   const currentlyDisplayComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
@@ -17,7 +18,7 @@ function MainView() {
       componentToRender = <Troop />;
       break;
     case 'Leaderboard':
-      componentToRender = <Troop />;
+      componentToRender = <Leaderboard />;
       break;
     default:
       throw new Error('invalid currentlyDisplayComponent');
