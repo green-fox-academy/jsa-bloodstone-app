@@ -4,4 +4,5 @@ export default {
   lightenGrey: '#f5f5f5',
   tealColor: '#10978b',
   redColor: '#f44336',
+  whiteColor: '#ffffff',
 };
