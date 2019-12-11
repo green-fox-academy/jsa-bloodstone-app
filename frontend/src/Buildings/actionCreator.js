@@ -25,8 +25,8 @@ export function fetchError(error) {
 export function fetching() {
   return (dispatch) => {
     dispatch(fetchStart());
-    fetch('http://localhost:4000/kingdom/buildings')
+    fetch('http://10.72.160.229:4000/kingdom/buildings') // Need Modify URL
       .then((response) => response.json())
-      .then((response) => dispatch(fetchSuccess(response.messages)));
+      .then((response) => dispatch(fetchSuccess(response.buildings)));
   };
 }

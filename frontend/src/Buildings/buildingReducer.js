@@ -16,4 +16,4 @@ export default function buildings(state = initialState, action) {
     default:
       return state;
   }
-};
+}
