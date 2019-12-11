@@ -1,21 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, ViewPropTypes } from 'react-native';
-import Colors from '../colors';
-
-const defaultStyle = {
-  marginBottom: 2,
-  padding: 12,
-  borderRadius: 10,
-  alignSelf: 'stretch',
-  backgroundColor: Colors.tealColor,
-  flexDirection: 'row',
-  shadowColor: '#fff',
-};
+import commonStyles from '../styles';
 
 function SubCardView({ style, children }) {
   return (
-    <View style={[defaultStyle, style]}>
+    <View style={[commonStyles.subCardStyle, style]}>
       {children}
     </View>
   );
