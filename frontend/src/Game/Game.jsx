@@ -1,14 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
-import Styles from '../common/styles';
+import styles from '../common/styles';
 import Menu from '../Menu';
 
-function MyKingdom() {
+function Game() {
   return (
-    <View style={Styles.screenStyle}>
+    <View style={styles.screenStyle}>
       <Menu />
     </View>
   );
 }
 
-export default MyKingdom;
+export default Game;

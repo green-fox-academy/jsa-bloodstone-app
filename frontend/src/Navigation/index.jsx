@@ -2,14 +2,20 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Settings from '../Settings';
-import Colors from '../common/colors';
-import MyKingdom from './myKingdom';
+import colors from '../common/colors';
+import Game from '../Game/Game';
 
 const TabNavigator = createBottomTabNavigator({
   MyKingdom: {
-    screen: MyKingdom,
+    screen: Game,
     navigationOptions: {
-      tabBarIcon: () => <Ionicons name="ios-home" size={25} style={{ color: Colors.whiteColor }} />,
+      tabBarIcon: () => (
+        <Ionicons
+          name="ios-home"
+          size={25}
+          style={{ color: colors.whiteColor }}
+        />
+      ),
       tabBarLabel: 'My Kingdom',
     },
   },
@@ -17,7 +23,13 @@ const TabNavigator = createBottomTabNavigator({
   Settings: {
     screen: Settings,
     navigationOptions: {
-      tabBarIcon: () => <Ionicons name="md-settings" size={25} style={{ color: Colors.whiteColor }} />,
+      tabBarIcon: () => (
+        <Ionicons
+          name="md-settings"
+          size={25}
+          style={{ color: colors.whiteColor }}
+        />
+      ),
     },
   },
 }, {
@@ -30,10 +42,10 @@ const TabNavigator = createBottomTabNavigator({
     },
     labelStyle: {
       fontWeight: 'bold',
-      color: Colors.whiteColor,
+      color: colors.whiteColor,
     },
     style: {
-      backgroundColor: Colors.tealColor,
+      backgroundColor: colors.tealColor,
     },
   },
 });
