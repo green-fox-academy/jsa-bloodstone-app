@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "expo": "^35.0.0",
-    "expo-constants": "^8.0.0",
+    "expo-constants": "~7.0.0",
     "native-base": "^2.13.8",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
