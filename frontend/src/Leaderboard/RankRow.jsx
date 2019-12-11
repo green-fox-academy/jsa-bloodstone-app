@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.whiteColor,
   },
+  usernameText: {
+    fontSize: 14,
+    color: Colors.whiteColor,
+    width: 80,
+  },
   userAvatar: {
     width: 28,
     height: 28,
@@ -37,19 +42,19 @@ const styles = StyleSheet.create({
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 12,
+    marginRight: 6,
   },
 });
 
-function RowTopTen({
-  rank, username, gold, crown,
+function RankRow({
+  rank, username, gold, kingdoms,
 }) {
   return (
     <SubCardView style={styles.row}>
       <View style={styles.rowFlex}>
         <Text style={styles.text}>{rank}</Text>
         <Image style={styles.userAvatar} source={userAvatar} />
-        <Text style={styles.text}>{username}</Text>
+        <Text numberOfLines={1} style={styles.usernameText}>{username}</Text>
       </View>
       <View style={styles.rowFlex}>
         <View style={styles.userInfo}>
@@ -58,18 +63,18 @@ function RowTopTen({
         </View>
         <View style={styles.userInfo}>
           <Image source={crownIcon} style={styles.icon} />
-          <Text style={styles.text}>{crown}</Text>
+          <Text style={styles.text}>{kingdoms}</Text>
         </View>
       </View>
     </SubCardView>
   );
 }
 
-RowTopTen.propTypes = {
+RankRow.propTypes = {
   rank: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
   gold: PropTypes.number.isRequired,
-  crown: PropTypes.number.isRequired,
+  kingdoms: PropTypes.number.isRequired,
 };
 
-export default RowTopTen;
+export default RankRow;
