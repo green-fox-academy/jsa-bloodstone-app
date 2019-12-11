@@ -1,21 +1,16 @@
 import React from 'react';
-import { View } from 'react-native';
 import { registerRootComponent } from 'expo';
 import { Provider } from 'react-redux';
+import { createAppContainer } from 'react-navigation';
 import store from './store';
-import Troop from './Troop';
-import Menu from './Menu';
-import commonStyles from './common/styles';
-import Leaderboard from './Leaderboard';
+import TabNavigator from './Navigation';
+
+const AppContainer = createAppContainer(TabNavigator);
 
 function App() {
   return (
     <Provider store={store}>
-      <View style={commonStyles.container}>
-        <Menu />
-        <Troop />
-        <Leaderboard />
-      </View>
+      <AppContainer />
     </Provider>
   );
 }
