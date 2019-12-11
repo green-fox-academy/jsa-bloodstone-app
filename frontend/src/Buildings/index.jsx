@@ -1,7 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Image, Text, ScrollView, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
-import { CardView } from '../common/components';
+import {
+  View, Image, Text,
+  ScrollView, Dimensions,
+  StyleSheet, TouchableHighlight,
+} from 'react-native';
 import { fetching } from './actionCreator';
 import TownhallIcon from '../../assets/buildings/townhall.png';
 import AcademyIcon from '../../assets/buildings/academy.png';
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderColor: 'black',
   },
-  iconStyle:{
+  iconStyle: {
     width: 'auto',
     height: 'auto',
     maxWidth: 200,
@@ -35,7 +38,7 @@ function Buildings() {
   const buildingsComponent = useSelector((state) => state.buildings.buildingsInfo);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetching());
   }, []);
 
@@ -60,16 +63,16 @@ function Buildings() {
 
   return (
     <ScrollView>
-      <View style={{ flexDirection: 'row', flexWrap: "wrap", justifyContent:"space-between" }}>
-        {buildingsComponent.map((element) =>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+        {buildingsComponent.map((element) => (
           <View key={element.id} style={styles.itemStyle}>
             <TouchableHighlight onPress={handlePress}>
               <Image style={styles.iconStyle} source={getIconImage(element.type)} />
             </TouchableHighlight>
             <Text style={styles.textStyle}>{element.type}</Text>
-            <Text style={styles.textStyle}>Level {element.level}</Text>
+            <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
           </View>
-        )}
+        ))}
       </View>
     </ScrollView>
   );
