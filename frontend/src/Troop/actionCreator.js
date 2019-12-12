@@ -5,7 +5,6 @@ export const FETCH_TROOPS_START = 'fetchTroopsStart';
 export const FETCH_TROOPS_ERROR = 'fetchTroopsError';
 
 export function fetchTroops() {
-
   const url = `http://${SERVER_URL}/kingdom/troops`;
 
   return (dispatch) => {
