@@ -1,6 +1,7 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import RankRow from './RankRow';
+import SearchBar from '../common/components/SearchBar';
 
 const mockedUsers = [
   {
@@ -21,8 +22,14 @@ const mockedUsers = [
 ];
 
 function Leaderboard() {
+
+  function mockedSearchUser(username) {
+    alert('search user ' + username);
+  }
+
   return (
     <ScrollView>
+      <SearchBar onSubmit={mockedSearchUser} />
       {mockedUsers.map((user, idx) => (
         <RankRow
           key={user.username}
