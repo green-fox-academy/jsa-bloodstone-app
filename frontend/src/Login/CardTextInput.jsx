@@ -13,7 +13,9 @@ const style = {
 function CardTextInput({
   value, onChangeText, placeholder, secureTextEntry,
 }) {
+
   const [isFocus, setFocus] = useState(false);
+  
   const extraStyle = {
     margin: 0,
     padding: 0,
@@ -21,6 +23,7 @@ function CardTextInput({
     borderColor: 'rgba(0,0,0,.12)',
     elevation: isFocus ? 2 : 0,
   };
+  
   return (
     <CardView style={extraStyle}>
       <TextInput
