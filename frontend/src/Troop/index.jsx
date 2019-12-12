@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import {
+  View, ActivityIndicator,
+  Text, StyleSheet,
+} from 'react-native';
 
 import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
