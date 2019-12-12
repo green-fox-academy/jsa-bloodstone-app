@@ -46,9 +46,6 @@ function Menu() {
           />
         ))}
       </View>
-      <View>
-        <Text style={{ color: 'black' }}>{activeComponent}</Text>
-      </View>
     </View>
   );
 }
