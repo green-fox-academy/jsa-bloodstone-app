@@ -1,5 +1,5 @@
 export default {
-  textColor: 'red',
+  textColor: '#55565a',
   tintColor: '#333',
   lightenGrey: '#f5f5f5',
   tealColor: '#10978b',
