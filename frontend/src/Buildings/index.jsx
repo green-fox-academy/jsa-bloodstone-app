@@ -13,7 +13,7 @@ import MineIcon from '../../assets/buildings/mine.png';
 
 const styles = StyleSheet.create({
   itemStyle: {
-    width: Dimensions.get('screen').width / 4,
+    width: Dimensions.get('screen').width / 3,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
