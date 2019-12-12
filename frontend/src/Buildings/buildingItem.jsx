@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View, TouchableHighlight,
   Image, Text, Dimensions,
+  StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -29,10 +30,10 @@ const buildingItemStyles = StyleSheet.create({
 });
 
 function BuildingItem({
-  id, type, level, onPress, getIconImage,
+  type, level, onPress, getIconImage,
 }) {
   return (
-    <View key={id} style={buildingItemStyles.itemStyle}>
+    <View style={buildingItemStyles.itemStyle}>
       <TouchableHighlight underlayColor="#0000" onPress={onPress}>
         <Image style={buildingItemStyles.iconStyle} source={getIconImage(type)} />
       </TouchableHighlight>
@@ -43,9 +44,8 @@ function BuildingItem({
 }
 
 BuildingItem.propTypes = {
-  id: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  level: PropTypes.string.isRequired,
+  level: PropTypes.number.isRequired,
   onPress: PropTypes.func,
   getIconImage: PropTypes.func,
 };
