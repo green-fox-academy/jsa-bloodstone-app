@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import RankRow from './RankRow';
 import SearchBar from '../common/components/SearchBar';
 
