@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Settings from '../Settings';
 import colors from '../common/colors';
-import Game from '../Game/Game';
+import Game from '../Game';
 
 const TabNavigator = createBottomTabNavigator({
   MyKingdom: {
