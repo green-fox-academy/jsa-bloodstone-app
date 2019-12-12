@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10
+    padding: 10,
   },
   scrollviewStyle: {
     flexDirection: 'row',
@@ -78,29 +78,30 @@ function Buildings() {
     // TODO for one building
   }
 
-  if(errorMessage !== ''){
+  if (errorMessage !== '') {
     return (
       <View style={styles.container}>
         <Text>{errorMessage}</Text>
       </View>
-    )
+    );
   }
   return (
     <View>
-      {isLoading 
-        ? <ActivityIndicator size="large" color="#10978b" />  
-        : <ScrollView contentContainerStyle={styles.scrollviewStyle}>
-          {buildingsComponent.map((element) => (
-            <View key={element.id} style={styles.itemStyle}>
-              <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
-                <Image style={styles.iconStyle} source={getIconImage(element.type)} />
-              </TouchableHighlight>
-              <Text style={styles.textStyle}>{element.type}</Text>
-              <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      }
+      {isLoading
+        ? <ActivityIndicator size="large" color="#10978b" />
+        : (
+          <ScrollView contentContainerStyle={styles.scrollviewStyle}>
+            {buildingsComponent.map((element) => (
+              <View key={element.id} style={styles.itemStyle}>
+                <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
+                  <Image style={styles.iconStyle} source={getIconImage(element.type)} />
+                </TouchableHighlight>
+                <Text style={styles.textStyle}>{element.type}</Text>
+                <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
+              </View>
+            ))}
+          </ScrollView>
+        )}
     </View>
   );
 }
