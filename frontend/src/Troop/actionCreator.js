@@ -1,9 +1,13 @@
+import { SERVER_URL } from 'react-native-dotenv';
+
 export const FETCH_TROOPS_SUCCEED = 'fetchTroopsSucceed';
 export const FETCH_TROOPS_START = 'fetchTroopsStart';
 export const FETCH_TROOPS_ERROR = 'fetchTroopsError';
 
 export function fetchTroops() {
-  const url = 'http://10.72.161.24:4000/kingdom/troops';
+
+  const url = `http://${SERVER_URL}/kingdom/troops`;
+
   return (dispatch) => {
     dispatch({ type: FETCH_TROOPS_START });
     fetch(url)
