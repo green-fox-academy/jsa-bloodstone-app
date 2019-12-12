@@ -8,8 +8,8 @@ import { useNavigation } from 'react-navigation-hooks';
 import { login } from './actionCreator';
 import Colors from '../common/colors';
 import background from '../../assets/login/background.jpg';
-import CardTextInput from './CardTextInput';
-import NextArrowButton from './NextArrowButton';
+import InputField from './InputField';
+import SubmitButton from './SubmitButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +38,7 @@ const mockedUser = {
 };
 
 function showAlert(text) {
-  Alert.alert('Tips', text);
+  Alert.alert('Warning', text);
 }
 
 function Login() {
@@ -68,12 +68,12 @@ function Login() {
       >
         <Text style={styles.header}>Login</Text>
         <View style={{ width: 300 }}>
-          <CardTextInput
+          <InputField
             placeholder="Username"
             value={username}
             onChangeText={(text) => setUsername(text)}
           />
-          <CardTextInput
+          <InputField
             secureTextEntry
             placeholder="Password"
             value={password}
@@ -81,7 +81,7 @@ function Login() {
           />
         </View>
         <View style={{ marginTop: 50, alignItems: 'flex-end', width: 300 }}>
-          <NextArrowButton onPress={handleSubmit} />
+          <SubmitButton onPress={handleSubmit} />
         </View>
       </ImageBackground>
     </View>

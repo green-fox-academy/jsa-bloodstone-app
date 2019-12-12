@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function NextArrowButton({ onPress }) {
+function SubmitButton({ onPress }) {
   return (
     <TouchableHighlight
       style={styles.button}
@@ -36,12 +36,12 @@ function NextArrowButton({ onPress }) {
   );
 }
 
-NextArrowButton.propTypes = {
+SubmitButton.propTypes = {
   onPress: PropTypes.func,
 };
 
-NextArrowButton.defaultProps = {
+SubmitButton.defaultProps = {
   onPress: null,
 };
 
-export default NextArrowButton;
+export default SubmitButton;

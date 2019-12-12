@@ -10,12 +10,11 @@ const style = {
   fontSize: 14,
 };
 
-function CardTextInput({
+function InputField({
   value, onChangeText, placeholder, secureTextEntry,
 }) {
-
   const [isFocus, setFocus] = useState(false);
-  
+
   const extraStyle = {
     margin: 0,
     padding: 0,
@@ -23,7 +22,7 @@ function CardTextInput({
     borderColor: 'rgba(0,0,0,.12)',
     elevation: isFocus ? 2 : 0,
   };
-  
+
   return (
     <CardView style={extraStyle}>
       <TextInput
@@ -40,18 +39,18 @@ function CardTextInput({
   );
 }
 
-CardTextInput.propTypes = {
+InputField.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChangeText: PropTypes.func,
   secureTextEntry: PropTypes.bool,
 };
 
-CardTextInput.defaultProps = {
+InputField.defaultProps = {
   value: '',
   placeholder: 'placeholder',
   onChangeText: null,
   secureTextEntry: false,
 };
 
-export default CardTextInput;
+export default InputField;

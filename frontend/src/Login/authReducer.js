@@ -1,13 +1,13 @@
 import { LOGIN } from './actionCreator';
 
-const defaultState = {
-  isLogin: false,
+const initialState = {
+  isLoggedIn: false,
 };
 
-export default function auth(state = defaultState, action) {
+export default function auth(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      return { ...state, isLogin: true };
+      return { ...state, isLoggedIn: true };
     default:
       return state;
   }
