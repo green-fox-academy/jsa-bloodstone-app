@@ -4,8 +4,9 @@ export const FETCH_TROOPS_SUCCEED = 'fetchTroopsSucceed';
 export const FETCH_TROOPS_START = 'fetchTroopsStart';
 export const FETCH_TROOPS_ERROR = 'fetchTroopsError';
 
+const URL = `http://${SERVER_URL}/kingdom/troops`;
+
 export function fetchTroops() {
-  const URL = `http://${SERVER_URL}/kingdom/troops`;
 
   return (dispatch) => {
     dispatch({ type: FETCH_TROOPS_START });
