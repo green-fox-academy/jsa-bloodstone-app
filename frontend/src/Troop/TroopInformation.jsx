@@ -37,24 +37,19 @@ function TroopInformation({ attack, defence, substenance }) {
       <View>
         <View style={styles.fieldStyle}>
           <Text style={styles.textStyle}>
-            Attack:
-            {' '}
-            {attack}
+            {`Attack: ${attack}`}
           </Text>
           <Image resizeMode="contain" source={attackIcon} style={styles.iconStyle} />
         </View>
         <View style={styles.fieldStyle}>
           <Text style={styles.textStyle}>
-            {' '}
-            {defence}
+            {`Defence: ${defence}`}
           </Text>
           <Image resizeMode="contain" source={defenceIcon} style={styles.iconStyle} />
         </View>
         <View style={styles.fieldStyle}>
           <Text style={styles.textStyle}>
-            Sustenance:
-            {' '}
-            {substenance}
+            {`Sustenance: ${substenance}`}
           </Text>
           <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
         </View>
