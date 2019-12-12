@@ -6,8 +6,8 @@ import { CardView } from '../common/components';
 const style = {
   height: 40,
   margin: 5,
-  lineHeight: 40,
   paddingStart: 10,
+  fontSize: 14,
 };
 
 function CardTextInput({
