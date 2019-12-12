@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, Image, Text, ActivityIndicator,
-  ScrollView, Dimensions,
-  StyleSheet, TouchableHighlight,
+  View, Text, ScrollView,
+  StyleSheet, ActivityIndicator,
 } from 'react-native';
+import BuildingItem from './buildingItem';
 import { fetchBuildings } from './actionCreator';
-import TownhallIcon from '../../assets/buildings/townhall.png';
-import AcademyIcon from '../../assets/buildings/academy.png';
-import FarmIcon from '../../assets/buildings/factory.png';
-import MineIcon from '../../assets/buildings/mine.png';
+import townhallIcon from '../../assets/buildings/townhall.png';
+import academyIcon from '../../assets/buildings/academy.png';
+import farmIcon from '../../assets/buildings/factory.png';
+import mineIcon from '../../assets/buildings/mine.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,31 +27,11 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  itemStyle: {
-    width: Dimensions.get('screen').width / 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 10,
-    borderColor: 'black',
-  },
-  iconStyle: {
-    width: 'auto',
-    height: 'auto',
-    maxWidth: 200,
-    maxHeight: 200,
-    minWidth: 70,
-    minHeight: 70,
-    aspectRatio: 1,
-  },
-  textStyle: {
-    fontSize: 15,
-    lineHeight: 20,
-  },
 });
 
 function Buildings() {
   const buildingsComponent = useSelector((state) => state.buildings.buildingsInfo);
-  const isLoading = useSelector((state) => state.buildings.loading);
+  const isLoading = useSelector((state) => state.buildings.isLoading);
   const errorMessage = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
 
@@ -62,13 +42,13 @@ function Buildings() {
   function getIconImage(type) {
     switch (type) {
       case 'Townhall':
-        return TownhallIcon;
+        return townhallIcon;
       case 'Academy':
-        return AcademyIcon;
+        return academyIcon;
       case 'Farm':
-        return FarmIcon;
+        return farmIcon;
       case 'Mine':
-        return MineIcon;
+        return mineIcon;
       default:
         return null;
     }
@@ -92,13 +72,13 @@ function Buildings() {
         : (
           <ScrollView contentContainerStyle={styles.scrollviewStyle}>
             {buildingsComponent.map((element) => (
-              <View key={element.id} style={styles.itemStyle}>
-                <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
-                  <Image style={styles.iconStyle} source={getIconImage(element.type)} />
-                </TouchableHighlight>
-                <Text style={styles.textStyle}>{element.type}</Text>
-                <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
-              </View>
+              <BuildingItem
+                key={element.id}
+                type={element.type}
+                level={element.level}
+                onPress={handlePress}
+                getIconImage={getIconImage}
+              />
             ))}
           </ScrollView>
         )}
