@@ -5,11 +5,11 @@ export const FETCH_TROOPS_START = 'fetchTroopsStart';
 export const FETCH_TROOPS_ERROR = 'fetchTroopsError';
 
 export function fetchTroops() {
-  const url = `http://${SERVER_URL}/kingdom/troops`;
+  const URL = `http://${SERVER_URL}/kingdom/troops`;
 
   return (dispatch) => {
     dispatch({ type: FETCH_TROOPS_START });
-    fetch(url)
+    fetch(URL)
       .then((res) => {
         if (res.status === 200) {
           return res.json();
