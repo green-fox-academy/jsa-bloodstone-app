@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
+import Login from '../Login';
 
 const TabNavigator = createBottomTabNavigator({
   MyKingdom: {
@@ -19,7 +20,6 @@ const TabNavigator = createBottomTabNavigator({
       tabBarLabel: 'My Kingdom',
     },
   },
-
   Settings: {
     screen: Settings,
     navigationOptions: {
@@ -32,9 +32,15 @@ const TabNavigator = createBottomTabNavigator({
       ),
     },
   },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      tabBarVisible: false,
+    },
+  },
 }, {
-  initialRouteName: 'MyKingdom',
-  order: ['MyKingdom', 'Settings'],
+  initialRouteName: 'Login',
+  order: ['MyKingdom', 'Settings', 'Login'],
   tabBarOptions: {
     activeBackgroundColor: '#00695c',
     tabStyle: {
