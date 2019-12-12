@@ -5,7 +5,7 @@ import {
   ScrollView, Dimensions,
   StyleSheet, TouchableHighlight,
 } from 'react-native';
-import { fetching } from './actionCreator';
+import { fetchBuildings } from './actionCreator';
 import TownhallIcon from '../../assets/buildings/townhall.png';
 import AcademyIcon from '../../assets/buildings/academy.png';
 import FarmIcon from '../../assets/buildings/factory.png';
@@ -56,7 +56,7 @@ function Buildings() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetching());
+    dispatch(fetchBuildings());
   }, []);
 
   function getIconImage(type) {

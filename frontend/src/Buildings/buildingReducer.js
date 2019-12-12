@@ -1,4 +1,4 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from './actionCreator';
+import { FETCH_START, FETCH_BUILDINGS, FETCH_ERROR } from './actionCreator';
 
 const initialState = {
   buildingsInfo: [],
@@ -10,7 +10,7 @@ export default function buildings(state = initialState, action) {
   switch (action.type) {
     case FETCH_START:
       return { ...state, loading: true };
-    case FETCH_SUCCESS:
+    case FETCH_BUILDINGS:
       return { ...state, buildingsInfo: action.payload, loading: false };
     case FETCH_ERROR:
       return { ...state, error: action.payload, loading: false };

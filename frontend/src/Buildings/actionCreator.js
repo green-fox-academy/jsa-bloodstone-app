@@ -1,40 +1,21 @@
 import { SERVER_URL } from 'react-native-dotenv';
 
 export const FETCH_START = 'fetchStart';
-export const FETCH_SUCCESS = 'fetchSuccess';
+export const FETCH_BUILDINGS = 'fetchBuildings';
 export const FETCH_ERROR = 'fetchError';
 
-export function fetchStart() {
-  return {
-    type: FETCH_START,
-  };
-}
-
-export function fetchSuccess(state) {
-  return {
-    type: FETCH_SUCCESS,
-    payload: state,
-  };
-}
-
-export function fetchError(error) {
-  return {
-    type: FETCH_ERROR,
-    payload: error.message,
-  };
-}
-
-export function fetching() {
+export function fetchBuildings() {
+  const url = `http://${SERVER_URL}/kingdom/buildings`;
   return (dispatch) => {
-    dispatch(fetchStart());
-    fetch(`http://${SERVER_URL}/kingdom/buildings`)
+    dispatch({ type: FETCH_START });
+    fetch(url)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
         }
         throw new Error('Unexpected status');
       })
-      .then((response) => dispatch(fetchSuccess(response.buildings)))
-      .catch((error) => dispatch(fetchError(error)));
+      .then((response) => dispatch({ type: FETCH_BUILDINGS, payload: response.buildings }))
+      .catch((error) => dispatch({ type: FETCH_ERROR, payload: error.message }));
   };
 }
