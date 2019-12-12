@@ -3,11 +3,10 @@ import {
   View, StyleSheet, Text,
   ImageBackground, Alert,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
-
+import { login } from './actionCreator';
 import Colors from '../common/colors';
-import commonStyles from '../common/styles';
-
 import background from '../../assets/login/background.jpg';
 import CardTextInput from './CardTextInput';
 import NextArrowButton from './NextArrowButton';
@@ -31,11 +30,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  errorMessageText: {
-    color: Colors.redColor,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
 });
 
 const mockedUser = {
@@ -48,24 +42,27 @@ function showAlert(text) {
 }
 
 function Login() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSubmit() {
-    if (username === '' || password === '') {
+    const name = username.toLowerCase();
+    if (name === '' || password === '') {
       return showAlert('All the input fields are required.');
     }
-    if (username !== mockedUser.username || password !== mockedUser.password) {
+    if (name !== mockedUser.username || password !== mockedUser.password) {
       return showAlert('Wrong username or password.');
     }
-    return navigation.navigate('MyKingdom');
+    dispatch(login());
+    return navigation.navigate('Home');
   }
 
   return (
-    <View style={[commonStyles.container, styles.container]}>
+    <View style={styles.container}>
       <ImageBackground
-        style={[styles.background, { }]}
+        style={styles.background}
         resizeMode="cover"
         source={background}
       >
