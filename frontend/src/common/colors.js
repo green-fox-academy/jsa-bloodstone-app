@@ -5,5 +5,6 @@ export default {
   tealColor: '#10978b',
   lightenTeal: '#e0f2f1',
   redColor: '#f44336',
+  blackColor: '#000000',
   whiteColor: '#ffffff',
 };
