@@ -12,7 +12,6 @@ const buildingItemStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
-    borderColor: 'black',
   },
   iconStyle: {
     width: 'auto',
@@ -33,7 +32,7 @@ function BuildingItem({
 }) {
   return (
     <View style={buildingItemStyles.itemStyle}>
-      <TouchableHighlight underlayColor="#0000" onPress={onPress}>
+      <TouchableHighlight underlayColor="transparent" onPress={onPress}>
         <Image style={buildingItemStyles.iconStyle} source={getIconImage(type)} />
       </TouchableHighlight>
       <Text style={buildingItemStyles.textStyle}>{type}</Text>

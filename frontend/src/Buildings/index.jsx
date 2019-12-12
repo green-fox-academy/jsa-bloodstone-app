@@ -11,6 +11,7 @@ import townhallIcon from '../../assets/buildings/townhall.png';
 import academyIcon from '../../assets/buildings/academy.png';
 import farmIcon from '../../assets/buildings/factory.png';
 import mineIcon from '../../assets/buildings/mine.png';
+import Colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
 });
 
 function Buildings() {
-  const buildingsComponent = useSelector((state) => state.buildings.buildingsInfo);
+  const buildingsComponent = useSelector((state) => state.buildings.listOfBuildings);
   const isLoading = useSelector((state) => state.buildings.isLoading);
   const errorMessage = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
@@ -69,14 +70,14 @@ function Buildings() {
   return (
     <View>
       {isLoading
-        ? <ActivityIndicator size="large" color="#10978b" />
+        ? <ActivityIndicator size="large" color={Colors.tealColor} />
         : (
           <ScrollView contentContainerStyle={styles.scrollviewStyle}>
-            {buildingsComponent.map((element) => (
+            {buildingsComponent.map((building) => (
               <BuildingItem
-                key={element.id}
-                type={element.type}
-                level={element.level}
+                key={building.id}
+                type={building.type}
+                level={building.level}
                 onPress={handlePress}
                 getIconImage={getIconImage}
               />
