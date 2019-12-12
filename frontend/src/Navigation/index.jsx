@@ -68,7 +68,7 @@ const AuthStack = createStackNavigator({
 const HomeStack = createStackNavigator({
   Home: {
     screen: TabNavigator,
-    path: '/kingdom',
+    path: 'kingdom/',
   },
 }, hideHeaderOptions);
 
