@@ -21,7 +21,6 @@ const buildingItemStyles = StyleSheet.create({
     maxHeight: 200,
     minWidth: 70,
     minHeight: 70,
-    aspectRatio: 1,
   },
   textStyle: {
     fontSize: 15,

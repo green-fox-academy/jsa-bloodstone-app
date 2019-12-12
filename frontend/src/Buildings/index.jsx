@@ -4,6 +4,7 @@ import {
   View, Text, ScrollView,
   StyleSheet, ActivityIndicator,
 } from 'react-native';
+// import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
 import { fetchBuildings } from './actionCreator';
 import townhallIcon from '../../assets/buildings/townhall.png';
