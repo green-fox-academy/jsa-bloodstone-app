@@ -1,7 +1,7 @@
 import {
   FETCH_BUILDINGS_START,
   FETCH_BUILDINGS_SUCCESS,
-  FETCH_BUILDINGS_FAILURE
+  FETCH_BUILDINGS_FAILURE,
 } from './actionCreator';
 
 const initialState = {
