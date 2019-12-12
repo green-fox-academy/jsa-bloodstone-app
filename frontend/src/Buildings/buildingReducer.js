@@ -2,17 +2,18 @@ import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from './actionCreator';
 
 const initialState = {
   buildingsInfo: [],
-  message: '',
+  loading: false,
+  error: '',
 };
 
 export default function buildings(state = initialState, action) {
   switch (action.type) {
     case FETCH_START:
-      return { ...state, message: 'loading' };
+      return { ...state, loading: true };
     case FETCH_SUCCESS:
-      return { buildingsInfo: action.payload, message: 'success' };
+      return { ...state, buildingsInfo: action.payload, loading: false };
     case FETCH_ERROR:
-      return { ...state, message: action.payload };
+      return { ...state, error: action.payload, loading: false };
     default:
       return state;
   }

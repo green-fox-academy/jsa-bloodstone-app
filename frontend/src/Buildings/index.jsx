@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, Image, Text,
+  View, Image, Text, ActivityIndicator,
   ScrollView, Dimensions,
   StyleSheet, TouchableHighlight,
 } from 'react-native';
@@ -12,6 +12,16 @@ import FarmIcon from '../../assets/buildings/factory.png';
 import MineIcon from '../../assets/buildings/mine.png';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
+  },
   scrollviewStyle: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -41,6 +51,8 @@ const styles = StyleSheet.create({
 
 function Buildings() {
   const buildingsComponent = useSelector((state) => state.buildings.buildingsInfo);
+  const isLoading = useSelector((state) => state.buildings.loading);
+  const errorMessage = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,19 +78,29 @@ function Buildings() {
     // TODO for one building
   }
 
+  if(errorMessage !== ''){
+    return (
+      <View style={styles.container}>
+        <Text>{errorMessage}</Text>
+      </View>
+    )
+  }
   return (
     <View>
-      <ScrollView contentContainerStyle={styles.scrollviewStyle}>
-        {buildingsComponent.map((element) => (
-          <View key={element.id} style={styles.itemStyle}>
-            <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
-              <Image style={styles.iconStyle} source={getIconImage(element.type)} />
-            </TouchableHighlight>
-            <Text style={styles.textStyle}>{element.type}</Text>
-            <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      {isLoading 
+        ? <ActivityIndicator size="large" color="#10978b" />  
+        : <ScrollView contentContainerStyle={styles.scrollviewStyle}>
+          {buildingsComponent.map((element) => (
+            <View key={element.id} style={styles.itemStyle}>
+              <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
+                <Image style={styles.iconStyle} source={getIconImage(element.type)} />
+              </TouchableHighlight>
+              <Text style={styles.textStyle}>{element.type}</Text>
+              <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      }
     </View>
   );
 }
