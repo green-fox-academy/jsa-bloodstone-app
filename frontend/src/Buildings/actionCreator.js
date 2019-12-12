@@ -27,7 +27,7 @@ export function fetchError(error) {
 export function fetching() {
   return (dispatch) => {
     dispatch(fetchStart());
-    fetch(`http://${SERVER_URL}:4000/kingdom/buildings`)
+    fetch(`http://${SERVER_URL}/kingdom/buildings`)
       .then((response) => response.json())
       .then((response) => dispatch(fetchSuccess(response.buildings)));
   };

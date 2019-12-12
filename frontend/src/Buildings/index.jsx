@@ -12,6 +12,11 @@ import FarmIcon from '../../assets/buildings/factory.png';
 import MineIcon from '../../assets/buildings/mine.png';
 
 const styles = StyleSheet.create({
+  scrollviewStyle: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   itemStyle: {
     width: Dimensions.get('screen').width / 3,
     alignItems: 'center',
@@ -62,8 +67,8 @@ function Buildings() {
   }
 
   return (
-    <ScrollView>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+    <View>
+      <ScrollView contentContainerStyle={styles.scrollviewStyle}>
         {buildingsComponent.map((element) => (
           <View key={element.id} style={styles.itemStyle}>
             <TouchableHighlight underlayColor="#0000" onPress={handlePress}>
@@ -73,8 +78,8 @@ function Buildings() {
             <Text style={styles.textStyle}>{`Level ${element.level}`}</Text>
           </View>
         ))}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
