@@ -1,21 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, ViewPropTypes, Dimensions } from 'react-native';
-
-const cardStyle = {
-  marginBottom: 2,
-  padding: 12,
-  borderRadius: 5,
-  alignSelf: 'stretch',
-  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  flexDirection: 'row',
-  shadowColor: '#fff',
-  width: Dimensions.get('window').width,
-};
+import { View, ViewPropTypes } from 'react-native';
+import commonStyles from '../styles';
 
 function CardView({ style, children }) {
   return (
-    <View style={[cardStyle, style]}>
+    <View style={[commonStyles.cardStyle, style]}>
       {children}
     </View>
   );
