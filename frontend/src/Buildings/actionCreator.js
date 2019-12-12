@@ -1,10 +1,10 @@
-//import { SERVER_URL } from 'react-native-dotenv';
+import { SERVER_URL } from 'react-native-dotenv';
 
 export const FETCH_BUILDINGS_START = 'fetchBuildingsStart';
 export const FETCH_BUILDINGS_SUCCESS = 'fetchBuildingsSuccess';
 export const FETCH_BUILDINGS_FAILURE = 'fetchBuildingsFailure';
 
-const URL = `http://192.168.1.102:4000/kingdom/buildings`;
+const URL = `http://${SERVER_URL}/kingdom/buildings`;
 
 export function fetchBuildings() {
   return (dispatch) => {
