@@ -69,7 +69,7 @@ function Troop() {
       <TroopInformation
         attack={attack}
         defence={defence}
-        substenance={substenance}
+        sustenance={sustenance}
       />
       <TroopLevels
         level1TroopNum={level1TroopNum}
