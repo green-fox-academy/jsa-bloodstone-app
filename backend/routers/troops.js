@@ -23,7 +23,7 @@ const myTroops = {
       finished_at: 12399999,
     },
     {
-      id: 2,
+      id: 3,
       level: 2,
       hp: 1,
       attack: 1,
@@ -32,7 +32,7 @@ const myTroops = {
       finished_at: 12399999,
     },
     {
-      id: 2,
+      id: 4,
       level: 3,
       hp: 1,
       attack: 1,
@@ -41,7 +41,7 @@ const myTroops = {
       finished_at: 12399999,
     },
     {
-      id: 2,
+      id: 5,
       level: 3,
       hp: 1,
       attack: 1,
