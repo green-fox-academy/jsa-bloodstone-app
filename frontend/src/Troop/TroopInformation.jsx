@@ -3,6 +3,7 @@ import {
   View, Image, Text,
   StyleSheet,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { CardView } from '../common/components';
 import troopAvatar from '../../assets/troop/troop-avatar.jpg';
 import attackIcon from '../../assets/troop/attack.png';
@@ -29,26 +30,38 @@ const styles = StyleSheet.create({
   },
 });
 
-function TroopInformation() {
+function TroopInformation({ attack, defence, sustenance }) {
   return (
     <CardView style={{ flexDirection: 'row', alignItems: 'center' }}>
       <Image style={styles.troopAvatar} source={troopAvatar} />
       <View>
         <View style={styles.fieldStyle}>
-          <Text style={styles.textStyle}>Attack: 35</Text>
+          <Text style={styles.textStyle}>
+            {`Attack: ${attack}`}
+          </Text>
           <Image resizeMode="contain" source={attackIcon} style={styles.iconStyle} />
         </View>
         <View style={styles.fieldStyle}>
-          <Text style={styles.textStyle}>Defence: 35</Text>
+          <Text style={styles.textStyle}>
+            {`Defence: ${defence}`}
+          </Text>
           <Image resizeMode="contain" source={defenceIcon} style={styles.iconStyle} />
         </View>
         <View style={styles.fieldStyle}>
-          <Text style={styles.textStyle}>Sustenance: 23</Text>
+          <Text style={styles.textStyle}>
+            {`Sustenance: ${sustenance}`}
+          </Text>
           <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
         </View>
       </View>
     </CardView>
   );
 }
+
+TroopInformation.propTypes = {
+  attack: PropTypes.number.isRequired,
+  defence: PropTypes.number.isRequired,
+  sustenance: PropTypes.number.isRequired,
+};
 
 export default TroopInformation;
