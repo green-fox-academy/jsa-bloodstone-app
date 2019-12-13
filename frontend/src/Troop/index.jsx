@@ -62,7 +62,7 @@ function Troop() {
   const level3TroopNum = troops.filter((troop) => troop.level === 3).length;
   const attack = level1TroopNum + level2TroopNum * 2 + level3TroopNum * 3;
   const defence = level1TroopNum + level2TroopNum * 2 + level3TroopNum * 3;
-  const substenance = level1TroopNum + level2TroopNum + level3TroopNum;
+  const sustenance = level1TroopNum + level2TroopNum + level3TroopNum;
 
   return (
     <View style={{ flexDirection: 'column' }}>
