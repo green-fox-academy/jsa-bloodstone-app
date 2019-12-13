@@ -1,19 +1,19 @@
-import { FETCH_TROOPS_SUCCEED, FETCH_TROOPS_START, FETCH_TROOPS_ERROR } from './actionCreator';
+import { FETCH_TROOPS_SUCCESS, FETCH_TROOPS_REQUEST, FETCH_TROOPS_FAILURE } from './actionCreator';
 
-const initState = {
+const initialState = {
   troops: [],
   isLoading: false,
-  fetchError: undefined,
+  error: undefined,
 };
 
-export default function troop(state = initState, action) {
+export default function troop(state = initialState, action) {
   switch (action.type) {
-    case FETCH_TROOPS_SUCCEED:
+    case FETCH_TROOPS_SUCCESS:
       return { ...state, troops: action.payload, isLoading: false };
-    case FETCH_TROOPS_START:
+    case FETCH_TROOPS_REQUEST:
       return { ...state, isLoading: true };
-    case FETCH_TROOPS_ERROR:
-      return { ...state, fetchError: action.payload };
+    case FETCH_TROOPS_FAILURE:
+      return { ...state, error: action.payload };
     default:
       return state;
   }

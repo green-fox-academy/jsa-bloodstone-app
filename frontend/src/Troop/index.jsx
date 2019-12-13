@@ -38,16 +38,16 @@ TroopLevels.propTypes = {
 function Troop() {
   const troops = useSelector((state) => state.troop.troops);
   const isLoading = useSelector((state) => state.troop.isLoading);
-  const fetchError = useSelector((state) => state.troop.fetchError);
+  const error = useSelector((state) => state.troop.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTroops());
   }, []);
 
-  if (fetchError) {
+  if (error) {
     return (
-      <Text>{fetchError.message}</Text>
+      <Text>{error.message}</Text>
     );
   }
 
