@@ -2,7 +2,7 @@ import { FETCH_TROOPS_SUCCEED, FETCH_TROOPS_START, FETCH_TROOPS_ERROR } from './
 
 const initState = {
   troops: [],
-  isLoading: true,
+  isLoading: false,
   fetchError: null,
 };
 
