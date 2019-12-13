@@ -37,7 +37,7 @@ TroopLevels.propTypes = {
 };
 
 function Troop() {
-  const troops = useSelector((state) => state.troop.troops);
+  const listOfTroops = useSelector((state) => state.troop.listOftroops);
   const isLoading = useSelector((state) => state.troop.isLoading);
   const error = useSelector((state) => state.troop.error);
   const dispatch = useDispatch();
@@ -58,9 +58,9 @@ function Troop() {
     );
   }
 
-  const level1TroopNum = troops.filter((troop) => troop.level === 1).length;
-  const level2TroopNum = troops.filter((troop) => troop.level === 2).length;
-  const level3TroopNum = troops.filter((troop) => troop.level === 3).length;
+  const level1TroopNum = listOfTroops.filter((troop) => troop.level === 1).length;
+  const level2TroopNum = listOfTroops.filter((troop) => troop.level === 2).length;
+  const level3TroopNum = listOfTroops.filter((troop) => troop.level === 3).length;
   const attack = level1TroopNum + level2TroopNum * 2 + level3TroopNum * 3;
   const defence = level1TroopNum + level2TroopNum * 2 + level3TroopNum * 3;
   const sustenance = level1TroopNum + level2TroopNum + level3TroopNum;
