@@ -3,13 +3,13 @@ import { FETCH_TROOPS_SUCCEED, FETCH_TROOPS_START, FETCH_TROOPS_ERROR } from './
 const initState = {
   troops: [],
   isLoading: false,
-  fetchError: null,
+  fetchError: undefined,
 };
 
 export default function troop(state = initState, action) {
   switch (action.type) {
     case FETCH_TROOPS_SUCCEED:
-      return { troops: action.payload, isLoading: false };
+      return { ...state, troops: action.payload, isLoading: false };
     case FETCH_TROOPS_START:
       return { ...state, isLoading: true };
     case FETCH_TROOPS_ERROR:

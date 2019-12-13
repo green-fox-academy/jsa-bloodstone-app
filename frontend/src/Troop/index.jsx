@@ -45,7 +45,7 @@ function Troop() {
     dispatch(fetchTroops());
   }, []);
 
-  if (fetchError !== null) {
+  if (fetchError) {
     return (
       <Text>{fetchError.message}</Text>
     );
