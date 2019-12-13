@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import Troops from '../Troops';
 import Leaderboard from '../Leaderboard';
@@ -20,13 +20,13 @@ function MainView() {
       componentToRender = <Troops />;
       break;
     case 'Battle':
-      componentToRender = <Troops />;
+      componentToRender = <Text>not implemented</Text>;
       break;
     case 'Leaderboard':
       componentToRender = <Leaderboard />;
       break;
     default:
-      throw new Error('invalid currentlyDisplayComponent');
+      componentToRender = <Text>Sorry, something went wrong</Text>;
   }
 
   return (
