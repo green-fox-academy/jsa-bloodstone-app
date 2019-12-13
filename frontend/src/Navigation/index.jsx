@@ -1,38 +1,21 @@
 import React from 'react';
+import { createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
+import Login from '../Login';
 
-const TabNavigator = createBottomTabNavigator({
-  MyKingdom: {
-    screen: Game,
-    navigationOptions: {
-      tabBarIcon: () => (
-        <Ionicons
-          name="ios-home"
-          size={25}
-          style={{ color: colors.whiteColor }}
-        />
-      ),
-      tabBarLabel: 'My Kingdom',
-    },
+const hideHeaderOptions = {
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
   },
+};
 
-  Settings: {
-    screen: Settings,
-    navigationOptions: {
-      tabBarIcon: () => (
-        <Ionicons
-          name="md-settings"
-          size={25}
-          style={{ color: colors.whiteColor }}
-        />
-      ),
-    },
-  },
-}, {
+const bottomNavigationOptions = {
   initialRouteName: 'MyKingdom',
   order: ['MyKingdom', 'Settings'],
   tabBarOptions: {
@@ -48,6 +31,53 @@ const TabNavigator = createBottomTabNavigator({
       backgroundColor: colors.tealColor,
     },
   },
+};
+
+const renderIcon = (name) => (
+  <Ionicons
+    style={{ color: colors.whiteColor }}
+    name={name}
+    size={25}
+  />
+);
+
+const TabNavigator = createBottomTabNavigator({
+  MyKingdom: {
+    screen: Game,
+    navigationOptions: {
+      title: 'Kingdom',
+      tabBarLabel: 'My Kingdom',
+      tabBarIcon: () => renderIcon('ios-home'),
+    },
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      tabBarIcon: () => renderIcon('md-settings'),
+    },
+  },
+}, bottomNavigationOptions);
+
+const AuthStack = createStackNavigator({
+  Login: {
+    screen: Login,
+    path: 'login/',
+  },
+}, hideHeaderOptions);
+
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: TabNavigator,
+    path: 'kingdom/',
+  },
+}, hideHeaderOptions);
+
+const AppNavigator = createSwitchNavigator({
+  Auth: AuthStack,
+  Home: HomeStack,
+}, {
+  initialRouteName: 'Auth',
+  ...hideHeaderOptions,
 });
 
-export default TabNavigator;
+export default AppNavigator;
