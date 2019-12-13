@@ -47,7 +47,7 @@ function Troop() {
 
   if (error) {
     return (
-      <Text>{error.message}</Text>
+      <Text>{`${error.message} Oops`}</Text>
     );
   }
 
