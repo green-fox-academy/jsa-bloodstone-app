@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
 });
 
 function Leaderboard() {
-
   function mockedSearchUser(username) {
-    alert('search user ' + username);
+    // eslint-disable-next-line no-alert
+    alert(`search user ${username}`);
   }
 
   return (
