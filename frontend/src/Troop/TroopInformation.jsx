@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function TroopInformation({ attack, defence, substenance }) {
+function TroopInformation({ attack, defence, sustenance }) {
   return (
     <CardView style={{ flexDirection: 'row', alignItems: 'center' }}>
       <Image style={styles.troopAvatar} source={troopAvatar} />
