@@ -5,7 +5,7 @@ import Troops from '../Troops';
 import Leaderboard from '../Leaderboard';
 import Buildings from '../Buildings';
 
-const MainViewstyle = {
+const mainViewstyle = {
   paddingTop: 10,
 };
 
@@ -30,7 +30,7 @@ function MainView() {
   }
 
   return (
-    <View style={MainViewstyle}>
+    <View style={mainViewstyle}>
       {componentToRender}
     </View>
   );
