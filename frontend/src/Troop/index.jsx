@@ -37,7 +37,7 @@ TroopLevels.propTypes = {
 };
 
 function Troop() {
-  const listOfTroops = useSelector((state) => state.troop.listOftroops);
+  const listOfTroops = useSelector((state) => state.troop.listOfTroops);
   const isLoading = useSelector((state) => state.troop.isLoading);
   const error = useSelector((state) => state.troop.error);
   const dispatch = useDispatch();
