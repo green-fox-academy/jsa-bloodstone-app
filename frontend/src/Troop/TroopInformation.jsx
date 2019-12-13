@@ -49,7 +49,7 @@ function TroopInformation({ attack, defence, sustenance }) {
         </View>
         <View style={styles.fieldStyle}>
           <Text style={styles.textStyle}>
-            {`Sustenance: ${substenance}`}
+            {`Sustenance: ${sustenance}`}
           </Text>
           <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
         </View>
