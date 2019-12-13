@@ -9,7 +9,7 @@ const initState = {
 export default function troop(state = initState, action) {
   switch (action.type) {
     case FETCH_TROOPS_SUCCEED:
-      return { troops: action.payload, isLoading: false, fetchError: null };
+      return { troops: action.payload, isLoading: false };
     case FETCH_TROOPS_START:
       return { ...state, isLoading: true };
     case FETCH_TROOPS_ERROR:
