@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { TextInput, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
-import Colors from '../colors';
 
 const defaultStyle = {
-  fontSize: 21,
-  backgroundColor: Colors.whiteColor,
+  fontSize: 24,
 };
 
 function SearchBar({ onSubmit, style }) {

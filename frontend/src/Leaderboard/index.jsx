@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import RankRow from './RankRow';
 import SearchBar from '../common/components/SearchBar';
+import Colors from '../common/colors';
 
 const mockedUsers = [
   {
@@ -21,6 +22,18 @@ const mockedUsers = [
   },
 ];
 
+const styles = StyleSheet.create({
+  searchBar: {
+    width: '100%',
+    borderRadius: 10,
+    backgroundColor: Colors.lightenGrey,
+  },
+  searchBarView: {
+    flexDirection: 'row',
+    margin: 2,
+  },
+});
+
 function Leaderboard() {
 
   function mockedSearchUser(username) {
@@ -29,7 +42,9 @@ function Leaderboard() {
 
   return (
     <ScrollView>
-      <SearchBar onSubmit={mockedSearchUser} />
+      <View style={styles.searchBarView}>
+        <SearchBar style={styles.searchBar} onSubmit={mockedSearchUser} />
+      </View>
       {mockedUsers.map((user, idx) => (
         <RankRow
           key={user.username}
