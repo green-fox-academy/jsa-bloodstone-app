@@ -1,6 +1,6 @@
 import { SERVER_URL } from 'react-native-dotenv';
 
-export const FETCH_BUILDINGS_START = 'fetchBuildingsStart';
+export const FETCH_BUILDINGS_REQUEST = 'fetchBuildingsRequest';
 export const FETCH_BUILDINGS_SUCCESS = 'fetchBuildingsSuccess';
 export const FETCH_BUILDINGS_FAILURE = 'fetchBuildingsFailure';
 
@@ -8,7 +8,7 @@ const URL = `http://${SERVER_URL}/kingdom/buildings`;
 
 export function fetchBuildings() {
   return (dispatch) => {
-    dispatch({ type: FETCH_BUILDINGS_START });
+    dispatch({ type: FETCH_BUILDINGS_REQUEST });
     fetch(URL)
       .then((response) => {
         if (response.status === 200) {

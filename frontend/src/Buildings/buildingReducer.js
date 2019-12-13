@@ -1,5 +1,5 @@
 import {
-  FETCH_BUILDINGS_START,
+  FETCH_BUILDINGS_REQUEST,
   FETCH_BUILDINGS_SUCCESS,
   FETCH_BUILDINGS_FAILURE,
 } from './actionCreator';
@@ -7,12 +7,12 @@ import {
 const initialState = {
   listOfBuildings: [],
   isLoading: false,
-  error: '',
+  error: undefined,
 };
 
 export default function buildings(state = initialState, action) {
   switch (action.type) {
-    case FETCH_BUILDINGS_START:
+    case FETCH_BUILDINGS_REQUEST:
       return { ...state, isLoading: true };
     case FETCH_BUILDINGS_SUCCESS:
       return { ...state, listOfBuildings: action.payload, isLoading: false };

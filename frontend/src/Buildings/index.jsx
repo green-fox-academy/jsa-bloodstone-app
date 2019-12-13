@@ -4,7 +4,6 @@ import {
   View, Text, ScrollView,
   StyleSheet, ActivityIndicator,
 } from 'react-native';
-// import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
 import { fetchBuildings } from './actionCreator';
 import townhallIcon from '../../assets/buildings/townhall.png';
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
 });
 
 function Buildings() {
-  const buildingsComponent = useSelector((state) => state.buildings.listOfBuildings);
+  const listOfBuildings = useSelector((state) => state.buildings.listOfBuildings);
   const isLoading = useSelector((state) => state.buildings.isLoading);
-  const errorMessage = useSelector((state) => state.buildings.error);
+  const error = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,30 +59,29 @@ function Buildings() {
     // TODO for one building
   }
 
-  if (errorMessage !== '') {
+  if (error) {
     return (
-      <View style={styles.container}>
-        <Text>{errorMessage}</Text>
-      </View>
+      <Text>{`${error.message} Oops`}</Text>
+    );
+  }
+  if (isLoading) {
+    return (
+      <ActivityIndicator size="large" color={Colors.tealColor} />
     );
   }
   return (
     <View>
-      {isLoading
-        ? <ActivityIndicator size="large" color={Colors.tealColor} />
-        : (
-          <ScrollView contentContainerStyle={styles.scrollviewStyle}>
-            {buildingsComponent.map((building) => (
-              <BuildingItem
-                key={building.id}
-                type={building.type}
-                level={building.level}
-                onPress={handlePress}
-                getIconImage={getIconImage}
-              />
-            ))}
-          </ScrollView>
-        )}
+      <ScrollView contentContainerStyle={styles.scrollviewStyle}>
+        {listOfBuildings.map((building) => (
+          <BuildingItem
+            key={building.id}
+            type={building.type}
+            level={building.level}
+            onPress={handlePress}
+            getIconImage={getIconImage}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 }
