@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { TouchableImage } from '../common/components';
 import { changeDisplayedComponent } from './actionCreator';
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
