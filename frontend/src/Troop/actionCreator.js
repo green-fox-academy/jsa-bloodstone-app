@@ -16,7 +16,7 @@ export function fetchTroops() {
         }
         throw new Error(response.status);
       })
-      .then((json) => dispatch({ type: FETCH_TROOPS_SUCCESS, payload: json.troops }))
+      .then((response) => dispatch({ type: FETCH_TROOPS_SUCCESS, payload: response.troops }))
       .catch((error) => dispatch({ type: FETCH_TROOPS_FAILURE, payload: error }));
   };
 }
