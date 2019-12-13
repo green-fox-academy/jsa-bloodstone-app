@@ -13,7 +13,7 @@ export default function troop(state = initState, action) {
     case FETCH_TROOPS_START:
       return { ...state, isLoading: true };
     case FETCH_TROOPS_ERROR:
-      return { troops: [], isLoading: false, fetchError: action.payload };
+      return { ...state, fetchError: action.payload };
     default:
       return state;
   }
