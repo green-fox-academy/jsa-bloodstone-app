@@ -61,7 +61,7 @@ function TroopInformation({ attack, defence, sustenance }) {
 TroopInformation.propTypes = {
   attack: PropTypes.number.isRequired,
   defence: PropTypes.number.isRequired,
-  substenance: PropTypes.number.isRequired,
+  sustenance: PropTypes.number.isRequired,
 };
 
 export default TroopInformation;
