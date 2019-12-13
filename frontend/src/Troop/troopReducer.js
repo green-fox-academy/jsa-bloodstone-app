@@ -8,12 +8,12 @@ const initialState = {
 
 export default function troop(state = initialState, action) {
   switch (action.type) {
-    case FETCH_TROOPS_SUCCESS:
-      return { ...state, troops: action.payload, isLoading: false };
     case FETCH_TROOPS_REQUEST:
       return { ...state, isLoading: true };
+    case FETCH_TROOPS_SUCCESS:
+      return { ...state, troops: action.payload, isLoading: false };
     case FETCH_TROOPS_FAILURE:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, isLoading: false };
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import {
   View, ActivityIndicator,
   Text, StyleSheet,
 } from 'react-native';
+import Colors from '../common/colors';
 
 import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
@@ -53,7 +54,7 @@ function Troop() {
 
   if (isLoading) {
     return (
-      <ActivityIndicator size="large" color="#10978b" />
+      <ActivityIndicator size="large" color={Colors.tealColor} />
     );
   }
 
