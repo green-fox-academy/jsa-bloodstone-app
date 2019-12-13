@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useSelector } from 'react-redux';
-import Troop from '../Troop';
+import Troops from '../Troops';
 import Leaderboard from '../Leaderboard';
 import Buildings from '../Buildings';
 
@@ -13,10 +13,10 @@ function MainView() {
       componentToRender = <Buildings />;
       break;
     case 'Troops':
-      componentToRender = <Troop />;
+      componentToRender = <Troops />;
       break;
     case 'Battle':
-      componentToRender = <Troop />;
+      componentToRender = <Troops />;
       break;
     case 'Leaderboard':
       componentToRender = <Leaderboard />;

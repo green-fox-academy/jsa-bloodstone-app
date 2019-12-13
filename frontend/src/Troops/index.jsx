@@ -36,7 +36,7 @@ TroopLevels.propTypes = {
   level3TroopNum: PropTypes.number.isRequired,
 };
 
-function Troop() {
+function Troops() {
   const listOfTroops = useSelector((state) => state.troop.listOfTroops);
   const isLoading = useSelector((state) => state.troop.isLoading);
   const error = useSelector((state) => state.troop.error);
@@ -81,4 +81,4 @@ function Troop() {
   );
 }
 
-export default Troop;
+export default Troops;
