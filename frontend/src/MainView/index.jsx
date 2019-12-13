@@ -5,6 +5,10 @@ import Troops from '../Troops';
 import Leaderboard from '../Leaderboard';
 import Buildings from '../Buildings';
 
+const MainViewstyle = {
+  paddingTop: 10,
+};
+
 function MainView() {
   const currentlyDisplayComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
   let componentToRender;
@@ -26,7 +30,7 @@ function MainView() {
   }
 
   return (
-    <View>
+    <View style={MainViewstyle}>
       {componentToRender}
     </View>
   );
