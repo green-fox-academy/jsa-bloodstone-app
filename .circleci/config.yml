@@ -8,28 +8,26 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - yarn-frontend-packages-v1-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
-            - yarn-frontend-packages-v1-{{ .Branch }}-
-            - yarn-frontend-packages-v1-
+            - v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
+            - v1-yarn-frontend-packages-
       - run:
           name: Install Frontend Dependencies
           command: 'cd frontend && yarn install'
       - save_cache:
            name: Save Frontend Yarn Package Cache
-           key: v1-yarn-frontend-packages-{{ checksum "frontend/package.json" }}-{{ checksum "frontend/yarn.lock" }}
+           key: v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
            paths:
              - ./frontend/node_modules/
       - restore_cache:
           keys:
-            - yarn-backend-packages-v1-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
-            - yarn-backend-packages-v1-{{ .Branch }}-
-            - yarn-backend-packages-v1-
+            - v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
+            - v1-yarn-backend-packages-
       - run:
           name: Install Backend Dependencies
           command: 'cd backend && yarn install'
       - save_cache:
            name: Save Backend Yarn Package Cache
-           key: v1-yarn-backend-packages-{{ checksum "backend/package.json" }}-{{ checksum "backend/yarn.lock" }}
+           key: v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
            paths:
              - ./backend/node_modules/
       - run:
