@@ -21,11 +21,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.greenColor,
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 4,
-  },
   resourceIcon: {
     width: 14,
     height: 14,
