@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  subResourceView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 12,
+  },
 });
 
 function SubResourceView({
@@ -54,7 +59,7 @@ function SubResourceView({
   }
 
   return (
-    <View style={styles.rowFlex}>
+    <View style={styles.subResourceView}>
       <Image style={styles.buildingIcon} source={buildingIcon} />
       <View>
         <View style={styles.rowFlex}>
