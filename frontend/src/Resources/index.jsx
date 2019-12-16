@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function SubResourceView({
+function ResourceView({
   textColor, buildingIcon,
   resourceIcon, amount, changeRate,
 }) {
@@ -74,7 +74,7 @@ function SubResourceView({
   );
 }
 
-SubResourceView.propTypes = {
+ResourceView.propTypes = {
   textColor: PropTypes.string,
   resourceIcon: PropTypes.number.isRequired,
   buildingIcon: PropTypes.number.isRequired,
@@ -82,21 +82,21 @@ SubResourceView.propTypes = {
   changeRate: PropTypes.number.isRequired,
 };
 
-SubResourceView.defaultProps = {
+ResourceView.defaultProps = {
   textColor: Colors.greenColor,
 };
 
 function Resources() {
   return (
     <CardView style={styles.rowFlex}>
-      <SubResourceView
+      <ResourceView
         textColor={Colors.orangeColor}
         buildingIcon={factoryIcon}
         resourceIcon={cookieIcon}
         amount={233}
         changeRate={233}
       />
-      <SubResourceView
+      <ResourceView
         textColor={Colors.orangeColor}
         buildingIcon={mineIcon}
         resourceIcon={goldIcon}
