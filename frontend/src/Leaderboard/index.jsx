@@ -25,12 +25,14 @@ const mockedUsers = [
 const styles = StyleSheet.create({
   searchBar: {
     width: '100%',
+    fontSize: 24,
     borderRadius: 10,
     backgroundColor: Colors.lightenGrey,
   },
   searchBarView: {
     flexDirection: 'row',
-    margin: 2,
+    height: 48,
+    marginBottom: 8,
   },
 });
 
@@ -43,7 +45,7 @@ function Leaderboard() {
   return (
     <ScrollView>
       <View style={styles.searchBarView}>
-        <SearchBar style={styles.searchBar} onSubmit={mockedSearchUser} />
+        <SearchBar style={styles.searchBar} onSubmit={mockedSearchUser} placeholder="🔎Search for users" />
       </View>
       {mockedUsers.map((user, idx) => (
         <RankRow

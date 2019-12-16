@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
-import { TextInput, ViewPropTypes } from 'react-native';
+import { TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 
 const defaultStyle = {
   fontSize: 24,
 };
 
-function SearchBar({ onSubmit, style }) {
+function SearchBar({ style, onSubmit, placeholder }) {
   const [val, setVal] = useState('');
   return (
     <TextInput
       style={[defaultStyle, style]}
       onChangeText={(text) => setVal(text)}
       onSubmitEditing={() => onSubmit(val)}
-      placeholder="🔎"
+      placeholder={placeholder}
     />
   );
 }
 
 SearchBar.propTypes = {
-  style: ViewPropTypes.style,
+  style: TextInput.propTypes.style,
   onSubmit: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 SearchBar.defaultProps = {
   style: null,
+  placeholder: '🔎',
 };
 
 export default SearchBar;
