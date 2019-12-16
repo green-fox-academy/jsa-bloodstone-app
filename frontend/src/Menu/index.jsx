@@ -1,14 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Dimensions } from 'react-native';
-import { TouchableImage } from '../common/components';
+import { View } from 'react-native';
+import { TouchableImage, CardView } from '../common/components';
 import { changeDisplayedComponent } from './actionCreator';
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
 import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
-
-const HEIGHT_RATIO = 0.25;
 
 function Menu() {
   const activeComponent = useSelector((state) => state.menu.currentlyDisplayComponent);
@@ -26,14 +24,11 @@ function Menu() {
   }
 
   return (
-    <View>
+    <CardView style={{ height: 120, paddingVertical: 10 }}>
       <View
         style={{
           flexDirection: 'row',
-          width: Dimensions.get('window').width,
-          height: Dimensions.get('window').width * HEIGHT_RATIO,
-          backgroundColor: 'rgba(255, 255, 255, .8)',
-          borderRadius: 3,
+          flex: 1,
         }}
       >
         {ICON_LIST.map((element) => (
@@ -46,7 +41,7 @@ function Menu() {
           />
         ))}
       </View>
-    </View>
+    </CardView>
   );
 }
 

@@ -6,7 +6,7 @@ import MainView from '../MainView';
 
 function Game() {
   return (
-    <View style={styles.screenStyle}>
+    <View style={styles.container}>
       <Menu />
       <MainView />
     </View>

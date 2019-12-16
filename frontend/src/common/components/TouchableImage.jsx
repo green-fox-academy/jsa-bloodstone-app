@@ -1,33 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Text, Image, View,
-  TouchableHighlight,
-  Dimensions,
+  Text, Image, View, StyleSheet,
+  TouchableHighlight, Dimensions,
 } from 'react-native';
+import Colors from '../colors';
 
-const WINDOW_WIDTH = Dimensions.get('window').width;
-const LABEL_SIZE = Math.round(WINDOW_WIDTH / 500) * 10;
+const vw = Math.round(Dimensions.get('window').width / 600);
+const FONT_SIZE = 12 * vw;
+
+const styles = StyleSheet.create({
+  menuItemContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    paddingVertical: 12,
+  },
+  menuText: {
+    marginTop: 5,
+    fontSize: FONT_SIZE,
+    fontWeight: 'bold',
+    color: '#55565a',
+  },
+});
 
 function TouchableImage({
   src, name, onPress, activeComponent,
 }) {
   return (
     <TouchableHighlight
-      underlayColor="transparent"
+      underlayColor={Colors.lightenTeal}
       onPress={() => onPress(name)}
-      style={{ width: '25%', height: '100%' }}
-    >
-      <View style={{
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
+      style={{
+        flex: 1,
+        borderRadius: 6,
         alignItems: 'center',
-        backgroundColor: activeComponent === name ? 'rgba(148, 148, 148, .8)' : 'rgba(255, 255, 255, .8)',
+        justifyContent: 'center',
+        backgroundColor: activeComponent === name
+          ? Colors.lightenTeal
+          : 'transparent',
       }}
-      >
-        <Image source={src} style={{ width: '60%', height: '60%' }} />
-        <Text style={{ color: '#55565a', fontSize: LABEL_SIZE }}>{name}</Text>
+    >
+      <View style={styles.menuItemContainer}>
+        <Image
+          source={src}
+          resizeMode="contain"
+          style={{ flex: 1 }}
+        />
+        <Text numberOfLines={1} style={styles.menuText}>{name}</Text>
       </View>
     </TouchableHighlight>
   );
