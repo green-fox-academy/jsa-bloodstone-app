@@ -6,7 +6,7 @@ const initialState = {
   error: undefined,
 };
 
-export default function troop(state = initialState, action) {
+export default function troops(state = initialState, action) {
   switch (action.type) {
     case FETCH_TROOPS_REQUEST:
       return { ...state, isLoading: true };
