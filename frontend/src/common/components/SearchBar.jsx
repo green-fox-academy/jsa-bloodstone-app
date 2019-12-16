@@ -8,6 +8,7 @@ const defaultStyle = {
 
 function SearchBar({ style, onSubmit, placeholder }) {
   const [val, setVal] = useState('');
+
   return (
     <TextInput
       style={[defaultStyle, style]}
