@@ -1,7 +1,7 @@
 import { SERVER_URL } from 'react-native-dotenv';
 
-export const FETCH_RESOURCES_SUCCESS = 'fetchResourcesSuccess';
 export const FETCH_RESOURCES_REQUEST = 'fetchResourcesRequest';
+export const FETCH_RESOURCES_SUCCESS = 'fetchResourcesSuccess';
 export const FETCH_RESOURCES_FAILURE = 'fetchResourcesFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/resources`;

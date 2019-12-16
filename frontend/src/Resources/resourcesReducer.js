@@ -1,4 +1,4 @@
-import { FETCH_RESOURCES_SUCCESS, FETCH_RESOURCES_REQUEST, FETCH_RESOURCES_FAILURE } from './actionCreator';
+import { FETCH_RESOURCES_REQUEST, FETCH_RESOURCES_SUCCESS, FETCH_RESOURCES_FAILURE } from './actionCreator';
 
 const initialState = {
   food: 0,
