@@ -1,0 +1,4 @@
+# In this rule, @evasimonyi owns any files in the frontend
+# directory at the root of the repository and any of its
+# subdirectories.
+/frontend/ @evasimonyi
