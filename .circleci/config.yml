@@ -6,18 +6,36 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
+            - v1-yarn-frontend-packages-
       - run:
-          name: install-frontend-dependencies
+          name: Install Frontend Dependencies
           command: 'cd frontend && yarn install'
+      - save_cache:
+           name: Save Frontend Yarn Package Cache
+           key: v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
+           paths:
+             - ./frontend/node_modules/
+      - restore_cache:
+          keys:
+            - v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
+            - v1-yarn-backend-packages-
       - run:
-          name: install-backend-dependencies
+          name: Install Backend Dependencies
           command: 'cd backend && yarn install'
+      - save_cache:
+           name: Save Backend Yarn Package Cache
+           key: v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
+           paths:
+             - ./backend/node_modules/
       - run:
-          name: 'run-frontend-lint'
+          name: Run Frontend ESLint Check
           command: 'cd frontend && yarn lint'
       - run:
-          name: 'run-backend-lint'
+          name: Run Backend ESLint Check
           command: 'cd backend && yarn lint'
       - run:
-          name: 'run-backend-test'
+          name: Run Backend Tests
           command: 'cd backend && yarn test'
