@@ -1,12 +1,12 @@
 import { SERVER_URL } from 'react-native-dotenv';
 
-export const FETCH_RESOURCES_SUCCESS = 'fetchTroopsSuccess';
-export const FETCH_RESOURCES_REQUEST = 'fetchTroopsRequest';
-export const FETCH_RESOURCES_FAILURE = 'fetchTroopsFailure';
+export const FETCH_RESOURCES_SUCCESS = 'fetchResourcesSuccess';
+export const FETCH_RESOURCES_REQUEST = 'fetchResourcesRequest';
+export const FETCH_RESOURCES_FAILURE = 'fetchResourcesFailure';
 
-const URL = `http://${SERVER_URL}/kingdom/troops`;
+const URL = `http://${SERVER_URL}/kingdom/resources`;
 
-export function fetchTroops() {
+export function fetchResources() {
   return (dispatch) => {
     dispatch({ type: FETCH_RESOURCES_REQUEST });
     fetch(URL)
