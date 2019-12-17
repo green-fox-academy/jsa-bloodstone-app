@@ -29,16 +29,20 @@ const styles = StyleSheet.create({
   buildingIcon: {
     width: 32,
     height: 32,
-    marginHorizontal: 4,
+    marginRight: 4,
   },
   rowFlex: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  rowFlexSpaceAround: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
   resourceView: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 12,
   },
 });
 
@@ -81,7 +85,7 @@ ResourceView.propTypes = {
 
 function Resources() {
   return (
-    <CardView style={styles.rowFlex}>
+    <CardView style={styles.rowFlexSpaceAround}>
       <ResourceView
         buildingIcon={factoryIcon}
         resourceIcon={cookieIcon}
