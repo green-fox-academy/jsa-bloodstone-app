@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Dimensions } from 'react-native';
-import { TouchableImage } from '../common/components';
+import { View } from 'react-native';
+import { CardView } from '../common/components';
 import { changeDisplayedComponent } from './actionCreator';
+import TouchableImage from './TouchableImage';
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
@@ -26,14 +27,11 @@ function Menu() {
   }
 
   return (
-    <View>
+    <CardView style={{ height: 120, paddingVertical: 10 }}>
       <View
         style={{
+          flex: 1,
           flexDirection: 'row',
-          width: Dimensions.get('window').width,
-          height: Dimensions.get('window').width * HEIGHT_RATIO,
-          backgroundColor: 'rgba(255, 255, 255, .8)',
-          borderRadius: 3,
         }}
       >
         {ICON_LIST.map((element) => (
@@ -46,7 +44,7 @@ function Menu() {
           />
         ))}
       </View>
-    </View>
+    </CardView>
   );
 }
 

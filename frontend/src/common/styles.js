@@ -39,7 +39,4 @@ export default StyleSheet.create({
     flexDirection: 'row',
     elevation: 1,
   },
-  screenStyle: {
-    paddingTop: Constants.statusBarHeight,
-  },
 });
