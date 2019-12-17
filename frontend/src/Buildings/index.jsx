@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, Text, ScrollView,
+  Text, ScrollView,
   StyleSheet, ActivityIndicator,
 } from 'react-native';
 import BuildingItem from './buildingItem';
@@ -11,6 +11,7 @@ import academyIcon from '../../assets/buildings/academy.png';
 import farmIcon from '../../assets/buildings/factory.png';
 import mineIcon from '../../assets/buildings/mine.png';
 import Colors from '../common/colors';
+import { CardView } from '../common/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -70,7 +71,7 @@ function Buildings() {
     );
   }
   return (
-    <View>
+    <CardView>
       <ScrollView contentContainerStyle={styles.scrollviewStyle}>
         {listOfBuildings.map((building) => (
           <BuildingItem
@@ -82,7 +83,7 @@ function Buildings() {
           />
         ))}
       </ScrollView>
-    </View>
+    </CardView>
   );
 }
 

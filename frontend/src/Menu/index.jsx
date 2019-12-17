@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 120,
     paddingVertical: 10,
-    backgroundColor: Colors.white25Color,
-  }
+    backgroundColor: Colors.whiteColor,
+  },
 });
 
 function Menu() {

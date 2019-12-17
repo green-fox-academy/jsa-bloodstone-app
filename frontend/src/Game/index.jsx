@@ -1,16 +1,22 @@
 import React from 'react';
-import { View, ImageBackground, StyleSheet } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import Menu from '../Menu';
 import MainView from '../MainView';
-import Resources from '../Resources';
+import background from '../../assets/login/background.jpg';
+import commonStyles from '../common/styles';
 
 function Game() {
   return (
-    <View style={styles.screenStyle}>
-      <Menu />
-      <Resources />
-      <MainView />
-    </View>
+    <ImageBackground
+      style={commonStyles.background}
+      resizeMode="cover"
+      source={background}
+    >
+      <View style={commonStyles.container}>
+        <Menu />
+        <MainView />
+      </View>
+    </ImageBackground>
   );
 }
 

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: FONT_SIZE,
     fontWeight: 'bold',
-  }
+  },
 });
 
 function TouchableImage({
@@ -34,14 +34,14 @@ function TouchableImage({
 }) {
   const containerColorStyle = {
     backgroundColor: activeComponent === name
-      ? Colors.white20Color
+      ? Colors.lightenGrey
       : 'transparent',
-  }
+  };
   const textColorStyle = {
     color: activeComponent === name
-    ? '#333'
-    : '#bdbdbd'
-  }
+      ? '#333'
+      : '#bdbdbd',
+  };
   return (
     <TouchableHighlight
       style={[styles.container, containerColorStyle]}

@@ -7,7 +7,6 @@ export default StyleSheet.create({
     flex: 1,
     padding: 10,
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: Colors.lightenGrey,
   },
   textStyle: {
     color: Colors.textColor,
@@ -38,5 +37,10 @@ export default StyleSheet.create({
     backgroundColor: Colors.tealColor,
     flexDirection: 'row',
     elevation: 1,
+  },
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
 });

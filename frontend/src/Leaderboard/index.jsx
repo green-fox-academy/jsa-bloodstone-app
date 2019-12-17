@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import RankRow from './RankRow';
 import SearchBar from '../common/components/SearchBar';
 import Colors from '../common/colors';
+import { CardView } from '../common/components';
 
 const mockedUsers = [
   {
@@ -47,15 +48,17 @@ function Leaderboard() {
       <View style={styles.searchBarView}>
         <SearchBar style={styles.searchBar} onSubmit={mockedSearchUser} placeholder="🔎Search for users" />
       </View>
-      {mockedUsers.map((user, idx) => (
-        <RankRow
-          key={user.username}
-          rank={idx + 1}
-          username={user.username}
-          gold={user.gold}
-          kingdoms={user.kingdom}
-        />
-      ))}
+      <CardView style={{ padding: 10 }}>
+        {mockedUsers.map((user, idx) => (
+          <RankRow
+            key={user.username}
+            rank={idx + 1}
+            username={user.username}
+            gold={user.gold}
+            kingdoms={user.kingdom}
+          />
+        ))}
+      </CardView>
     </ScrollView>
   );
 }
