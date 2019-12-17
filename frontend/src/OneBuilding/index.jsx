@@ -185,8 +185,8 @@ function OneBuilding({
         );
       case 'Academy':
         return (
-          <View style={{ flex: 1}}>
-            <Text style={{ paddingBottom:10 }}>
+          <View style={{ flex: 1 }}>
+            <Text style={{ paddingBottom: 10 }}>
               You can create troops in your Academy. The higher level your Academy is,
               the stronger your troops are.
             </Text>
