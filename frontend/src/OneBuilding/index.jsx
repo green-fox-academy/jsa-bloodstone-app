@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 import SubCardView from '../common/components/SubCardView';
 import { fetchOneBuilding } from './actionCreator';
 import BuildingItem from '../Buildings/buildingItem';
@@ -31,7 +32,7 @@ const oneBuildingStyles = StyleSheet.create({
   },
   container: {
     width: 300,
-    height: 400,
+    height: 450,
     backgroundColor: 'rgb(202,202,202)',
     borderRadius: 15,
   },
@@ -68,6 +69,10 @@ const oneBuildingStyles = StyleSheet.create({
   iconStyle: {
     width:16,
     height:16,
+  },
+  textStyle: {
+    fontSize: 14,
+    color: '#fff',
   }
 });
 
@@ -77,7 +82,6 @@ const Header = ({ onClick, title }) => (
     <Text style={oneBuildingStyles.title}>{title} Detail Information</Text>
     <TouchableHighlight
       style={oneBuildingStyles.closeButton}
-
       onPress={onClick}
     >
       <AntDesign name="closecircleo" size={15} color="white" />
@@ -90,15 +94,35 @@ const AcademyButtons = ({ createTroops, upgrade }) => (
     <TouchableHighlight
       onPress={createTroops}
     >
-    <SubCardView>
-      <Text style={{ fontSize: 14, color: '#fff' }}>create troop level 1</Text>
+      <SubCardView style={{ height: 55, justifyContent: 'space-between' }}>
+        <Image resizeMode="contain" source={troopIcon} style={{width:28, height:28}} />
+      <View style={{ flex:1 }}>
+          <Text style={oneBuildingStyles.textStyle}> create troop level 1</Text>
+          <View style={{ flex: 1, flexDirection:'row' }}>
+          <Text style={oneBuildingStyles.textStyle}>  10 </Text>
+          <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
+          <Text style={oneBuildingStyles.textStyle}> 1:00</Text>
+        </View>
+      </View>
+       
     </SubCardView>
     </TouchableHighlight>
     <TouchableHighlight
       onPress={upgrade}
     >
-    <SubCardView>
-      <Text style={{ fontSize: 14, color: '#fff' }}>Upgrade to Level 2</Text>
+    <SubCardView style={{ height: 55, justifyContent: 'space-between' }}>
+      <View>
+        <Entypo name="arrow-with-circle-up" size={28} color="white" />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Text style={oneBuildingStyles.textStyle}> Upgrade to Level 2</Text>
+          <View style={{ flex: 1, flexDirection:'row'}}>
+            <Text style={oneBuildingStyles.textStyle}>  200 </Text>
+            <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
+            <Text style={oneBuildingStyles.textStyle}> 2:30</Text>
+          </View>
+      </View>
+      
     </SubCardView>
     </TouchableHighlight>
   </View>
@@ -152,7 +176,11 @@ function OneBuilding({
               <Text>Every level increases 1 </Text>
               <Image resizeMode="contain" source={attackIcon} style={oneBuildingStyles.iconStyle} />
               <Text> and 1 </Text>
-              <Image resizeMode="contain" source={defenceIcon} style={oneBuildingStyles.iconStyle} />
+              <Image
+                resizeMode="contain"
+                source={defenceIcon}
+                style={oneBuildingStyles.iconStyle}
+              />
               <Text> of the Troops.</Text>
             </View>
             <View style={{ flex: 1, flexDirection: 'row' }}>
