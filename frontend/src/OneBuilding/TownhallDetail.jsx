@@ -11,14 +11,18 @@ import goldIcon from '../../assets/gold.png';
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
+    // borderWidth: 1,
   },
   row: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   iconStyle: {
     width: 16,
     height: 16,
+  },
+  textStyle: {
+    lineHeight: 24,
   },
 });
 
@@ -26,19 +30,19 @@ function TownhallDetail({ troops, food, gold }) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Text>{`You have ${troops} `}</Text>
+        <Text style={styles.textStyle}>{`You have ${troops} `}</Text>
         <Image resizeMode="contain" source={troopIcon} style={styles.iconStyle} />
-        <Text> troops.</Text>
+        <Text style={styles.textStyle}> troops.</Text>
       </View>
       <View style={styles.row}>
-        <Text>{`You have ${food} `}</Text>
+        <Text style={styles.textStyle}>{`You have ${food} `}</Text>
         <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
-        <Text> food.</Text>
+        <Text style={styles.textStyle}> food.</Text>
       </View>
       <View style={styles.row}>
-        <Text>{`You have ${gold} `}</Text>
+        <Text style={styles.textStyle}>{`You have ${gold} `}</Text>
         <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
-        <Text> gold.</Text>
+        <Text style={styles.textStyle}> gold.</Text>
       </View>
     </View>
   );

@@ -13,15 +13,19 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textStyle: {
+    lineHeight: 24,
   },
 });
 
 function FarmDetail({ foodGenerateRate }) {
   return (
     <View style={styles.row}>
-      <Text>The food </Text>
+      <Text styles={styles.textStyle}>The food </Text>
       <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
-      <Text>{` generate rate is ${foodGenerateRate}/minute. `}</Text>
+      <Text styles={styles.textStyle}>{` generate rate is ${foodGenerateRate}/minute. `}</Text>
     </View>
   );
 }

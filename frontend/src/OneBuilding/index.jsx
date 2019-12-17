@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import ModalHeader from './ModalHeader';
 
 import { fetchOneBuilding } from './actionCreator';
-import BuildingItem from '../Buildings/buildingItem';
+import BuildingItem from './BuildingItem';
 import colors from '../common/colors';
 
 import TownhallDetail from './TownhallDetail';
@@ -26,15 +26,12 @@ const styles = StyleSheet.create({
   },
   container: {
     width: 300,
-    // minHeight: 300,
-    // flexBasis: 300,
-    // height: 450,
     backgroundColor: 'rgb(202,202,202)',
     borderRadius: 6,
   },
   mainBody: {
-    borderWidth: 1,
-    borderColor: 'red',
+    // borderWidth: 1,
+    // borderColor: 'red',
     padding: 15,
     paddingTop: 0,
   },
