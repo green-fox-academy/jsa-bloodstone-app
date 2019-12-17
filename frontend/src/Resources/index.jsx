@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View, Image, Text,
-  StyleSheet,
+  StyleSheet, ActivityIndicator,
 } from 'react-native';
 import factoryIcon from '../../assets/buildings/factory.png';
 import mineIcon from '../../assets/buildings/mine.png';
@@ -10,6 +11,8 @@ import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
+
+import { fetchResources } from './actionCreator';
 
 const styles = StyleSheet.create({
   text: {
@@ -84,19 +87,43 @@ ResourceView.propTypes = {
 };
 
 function Resources() {
+  const food = useSelector((state) => state.resources.food);
+  const foodGeneration = useSelector((state) => state.resources.foodGeneration);
+  const gold = useSelector((state) => state.resources.gold);
+  const goldGeneration = useSelector((state) => state.resources.goldGeneration);
+  const isLoading = useSelector((state) => state.resources.isLoading);
+  const error = useSelector((state) => state.resources.error);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchResources());
+  }, []);
+
+  if (error) {
+    return (
+      <Text>{`Oops, ${error.message}`}</Text>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator size="large" color={Colors.tealColor} />
+    );
+  }
+
   return (
     <CardView style={styles.rowFlexSpaceAround}>
       <ResourceView
         buildingIcon={factoryIcon}
         resourceIcon={cookieIcon}
-        amount={233}
-        changeRate={-233}
+        amount={food}
+        changeRate={foodGeneration}
       />
       <ResourceView
         buildingIcon={mineIcon}
         resourceIcon={goldIcon}
-        amount={233}
-        changeRate={233}
+        amount={gold}
+        changeRate={goldGeneration}
       />
     </CardView>
   );
