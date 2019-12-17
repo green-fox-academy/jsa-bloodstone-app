@@ -7,4 +7,6 @@ export default {
   redColor: '#f44336',
   blackColor: '#000000',
   whiteColor: '#ffffff',
+  greenColor: '#6AAB34',
+  orangeColor: '#F87C21',
 };
