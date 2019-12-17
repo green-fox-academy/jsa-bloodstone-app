@@ -11,8 +11,8 @@ import troopIcon from '../../assets/troop/troop.png';
 
 const styles = StyleSheet.create({
   row: {
-    flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   upgradeButtonGroup: {
     flexDirection: 'column',
@@ -31,12 +31,12 @@ function AcademyButtons({ createTroops, upgrade }) {
   return (
     <View style={styles.upgradeButtonGroup}>
       <TouchableHighlight onPress={createTroops}>
-        <SubCardView style={{ height: 55 }}>
+        <SubCardView>
           <Image resizeMode="contain" source={troopIcon} style={{ width: 28, height: 28 }} />
-          <View style={{ flex: 1 }}>
+          <View>
             <Text style={styles.textStyle}> create troop level 1</Text>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Text style={styles.textStyle}>  10 </Text>
+            <View style={styles.row}>
+              <Text style={styles.textStyle}> 10 </Text>
               <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
               <Text style={styles.textStyle}> 1:00</Text>
             </View>
@@ -44,13 +44,13 @@ function AcademyButtons({ createTroops, upgrade }) {
         </SubCardView>
       </TouchableHighlight>
       <TouchableHighlight onPress={upgrade}>
-        <SubCardView style={{ height: 55 }}>
+        <SubCardView>
           <View>
             <Entypo name="arrow-with-circle-up" size={28} color="white" />
           </View>
-          <View style={{ flex: 1 }}>
+          <View>
             <Text style={styles.textStyle}> Upgrade to Level 2</Text>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={styles.row}>
               <Text style={styles.textStyle}>  200 </Text>
               <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
               <Text style={styles.textStyle}> 2:30</Text>
