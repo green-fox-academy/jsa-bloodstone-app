@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Text,
-  Image,
-  View,
-  Modal,
-  SafeAreaView,
-  TouchableHighlight,
-  StyleSheet,
-  ActivityIndicator,
+  Text, Image, View, SafeAreaView, StyleSheet,
+  Modal, TouchableHighlight, ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { AntDesign, Entypo } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+
+import ModalHeader from './ModalHeader';
 
 import SubCardView from '../common/components/SubCardView';
 import { fetchOneBuilding } from './actionCreator';
@@ -23,7 +19,7 @@ import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 import troopIcon from '../../assets/troop/troop.png';
 
-const oneBuildingStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.6)',
@@ -36,28 +32,12 @@ const oneBuildingStyles = StyleSheet.create({
     backgroundColor: 'rgb(202,202,202)',
     borderRadius: 15,
   },
-  header: {
-    backgroundColor: colors.tealColor,
-    flexDirection: 'row',
-    borderTopStartRadius: 15,
-    borderTopRightRadius: 15,
-    justifyContent: 'space-between',
-  },
-  title: {
-    padding: 15,
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  closeButton: {
-    padding: 15,
-    borderTopRightRadius: 6,
-  },
   mainBody: {
+    borderWidth: 1,
+    borderColor: 'red',
     padding: 15,
     paddingTop: 0,
     flex: 1,
-    justifyContent: 'space-between',
   },
   upgradeButtonGroup: {
     flexDirection: 'column',
@@ -74,58 +54,40 @@ const oneBuildingStyles = StyleSheet.create({
     fontSize: 14,
     color: '#fff',
   },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+  },
 });
 
-
-const Header = ({ onClick, title }) => (
-  <View style={oneBuildingStyles.header}>
-    <Text style={oneBuildingStyles.title}>
-      {title}
-      {' '}
-      Detail Information
-    </Text>
-    <TouchableHighlight
-      style={oneBuildingStyles.closeButton}
-      onPress={onClick}
-    >
-      <AntDesign name="closecircleo" size={15} color="white" />
-    </TouchableHighlight>
-  </View>
-);
-
 const AcademyButtons = ({ createTroops, upgrade }) => (
-  <View style={oneBuildingStyles.upgradeButtonGroup}>
-    <TouchableHighlight
-      onPress={createTroops}
-    >
+  <View style={styles.upgradeButtonGroup}>
+    <TouchableHighlight onPress={createTroops}>
       <SubCardView style={{ height: 55, justifyContent: 'space-between' }}>
         <Image resizeMode="contain" source={troopIcon} style={{ width: 28, height: 28 }} />
         <View style={{ flex: 1 }}>
-          <Text style={oneBuildingStyles.textStyle}> create troop level 1</Text>
+          <Text style={styles.textStyle}> create troop level 1</Text>
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <Text style={oneBuildingStyles.textStyle}>  10 </Text>
-            <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
-            <Text style={oneBuildingStyles.textStyle}> 1:00</Text>
+            <Text style={styles.textStyle}>  10 </Text>
+            <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
+            <Text style={styles.textStyle}> 1:00</Text>
           </View>
         </View>
       </SubCardView>
     </TouchableHighlight>
-    <TouchableHighlight
-      onPress={upgrade}
-    >
+    <TouchableHighlight onPress={upgrade}>
       <SubCardView style={{ height: 55, justifyContent: 'space-between' }}>
         <View>
           <Entypo name="arrow-with-circle-up" size={28} color="white" />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={oneBuildingStyles.textStyle}> Upgrade to Level 2</Text>
+          <Text style={styles.textStyle}> Upgrade to Level 2</Text>
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <Text style={oneBuildingStyles.textStyle}>  200 </Text>
-            <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
-            <Text style={oneBuildingStyles.textStyle}> 2:30</Text>
+            <Text style={styles.textStyle}>  200 </Text>
+            <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
+            <Text style={styles.textStyle}> 2:30</Text>
           </View>
         </View>
-
       </SubCardView>
     </TouchableHighlight>
   </View>
@@ -150,35 +112,20 @@ function OneBuilding({
     switch (type) {
       case 'Townhall':
         return (
-          <View style={{ flex: 1, marginTop: 15 }}>
+          <View style={{ flex: 1 }}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Text>
-                You have
-                {' '}
-                {troops}
-                {' '}
-              </Text>
-              <Image resizeMode="contain" source={troopIcon} style={oneBuildingStyles.iconStyle} />
+              <Text>{`You have ${troops} `}</Text>
+              <Image resizeMode="contain" source={troopIcon} style={styles.iconStyle} />
               <Text> troops.</Text>
             </View>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Text>
-                You have
-                {' '}
-                {food}
-                {' '}
-              </Text>
-              <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
+            <View style={styles.row}>
+              <Text>{`You have ${food} `}</Text>
+              <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
               <Text> food.</Text>
             </View>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Text>
-                You have
-                {' '}
-                {gold}
-                {' '}
-              </Text>
-              <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
+            <View style={styles.row}>
+              <Text>{`You have ${gold} `}</Text>
+              <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
               <Text> gold.</Text>
             </View>
           </View>
@@ -192,18 +139,18 @@ function OneBuilding({
             </Text>
             <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
               <Text>Every level increases 1 </Text>
-              <Image resizeMode="contain" source={attackIcon} style={oneBuildingStyles.iconStyle} />
+              <Image resizeMode="contain" source={attackIcon} style={styles.iconStyle} />
               <Text> and 1 </Text>
               <Image
                 resizeMode="contain"
                 source={defenceIcon}
-                style={oneBuildingStyles.iconStyle}
+                style={styles.iconStyle}
               />
               <Text> of the Troops.</Text>
             </View>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={styles.row}>
               <Text>Every Troop eats 1 </Text>
-              <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
+              <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
               <Text> every minute.</Text>
             </View>
             <AcademyButtons createTroops={null} upgrade={null} />
@@ -213,30 +160,16 @@ function OneBuilding({
         return (
           <View style={{ flex: 1, flexDirection: 'row', marginTop: 25 }}>
             <Text>The food </Text>
-            <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
-            <Text>
-              {' '}
-              generate rate is
-              {' '}
-              {foodGenerateRate}
-              /minute.
-              {' '}
-            </Text>
+            <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
+            <Text>{` generate rate is ${foodGenerateRate}/minute. `}</Text>
           </View>
         );
       case 'Mine':
         return (
           <View style={{ flex: 1, flexDirection: 'row', marginTop: 25 }}>
             <Text>The gold </Text>
-            <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
-            <Text>
-              {' '}
-              generate rate is
-              {' '}
-              {goldGenerateRate}
-              /minute.
-              {' '}
-            </Text>
+            <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
+            <Text>{` generate rate is ${goldGenerateRate}/minute. `}</Text>
           </View>
         );
       default:
@@ -266,11 +199,10 @@ function OneBuilding({
       presentationStyle="overFullScreen"
       onRequestClose={onClick}
     >
-
-      <SafeAreaView style={oneBuildingStyles.background}>
-        <View style={oneBuildingStyles.container}>
-          <Header onClick={onClick} title={oneBuildingInfo.type} />
-          <View style={oneBuildingStyles.mainBody}>
+      <SafeAreaView style={styles.background}>
+        <View style={styles.container}>
+          <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
+          <View style={styles.mainBody}>
             <BuildingItem
               key={oneBuildingInfo.id}
               type={oneBuildingInfo.type}
@@ -279,7 +211,6 @@ function OneBuilding({
               getIconImage={getIconImage}
             />
             {getDetailInfo(oneBuildingInfo.type, 233, 233, 233, 233, 233)}
-
           </View>
         </View>
       </SafeAreaView>
@@ -297,11 +228,6 @@ OneBuilding.propTypes = {
 
 OneBuilding.defaultProps = {
   getIconImage: null,
-};
-
-Header.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 AcademyButtons.propTypes = {
