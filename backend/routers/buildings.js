@@ -83,13 +83,17 @@ function getBuildingById(req, res) {
   }
   if (buildingId === 1) {
     return res.status(200).send(mockedTownhall);
-  } else if (buildingId === 2) {
+  }
+  if (buildingId === 2) {
     return res.status(200).send(mockedAcademy);
-  } else if (buildingId === 3) {
+  }
+  if (buildingId === 3) {
     return res.status(200).send(mockedFarm);
-  } else if (buildingId === 4) {
+  }
+  if (buildingId === 4) {
     return res.status(200).send(mockedMine);
-  }  
+  }
+  return res.sendStatus(200);
 }
 
 router.get('/', getBuildings);
