@@ -43,14 +43,17 @@ const styles = StyleSheet.create({
 });
 
 function ResourceView({
-  textColor, buildingIcon,
+  buildingIcon,
   resourceIcon, amount, changeRate,
 }) {
   let changeRateStr;
+  let textColor;
   if (changeRate < 0) {
     changeRateStr = `${changeRate}/minute`;
+    textColor = Colors.orangeColor;
   } else {
     changeRateStr = `+${changeRate}/minute`;
+    textColor = Colors.greenColor;
   }
 
   return (
@@ -70,29 +73,22 @@ function ResourceView({
 }
 
 ResourceView.propTypes = {
-  textColor: PropTypes.string,
   resourceIcon: PropTypes.number.isRequired,
   buildingIcon: PropTypes.number.isRequired,
   amount: PropTypes.number.isRequired,
   changeRate: PropTypes.number.isRequired,
 };
 
-ResourceView.defaultProps = {
-  textColor: Colors.greenColor,
-};
-
 function Resources() {
   return (
     <CardView style={styles.rowFlex}>
       <ResourceView
-        textColor={Colors.orangeColor}
         buildingIcon={factoryIcon}
         resourceIcon={cookieIcon}
         amount={233}
-        changeRate={233}
+        changeRate={-233}
       />
       <ResourceView
-        textColor={Colors.orangeColor}
         buildingIcon={mineIcon}
         resourceIcon={goldIcon}
         amount={233}
