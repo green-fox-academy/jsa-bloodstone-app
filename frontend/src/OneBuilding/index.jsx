@@ -154,9 +154,9 @@ function OneBuilding({
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <Text>
                 You have
+                {' '}
                 {troops}
                 {' '}
-
               </Text>
               <Image resizeMode="contain" source={troopIcon} style={oneBuildingStyles.iconStyle} />
               <Text> troops.</Text>
@@ -164,9 +164,9 @@ function OneBuilding({
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <Text>
                 You have
+                {' '}
                 {food}
                 {' '}
-
               </Text>
               <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
               <Text> food.</Text>
@@ -174,9 +174,9 @@ function OneBuilding({
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <Text>
                 You have
+                {' '}
                 {gold}
                 {' '}
-
               </Text>
               <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
               <Text> gold.</Text>
@@ -185,8 +185,8 @@ function OneBuilding({
         );
       case 'Academy':
         return (
-          <View style={{ flex: 1 }}>
-            <Text>
+          <View style={{ flex: 1}}>
+            <Text style={{ paddingBottom:10 }}>
               You can create troops in your Academy. The higher level your Academy is,
               the stronger your troops are.
             </Text>
