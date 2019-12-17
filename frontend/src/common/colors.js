@@ -6,6 +6,7 @@ export default {
   lightenTeal: '#e0f2f1',
   redColor: '#f44336',
   blackColor: '#000000',
+  transparent: 'transparent',
   whiteColor: '#ffffff',
   greenColor: '#6AAB34',
   orangeColor: '#F87C21',
