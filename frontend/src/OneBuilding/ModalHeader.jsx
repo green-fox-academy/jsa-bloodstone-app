@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.tealColor,
     flexDirection: 'row',
-    borderTopStartRadius: 15,
-    borderTopRightRadius: 15,
+    borderTopStartRadius: 6,
+    borderTopRightRadius: 6,
     justifyContent: 'space-between',
   },
   title: {

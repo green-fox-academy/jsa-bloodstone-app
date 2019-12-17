@@ -10,8 +10,10 @@ import goldIcon from '../../assets/gold.png';
 
 
 const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+  },
   row: {
-    flex: 1,
     flexDirection: 'row',
   },
   iconStyle: {
@@ -22,8 +24,8 @@ const styles = StyleSheet.create({
 
 function TownhallDetail({ troops, food, gold }) {
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+    <View style={styles.container}>
+      <View style={styles.row}>
         <Text>{`You have ${troops} `}</Text>
         <Image resizeMode="contain" source={troopIcon} style={styles.iconStyle} />
         <Text> troops.</Text>

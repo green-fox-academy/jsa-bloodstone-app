@@ -8,7 +8,6 @@ import goldIcon from '../../assets/gold.png';
 
 const styles = StyleSheet.create({
   row: {
-    flex: 1,
     flexDirection: 'row',
   },
   iconStyle: {
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
 
 function MineDetail({ goldGenerateRate }) {
   return (
-    <View style={{ flex: 1, flexDirection: 'row', marginTop: 25 }}>
+    <View style={styles.row}>
       <Text>The gold </Text>
       <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
       <Text>{` generate rate is ${goldGenerateRate}/minute. `}</Text>

@@ -26,16 +26,17 @@ const styles = StyleSheet.create({
   },
   container: {
     width: 300,
-    height: 450,
+    // minHeight: 300,
+    // flexBasis: 300,
+    // height: 450,
     backgroundColor: 'rgb(202,202,202)',
-    borderRadius: 15,
+    borderRadius: 6,
   },
   mainBody: {
     borderWidth: 1,
     borderColor: 'red',
     padding: 15,
     paddingTop: 0,
-    flex: 1,
   },
   upgradeButtonGroup: {
     flexDirection: 'column',

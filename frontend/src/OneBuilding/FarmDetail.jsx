@@ -11,11 +11,14 @@ const styles = StyleSheet.create({
     width: 16,
     height: 16,
   },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 function FarmDetail({ foodGenerateRate }) {
   return (
-    <View style={{ flex: 1, flexDirection: 'row', marginTop: 25 }}>
+    <View style={styles.row}>
       <Text>The food </Text>
       <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
       <Text>{` generate rate is ${foodGenerateRate}/minute. `}</Text>
