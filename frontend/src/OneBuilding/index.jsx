@@ -17,6 +17,10 @@ import { fetchOneBuilding } from './actionCreator';
 import BuildingItem from '../Buildings/buildingItem';
 import colors from '../common/colors';
 import attackIcon from '../../assets/troop/attack.png';
+import defenceIcon from '../../assets/troop/defence.png';
+import cookieIcon from '../../assets/troop/cookie.png';
+import goldIcon from '../../assets/gold.png';
+import troopIcon from '../../assets/troop/troop.png';
 
 const oneBuildingStyles = StyleSheet.create({
   background: {
@@ -49,9 +53,10 @@ const oneBuildingStyles = StyleSheet.create({
     borderTopRightRadius: 6,
   },
   mainBody: {
-    // padding: 15,
+    padding: 15,
+    paddingTop: 0,
     flex: 1,
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
   },
   upgradeButtonGroup: {
     flexDirection: 'column',
@@ -80,17 +85,17 @@ const Header = ({ onClick, title }) => (
   </View>
 );
 
-const AcademyButtons = ({ onClick }) => (
+const AcademyButtons = ({ createTroops, upgrade }) => (
   <View style={oneBuildingStyles.upgradeButtonGroup}>
     <TouchableHighlight
-      onPress={onClick}
+      onPress={createTroops}
     >
     <SubCardView>
-      <Text style={{ fontSize: 14, color: '#fff' }}>Upgrade troops to Level 2</Text>
+      <Text style={{ fontSize: 14, color: '#fff' }}>create troop level 1</Text>
     </SubCardView>
     </TouchableHighlight>
     <TouchableHighlight
-      onPress={onClick}
+      onPress={upgrade}
     >
     <SubCardView>
       <Text style={{ fontSize: 14, color: '#fff' }}>Upgrade to Level 2</Text>
@@ -114,11 +119,27 @@ function OneBuilding({
     }
   }, [activeId]);
 
-  function getDetailInfo(type){
+  function getDetailInfo(type, troops, gold, food, goldGenerateRate, foodGenerateRate) {
     switch (type) {
       case 'Townhall':
         return (
-          <Text>town</Text>
+          <View style={{flex:1, marginTop:15}}>
+            <View style={{flex:1,flexDirection:'row'}}>
+              <Text>You have {troops} </Text>
+              <Image resizeMode="contain" source={troopIcon} style={oneBuildingStyles.iconStyle} />
+              <Text> troops.</Text>
+            </View>
+            <View style={{flex:1,flexDirection:'row'}}>
+              <Text>You have {food} </Text>
+              <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
+              <Text> food.</Text>
+            </View>
+            <View style={{flex:1,flexDirection:'row'}}>
+              <Text>You have {gold} </Text>
+              <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
+              <Text> gold.</Text>
+            </View>
+          </View>
         );
       case 'Academy':
         return (
@@ -126,21 +147,37 @@ function OneBuilding({
             <Text>
               You can create troops in your Academy. The higher level your Academy is,
               the stronger your troops are. 
-          </Text>
-            <View style={{flex:1, flexDirection:'row'}}>
+            </Text>
+            <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
               <Text>Every level increases 1 </Text>
-              <Image resizeMode="contain" source={attackIcon} styles={oneBuildingStyles.iconStyle} />
+              <Image resizeMode="contain" source={attackIcon} style={oneBuildingStyles.iconStyle} />
+              <Text> and 1 </Text>
+              <Image resizeMode="contain" source={defenceIcon} style={oneBuildingStyles.iconStyle} />
+              <Text> of the Troops.</Text>
             </View>
-            <AcademyButtons onClick={onClick}/>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Text>Every Troop eats 1 </Text>
+              <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
+              <Text> every minute.</Text>
+            </View>
+            <AcademyButtons createTroops={null} upgrade={null}/>
           </View>
         );
       case 'Farm':
         return (
-          <Text>Farm</Text>
+          <View style={{ flex: 1, flexDirection: 'row', marginTop:25}}>
+            <Text>The food </Text>
+            <Image resizeMode="contain" source={cookieIcon} style={oneBuildingStyles.iconStyle} />
+            <Text> generate rate is {foodGenerateRate}/minute. </Text>
+          </View>
         );
       case 'Mine':
         return (
-          <Text>Mine</Text>
+          <View style={{ flex: 1, flexDirection: 'row', marginTop:25}}>
+            <Text>The gold </Text>
+            <Image resizeMode="contain" source={goldIcon} style={oneBuildingStyles.iconStyle} />
+            <Text> generate rate is {goldGenerateRate}/minute. </Text>
+          </View>
         );
       default:
         return null;
@@ -181,7 +218,7 @@ function OneBuilding({
                   onPress={null}
                   getIconImage={getIconImage}
               />
-                {getDetailInfo(oneBuildingInfo.type)}
+                {getDetailInfo(oneBuildingInfo.type, 233, 233, 233, 233, 233)}
               
             </View>
           </View>
@@ -205,7 +242,8 @@ Header.propTypes = {
 };
 
 AcademyButtons.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  createTroops: PropTypes.func,
+  upgrade: PropTypes.func,
 };
 
 export default OneBuilding;
