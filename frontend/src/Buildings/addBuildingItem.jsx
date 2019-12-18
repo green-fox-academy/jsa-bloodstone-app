@@ -20,9 +20,7 @@ const styles = StyleSheet.create({
     fontSize: FontStyle.fontSize,
     fontWeight: 'bold',
     lineHeight: 24,
-    marginTop: 4,
-    color: '#333',
-    textAlignVertical: 'center',
+    marginBottom: -5,
   },
 });
 

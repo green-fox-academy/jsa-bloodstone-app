@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   View, Text, ScrollView,
   StyleSheet, ActivityIndicator,
-  SafeAreaView,
 } from 'react-native';
 import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
@@ -98,12 +97,12 @@ function Buildings() {
     <View style={styles.container}>
       <CardView style={{ flexDirection: 'row' }}>
         {ICON_LIST.map((addBuildingIcon) => (
-            <AddBuildingItem
-              key={addBuildingIcon.type}
-              icon={addBuildingIcon.url}
-              type={addBuildingIcon.type}
-              onPress={() => addPress(addBuildingIcon.type)}
-            />
+          <AddBuildingItem
+            key={addBuildingIcon.type}
+            icon={addBuildingIcon.url}
+            type={addBuildingIcon.type}
+            onPress={() => addPress(addBuildingIcon.type)}
+          />
         ))}
       </CardView>
       <CardView style={{ flex: 1, flexDirection: 'row' }}>
