@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function BuildingItem({
+function PopupItem({
   type, level, getIconImage,
 }) {
   return (
@@ -37,14 +37,14 @@ function BuildingItem({
   );
 }
 
-BuildingItem.propTypes = {
+PopupItem.propTypes = {
   type: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
   getIconImage: PropTypes.func,
 };
 
-BuildingItem.defaultProps = {
+PopupItem.defaultProps = {
   getIconImage: null,
 };
 
-export default BuildingItem;
+export default PopupItem;
