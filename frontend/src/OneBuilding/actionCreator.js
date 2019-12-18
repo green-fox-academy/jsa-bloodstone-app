@@ -12,7 +12,7 @@ export function fetchOneBuilding(buildingId) {
         if (response.status === 200) {
           return response.json();
         }
-        throw new Error(response.status);
+        throw new Error('An error has occurred, please try later!');
       })
       .then((response) => dispatch({ type: FETCH_ONE_BUILDING_SUCCESS, payload: response }))
       .catch((error) => dispatch({ type: FETCH_ONE_BUILDING_FAILURE, payload: error }));
