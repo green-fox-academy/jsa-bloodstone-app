@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
   },
 });
 
-function TouchableImage({
+function MenuItem({
   src, name, onPress, activeComponent,
 }) {
   const containerColorStyle = {
     backgroundColor: activeComponent === name
       ? Colors.lightenGrey
-      : 'transparent',
+      : Colors.transparent,
   };
   const textColorStyle = {
     color: activeComponent === name
@@ -56,16 +56,16 @@ function TouchableImage({
   );
 }
 
-TouchableImage.propTypes = {
+MenuItem.propTypes = {
   src: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   onPress: PropTypes.func,
   activeComponent: PropTypes.string,
 };
 
-TouchableImage.defaultProps = {
+MenuItem.defaultProps = {
   onPress: null,
   activeComponent: '',
 };
 
-export default TouchableImage;
+export default MenuItem;

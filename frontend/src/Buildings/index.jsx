@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   scrollviewStyle: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
 });
 
