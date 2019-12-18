@@ -12,6 +12,8 @@ import { fetchOneBuilding } from './actionCreator';
 import PopupItem from './popupItem';
 import colors from '../common/colors';
 
+import { fetchTroops } from '../Troops/actionCreator';
+
 import TownhallDetail from './TownhallDetail';
 import AcademyDetail from './AcademyDetail';
 import FarmDetail from './FarmDetail';
@@ -69,6 +71,14 @@ function OneBuilding({
     }
   }, [activeId]);
 
+  const listOfTroops = useSelector((state) => state.troops.listOfTroops);
+
+  useEffect(() => {
+    dispatch(fetchTroops());
+  }, []);
+
+  const totalNumOfTroops = listOfTroops.length;
+
   if (error) {
     return (
       <Text>{`Oops, ${error.message}`}</Text>
@@ -111,7 +121,7 @@ function OneBuilding({
               level={oneBuildingInfo.level}
               getIconImage={getIconImage}
             />
-            {getDetailInfo(oneBuildingInfo.type, 233, 233, 233, 233, 233)}
+            {getDetailInfo(oneBuildingInfo.type, totalNumOfTroops, 233, 233, 233, 233)}
           </View>
         </View>
       </SafeAreaView>
