@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Text, ScrollView,
+  View, Text, ScrollView,
   StyleSheet, ActivityIndicator,
-  SafeAreaView,
 } from 'react-native';
 import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
@@ -17,7 +16,6 @@ import addFarmIcon from '../../assets/buildings/addFarm.png';
 import addMineIcon from '../../assets/buildings/addMine.png';
 import addAcademyIcon from '../../assets/buildings/addAcademy.png';
 import Colors from '../common/colors';
-import { CardView } from '../common/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,6 +43,12 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 });
+
+const ICON_LIST = [
+  { type: 'Farm', url: addFarmIcon },
+  { type: 'Mine', url: addMineIcon },
+  { type: 'Academy', url: addAcademyIcon },
+];
 
 function Buildings() {
   const listOfBuildings = useSelector((state) => state.buildings.listOfBuildings);
@@ -90,40 +94,31 @@ function Buildings() {
     );
   }
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={styles.container}>
       <CardView style={{ flexDirection: 'row' }}>
-        <AddBuildingItem
-          icon={addFarmIcon}
-          type="Farm"
-          onPress={() => addPress('Farm')}
-        />
-        <AddBuildingItem
-          icon={addMineIcon}
-          type="Mine"
-          onPress={() => addPress('Mine')}
-        />
-        <AddBuildingItem
-          icon={addAcademyIcon}
-          type="Academy"
-          onPress={() => addPress('Academy')}
-        />
-      </CardView>
-      <ScrollView
-        bounces
-        style={styles.scrollViewStyle}
-        contentContainerStyle={styles.scrollViewContainer}
-      >
-        {listOfBuildings.map((building) => (
-          <BuildingItem
-            key={building.id}
-            type={building.type}
-            level={building.level}
-            onPress={handlePress}
-            getIconImage={getIconImage}
-          />
+        {ICON_LIST.map((addBuildingIcon) => (
+            <AddBuildingItem
+              key={addBuildingIcon.type}
+              icon={addBuildingIcon.url}
+              type={addBuildingIcon.type}
+              onPress={() => addPress(addBuildingIcon.type)}
+            />
         ))}
-      </ScrollView>
-    </SafeAreaView>
+      </CardView>
+      <CardView style={{ flex: 1, flexDirection: 'row' }}>
+        <ScrollView bounces contentContainerStyle={styles.scrollViewContainer}>
+          {listOfBuildings.map((building) => (
+            <BuildingItem
+              key={building.id}
+              type={building.type}
+              level={building.level}
+              onPress={handlePress}
+              getIconImage={getIconImage}
+            />
+          ))}
+        </ScrollView>
+      </CardView>
+    </View>
   );
 }
 

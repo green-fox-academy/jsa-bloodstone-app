@@ -4,32 +4,35 @@ import {
   StyleSheet, Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import FontStyle from '../common/fonts';
 
-const buildingItemStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   itemStyle: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    padding: 2,
   },
   iconStyle: {
     width: 60,
     height: 60,
   },
   textStyle: {
-    fontSize: 12,
-    lineHeight: 20,
-    marginTop: 10,
-    marginBottom: 10,
+    fontSize: FontStyle.fontSize,
+    fontWeight: 'bold',
+    lineHeight: 24,
+    marginTop: 4,
+    color: '#333',
+    textAlignVertical: 'center',
   },
 });
 
 function AddBuildingItem({ icon, type, onPress }) {
   return (
-    <View style={buildingItemStyles.itemStyle}>
+    <View style={styles.itemStyle}>
       <TouchableHighlight underlayColor="transparent" onPress={onPress}>
-        <Image style={buildingItemStyles.iconStyle} source={icon} />
+        <Image style={styles.iconStyle} source={icon} />
       </TouchableHighlight>
-      <Text style={buildingItemStyles.textStyle}>{`Add ${type}`}</Text>
+      <Text style={styles.textStyle}>{`Add ${type}`}</Text>
     </View>
   );
 }
