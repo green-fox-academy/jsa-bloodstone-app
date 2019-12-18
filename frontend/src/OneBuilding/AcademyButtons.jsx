@@ -9,6 +9,8 @@ import { SubCardView } from '../common/components';
 import goldIcon from '../../assets/gold.png';
 import troopIcon from '../../assets/troop/troop.png';
 
+import colors from '../common/colors'
+
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 12,
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 14,
-    color: '#fff',
+    color: colors.whiteColor,
   },
   imageStyle: {
     width: 32,
