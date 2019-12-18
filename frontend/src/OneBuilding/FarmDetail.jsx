@@ -25,7 +25,7 @@ function FarmDetail({ foodGenerateRate }) {
     <View style={styles.row}>
       <Text styles={styles.textStyle}>The food </Text>
       <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
-      <Text styles={styles.textStyle}>{` generate rate is ${foodGenerateRate}/minute. `}</Text>
+      <Text styles={styles.textStyle}>{` generation rate is ${foodGenerateRate}/minute. `}</Text>
     </View>
   );
 }
