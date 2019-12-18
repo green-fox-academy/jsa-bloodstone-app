@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    // borderWidth: 1,
-    // borderColor: 'red',
   },
   description: {
     marginLeft: 12,
