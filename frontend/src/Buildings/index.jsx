@@ -3,13 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   Text, ScrollView,
   StyleSheet, ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
+import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
-import { fetchBuildings } from './actionCreator';
+import AddBuildingItem from './addBuildingItem';
+import { fetchBuildings, addBuilding } from './actionCreator';
 import townhallIcon from '../../assets/buildings/townhall.png';
 import academyIcon from '../../assets/buildings/academy.png';
 import farmIcon from '../../assets/buildings/factory.png';
 import mineIcon from '../../assets/buildings/mine.png';
+import addFarmIcon from '../../assets/buildings/addFarm.png';
+import addMineIcon from '../../assets/buildings/addMine.png';
+import addAcademyIcon from '../../assets/buildings/addAcademy.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
 
@@ -24,10 +30,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 10,
   },
-  scrollviewStyle: {
+  scrollViewStyle: {
+    flex: 1,
+    marginHorizontal: -5,
+    marginBottom: -10,
+  },
+  scrollViewContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+  },
+  textStyle: {
+    fontSize: 15,
+    lineHeight: 20,
   },
 });
 
@@ -60,6 +75,10 @@ function Buildings() {
     // TODO for one building
   }
 
+  function addPress(type) {
+    dispatch(addBuilding(type));
+  }
+
   if (error) {
     return (
       <Text>{`Oops, ${error.message}`}</Text>
@@ -71,8 +90,29 @@ function Buildings() {
     );
   }
   return (
-    <CardView>
-      <ScrollView contentContainerStyle={styles.scrollviewStyle}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <CardView style={{ flexDirection: 'row' }}>
+        <AddBuildingItem
+          icon={addFarmIcon}
+          type="Farm"
+          onPress={() => addPress('Farm')}
+        />
+        <AddBuildingItem
+          icon={addMineIcon}
+          type="Mine"
+          onPress={() => addPress('Mine')}
+        />
+        <AddBuildingItem
+          icon={addAcademyIcon}
+          type="Academy"
+          onPress={() => addPress('Academy')}
+        />
+      </CardView>
+      <ScrollView
+        bounces
+        style={styles.scrollViewStyle}
+        contentContainerStyle={styles.scrollViewContainer}
+      >
         {listOfBuildings.map((building) => (
           <BuildingItem
             key={building.id}
@@ -83,7 +123,7 @@ function Buildings() {
           />
         ))}
       </ScrollView>
-    </CardView>
+    </SafeAreaView>
   );
 }
 

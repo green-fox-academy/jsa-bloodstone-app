@@ -2,6 +2,9 @@ import {
   FETCH_BUILDINGS_REQUEST,
   FETCH_BUILDINGS_SUCCESS,
   FETCH_BUILDINGS_FAILURE,
+  ADD_FARM,
+  ADD_MINE,
+  ADD_ACADEMY,
 } from './actionCreator';
 
 const initialState = {
@@ -18,6 +21,10 @@ export default function buildings(state = initialState, action) {
       return { ...state, listOfBuildings: action.payload, isLoading: false };
     case FETCH_BUILDINGS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+    case ADD_FARM:
+    case ADD_MINE:
+    case ADD_ACADEMY:
+      return { ...state, listOfBuildings: [...state.listOfBuildings, action.payload] };
     default:
       return state;
   }
