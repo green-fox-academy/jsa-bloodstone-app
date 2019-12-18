@@ -89,8 +89,10 @@ ResourceView.propTypes = {
 function Resources() {
   const foodAmount = useSelector((state) => state.resources.foodAmount);
   const foodGeneration = useSelector((state) => state.resources.foodGeneration);
+
   const goldAmount = useSelector((state) => state.resources.goldAmount);
   const goldGeneration = useSelector((state) => state.resources.goldGeneration);
+
   const isLoading = useSelector((state) => state.resources.isLoading);
   const error = useSelector((state) => state.resources.error);
   const dispatch = useDispatch();
