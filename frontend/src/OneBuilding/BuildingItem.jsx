@@ -5,14 +5,13 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
+import commonStyles from './styles';
+
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  description: {
-    marginLeft: 12,
   },
   iconStyle: {
     width: 64,
@@ -30,7 +29,7 @@ function BuildingItem({
   return (
     <View style={styles.container}>
       <Image style={styles.iconStyle} resizeMode="contain" source={getIconImage(type)} />
-      <View style={styles.description}>
+      <View style={commonStyles.description}>
         <Text style={styles.textStyle}>{type}</Text>
         <Text style={styles.textStyle}>{`Level ${level}`}</Text>
       </View>
