@@ -13,7 +13,7 @@ function MineDetail({ goldGenerateRate }) {
     <View style={commonStyles.row}>
       <Text style={commonStyles.textStyle}>The gold </Text>
       <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
-      <Text style={commonStyles.textStyle}>{` generate rate is ${goldGenerateRate}/minute. `}</Text>
+      <Text style={commonStyles.textStyle}>{` generation rate is ${goldGenerateRate}/minute. `}</Text>
     </View>
   );
 }
