@@ -1,0 +1,5 @@
+buildingName,constructionCost,constructionTimeInSeconds,upgradingCostLevel1,upgradingCostLevel2,upgradingTimeInSecondsLevel1,upgradingTimeInSecondsLevel2,generationType,generationRateLevel1,generationRateLevel2,generationRateLevel3,troopsLevelLimitLevel1,troopsLevelLimitLevel2,troopsLevelLimitLevel3,troopsCapacityLevel1,troopsCapacityLevel2,troopsCapacityLevel3,buildingsCapacityLevel1,buildingsCapacityLevel3,buildingsCapacityLevel3,buildingsNumberLimit
+townhall,100,60,250,400,1200,3600,,,,,,,,,,,4,8,16,1
+farm,100,60,250,400,1200,3600,food,1,2,5,,,,,,,,,,
+mine,100,60,250,400,1200,3600,gold,2,5,10,,,,,,,,,,
+academy,100,60,250,400,1200,3600,,,,,1,2,3,10,20,30,,,,
