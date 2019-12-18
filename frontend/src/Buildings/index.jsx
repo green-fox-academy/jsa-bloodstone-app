@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   View, Text, ScrollView,
   StyleSheet, ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
