@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import ModalHeader from './ModalHeader';
 
 import { fetchOneBuilding } from './actionCreator';
-import BuildingItem from './BuildingItem';
+import PopupItem from './popupItem';
 import colors from '../common/colors';
 
 import TownhallDetail from './TownhallDetail';
@@ -88,11 +88,10 @@ function OneBuilding({
         <View style={styles.container}>
           <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
           <View style={styles.mainBody}>
-            <BuildingItem
+            <PopupItem
               key={oneBuildingInfo.id}
               type={oneBuildingInfo.type}
               level={oneBuildingInfo.level}
-              onPress={null}
               getIconImage={getIconImage}
             />
             {getDetailInfo(oneBuildingInfo.type, 233, 233, 233, 233, 233)}
