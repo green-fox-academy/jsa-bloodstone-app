@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
   levelList: {
     paddingVertical: 10,
     flexDirection: 'column',
-    marginTop: 10,
     backgroundColor: '#fff',
+    paddingBottom: 3,
+    borderRadius: 7,
   },
 });
 

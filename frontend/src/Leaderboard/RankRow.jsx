@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 4,
+    paddingVertical: 7,
+    marginVertical: 3,
   },
   icon: {
     width: 20,

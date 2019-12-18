@@ -5,8 +5,8 @@ import Troops from '../Troops';
 import Leaderboard from '../Leaderboard';
 import Buildings from '../Buildings';
 
-const mainViewstyle = {
-  paddingTop: 10,
+const mainViewStyle = {
+  flex: 1,
 };
 
 function MainView() {
@@ -30,7 +30,7 @@ function MainView() {
   }
 
   return (
-    <View style={mainViewstyle}>
+    <View style={mainViewStyle}>
       {componentToRender}
     </View>
   );
