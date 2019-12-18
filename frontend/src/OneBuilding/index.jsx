@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingTop: 0,
   },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 function getDetailInfo(type, troops, gold, food, goldGenerateRate, foodGenerateRate) {
@@ -70,7 +75,19 @@ function OneBuilding({
     );
   }
   if (isLoading) {
-    return <ActivityIndicator size="large" color={colors.tealColor} />;
+    return (
+      <Modal
+        animationType="fade"
+        transparent
+        visible={isVisible}
+        presentationStyle="overFullScreen"
+        onRequestClose={onClick}
+      >
+        <View style={styles.loading}>
+          <ActivityIndicator size="large" color={colors.tealColor} />
+        </View>
+      </Modal>
+    );
   }
   if (Object.keys(oneBuildingInfo).length === 0) {
     return null;
