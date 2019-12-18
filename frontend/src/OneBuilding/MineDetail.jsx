@@ -1,31 +1,19 @@
 import React from 'react';
 import {
-  View, Text, Image, StyleSheet,
+  View, Text, Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import goldIcon from '../../assets/gold.png';
 
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconStyle: {
-    width: 16,
-    height: 16,
-  },
-  textStyle: {
-    lineHeight: 24,
-  },
-});
+import commonStyles from './styles';
 
 function MineDetail({ goldGenerateRate }) {
   return (
-    <View style={styles.row}>
-      <Text styles={styles.textStyle}>The gold </Text>
-      <Image resizeMode="contain" source={goldIcon} style={styles.iconStyle} />
-      <Text styles={styles.textStyle}>{` generate rate is ${goldGenerateRate}/minute. `}</Text>
+    <View style={commonStyles.row}>
+      <Text style={commonStyles.textStyle}>The gold </Text>
+      <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
+      <Text style={commonStyles.textStyle}>{` generate rate is ${goldGenerateRate}/minute. `}</Text>
     </View>
   );
 }
