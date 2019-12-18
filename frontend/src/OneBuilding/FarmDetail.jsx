@@ -1,31 +1,19 @@
 import React from 'react';
 import {
-  View, Text, Image, StyleSheet,
+  View, Text, Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import cookieIcon from '../../assets/troop/cookie.png';
 
-const styles = StyleSheet.create({
-  iconStyle: {
-    width: 16,
-    height: 16,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  textStyle: {
-    lineHeight: 24,
-  },
-});
+import commonStyles from './styles';
 
 function FarmDetail({ foodGenerateRate }) {
   return (
-    <View style={styles.row}>
-      <Text styles={styles.textStyle}>The food </Text>
-      <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
-      <Text styles={styles.textStyle}>{` generation rate is ${foodGenerateRate}/minute. `}</Text>
+    <View style={commonStyles.row}>
+      <Text style={commonStyles.textStyle}>The food </Text>
+      <Image resizeMode="contain" source={cookieIcon} style={commonStyles.iconStyle} />
+      <Text style={commonStyles.textStyle}>{` generation rate is ${foodGenerateRate}/minute. `}</Text>
     </View>
   );
 }
