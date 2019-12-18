@@ -33,25 +33,6 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingTop: 0,
   },
-  upgradeButtonGroup: {
-    flexDirection: 'column',
-  },
-  detailInfo: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  iconStyle: {
-    width: 16,
-    height: 16,
-  },
-  textStyle: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-  },
 });
 
 function getDetailInfo(type, troops, gold, food, goldGenerateRate, foodGenerateRate) {
