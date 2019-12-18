@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: FONT_SIZE,
     fontWeight: 'bold',
+    color: '#555',
   },
 });
 
@@ -37,20 +38,15 @@ function MenuItem({
       ? Colors.lightenGrey
       : Colors.transparent,
   };
-  const textColorStyle = {
-    color: activeComponent === name
-      ? '#333'
-      : '#bdbdbd',
-  };
   return (
     <TouchableHighlight
       style={[styles.container, containerColorStyle]}
       onPress={() => onPress(name)}
-      underlayColor={Colors.white20Color}
+      underlayColor={Colors.lightenGrey}
     >
       <View style={styles.container2}>
         <Image style={{ flex: 1 }} source={src} resizeMode="contain" />
-        <Text numberOfLines={1} style={[styles.textStyle, textColorStyle]}>{name}</Text>
+        <Text numberOfLines={1} style={styles.textStyle}>{name}</Text>
       </View>
     </TouchableHighlight>
   );

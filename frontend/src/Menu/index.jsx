@@ -8,7 +8,6 @@ import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
 import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
-import Colors from '../common/colors';
 
 const ICON_LIST = [
   { name: 'Buildings', url: buildingMenuIcon },
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 120,
     paddingVertical: 10,
-    backgroundColor: Colors.whiteColor,
+    backgroundColor: '#ffffffcc',
   },
 });
 
