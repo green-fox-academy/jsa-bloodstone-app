@@ -9,9 +9,6 @@ import cookieIcon from '../../assets/troop/cookie.png';
 import AcademyButtons from './AcademyButtons';
 
 const styles = StyleSheet.create({
-  container: {
-    // borderWidth: 1,
-  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -27,7 +24,7 @@ const styles = StyleSheet.create({
 
 function AcademyDetail() {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.textStyle}>
         You can create troops in your Academy. The higher level your Academy is,
         the stronger your troops are.
