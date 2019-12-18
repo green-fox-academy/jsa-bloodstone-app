@@ -1,0 +1,2 @@
+troopName,buildCost,buildSecond,upgradeCostLevel1,upgradeCostLevel2,upgradeSecondLevel1,upgradeSecondLevel2,attackLevel1,attackLevel2,attackLevel3,defenceLevel1,defenceLevel2,defenceLevel3,sustenance
+fox,10,60,20,40,120,360,1,2,3,1,2,3,1
