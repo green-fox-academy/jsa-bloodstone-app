@@ -42,13 +42,21 @@ const styles = StyleSheet.create({
   rightMargin: {
     marginEnd: 15,
   },
-  textStyle: {
+  headerTextStyle: {
     fontSize: 15,
+    maxWidth: 130,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  textStyle: {
     color: 'white',
   },
 });
 
-function RankingItem({ ranking, direction, disabled }) {
+function RankingItem({
+  ranking, gold, kingdom,
+  direction, disabled,
+}) {
   const extraContainerStyle = {
     flexDirection: direction === 'right' ? 'row-reverse' : 'row',
     backgroundColor: disabled ? 'gray' : colors.tealColor,
@@ -67,15 +75,15 @@ function RankingItem({ ranking, direction, disabled }) {
       <Text style={styles.rankTextStyle}>{ranking}</Text>
       <Image source={troopAvatar} resizeMode="contain" style={styles.avatarStyle} />
       <View style={direction === 'right' ? styles.rightMargin : styles.leftMargin}>
-        <Text style={{ fontSize: 15, color: 'white' }}>The Incredibles</Text>
+        <Text numberOfLines={1} style={styles.headerTextStyle}>The Incredible</Text>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>
           <View style={{ flexDirection: 'row', marginRight: 10 }}>
             <Image style={styles.iconStyle} source={goldIcon} />
-            <Text style={{ color: 'white' }}> 200</Text>
+            <Text style={styles.textStyle}>{` ${gold}`}</Text>
           </View>
           <View style={{ flexDirection: 'row', marginLeft: 10 }}>
             <Image style={styles.iconStyle} source={crownIcon} />
-            <Text style={{ color: 'white' }}> 200</Text>
+            <Text style={styles.textStyle}>{` ${kingdom}`}</Text>
           </View>
         </View>
       </View>
@@ -85,12 +93,16 @@ function RankingItem({ ranking, direction, disabled }) {
 
 RankingItem.propTypes = {
   ranking: PropTypes.number,
+  gold: PropTypes.number,
+  kingdom: PropTypes.number,
   direction: PropTypes.oneOf(['left', 'right']),
   disabled: PropTypes.bool,
 };
 
 RankingItem.defaultProps = {
   ranking: 1,
+  gold: 0,
+  kingdom: 0,
   direction: 'left',
   disabled: false,
 };

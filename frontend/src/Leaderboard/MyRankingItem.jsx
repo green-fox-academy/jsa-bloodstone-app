@@ -78,5 +78,4 @@ MyRankingItem.defaultProps = {
   kingdom: 0,
 };
 
-
 export default MyRankingItem;

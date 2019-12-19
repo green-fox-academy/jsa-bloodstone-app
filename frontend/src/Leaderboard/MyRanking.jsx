@@ -41,9 +41,9 @@ function MyRanking() {
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.rightLayout}>
           <View>
-            <RankingItem ranking={1} direction="right" />
-            <RankingItem ranking={2} direction="right" />
-            <RankingItem ranking={3} direction="right" />
+            <RankingItem ranking={1} direction="right" gold={200} kingdom={200} />
+            <RankingItem ranking={2} direction="right" gold={200} kingdom={200} />
+            <RankingItem ranking={3} direction="right" gold={200} kingdom={200} />
           </View>
           <RankingAxis amount={3} circleColor={colors.tealColor} />
         </View>
@@ -53,9 +53,9 @@ function MyRanking() {
         <View style={styles.leftLayout}>
           <RankingAxis amount={3} circleColor="gray" />
           <View>
-            <RankingItem ranking={5} disabled />
-            <RankingItem ranking={6} disabled />
-            <RankingItem ranking={7} disabled />
+            <RankingItem ranking={5} disabled gold={200} kingdom={200} />
+            <RankingItem ranking={6} disabled gold={200} kingdom={200} />
+            <RankingItem ranking={7} disabled gold={200} kingdom={200} />
           </View>
         </View>
       </ScrollView>

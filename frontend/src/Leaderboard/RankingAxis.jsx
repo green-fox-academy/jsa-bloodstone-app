@@ -46,8 +46,8 @@ function RankingAxis({ amount, circleColor }) {
   return (
     <View style={styles.container}>
       {[...range(1, amount)].map(
-        (element) => (
-          <View key={element} style={styles.circleStyle}>
+        (number) => (
+          <View key={number} style={styles.circleStyle}>
             <View style={[styles.innerCircleStyle, extraInnerCircleStyle]} />
           </View>
         ),
