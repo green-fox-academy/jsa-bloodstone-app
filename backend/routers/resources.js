@@ -7,20 +7,33 @@ const mockedResources = {
     {
       type: 'food',
       amount: 1,
-      generation: 1,
+      generation: 60,
       updatedAt: 1353647,
     },
     {
       type: 'gold',
       amount: 1,
-      generation: 1,
+      generation: 60,
       updatedAt: 1235346,
     },
   ],
 };
 
+function getResourceAmount(initialAmount, generation, updatedAt) {
+  const date = new Date();
+  const minutesPassed = (date.getTime() - updatedAt) / 60000;
+  return Math.round(initialAmount + generation * minutesPassed);
+}
+
 function getResources(req, res) {
-  return res.status(200).send(mockedResources);
+  const calculatedResources = {
+    resources: mockedResources.resources.map((resource) => ({
+      type: resource.type,
+      amount: getResourceAmount(resource.amount, resource.generation, resource.updatedAt),
+      generation: resource.generation,
+    })),
+  };
+  return res.status(200).send(calculatedResources);
 }
 
 router.get('/', getResources);

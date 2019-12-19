@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View, Image, Text,
@@ -10,6 +11,8 @@ import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
+
+import { fetchResources } from './actionCreator';
 
 const styles = StyleSheet.create({
   text: {
@@ -84,19 +87,40 @@ ResourceView.propTypes = {
 };
 
 function Resources() {
+  const foodAmount = useSelector((state) => state.resources.foodAmount);
+  const foodGeneration = useSelector((state) => state.resources.foodGeneration);
+
+  const goldAmount = useSelector((state) => state.resources.goldAmount);
+  const goldGeneration = useSelector((state) => state.resources.goldGeneration);
+
+  const error = useSelector((state) => state.resources.error);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchResources());
+    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
+    return () => clearInterval(updateResourcesInterval);
+  }, []);
+
+  if (error) {
+    return (
+      <Text>{`Oops, ${error.message}`}</Text>
+    );
+  }
+
   return (
     <CardView style={styles.rowFlexSpaceAround}>
       <ResourceView
         buildingIcon={factoryIcon}
         resourceIcon={cookieIcon}
-        amount={233}
-        changeRate={-233}
+        amount={foodAmount}
+        changeRate={foodGeneration}
       />
       <ResourceView
         buildingIcon={mineIcon}
         resourceIcon={goldIcon}
-        amount={233}
-        changeRate={233}
+        amount={goldAmount}
+        changeRate={goldGeneration}
       />
     </CardView>
   );
