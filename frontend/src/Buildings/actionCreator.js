@@ -35,9 +35,25 @@ const getMockedBuilding = (type) => {
   };
 };
 
-export function addBuilding(type) {
+export function addBuildingSuccess(type) {
   return {
     type: ADD_BUILDING_SUCCESS,
     payload: getMockedBuilding(type),
+  };
+}
+
+// The following function is for linking to backend
+export function addBuildings() {
+  return (dispatch) => {
+    dispatch({ type: ADD_BUILDING_REQUEST });
+    fetch(URL)
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        throw new Error('An error has occurred, please try later!');
+      })
+      .then((response) => dispatch({ type: ADD_BUILDING_SUCCESS, payload: response.buildings }))
+      .catch((error) => dispatch({ type: ADD_BUILDING_FAILURE, payload: error }));
   };
 }

@@ -7,7 +7,7 @@ import {
 import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
 import AddBuildingItem from './addBuildingItem';
-import { fetchBuildings, addBuilding } from './actionCreator';
+import { fetchBuildings, addBuildingSuccess } from './actionCreator';
 import townhallIcon from '../../assets/buildings/townhall.png';
 import academyIcon from '../../assets/buildings/academy.png';
 import farmIcon from '../../assets/buildings/factory.png';
@@ -80,7 +80,7 @@ function Buildings() {
   }
 
   function addNewBuilding(type) {
-    dispatch(addBuilding(type));
+    dispatch(addBuildingSuccess(type));
   }
 
   if (error) {
