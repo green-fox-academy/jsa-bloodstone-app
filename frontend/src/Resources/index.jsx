@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View, Image, Text,
-  StyleSheet, ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import factoryIcon from '../../assets/buildings/factory.png';
 import mineIcon from '../../assets/buildings/mine.png';
