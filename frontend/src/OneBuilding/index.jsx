@@ -42,12 +42,32 @@ const styles = StyleSheet.create({
   },
 });
 
-function getDetailInfo(type, troops, gold, food, goldGenerateRate, foodGenerateRate) {
+function getDetailInfo(
+  type,
+  troops,
+  gold,
+  food,
+  goldGenerateRate,
+  foodGenerateRate,
+  buildingLevel,
+  createTroopGoldCost,
+  createTroopTimeCost,
+  upgradeAcademyGoldCost,
+  upgradeAcademyTimeCost,
+) {
   switch (type) {
     case 'Townhall':
       return <TownhallDetail troops={troops} gold={gold} food={food} />;
     case 'Academy':
-      return <AcademyDetail />;
+      return (
+        <AcademyDetail
+          buildingLevel={buildingLevel}
+          createTroopGoldCost={createTroopGoldCost}
+          createTroopTimeCost={createTroopTimeCost}
+          upgradeAcademyGoldCost={upgradeAcademyGoldCost}
+          upgradeAcademyTimeCost={upgradeAcademyTimeCost}
+        />
+      );
     case 'Farm':
       return <FarmDetail foodGenerateRate={foodGenerateRate} />;
     case 'Mine':
@@ -81,6 +101,13 @@ function OneBuilding({
   const mockedFood = 60;
   const mockedGoldGenerateRate = 20;
   const mockedFoodGenerateRate = 30;
+
+  const mockedRules = {
+    createTroopGoldCost: 10,
+    createTroopTimeCost: 60,
+    upgradeAcademyGoldCost: 200,
+    upgradeAcademyTimeCost: 150,
+  };
 
   if (error) {
     return (
@@ -131,6 +158,11 @@ function OneBuilding({
               mockedFood,
               mockedGoldGenerateRate,
               mockedFoodGenerateRate,
+              oneBuildingInfo.level,
+              mockedRules.createTroopGoldCost,
+              mockedRules.createTroopTimeCost,
+              mockedRules.upgradeAcademyGoldCost,
+              mockedRules.upgradeAcademyTimeCost,
             )}
           </View>
         </View>
