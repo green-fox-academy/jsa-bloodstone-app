@@ -10,7 +10,16 @@ import goldIcon from '../../assets/gold.png';
 
 import commonStyles from './styles';
 
-function TownhallDetail({ troops, food, gold }) {
+import UpgradeBuilding from './UpgradeBuilding';
+
+function TownhallDetail({
+  troops,
+  food,
+  gold,
+  buildingLevel,
+  upgradeBuildingGoldCost,
+  upgradeBuildingTimeCost,
+}) {
   return (
     <View>
       <View style={commonStyles.row}>
@@ -28,6 +37,11 @@ function TownhallDetail({ troops, food, gold }) {
         <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
         <Text style={commonStyles.textStyle}> gold.</Text>
       </View>
+      <UpgradeBuilding
+        buildingLevel={buildingLevel}
+        upgradeBuildingGoldCost={upgradeBuildingGoldCost}
+        upgradeBuildingTimeCost={upgradeBuildingTimeCost}
+      />
     </View>
   );
 }
@@ -36,6 +50,9 @@ TownhallDetail.propTypes = {
   troops: PropTypes.number,
   food: PropTypes.number,
   gold: PropTypes.number,
+  buildingLevel: PropTypes.number.isRequired,
+  upgradeBuildingGoldCost: PropTypes.number.isRequired,
+  upgradeBuildingTimeCost: PropTypes.number.isRequired,
 };
 
 TownhallDetail.defaultProps = {
