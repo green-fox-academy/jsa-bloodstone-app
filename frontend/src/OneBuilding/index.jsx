@@ -72,12 +72,15 @@ function OneBuilding({
   }, [activeId]);
 
   const listOfTroops = useSelector((state) => state.troops.listOfTroops);
-
   useEffect(() => {
     dispatch(fetchTroops());
   }, []);
-
   const totalNumOfTroops = listOfTroops.length;
+
+  const mockedGold = 60;
+  const mockedFood = 60;
+  const mockedGoldGenerateRate = 20;
+  const mockedFoodGenerateRate = 30;
 
   if (error) {
     return (
@@ -121,7 +124,14 @@ function OneBuilding({
               level={oneBuildingInfo.level}
               getIconImage={getIconImage}
             />
-            {getDetailInfo(oneBuildingInfo.type, totalNumOfTroops, 233, 233, 233, 233)}
+            {getDetailInfo(
+              oneBuildingInfo.type,
+              totalNumOfTroops,
+              mockedGold,
+              mockedFood,
+              mockedGoldGenerateRate,
+              mockedFoodGenerateRate,
+            )}
           </View>
         </View>
       </SafeAreaView>
