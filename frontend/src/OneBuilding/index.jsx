@@ -72,8 +72,8 @@ function OneBuilding({
   const mockedRules = {
     createTroopGoldCost: 10,
     createTroopTimeCost: 60,
-    upgradeAcademyGoldCost: 200,
-    upgradeAcademyTimeCost: 150,
+    upgradeBuildingGoldCost: 200,
+    upgradeBuildingTimeCost: 150,
   };
 
   if (error) {
@@ -103,6 +103,9 @@ function OneBuilding({
         troops={totalNumOfTroops}
         gold={mockedGold}
         food={mockedFood}
+        buildingLevel={oneBuildingInfo.level}
+        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
+        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
       />
     );
   } else if (oneBuildingInfo.type === 'Academy') {
@@ -111,17 +114,27 @@ function OneBuilding({
         buildingLevel={oneBuildingInfo.level}
         createTroopGoldCost={mockedRules.createTroopGoldCost}
         createTroopTimeCost={mockedRules.createTroopTimeCost}
-        upgradeAcademyGoldCost={mockedRules.upgradeAcademyGoldCost}
-        upgradeAcademyTimeCost={mockedRules.upgradeAcademyTimeCost}
+        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
+        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
       />
     );
   } else if (oneBuildingInfo.type === 'Farm') {
     buildingComponent = (
-      <FarmDetail foodGenerateRate={mockedFoodGenerateRate} />
+      <FarmDetail
+        foodGenerateRate={mockedFoodGenerateRate}
+        buildingLevel={oneBuildingInfo.level}
+        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
+        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
+      />
     );
   } else if (oneBuildingInfo.type === 'Mine') {
     buildingComponent = (
-      <MineDetail goldGenerateRate={mockedGoldGenerateRate} />
+      <MineDetail
+        goldGenerateRate={mockedGoldGenerateRate}
+        buildingLevel={oneBuildingInfo.level}
+        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
+        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
+      />
     );
   }
 
