@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 
 const {
-  townhallRule, farmRule, mineRule, academyRule,
+  townhallRule, farmRule, mineRule, academyRule, foxRule,
 } = require('../rules');
 
 const myBuildings = {
@@ -53,13 +53,37 @@ function getBuildingById(req, res) {
   if (targetBuilding.length > 0) {
     switch (targetBuilding[0].type) {
       case 'townhall':
-        return res.status(200).send({ building: targetBuilding[0], rules: townhallRule });
+        return res.status(200).send({
+          building: targetBuilding[0],
+          rules: {
+            buildingRules: townhallRule,
+            TroopsRules: foxRule,
+          },
+        });
       case 'academy':
-        return res.status(200).send({ building: targetBuilding[0], rules: academyRule });
+        return res.status(200).send({
+          building: targetBuilding[0],
+          rules: {
+            buildingRules: academyRule,
+            TroopsRules: foxRule,
+          },
+        });
       case 'farm':
-        return res.status(200).send({ building: targetBuilding[0], rules: farmRule });
+        return res.status(200).send({
+          building: targetBuilding[0],
+          rules: {
+            buildingRules: farmRule,
+            TroopsRules: foxRule,
+          },
+        });
       case 'mine':
-        return res.status(200).send({ building: targetBuilding[0], rules: mineRule });
+        return res.status(200).send({
+          building: targetBuilding[0],
+          rules: {
+            buildingRules: mineRule,
+            TroopsRules: foxRule,
+          },
+        });
       default:
         return res.sendStatus(404);
     }
