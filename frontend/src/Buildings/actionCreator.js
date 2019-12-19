@@ -34,6 +34,7 @@ const getMockedBuilding = (type) => {
     level: 1,
   };
 };
+
 export function addBuilding(type) {
   return {
     type: ADD_BUILDING_SUCCESS,
