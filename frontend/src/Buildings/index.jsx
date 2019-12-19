@@ -56,7 +56,7 @@ function Buildings() {
   const isLoading = useSelector((state) => state.buildings.isLoading);
   const error = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
-  const [popupVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const [activeId, setActiveId] = useState(-1);
 
   const onCloseAddModal = () => {
@@ -127,7 +127,7 @@ function Buildings() {
         </ScrollView>
         <OneBuilding
           activeId={activeId}
-          visible={popupVisible}
+          visible={isModalVisible}
           onClick={onCloseAddModal}
           getIconImage={getIconImage}
         />
