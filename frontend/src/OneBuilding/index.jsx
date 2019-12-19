@@ -14,6 +14,8 @@ import colors from '../common/colors';
 
 import { fetchTroops } from '../Troops/actionCreator';
 
+import { fetchResources } from '../Resources/actionCreator';
+
 import Popup from '../common/components/Popup';
 
 import TownhallDetail from './TownhallDetail';
@@ -64,10 +66,15 @@ function OneBuilding({
   }, []);
   const totalNumOfTroops = listOfTroops.length;
 
-  const mockedGold = 60;
-  const mockedFood = 60;
-  const mockedGoldGenerateRate = 20;
-  const mockedFoodGenerateRate = 30;
+  const foodAmount = useSelector((state) => state.resources.foodAmount);
+  const foodGeneration = useSelector((state) => state.resources.foodGeneration);
+  const goldAmount = useSelector((state) => state.resources.goldAmount);
+  const goldGeneration = useSelector((state) => state.resources.goldGeneration);
+  useEffect(() => {
+    dispatch(fetchResources());
+    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
+    return () => clearInterval(updateResourcesInterval);
+  }, []);
 
   const mockedRules = {
     createTroopGoldCost: 10,
@@ -101,8 +108,8 @@ function OneBuilding({
     buildingComponent = (
       <TownhallDetail
         troops={totalNumOfTroops}
-        gold={mockedGold}
-        food={mockedFood}
+        gold={goldAmount}
+        food={foodAmount}
         buildingLevel={oneBuildingInfo.level}
         upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
         upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
@@ -121,7 +128,7 @@ function OneBuilding({
   } else if (oneBuildingInfo.type === 'Farm') {
     buildingComponent = (
       <FarmDetail
-        foodGenerateRate={mockedFoodGenerateRate}
+        foodGenerateRate={foodGeneration}
         buildingLevel={oneBuildingInfo.level}
         upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
         upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
@@ -130,7 +137,7 @@ function OneBuilding({
   } else if (oneBuildingInfo.type === 'Mine') {
     buildingComponent = (
       <MineDetail
-        goldGenerateRate={mockedGoldGenerateRate}
+        goldGenerateRate={goldGeneration}
         buildingLevel={oneBuildingInfo.level}
         upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
         upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
