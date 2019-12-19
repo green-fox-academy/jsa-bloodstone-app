@@ -36,42 +36,6 @@ const myBuildings = {
   ],
 };
 
-const mockedTownhall = {
-  id: 1,
-  type: 'Townhall',
-  level: 1,
-  hp: 1,
-  started_at: 12345789,
-  finished_at: 12399999,
-};
-
-const mockedAcademy = {
-  id: 2,
-  type: 'Academy',
-  level: 1,
-  hp: 1,
-  started_at: 12345789,
-  finished_at: 12399999,
-};
-
-const mockedFarm = {
-  id: 3,
-  type: 'Farm',
-  level: 1,
-  hp: 1,
-  started_at: 12345789,
-  finished_at: 12399999,
-};
-
-const mockedMine = {
-  id: 4,
-  type: 'Mine',
-  level: 1,
-  hp: 1,
-  started_at: 12345789,
-  finished_at: 12399999,
-};
-
 function getBuildings(req, res) {
   return res.status(200).send(myBuildings);
 }
@@ -81,19 +45,11 @@ function getBuildingById(req, res) {
   if (Number.isNaN(buildingId) || buildingId <= 0) {
     return res.sendStatus(400);
   }
-  if (buildingId === 1) {
-    return res.status(200).send(mockedTownhall);
+  const targetBuilding = myBuildings.buildings.filter((building) => buildingId === building.id);
+  if (targetBuilding.length > 0) {
+    return res.status(200).send(targetBuilding[0]);
   }
-  if (buildingId === 2) {
-    return res.status(200).send(mockedAcademy);
-  }
-  if (buildingId === 3) {
-    return res.status(200).send(mockedFarm);
-  }
-  if (buildingId === 4) {
-    return res.status(200).send(mockedMine);
-  }
-  return res.sendStatus(200);
+  return res.sendStatus(404);
 }
 
 router.get('/', getBuildings);
