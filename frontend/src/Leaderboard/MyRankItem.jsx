@@ -11,8 +11,12 @@ import crownIcon from '../../assets/crown.png';
 import goldIcon from '../../assets/gold.png';
 
 const styles = StyleSheet.create({
+  textStyle: {
+    lineHeight: 32,
+  },
   rankTextStyle: {
     fontWeight: 'bold',
+    lineHeight: 32,
   },
   avatarContainer: {
     alignItems: 'center',
@@ -26,12 +30,12 @@ const styles = StyleSheet.create({
 
 function MyRankItem({ ranking }) {
   return (
-    <CardView>
+    <CardView style={{ width: 275, marginHorizontal: 100 }}>
       <View style={styles.avatarContainer}>
         <Image style={styles.avatarStyle} source={troopAvatar} />
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-        <Text>My ranking: </Text>
+        <Text style={styles.textStyle}>My ranking: </Text>
         <Text style={styles.rankTextStyle}>{ranking}</Text>
       </View>
       <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>

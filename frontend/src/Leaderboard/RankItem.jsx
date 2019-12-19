@@ -12,10 +12,12 @@ import colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 5,
+    marginBottom: 5,
     borderRadius: 16,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginBottom: 10,
+    margin: 0,
   },
   triangle: {
     borderWidth: 10,
