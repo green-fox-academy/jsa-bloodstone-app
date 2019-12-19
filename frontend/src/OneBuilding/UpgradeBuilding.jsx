@@ -13,8 +13,8 @@ import commonStyles from './styles';
 function UpgradeBuilding({
   upgrade,
   buildingLevel,
-  upgradeAcademyGoldCost,
-  upgradeAcademyTimeCost,
+  upgradeBuildingGoldCost,
+  upgradeBuildingTimeCost,
 }) {
   return (
     <TouchableHighlight onPress={upgrade} style={{ padding: 3 }}>
@@ -29,12 +29,12 @@ function UpgradeBuilding({
             {`Upgrade to Level ${buildingLevel + 1}`}
           </Text>
           <View style={commonStyles.row}>
-            <Text style={commonStyles.buttonTextStyle}>{`cost ${upgradeAcademyGoldCost} ` }</Text>
+            <Text style={commonStyles.buttonTextStyle}>{`cost ${upgradeBuildingGoldCost} ` }</Text>
             <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
             <Text
               style={commonStyles.buttonTextStyle}
             >
-              {` in ${upgradeAcademyTimeCost} seconds`}
+              {` in ${upgradeBuildingTimeCost} seconds`}
             </Text>
           </View>
         </View>
@@ -46,8 +46,8 @@ function UpgradeBuilding({
 UpgradeBuilding.propTypes = {
   upgrade: PropTypes.func,
   buildingLevel: PropTypes.number.isRequired,
-  upgradeAcademyGoldCost: PropTypes.number.isRequired,
-  upgradeAcademyTimeCost: PropTypes.number.isRequired,
+  upgradeBuildingGoldCost: PropTypes.number.isRequired,
+  upgradeBuildingTimeCost: PropTypes.number.isRequired,
 };
 
 UpgradeBuilding.defaultProps = {
