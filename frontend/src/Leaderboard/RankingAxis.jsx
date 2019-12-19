@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, StyleSheet,
+  View, StyleSheet, ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import colors from '../common/colors';
@@ -9,11 +9,10 @@ import commonStyles from '../common/styles';
 const styles = StyleSheet.create({
   container: {
     width: 3,
-    borderRadius: 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: colors.whiteColor,
-    marginHorizontal: 20,
+    marginRight: 36,
     paddingVertical: 36,
   },
   circleStyle: {
@@ -38,13 +37,13 @@ function* range(start, end) {
   }
 }
 
-function RankingAxis({ amount, circleColor }) {
+function RankingAxis({ amount, circleColor, style }) {
   const extraInnerCircleStyle = {
     backgroundColor: circleColor,
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {[...range(1, amount)].map(
         (number) => (
           <View key={number} style={styles.circleStyle}>
@@ -57,11 +56,13 @@ function RankingAxis({ amount, circleColor }) {
 }
 
 RankingAxis.propTypes = {
+  style: ViewPropTypes.style,
   amount: PropTypes.number.isRequired,
   circleColor: PropTypes.string,
 };
 
 RankingAxis.defaultProps = {
+  style: null,
   circleColor: colors.greyColor,
 };
 

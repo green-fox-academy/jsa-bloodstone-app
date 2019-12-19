@@ -11,51 +11,45 @@ import colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {
+
     backgroundColor: '#ffffffcc',
-    paddingHorizontal: 3,
+
   },
   scrollViewContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 10,
+    alignSelf: 'center',
   },
   leftLayout: {
     flexDirection: 'row',
-    alignSelf: 'flex-start',
   },
   centerLayout: {
-    padding: 36,
-    width: '100%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  rightLayout: {
-    alignSelf: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 function MyRanking() {
   return (
     <CardView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <View style={styles.rightLayout}>
+        <View style={styles.leftLayout}>
+          <RankingAxis amount={2} circleColor={colors.tealColor} />
           <View>
-            <RankingItem ranking={1} direction="right" gold={200} kingdom={200} />
-            <RankingItem ranking={2} direction="right" gold={200} kingdom={200} />
-            <RankingItem ranking={3} direction="right" gold={200} kingdom={200} />
+            <RankingItem ranking={1} gold={200} kingdom={200} themeColor={colors.tealColor} />
+            <RankingItem ranking={2} gold={200} kingdom={200} themeColor={colors.tealColor} />
           </View>
-          <RankingAxis amount={3} circleColor={colors.tealColor} />
         </View>
         <View style={styles.centerLayout}>
-          <MyRankingItem ranking={4} gold={200} kingdom={200} />
+          <RankingAxis amount={1} circleColor={colors.blueColor} style={{ paddingVertical: 80 }} />
+          <MyRankingItem ranking={3} gold={200} kingdom={200} />
         </View>
         <View style={styles.leftLayout}>
-          <RankingAxis amount={3} circleColor="gray" />
+          <RankingAxis amount={5} circleColor={colors.greyColor} />
           <View>
-            <RankingItem ranking={5} disabled gold={200} kingdom={200} />
-            <RankingItem ranking={6} disabled gold={200} kingdom={200} />
-            <RankingItem ranking={7} disabled gold={200} kingdom={200} />
+            <RankingItem ranking={4} gold={200} kingdom={200} />
+            <RankingItem ranking={5} gold={200} kingdom={200} />
+            <RankingItem ranking={6} gold={200} kingdom={200} />
+            <RankingItem ranking={7} gold={200} kingdom={200} />
+            <RankingItem ranking={8} gold={200} kingdom={200} />
           </View>
         </View>
       </ScrollView>

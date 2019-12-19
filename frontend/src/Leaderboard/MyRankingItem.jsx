@@ -9,12 +9,21 @@ import { CardView } from '../common/components';
 import troopAvatar from '../../assets/troop/troop.png';
 import crownIcon from '../../assets/crown.png';
 import goldIcon from '../../assets/gold.png';
+import colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {
-    width: 275,
-    marginHorizontal: 100,
+    minWidth: 250,
+    flexDirection: 'row',
     alignItems: 'center',
+    borderRadius: 12,
+    marginBottom: 0,
+  },
+  contentStyle: {
+    flex: 1,
+    alignItems: 'center',
+    // borderWidth: 1,
+    paddingLeft: 10,
   },
   textStyle: {
     lineHeight: 32,
@@ -31,35 +40,35 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  avatarMaskStyle: {
-    marginTop: -48,
-    width: 70,
-    height: 70,
-    backgroundColor: '#fff',
-    borderRadius: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
+  triangle: {
+    borderWidth: 10,
+    borderTopColor: colors.transparent,
+    borderBottomColor: colors.transparent,
+    borderLeftColor: colors.transparent,
+    borderRightColor: '#fff',
+    marginLeft: -35,
   },
 });
 
 function MyRankingItem({ ranking, gold, kingdom }) {
   return (
     <CardView style={styles.container}>
-      <View style={styles.avatarMaskStyle}>
+      <View style={styles.triangle} />
+      <View style={styles.contentStyle}>
         <Image style={styles.avatarStyle} source={troopAvatar} />
-      </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-        <Text style={styles.textStyle}>My ranking: </Text>
-        <Text style={styles.rankTextStyle}>{ranking}</Text>
-      </View>
-      <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>
-        <View style={{ flexDirection: 'row', marginRight: 10 }}>
-          <Image style={styles.iconStyle} source={goldIcon} />
-          <Text style={{ color: '#000' }}>{` ${gold}`}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <Text style={styles.textStyle}>My ranking: </Text>
+          <Text style={styles.rankTextStyle}>{ranking}</Text>
         </View>
-        <View style={{ flexDirection: 'row', marginLeft: 10 }}>
-          <Image style={styles.iconStyle} source={crownIcon} />
-          <Text style={{ color: '#000' }}>{` ${kingdom}`}</Text>
+        <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>
+          <View style={{ flexDirection: 'row', marginRight: 10 }}>
+            <Image style={styles.iconStyle} source={goldIcon} />
+            <Text style={{ color: '#000' }}>{` ${gold}`}</Text>
+          </View>
+          <View style={{ flexDirection: 'row', marginLeft: 10 }}>
+            <Image style={styles.iconStyle} source={crownIcon} />
+            <Text style={{ color: '#000' }}>{` ${kingdom}`}</Text>
+          </View>
         </View>
       </View>
     </CardView>

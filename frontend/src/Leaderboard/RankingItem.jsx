@@ -12,9 +12,11 @@ import colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {
+    minWidth: 250,
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 16,
+    flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
@@ -25,48 +27,39 @@ const styles = StyleSheet.create({
   },
   rankTextStyle: {
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.whiteColor,
     paddingHorizontal: 10,
   },
   avatarStyle: {
     width: 48,
     height: 48,
+    marginRight: 15,
   },
   iconStyle: {
     width: 20,
     height: 20,
   },
-  leftMargin: {
-    marginStart: 15,
-  },
-  rightMargin: {
-    marginEnd: 15,
-  },
   headerTextStyle: {
     fontSize: 15,
     maxWidth: 130,
-    color: 'white',
+    color: colors.whiteColor,
     fontWeight: 'bold',
   },
   textStyle: {
-    color: 'white',
+    color: colors.whiteColor,
   },
 });
 
 function RankingItem({
-  ranking, gold, kingdom,
-  direction, disabled,
+  ranking, gold, kingdom, themeColor,
 }) {
   const extraContainerStyle = {
-    flexDirection: direction === 'right' ? 'row-reverse' : 'row',
-    backgroundColor: disabled ? 'gray' : colors.tealColor,
+    backgroundColor: themeColor,
   };
-  const extraColor = disabled ? 'gray' : colors.tealColor;
   const extraTriangleStyle = {
-    borderLeftColor: direction === 'right' ? extraColor : 'transparent',
-    borderRightColor: direction === 'left' ? extraColor : 'transparent',
-    marginLeft: direction === 'left' ? -30 : 0,
-    marginRight: direction === 'right' ? -30 : 0,
+    borderLeftColor: colors.transparent,
+    borderRightColor: themeColor,
+    marginLeft: -30,
   };
 
   return (
@@ -74,7 +67,7 @@ function RankingItem({
       <View style={[styles.triangle, extraTriangleStyle]} />
       <Text style={styles.rankTextStyle}>{ranking}</Text>
       <Image source={troopAvatar} resizeMode="contain" style={styles.avatarStyle} />
-      <View style={direction === 'right' ? styles.rightMargin : styles.leftMargin}>
+      <View>
         <Text numberOfLines={1} style={styles.headerTextStyle}>The Incredible</Text>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>
           <View style={{ flexDirection: 'row', marginRight: 10 }}>
@@ -95,16 +88,14 @@ RankingItem.propTypes = {
   ranking: PropTypes.number,
   gold: PropTypes.number,
   kingdom: PropTypes.number,
-  direction: PropTypes.oneOf(['left', 'right']),
-  disabled: PropTypes.bool,
+  themeColor: PropTypes.string,
 };
 
 RankingItem.defaultProps = {
   ranking: 1,
   gold: 0,
   kingdom: 0,
-  direction: 'left',
-  disabled: false,
+  themeColor: colors.greyColor,
 };
 
 export default RankingItem;
