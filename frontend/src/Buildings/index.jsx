@@ -57,6 +57,7 @@ function Buildings() {
   const error = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
   const [popupVisible, setModalVisible] = useState(false);
+  const [activeId, setActiveId] = useState(-1);
 
   const onCloseAddModal = () => {
     setModalVisible(false);
@@ -81,8 +82,9 @@ function Buildings() {
     }
   }
 
-  function handlePress() {
+  function handlePress(id) {
     setModalVisible(true);
+    setActiveId(id);
   }
 
   function addNewBuilding(type) {
@@ -124,8 +126,10 @@ function Buildings() {
           ))}
         </ScrollView>
         <OneBuilding
+          activeId={activeId}
           visible={popupVisible}
           onClick={onCloseAddModal}
+          getIconImage={getIconImage}
         />
       </CardView>
     </View>
