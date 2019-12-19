@@ -12,7 +12,7 @@ import goldIcon from '../../assets/gold.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
 
-import { fetchResources, updateResources } from './actionCreator';
+import { fetchResources } from './actionCreator';
 
 const styles = StyleSheet.create({
   text: {
@@ -93,26 +93,18 @@ function Resources() {
   const goldAmount = useSelector((state) => state.resources.goldAmount);
   const goldGeneration = useSelector((state) => state.resources.goldGeneration);
 
-  const isLoading = useSelector((state) => state.resources.isLoading);
   const error = useSelector((state) => state.resources.error);
   const dispatch = useDispatch();
 
-  const updateResourcesInterval = setInterval(() => dispatch(updateResources()), 1000);
-
   useEffect(() => {
     dispatch(fetchResources());
+    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
   if (error) {
     return (
       <Text>{`Oops, ${error.message}`}</Text>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <ActivityIndicator size="large" color={Colors.tealColor} />
     );
   }
 
