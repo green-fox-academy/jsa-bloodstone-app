@@ -1,15 +1,22 @@
 import React from 'react';
 import {
-  View, Text, Image,
+  View, Text, Image, StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import attackIcon from '../../assets/troop/attack.png';
 import defenceIcon from '../../assets/troop/defence.png';
 import cookieIcon from '../../assets/troop/cookie.png';
-import AcademyButtons from './AcademyButtons';
+import CreateTroop from './CreateTroop';
+import UpgradeBuilding from './UpgradeBuilding';
 
 import commonStyles from './styles';
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 12,
+  },
+});
 
 function AcademyDetail({
   buildingLevel,
@@ -40,13 +47,18 @@ function AcademyDetail({
         <Image resizeMode="contain" source={cookieIcon} style={commonStyles.iconStyle} />
         <Text style={commonStyles.textStyle}> every minute.</Text>
       </View>
-      <AcademyButtons
-        buildingLevel={buildingLevel}
-        createTroopGoldCost={createTroopGoldCost}
-        createTroopTimeCost={createTroopTimeCost}
-        upgradeAcademyGoldCost={upgradeAcademyGoldCost}
-        upgradeAcademyTimeCost={upgradeAcademyTimeCost}
-      />
+      <View style={styles.container}>
+        <CreateTroop
+          buildingLevel={buildingLevel}
+          createTroopGoldCost={createTroopGoldCost}
+          createTroopTimeCost={createTroopTimeCost}
+        />
+        <UpgradeBuilding
+          buildingLevel={buildingLevel}
+          upgradeAcademyGoldCost={upgradeAcademyGoldCost}
+          upgradeAcademyTimeCost={upgradeAcademyTimeCost}
+        />
+      </View>
     </View>
   );
 }
