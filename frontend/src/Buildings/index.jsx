@@ -79,7 +79,7 @@ function Buildings() {
     // TODO for one building
   }
 
-  function addPress(type) {
+  function addNewBuilding(type) {
     dispatch(addBuilding(type));
   }
 
@@ -101,7 +101,7 @@ function Buildings() {
             key={addBuildingIcon.type}
             icon={addBuildingIcon.url}
             type={addBuildingIcon.type}
-            onPress={() => addPress(addBuildingIcon.type)}
+            onPress={() => addNewBuilding(addBuildingIcon.type)}
           />
         ))}
       </CardView>

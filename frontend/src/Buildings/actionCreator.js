@@ -3,9 +3,9 @@ import { SERVER_URL } from 'react-native-dotenv';
 export const FETCH_BUILDINGS_REQUEST = 'fetchBuildingsRequest';
 export const FETCH_BUILDINGS_SUCCESS = 'fetchBuildingsSuccess';
 export const FETCH_BUILDINGS_FAILURE = 'fetchBuildingsFailure';
-export const ADD_FARM = 'addFarm';
-export const ADD_MINE = 'addMine';
-export const ADD_ACADEMY = 'addAcademy';
+export const ADD_BUILDING_REQUEST = 'addBuildingRequest';
+export const ADD_BUILDING_SUCCESS = 'addBuildingSuccess';
+export const ADD_BUILDING_FAILURE = 'addBuildingFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/buildings`;
 
@@ -35,23 +35,8 @@ const getMockedBuilding = (type) => {
   };
 };
 export function addBuilding(type) {
-  switch (type) {
-    case 'Farm':
-      return {
-        type: ADD_FARM,
-        payload: getMockedBuilding(type),
-      };
-    case 'Mine':
-      return {
-        type: ADD_MINE,
-        payload: getMockedBuilding(type),
-      };
-    case 'Academy':
-      return {
-        type: ADD_ACADEMY,
-        payload: getMockedBuilding(type),
-      };
-    default:
-      return null;
-  }
+  return {
+    type: ADD_BUILDING_SUCCESS,
+    payload: getMockedBuilding(type),
+  };
 }
