@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Text, View, SafeAreaView, StyleSheet,
-  Modal, ActivityIndicator, TouchableOpacity, TouchableWithoutFeedback,
+  ActivityIndicator, TouchableOpacity, TouchableWithoutFeedback,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -13,6 +13,8 @@ import PopupItem from './popupItem';
 import colors from '../common/colors';
 
 import { fetchTroops } from '../Troops/actionCreator';
+
+import Popup from '../common/components/Popup';
 
 import TownhallDetail from './TownhallDetail';
 import AcademyDetail from './AcademyDetail';
@@ -41,41 +43,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-function getDetailInfo(
-  type,
-  troops,
-  gold,
-  food,
-  goldGenerateRate,
-  foodGenerateRate,
-  buildingLevel,
-  createTroopGoldCost,
-  createTroopTimeCost,
-  upgradeAcademyGoldCost,
-  upgradeAcademyTimeCost,
-) {
-  switch (type) {
-    case 'Townhall':
-      return <TownhallDetail troops={troops} gold={gold} food={food} />;
-    case 'Academy':
-      return (
-        <AcademyDetail
-          buildingLevel={buildingLevel}
-          createTroopGoldCost={createTroopGoldCost}
-          createTroopTimeCost={createTroopTimeCost}
-          upgradeAcademyGoldCost={upgradeAcademyGoldCost}
-          upgradeAcademyTimeCost={upgradeAcademyTimeCost}
-        />
-      );
-    case 'Farm':
-      return <FarmDetail foodGenerateRate={foodGenerateRate} />;
-    case 'Mine':
-      return <MineDetail goldGenerateRate={goldGenerateRate} />;
-    default:
-      return null;
-  }
-}
 
 function OneBuilding({
   isVisible, onClick, targetBuildingId, getIconImage,
@@ -116,30 +83,53 @@ function OneBuilding({
   }
   if (isLoading) {
     return (
-      <Modal
-        animationType="fade"
-        transparent
-        visible={isVisible}
-        presentationStyle="overFullScreen"
-        onRequestClose={onClick}
+      <Popup
+        isVisible={isVisible}
+        onClick={onClick}
       >
         <View style={styles.loading}>
           <ActivityIndicator size="large" color={colors.tealColor} />
         </View>
-      </Modal>
+      </Popup>
     );
   }
   if (Object.keys(oneBuildingInfo).length === 0) {
     return null;
   }
 
+  let buildingComponent = null;
+  if (oneBuildingInfo.type === 'Townhall') {
+    buildingComponent = (
+      <TownhallDetail
+        troops={totalNumOfTroops}
+        gold={mockedGold}
+        food={mockedFood}
+      />
+    );
+  } else if (oneBuildingInfo.type === 'Academy') {
+    buildingComponent = (
+      <AcademyDetail
+        buildingLevel={oneBuildingInfo.level}
+        createTroopGoldCost={mockedRules.createTroopGoldCost}
+        createTroopTimeCost={mockedRules.createTroopTimeCost}
+        upgradeAcademyGoldCost={mockedRules.upgradeAcademyGoldCost}
+        upgradeAcademyTimeCost={mockedRules.upgradeAcademyTimeCost}
+      />
+    );
+  } else if (oneBuildingInfo.type === 'Farm') {
+    buildingComponent = (
+      <FarmDetail foodGenerateRate={mockedFoodGenerateRate} />
+    );
+  } else if (oneBuildingInfo.type === 'Mine') {
+    buildingComponent = (
+      <MineDetail goldGenerateRate={mockedGoldGenerateRate} />
+    );
+  }
+
   return (
-    <Modal
-      animationType="fade"
-      transparent
-      visible={isVisible}
-      presentationStyle="overFullScreen"
-      onRequestClose={onClick}
+    <Popup
+      isVisible={isVisible}
+      onClick={onClick}
     >
       <TouchableOpacity onPressOut={onClick} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
@@ -153,25 +143,13 @@ function OneBuilding({
                   level={oneBuildingInfo.level}
                   getIconImage={getIconImage}
                 />
-                {getDetailInfo(
-                  oneBuildingInfo.type,
-                  totalNumOfTroops,
-                  mockedGold,
-                  mockedFood,
-                  mockedGoldGenerateRate,
-                  mockedFoodGenerateRate,
-                  oneBuildingInfo.level,
-                  mockedRules.createTroopGoldCost,
-                  mockedRules.createTroopTimeCost,
-                  mockedRules.upgradeAcademyGoldCost,
-                  mockedRules.upgradeAcademyTimeCost,
-                )}
+                {buildingComponent}
               </View>
             </View>
           </TouchableWithoutFeedback>
         </SafeAreaView>
       </TouchableOpacity>
-    </Modal>
+    </Popup>
   );
 }
 
