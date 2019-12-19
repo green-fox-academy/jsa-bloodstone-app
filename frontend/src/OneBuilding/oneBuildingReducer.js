@@ -5,12 +5,12 @@ import {
 } from './actionCreator';
 
 const initialState = {
-  oneBuildingInfo: [],
+  oneBuildingInfo: {},
   isLoading: false,
   error: undefined,
 };
 
-export default function buildings(state = initialState, action) {
+export default function oneBuilding(state = initialState, action) {
   switch (action.type) {
     case FETCH_ONE_BUILDING_REQUEST:
       return { ...state, isLoading: true };

@@ -5,6 +5,7 @@ import buildings from './Buildings/buildingReducer';
 import auth from './Login/authReducer';
 import troops from './Troops/troopReducer';
 import resources from './Resources/resourcesReducer';
+import oneBuilding from './OneBuilding/oneBuildingReducer';
 
 const rootReducer = combineReducers({
   auth,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   buildings,
   troops,
   resources,
+  oneBuilding,
 });
 
 export default createStore(rootReducer, applyMiddleware(thunk));
