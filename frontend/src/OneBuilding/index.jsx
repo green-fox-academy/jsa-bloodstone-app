@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 function OneBuilding({
-  isVisible, onClick, targetBuildingId, getIconImage,
+  onClick, targetBuildingId, getIconImage,
 }) {
   const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
@@ -84,7 +84,6 @@ function OneBuilding({
   if (isLoading) {
     return (
       <Popup
-        isVisible={isVisible}
         onClick={onClick}
       >
         <View style={styles.loading}>
@@ -128,7 +127,6 @@ function OneBuilding({
 
   return (
     <Popup
-      isVisible={isVisible}
       onClick={onClick}
     >
       <TouchableOpacity onPressOut={onClick} style={{ flex: 1 }} activeOpacity={1}>
@@ -155,7 +153,6 @@ function OneBuilding({
 
 OneBuilding.propTypes = {
   targetBuildingId: PropTypes.number.isRequired,
-  isVisible: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   getIconImage: PropTypes.func,
 };

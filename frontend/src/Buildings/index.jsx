@@ -120,17 +120,22 @@ function Buildings() {
               key={building.id}
               type={building.type}
               level={building.level}
-              onPress={handlePress}
+              onPress={() => handlePress(building.id)}
               getIconImage={getIconImage}
             />
           ))}
         </ScrollView>
-        <OneBuilding
-          targetBuildingId={activeId}
-          isVisible={isModalVisible}
-          onClick={onCloseAddModal}
-          getIconImage={getIconImage}
-        />
+        {
+          isModalVisible
+            ? (
+              <OneBuilding
+                targetBuildingId={activeId}
+                onClick={onCloseAddModal}
+                getIconImage={getIconImage}
+              />
+            )
+            : null
+        }
       </CardView>
     </View>
   );
