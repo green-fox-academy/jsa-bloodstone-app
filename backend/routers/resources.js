@@ -26,7 +26,7 @@ function getResourceAmount(initialAmount, generation, updatedAt) {
 }
 
 function getResources(req, res) {
-  const caulatedResources = {
+  const calculatedResources = {
     resources: mockedResources.resources.map((resource) => ({
       type: resource.type,
       amount: getResourceAmount(resource.amount, resource.generation, resource.updatedAt),
