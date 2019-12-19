@@ -4,117 +4,58 @@ import {
   ScrollView,
 } from 'react-native';
 import { CardView } from '../common/components';
-import RankItem from './RankItem';
-import MyRankItem from './MyRankItem';
+import RankingItem from './RankingItem';
+import MyRankingItem from './MyRankingItem';
+import RankingAxis from './RankingAxis';
 import colors from '../common/colors';
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#ffffffcc',
+    paddingRight: 3,
+  },
   scrollViewContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 0,
+    justifyContent: 'center',
   },
   leftLayout: {
+    flexDirection: 'row',
     alignSelf: 'flex-start',
-    flexDirection: 'row',
-  },
-  rightLayout: {
-    padding: 0,
-    margin: 0,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    // borderWidth: 1,
-    // borderColor: 'red',
-    // paddingVertical: 5,
   },
   centerLayout: {
-    borderWidth: 1,
-    alignSelf: 'center',
-    width: '100%',
     padding: 36,
+    width: '100%',
+    alignSelf: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
   },
-  axisContainer: {
-    width: 3,
-    borderRadius: 2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    elevation: 3,
-    shadowColor: colors.blackColor,
-    shadowOpacity: 0.1,
-    shadowOffset: { x: 0, y: 4 },
-    shadowRadius: 6,
-    marginHorizontal: 20,
-    paddingVertical: 36,
-  },
-  circleStyle: {
+  rightLayout: {
+    alignSelf: 'flex-end',
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-  },
-  innerCircleStyle: {
-    backgroundColor: colors.tealColor,
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-  },
-  axisHorizontalStyle: {
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: '#fff',
-    elevation: 3,
-    width: 120,
-    // marginHorizontal: -100,
-    // marginTop: -60,
-    // marginBottom: 60,
-  },
-  axisVerticalStyle: {
-    width: 4,
-    borderRadius: 2,
-    backgroundColor: '#fff',
-    elevation: 3,
   },
 });
 function MyRanking() {
   return (
-    <CardView style={{ backgroundColor: '#ffffffcc', paddingRight: 3 }}>
+    <CardView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.rightLayout}>
-          <View style={{ padding: 0, margin: 0 }}>
-            <RankItem ranking={1} direction="right" />
-            <RankItem ranking={2} direction="right" />
-            <RankItem ranking={3} direction="right" />
+          <View>
+            <RankingItem ranking={1} direction="right" />
+            <RankingItem ranking={2} direction="right" />
+            <RankingItem ranking={3} direction="right" />
           </View>
-          <View style={styles.axisContainer}>
-            <View style={styles.circleStyle}><View style={styles.innerCircleStyle} /></View>
-            <View style={styles.circleStyle}><View style={styles.innerCircleStyle} /></View>
-            <View style={styles.circleStyle}><View style={styles.innerCircleStyle} /></View>
-          </View>
+          <RankingAxis amount={3} circleColor={colors.tealColor} />
         </View>
         <View style={styles.centerLayout}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <View style={styles.axisVerticalStyle} />
-            <MyRankItem ranking={4} />
-            <View style={styles.axisVerticalStyle} />
-          </View>
-          <View style={styles.axisHorizontalStyle} />
+          <MyRankingItem ranking={4} gold={200} kingdom={200} />
         </View>
         <View style={styles.leftLayout}>
-          <View style={styles.axisContainer}>
-            <View style={styles.circleStyle}><View style={styles.innerCircleStyle} /></View>
-            <View style={styles.circleStyle}><View style={styles.innerCircleStyle} /></View>
-            <View style={styles.circleStyle}><View style={styles.innerCircleStyle} /></View>
-          </View>
+          <RankingAxis amount={3} circleColor="gray" />
           <View>
-            <RankItem ranking={5} disabled />
-            <RankItem ranking={6} disabled />
-            <RankItem ranking={7} disabled />
+            <RankingItem ranking={5} disabled />
+            <RankingItem ranking={6} disabled />
+            <RankingItem ranking={7} disabled />
           </View>
         </View>
       </ScrollView>

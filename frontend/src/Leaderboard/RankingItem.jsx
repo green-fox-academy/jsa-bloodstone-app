@@ -17,10 +17,11 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    margin: 0,
   },
   triangle: {
     borderWidth: 10,
+    borderTopColor: colors.transparent,
+    borderBottomColor: colors.transparent,
   },
   rankTextStyle: {
     fontWeight: 'bold',
@@ -31,23 +32,29 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
   },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
   leftMargin: {
     marginStart: 15,
   },
   rightMargin: {
     marginEnd: 15,
   },
+  textStyle: {
+    fontSize: 15,
+    color: 'white',
+  },
 });
 
-function RankItem({ ranking, direction, disabled }) {
+function RankingItem({ ranking, direction, disabled }) {
   const extraContainerStyle = {
     flexDirection: direction === 'right' ? 'row-reverse' : 'row',
     backgroundColor: disabled ? 'gray' : colors.tealColor,
   };
   const extraColor = disabled ? 'gray' : colors.tealColor;
   const extraTriangleStyle = {
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
     borderLeftColor: direction === 'right' ? extraColor : 'transparent',
     borderRightColor: direction === 'left' ? extraColor : 'transparent',
     marginLeft: direction === 'left' ? -30 : 0,
@@ -63,11 +70,11 @@ function RankItem({ ranking, direction, disabled }) {
         <Text style={{ fontSize: 15, color: 'white' }}>The Incredibles</Text>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>
           <View style={{ flexDirection: 'row', marginRight: 10 }}>
-            <Image style={{ width: 20, height: 20 }} source={goldIcon} />
+            <Image style={styles.iconStyle} source={goldIcon} />
             <Text style={{ color: 'white' }}> 200</Text>
           </View>
           <View style={{ flexDirection: 'row', marginLeft: 10 }}>
-            <Image style={{ width: 20, height: 20 }} source={crownIcon} />
+            <Image style={styles.iconStyle} source={crownIcon} />
             <Text style={{ color: 'white' }}> 200</Text>
           </View>
         </View>
@@ -76,16 +83,16 @@ function RankItem({ ranking, direction, disabled }) {
   );
 }
 
-RankItem.propTypes = {
+RankingItem.propTypes = {
   ranking: PropTypes.number,
   direction: PropTypes.oneOf(['left', 'right']),
   disabled: PropTypes.bool,
 };
 
-RankItem.defaultProps = {
+RankingItem.defaultProps = {
   ranking: 1,
   direction: 'left',
   disabled: false,
 };
 
-export default RankItem;
+export default RankingItem;

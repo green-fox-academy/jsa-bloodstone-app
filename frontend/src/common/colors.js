@@ -6,6 +6,7 @@ export default {
   lightenTeal: '#e0f2f1',
   redColor: '#f44336',
   blackColor: '#000000',
+  greyColor: 'grey',
   transparent: 'transparent',
   whiteColor: '#ffffff',
   white20Color: 'rgba(255,255,255,0.2)',

@@ -11,6 +11,11 @@ import crownIcon from '../../assets/crown.png';
 import goldIcon from '../../assets/gold.png';
 
 const styles = StyleSheet.create({
+  container: {
+    width: 275,
+    marginHorizontal: 100,
+    alignItems: 'center',
+  },
   textStyle: {
     lineHeight: 32,
   },
@@ -18,20 +23,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: 32,
   },
-  avatarContainer: {
-    alignItems: 'center',
-  },
   avatarStyle: {
     width: 64,
     height: 64,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  avatarMaskStyle: {
     marginTop: -48,
+    width: 70,
+    height: 70,
+    backgroundColor: '#fff',
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
-function MyRankItem({ ranking }) {
+function MyRankingItem({ ranking, gold, kingdom }) {
   return (
-    <CardView style={{ width: 275, marginHorizontal: 100 }}>
-      <View style={styles.avatarContainer}>
+    <CardView style={styles.container}>
+      <View style={styles.avatarMaskStyle}>
         <Image style={styles.avatarStyle} source={troopAvatar} />
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
@@ -40,25 +54,29 @@ function MyRankItem({ ranking }) {
       </View>
       <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>
         <View style={{ flexDirection: 'row', marginRight: 10 }}>
-          <Image style={{ width: 20, height: 20 }} source={goldIcon} />
-          <Text style={{ color: '#000' }}> 200</Text>
+          <Image style={styles.iconStyle} source={goldIcon} />
+          <Text style={{ color: '#000' }}>{` ${gold}`}</Text>
         </View>
         <View style={{ flexDirection: 'row', marginLeft: 10 }}>
-          <Image style={{ width: 20, height: 20 }} source={crownIcon} />
-          <Text style={{ color: '#000' }}> 200</Text>
+          <Image style={styles.iconStyle} source={crownIcon} />
+          <Text style={{ color: '#000' }}>{` ${kingdom}`}</Text>
         </View>
       </View>
     </CardView>
   );
 }
 
-MyRankItem.propTypes = {
+MyRankingItem.propTypes = {
   ranking: PropTypes.number,
+  gold: PropTypes.number,
+  kingdom: PropTypes.number,
 };
 
-MyRankItem.defaultProps = {
+MyRankingItem.defaultProps = {
   ranking: 1,
+  gold: 0,
+  kingdom: 0,
 };
 
 
-export default MyRankItem;
+export default MyRankingItem;
