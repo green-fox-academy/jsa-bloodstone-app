@@ -6,28 +6,28 @@ const myBuildings = {
   buildings: [
     {
       id: 1,
-      type: 'Townhall',
+      type: 'townhall',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 2,
-      type: 'Academy',
+      type: 'academy',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 3,
-      type: 'Farm',
+      type: 'farm',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 4,
-      type: 'Mine',
+      type: 'mine',
       level: 1,
       hp: 1,
       started_at: 12345789,

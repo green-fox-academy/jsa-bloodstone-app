@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
 });
 
 const ICON_LIST = [
-  { type: 'Farm', url: addFarmIcon },
-  { type: 'Mine', url: addMineIcon },
-  { type: 'Academy', url: addAcademyIcon },
+  { type: 'farm', url: addFarmIcon },
+  { type: 'mine', url: addMineIcon },
+  { type: 'academy', url: addAcademyIcon },
 ];
 
 function Buildings() {
@@ -69,14 +69,29 @@ function Buildings() {
 
   function getIconImage(type) {
     switch (type) {
-      case 'Townhall':
+      case 'townhall':
         return townhallIcon;
-      case 'Academy':
+      case 'academy':
         return academyIcon;
-      case 'Farm':
+      case 'farm':
         return farmIcon;
-      case 'Mine':
+      case 'mine':
         return mineIcon;
+      default:
+        return null;
+    }
+  }
+
+  function getCapitalFormOfType(type) {
+    switch (type) {
+      case 'townhall':
+        return 'Townhall';
+      case 'academy':
+        return 'Academy';
+      case 'farm':
+        return 'Farm';
+      case 'mine':
+        return 'Mine';
       default:
         return null;
     }
@@ -108,7 +123,7 @@ function Buildings() {
           <AddBuildingItem
             key={addBuildingIcon.type}
             icon={addBuildingIcon.url}
-            type={addBuildingIcon.type}
+            type={getCapitalFormOfType(addBuildingIcon.type)}
             onPress={() => addNewBuilding(addBuildingIcon.type)}
           />
         ))}
@@ -118,7 +133,7 @@ function Buildings() {
           {listOfBuildings.map((building) => (
             <BuildingItem
               key={building.id}
-              type={building.type}
+              type={getCapitalFormOfType(building.type)}
               level={building.level}
               onPress={() => handlePress(building.id)}
               getIconImage={getIconImage}
