@@ -17,18 +17,34 @@ const styles = StyleSheet.create({
   },
 });
 
-function AcademyButtons({ createTroops, upgrade }) {
+function AcademyButtons({
+  createTroops,
+  upgrade,
+  buildingLevel,
+  createTroopGoldCost,
+  createTroopTimeCost,
+  upgradeAcademyGoldCost,
+  upgradeAcademyTimeCost,
+}) {
   return (
     <View style={styles.container}>
       <TouchableHighlight onPress={createTroops} style={{ padding: 3 }}>
         <SubCardView>
           <Image resizeMode="contain" source={troopIcon} style={commonStyles.imageStyle} />
           <View style={commonStyles.description}>
-            <Text style={commonStyles.buttonTextStyle}>Create troop level 1</Text>
+            <Text
+              style={commonStyles.buttonTextStyle}
+            >
+              {`Create troop level ${buildingLevel} `}
+            </Text>
             <View style={commonStyles.row}>
-              <Text style={commonStyles.buttonTextStyle}>10 </Text>
+              <Text style={commonStyles.buttonTextStyle}>{`cost ${createTroopGoldCost} ` }</Text>
               <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
-              <Text style={commonStyles.buttonTextStyle}> 1:00</Text>
+              <Text
+                style={commonStyles.buttonTextStyle}
+              >
+                {` in ${createTroopTimeCost} seconds`}
+              </Text>
             </View>
           </View>
         </SubCardView>
@@ -39,11 +55,19 @@ function AcademyButtons({ createTroops, upgrade }) {
             <Entypo name="arrow-with-circle-up" size={32} color="white" />
           </View>
           <View style={commonStyles.description}>
-            <Text style={commonStyles.buttonTextStyle}>Upgrade to Level 2</Text>
+            <Text
+              style={commonStyles.buttonTextStyle}
+            >
+              {`Upgrade to Level ${buildingLevel + 1}`}
+            </Text>
             <View style={commonStyles.row}>
-              <Text style={commonStyles.buttonTextStyle}>200 </Text>
+              <Text style={commonStyles.buttonTextStyle}>{`cost ${upgradeAcademyGoldCost} ` }</Text>
               <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
-              <Text style={commonStyles.buttonTextStyle}> 2:30</Text>
+              <Text
+                style={commonStyles.buttonTextStyle}
+              >
+                {` in ${upgradeAcademyTimeCost} seconds`}
+              </Text>
             </View>
           </View>
         </SubCardView>
@@ -55,6 +79,11 @@ function AcademyButtons({ createTroops, upgrade }) {
 AcademyButtons.propTypes = {
   createTroops: PropTypes.func,
   upgrade: PropTypes.func,
+  buildingLevel: PropTypes.number.isRequired,
+  createTroopGoldCost: PropTypes.number.isRequired,
+  createTroopTimeCost: PropTypes.number.isRequired,
+  upgradeAcademyGoldCost: PropTypes.number.isRequired,
+  upgradeAcademyTimeCost: PropTypes.number.isRequired,
 };
 
 AcademyButtons.defaultProps = {
