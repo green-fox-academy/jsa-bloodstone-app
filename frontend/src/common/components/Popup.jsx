@@ -21,8 +21,14 @@ Popup.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  isVisible: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  isVisible: PropTypes.bool,
+  onClick: PropTypes.func,
 };
+
+Popup.defaultProps = {
+  isVisible: true,
+  onClick: null,
+};
+
 
 export default Popup;
