@@ -12,7 +12,7 @@ import colors from '../common/colors';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffffcc',
-    paddingRight: 3,
+    paddingHorizontal: 3,
   },
   scrollViewContainer: {
     alignItems: 'center',
