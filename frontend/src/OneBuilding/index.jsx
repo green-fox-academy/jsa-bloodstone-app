@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Text, View, SafeAreaView, StyleSheet,
-  Modal, ActivityIndicator, TouchableOpacity,
+  Modal, ActivityIndicator, TouchableOpacity, TouchableWithoutFeedback,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -143,30 +143,32 @@ function OneBuilding({
     >
       <TouchableOpacity onPressOut={onClick} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
-          <View style={styles.container}>
-            <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
-            <View style={styles.mainBody}>
-              <PopupItem
-                key={oneBuildingInfo.id}
-                type={oneBuildingInfo.type}
-                level={oneBuildingInfo.level}
-                getIconImage={getIconImage}
-              />
-              {getDetailInfo(
-                oneBuildingInfo.type,
-                totalNumOfTroops,
-                mockedGold,
-                mockedFood,
-                mockedGoldGenerateRate,
-                mockedFoodGenerateRate,
-                oneBuildingInfo.level,
-                mockedRules.createTroopGoldCost,
-                mockedRules.createTroopTimeCost,
-                mockedRules.upgradeAcademyGoldCost,
-                mockedRules.upgradeAcademyTimeCost,
-              )}
+          <TouchableWithoutFeedback>
+            <View style={styles.container}>
+              <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
+              <View style={styles.mainBody}>
+                <PopupItem
+                  key={oneBuildingInfo.id}
+                  type={oneBuildingInfo.type}
+                  level={oneBuildingInfo.level}
+                  getIconImage={getIconImage}
+                />
+                {getDetailInfo(
+                  oneBuildingInfo.type,
+                  totalNumOfTroops,
+                  mockedGold,
+                  mockedFood,
+                  mockedGoldGenerateRate,
+                  mockedFoodGenerateRate,
+                  oneBuildingInfo.level,
+                  mockedRules.createTroopGoldCost,
+                  mockedRules.createTroopTimeCost,
+                  mockedRules.upgradeAcademyGoldCost,
+                  mockedRules.upgradeAcademyTimeCost,
+                )}
+              </View>
             </View>
-          </View>
+          </TouchableWithoutFeedback>
         </SafeAreaView>
       </TouchableOpacity>
     </Modal>
