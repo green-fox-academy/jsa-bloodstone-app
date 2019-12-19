@@ -32,6 +32,12 @@ const styles = StyleSheet.create({
   },
 });
 
+function* range(start, end) {
+  for (let i = start; i <= end; i += 1) {
+    yield i;
+  }
+}
+
 function RankingAxis({ amount, circleColor }) {
   const extraInnerCircleStyle = {
     backgroundColor: circleColor,
@@ -39,9 +45,9 @@ function RankingAxis({ amount, circleColor }) {
 
   return (
     <View style={styles.container}>
-      {[...new Array(amount)].map(
+      {[...range(1, amount)].map(
         (element) => (
-          <View style={styles.circleStyle} key={element}>
+          <View key={element} style={styles.circleStyle}>
             <View style={[styles.innerCircleStyle, extraInnerCircleStyle]} />
           </View>
         ),
