@@ -8,18 +8,35 @@ import cookieIcon from '../../assets/troop/cookie.png';
 
 import commonStyles from './styles';
 
-function FarmDetail({ foodGenerateRate }) {
+import UpgradeBuilding from './UpgradeBuilding';
+
+function FarmDetail({
+  foodGenerateRate,
+  buildingLevel,
+  upgradeBuildingGoldCost,
+  upgradeBuildingTimeCost,
+}) {
   return (
-    <View style={commonStyles.row}>
-      <Text style={commonStyles.textStyle}>The food </Text>
-      <Image resizeMode="contain" source={cookieIcon} style={commonStyles.iconStyle} />
-      <Text style={commonStyles.textStyle}>{` generation rate is ${foodGenerateRate}/minute. `}</Text>
+    <View>
+      <View style={commonStyles.row}>
+        <Text style={commonStyles.textStyle}>The food </Text>
+        <Image resizeMode="contain" source={cookieIcon} style={commonStyles.iconStyle} />
+        <Text style={commonStyles.textStyle}>{` generation rate is ${foodGenerateRate}/minute. `}</Text>
+      </View>
+      <UpgradeBuilding
+        buildingLevel={buildingLevel}
+        upgradeBuildingGoldCost={upgradeBuildingGoldCost}
+        upgradeBuildingTimeCost={upgradeBuildingTimeCost}
+      />
     </View>
   );
 }
 
 FarmDetail.propTypes = {
   foodGenerateRate: PropTypes.number,
+  buildingLevel: PropTypes.number.isRequired,
+  upgradeBuildingGoldCost: PropTypes.number.isRequired,
+  upgradeBuildingTimeCost: PropTypes.number.isRequired,
 };
 
 FarmDetail.defaultProps = {
