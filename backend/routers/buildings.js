@@ -2,6 +2,10 @@ const { Router } = require('express');
 
 const router = Router();
 
+const {
+  townhallRule, farmRule, mineRule, academyRule,
+} = require('../rules');
+
 const myBuildings = {
   buildings: [
     {
@@ -47,7 +51,18 @@ function getBuildingById(req, res) {
   }
   const targetBuilding = myBuildings.buildings.filter((building) => buildingId === building.id);
   if (targetBuilding.length > 0) {
-    return res.status(200).send(targetBuilding[0]);
+    switch (targetBuilding[0].type) {
+      case 'townhall':
+        return res.status(200).send({ building: targetBuilding[0], rules: townhallRule });
+      case 'academy':
+        return res.status(200).send({ building: targetBuilding[0], rules: academyRule });
+      case 'farm':
+        return res.status(200).send({ building: targetBuilding[0], rules: farmRule });
+      case 'mine':
+        return res.status(200).send({ building: targetBuilding[0], rules: mineRule });
+      default:
+        return res.sendStatus(404);
+    }
   }
   return res.sendStatus(404);
 }
