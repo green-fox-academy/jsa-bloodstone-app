@@ -12,7 +12,7 @@ import goldIcon from '../../assets/gold.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
 
-import { fetchResources } from './actionCreator';
+import { fetchResources, updateResources } from './actionCreator';
 
 const styles = StyleSheet.create({
   text: {
@@ -87,16 +87,19 @@ ResourceView.propTypes = {
 };
 
 function Resources() {
-  const food = useSelector((state) => state.resources.food);
+  const foodAmount = useSelector((state) => state.resources.foodAmount);
   const foodGeneration = useSelector((state) => state.resources.foodGeneration);
-  const gold = useSelector((state) => state.resources.gold);
+  const goldAmount = useSelector((state) => state.resources.goldAmount);
   const goldGeneration = useSelector((state) => state.resources.goldGeneration);
   const isLoading = useSelector((state) => state.resources.isLoading);
   const error = useSelector((state) => state.resources.error);
   const dispatch = useDispatch();
 
+  const updateResourcesInterval = setInterval(() => dispatch(updateResources()), 1000);
+
   useEffect(() => {
     dispatch(fetchResources());
+    return () => clearInterval(updateResourcesInterval);
   }, []);
 
   if (error) {
@@ -116,13 +119,13 @@ function Resources() {
       <ResourceView
         buildingIcon={factoryIcon}
         resourceIcon={cookieIcon}
-        amount={food}
+        amount={foodAmount}
         changeRate={foodGeneration}
       />
       <ResourceView
         buildingIcon={mineIcon}
         resourceIcon={goldIcon}
-        amount={gold}
+        amount={goldAmount}
         changeRate={goldGeneration}
       />
     </CardView>
