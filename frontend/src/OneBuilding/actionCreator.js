@@ -4,12 +4,10 @@ export const FETCH_ONE_BUILDING_REQUEST = 'fetchOneBuildingRequest';
 export const FETCH_ONE_BUILDING_SUCCESS = 'fetchOneBuildingSuccess';
 export const FETCH_ONE_BUILDING_FAILURE = 'fetchOneBuildingFailure';
 
-const URL = `http://${SERVER_URL}/kingdom/buildings/${buildingId}`;
-
 export function fetchOneBuilding(buildingId) {
   return (dispatch) => {
     dispatch({ type: FETCH_ONE_BUILDING_REQUEST });
-    fetch(URL)
+    fetch(`http://${SERVER_URL}/kingdom/buildings/${buildingId}`)
       .then((response) => {
         if (response.status === 200) {
           return response.json();

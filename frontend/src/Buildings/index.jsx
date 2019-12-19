@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   View, Text, ScrollView,
@@ -16,8 +16,7 @@ import addFarmIcon from '../../assets/buildings/addFarm.png';
 import addMineIcon from '../../assets/buildings/addMine.png';
 import addAcademyIcon from '../../assets/buildings/addAcademy.png';
 import Colors from '../common/colors';
-import { CardView } from '../common/components';
-import Popup from '../OneBuilding';
+import OneBuilding from '../OneBuilding';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,6 +56,11 @@ function Buildings() {
   const isLoading = useSelector((state) => state.buildings.isLoading);
   const error = useSelector((state) => state.buildings.error);
   const dispatch = useDispatch();
+  const [popupVisible, setModalVisible] = useState(false);
+
+  const onCloseAddModal = () => {
+    setModalVisible(false);
+  };
 
   useEffect(() => {
     dispatch(fetchBuildings());
@@ -78,7 +82,7 @@ function Buildings() {
   }
 
   function handlePress() {
-    // TODO for one building
+    setModalVisible(true);
   }
 
   function addNewBuilding(type) {
@@ -119,6 +123,10 @@ function Buildings() {
             />
           ))}
         </ScrollView>
+        <OneBuilding
+          visible={popupVisible}
+          onClick={onCloseAddModal}
+        />
       </CardView>
     </View>
   );

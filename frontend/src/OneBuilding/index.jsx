@@ -1,165 +1,115 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Text,
   View,
   Modal,
   SafeAreaView,
   TouchableHighlight,
+  StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
+import SubCardView from '../common/components/SubCardView';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f4f6f8',
-    alignItems: 'center',
-    padding: 15,
-  },
-  card: {
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: {
-      x: 0,
-      y: 4,
-    },
-    shadowRadius: 6,
-    padding: 15,
-    marginBottom: 15,
-    backgroundColor: '#fff',
-    borderRadius: 6,
-    elevation: 3,
-  },
-  cardTitle: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: 15,
-  },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-  column: {
-    flexDirection: 'column',
-    flex: 1,
-  },
-  errorMessageContainer: {
-    borderRadius: 6,
-    paddingHorizontal: 8,
-    paddingVertical: 15,
-    backgroundColor: '#fff6f6',
-    width: width - 60,
-  },
-  errorMessageText: {
-    color: '#9f3a38',
-    fontWeight: 'bold',
-  },
-  headerIcon: {
-    padding: 15,
-    paddingVertical: 10,
-  },
-  popupBackground: {
+const oneBuildingStyles = StyleSheet.create({
+  background: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,.3)',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  popupContainer: {
+  container: {
     width: 285,
     height: 280,
     backgroundColor: '#fff',
     borderRadius: 6,
   },
-  popupHeader: {
+  header: {
     backgroundColor: '#4d63be',
     flexDirection: 'row',
     borderTopStartRadius: 6,
     borderTopRightRadius: 6,
     justifyContent: 'space-between',
   },
-  popupTitle: {
+  title: {
     padding: 15,
     fontSize: 13,
     fontWeight: 'bold',
     color: 'white',
   },
-  popupCloseButtonWrapper: {
+  closeButton: {
     padding: 15,
     borderTopRightRadius: 6,
   },
-  popupBody: {
+  mainBody: {
     padding: 15,
     flex: 1,
     justifyContent: 'space-between',
   },
-  popupButton: {
-    height: 40,
-    width: 255,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 2,
-  },
-  popupButtonGroup: {
+  upgradeButtonGroup: {
     flexDirection: 'column',
   },
 });
 
-const Header = ({ onCancel }) => (
-  <View style={styles.popupHeader}>
-    <Text style={styles.popupTitle}>Detail Info</Text>
-    <TouchableHighlight style={styles.popupCloseButtonWrapper} underlayColor="rgba(0,0,0,0.1)" onPress={onCancel}>
+
+const Header = ({ onClick }) => (
+  <View style={oneBuildingStyles.header}>
+    <Text style={oneBuildingStyles.title}>Detail Building Info</Text>
+    <TouchableHighlight
+      style={oneBuildingStyles.closeButton}
+
+      onPress={onClick}
+    >
       <Ionicons name="md-close" size={13} color="white" />
     </TouchableHighlight>
   </View>
 );
 
-const PopupButtonGroup = ({
-  onConfirm, onCancel, confirmButtonText,
-}) => (
-  <View style={styles.popupButtonGroup}>
+const UpgradeButtons = ({ onClick }) => (
+  <View style={oneBuildingStyles.upgradeButtonGroup}>
     <TouchableHighlight
-      style={[
-        styles.popupButton,
-        { backgroundColor: '#5eceb1' },
-        
-      ]}
-      onPress={onConfirm}
-      underlayColor="#5eceb1a0"
+      onPress={onClick}
     >
-      <Text style={{ fontSize: 14, color: '#fff' }}>{confirmButtonText}</Text>
+    <SubCardView>
+      <Text style={{ fontSize: 14, color: '#fff' }}>Upgrade troops to Level 2</Text>
+    </SubCardView>
     </TouchableHighlight>
     <TouchableHighlight
-      style={styles.popupButton}
-      onPress={onCancel}
-      underlayColor="#eee"
+      onPress={onClick}
     >
-      <Text style={{ color: '#666' }}>Cancel</Text>
+    <SubCardView>
+      <Text style={{ fontSize: 14, color: '#fff' }}>Upgrade to Level 2</Text>
+    </SubCardView>
     </TouchableHighlight>
   </View>
 );
 
-export default function Popup({
-  visible, onCancel, onConfirm, confirmButtonText, children,
+
+function OneBuilding({
+  visible, onClick,
 }) {
+
+  
   return (
     <Modal
       animationType="fade"
       transparent
       visible={visible}
       presentationStyle="overFullScreen"
-      onRequestClose={onCancel}
+      onRequestClose={onClick}
     >
-      <SafeAreaView style={styles.popupBackground}>
-        <View style={styles.popupContainer}>
-          <Header onCancel={onCancel} />
-          <View style={styles.popupBody}>
-            {children}
-            <PopupButtonGroup
-              confirmButtonText={confirmButtonText}
-              onConfirm={onConfirm}
-              onCancel={onCancel}
+      
+      <SafeAreaView style={oneBuildingStyles.background}>
+        <View style={oneBuildingStyles.container}>
+          <Header onClick={onClick} />
+          <View style={oneBuildingStyles.mainBody}>
+            <View>
+              
+              <Text>testtesttest</Text>
+            </View>
+            <UpgradeButtons
+              onClick={onClick}
             />
           </View>
         </View>
@@ -167,23 +117,18 @@ export default function Popup({
     </Modal>
   );
 }
-Popup.propTypes = {
+
+OneBuilding.propTypes = {
   visible: PropTypes.bool.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onConfirm: PropTypes.func.isRequired,
-  confirmButtonText: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 Header.propTypes = {
-  onCancel: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
-PopupButtonGroup.propTypes = {
-  onCancel: PropTypes.func.isRequired,
-  onConfirm: PropTypes.func.isRequired,
-  confirmButtonText: PropTypes.string.isRequired,
+UpgradeButtons.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
+
+export default OneBuilding;
