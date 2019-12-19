@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Text, View, SafeAreaView, StyleSheet,
-  Modal, ActivityIndicator,
+  Modal, ActivityIndicator, TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -78,7 +78,7 @@ function getDetailInfo(
 }
 
 function OneBuilding({
-  isVisible, onClick, activeId, getIconImage,
+  isVisible, onClick, targetBuildingId, getIconImage,
 }) {
   const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
@@ -86,10 +86,10 @@ function OneBuilding({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (activeId !== -1) {
-      dispatch(fetchOneBuilding(activeId));
+    if (targetBuildingId !== -1) {
+      dispatch(fetchOneBuilding(targetBuildingId));
     }
-  }, [activeId]);
+  }, [targetBuildingId]);
 
   const listOfTroops = useSelector((state) => state.troops.listOfTroops);
   useEffect(() => {
@@ -141,38 +141,40 @@ function OneBuilding({
       presentationStyle="overFullScreen"
       onRequestClose={onClick}
     >
-      <SafeAreaView style={styles.background}>
-        <View style={styles.container}>
-          <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
-          <View style={styles.mainBody}>
-            <PopupItem
-              key={oneBuildingInfo.id}
-              type={oneBuildingInfo.type}
-              level={oneBuildingInfo.level}
-              getIconImage={getIconImage}
-            />
-            {getDetailInfo(
-              oneBuildingInfo.type,
-              totalNumOfTroops,
-              mockedGold,
-              mockedFood,
-              mockedGoldGenerateRate,
-              mockedFoodGenerateRate,
-              oneBuildingInfo.level,
-              mockedRules.createTroopGoldCost,
-              mockedRules.createTroopTimeCost,
-              mockedRules.upgradeAcademyGoldCost,
-              mockedRules.upgradeAcademyTimeCost,
-            )}
+      <TouchableOpacity onPressOut={onClick} style={{ flex: 1 }} activeOpacity={1}>
+        <SafeAreaView style={styles.background}>
+          <View style={styles.container}>
+            <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
+            <View style={styles.mainBody}>
+              <PopupItem
+                key={oneBuildingInfo.id}
+                type={oneBuildingInfo.type}
+                level={oneBuildingInfo.level}
+                getIconImage={getIconImage}
+              />
+              {getDetailInfo(
+                oneBuildingInfo.type,
+                totalNumOfTroops,
+                mockedGold,
+                mockedFood,
+                mockedGoldGenerateRate,
+                mockedFoodGenerateRate,
+                oneBuildingInfo.level,
+                mockedRules.createTroopGoldCost,
+                mockedRules.createTroopTimeCost,
+                mockedRules.upgradeAcademyGoldCost,
+                mockedRules.upgradeAcademyTimeCost,
+              )}
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </TouchableOpacity>
     </Modal>
   );
 }
 
 OneBuilding.propTypes = {
-  activeId: PropTypes.number.isRequired,
+  targetBuildingId: PropTypes.number.isRequired,
   isVisible: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   getIconImage: PropTypes.func,
