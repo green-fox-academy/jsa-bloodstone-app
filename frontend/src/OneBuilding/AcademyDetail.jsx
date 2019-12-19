@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Text, Image, StyleSheet,
+  View, Text, Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -12,18 +12,12 @@ import UpgradeBuilding from './UpgradeBuilding';
 
 import commonStyles from './styles';
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 12,
-  },
-});
-
 function AcademyDetail({
   buildingLevel,
   createTroopGoldCost,
   createTroopTimeCost,
-  upgradeAcademyGoldCost,
-  upgradeAcademyTimeCost,
+  upgradeBuildingGoldCost,
+  upgradeBuildingTimeCost,
 }) {
   return (
     <View>
@@ -47,7 +41,7 @@ function AcademyDetail({
         <Image resizeMode="contain" source={cookieIcon} style={commonStyles.iconStyle} />
         <Text style={commonStyles.textStyle}> every minute.</Text>
       </View>
-      <View style={styles.container}>
+      <View style={commonStyles.container}>
         <CreateTroop
           buildingLevel={buildingLevel}
           createTroopGoldCost={createTroopGoldCost}
@@ -55,8 +49,8 @@ function AcademyDetail({
         />
         <UpgradeBuilding
           buildingLevel={buildingLevel}
-          upgradeAcademyGoldCost={upgradeAcademyGoldCost}
-          upgradeAcademyTimeCost={upgradeAcademyTimeCost}
+          upgradeBuildingGoldCost={upgradeBuildingGoldCost}
+          upgradeBuildingTimeCost={upgradeBuildingTimeCost}
         />
       </View>
     </View>
@@ -67,8 +61,8 @@ AcademyDetail.propTypes = {
   buildingLevel: PropTypes.number.isRequired,
   createTroopGoldCost: PropTypes.number.isRequired,
   createTroopTimeCost: PropTypes.number.isRequired,
-  upgradeAcademyGoldCost: PropTypes.number.isRequired,
-  upgradeAcademyTimeCost: PropTypes.number.isRequired,
+  upgradeBuildingGoldCost: PropTypes.number.isRequired,
+  upgradeBuildingTimeCost: PropTypes.number.isRequired,
 };
 
 export default AcademyDetail;

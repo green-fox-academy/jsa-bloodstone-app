@@ -24,4 +24,7 @@ export default StyleSheet.create({
   buttonTextStyle: {
     color: colors.whiteColor,
   },
+  container: {
+    paddingVertical: 12,
+  },
 });
