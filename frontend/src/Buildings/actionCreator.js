@@ -24,12 +24,12 @@ export function fetchBuildings() {
   };
 }
 
-let uid = 1;
+let id = 1;
 
 const getMockedBuilding = (type) => {
-  uid += 1;
+  id += 1;
   return {
-    id: `temp-${uid}`,
+    id: `temp-${id}`,
     type,
     level: 1,
   };
