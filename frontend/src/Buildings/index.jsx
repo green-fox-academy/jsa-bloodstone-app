@@ -127,7 +127,7 @@ function Buildings() {
         </ScrollView>
         <OneBuilding
           activeId={activeId}
-          visible={isModalVisible}
+          isVisible={isModalVisible}
           onClick={onCloseAddModal}
           getIconImage={getIconImage}
         />

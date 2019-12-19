@@ -70,7 +70,7 @@ function getDetailInfo(type, troops, gold, food, goldGenerateRate, foodGenerateR
 }
 
 function OneBuilding({
-  visible, onClick, activeId, getIconImage,
+  isVisible, onClick, activeId, getIconImage,
 }) {
   const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
@@ -99,7 +99,7 @@ function OneBuilding({
     <Modal
       animationType="fade"
       transparent
-      visible={visible}
+      visible={isVisible}
       presentationStyle="overFullScreen"
       onRequestClose={onClick}
     >
@@ -124,7 +124,7 @@ function OneBuilding({
 
 OneBuilding.propTypes = {
   activeId: PropTypes.number.isRequired,
-  visible: PropTypes.bool.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   getIconImage: PropTypes.func,
 };
