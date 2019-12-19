@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
 function OneBuilding({
   onClick, targetBuildingId, getIconImage,
 }) {
-  const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
+  const buildingDetailInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo.building);
+  const oneBuildingRules = useSelector(
+    (state) => state.oneBuilding.oneBuildingInfo.rules.buildingRules,
+  );
+  const troopsRules = useSelector((state) => state.oneBuilding.oneBuildingInfo.rules.troopsRules);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
   const error = useSelector((state) => state.oneBuilding.error);
   const dispatch = useDispatch();
@@ -76,12 +80,27 @@ function OneBuilding({
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
-  const mockedRules = {
-    createTroopGoldCost: 10,
-    createTroopTimeCost: 60,
-    upgradeBuildingGoldCost: 200,
-    upgradeBuildingTimeCost: 150,
-  };
+  function getBuildingUpgradingCost(level) {
+    switch (level) {
+      case 1:
+        return oneBuildingRules.upgradingCostLevel1;
+      case 2:
+        return oneBuildingRules.upgradingCostLevel2;
+      default:
+        return null;
+    }
+  }
+
+  function getBuildingUpgradingTime(level) {
+    switch (level) {
+      case 1:
+        return oneBuildingRules.upgradingTimeInSecondsLevel1;
+      case 2:
+        return oneBuildingRules.upgradingTimeInSecondsLevel2;
+      default:
+        return null;
+    }
+  }
 
   if (error) {
     return (
@@ -99,48 +118,48 @@ function OneBuilding({
       </Popup>
     );
   }
-  if (Object.keys(oneBuildingInfo).length === 0) {
+  if (Object.keys(buildingDetailInfo).length === 0) {
     return null;
   }
 
   let buildingComponent = null;
-  if (oneBuildingInfo.type === 'Townhall') {
+  if (buildingDetailInfo.type === 'Townhall') {
     buildingComponent = (
       <TownhallDetail
         troops={totalNumOfTroops}
         gold={goldAmount}
         food={foodAmount}
-        buildingLevel={oneBuildingInfo.level}
-        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
-        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
+        buildingLevel={buildingDetailInfo.level}
+        upgradeBuildingGoldCost={getBuildingUpgradingCost(buildingDetailInfo.level)}
+        upgradeBuildingTimeCost={getBuildingUpgradingTime(buildingDetailInfo.level)}
       />
     );
-  } else if (oneBuildingInfo.type === 'Academy') {
+  } else if (buildingDetailInfo.type === 'Academy') {
     buildingComponent = (
       <AcademyDetail
-        buildingLevel={oneBuildingInfo.level}
-        createTroopGoldCost={mockedRules.createTroopGoldCost}
-        createTroopTimeCost={mockedRules.createTroopTimeCost}
-        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
-        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
+        buildingLevel={buildingDetailInfo.level}
+        createTroopGoldCost={troopsRules.constructionCost}
+        createTroopTimeCost={troopsRules.constructionTimeInSeconds}
+        upgradeBuildingGoldCost={getBuildingUpgradingCost(buildingDetailInfo.level)}
+        upgradeBuildingTimeCost={getBuildingUpgradingTime(buildingDetailInfo.level)}
       />
     );
-  } else if (oneBuildingInfo.type === 'Farm') {
+  } else if (buildingDetailInfo.type === 'Farm') {
     buildingComponent = (
       <FarmDetail
         foodGenerateRate={foodGeneration}
-        buildingLevel={oneBuildingInfo.level}
-        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
-        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
+        buildingLevel={buildingDetailInfo.level}
+        upgradeBuildingGoldCost={getBuildingUpgradingCost(buildingDetailInfo.level)}
+        upgradeBuildingTimeCost={getBuildingUpgradingTime(buildingDetailInfo.level)}
       />
     );
-  } else if (oneBuildingInfo.type === 'Mine') {
+  } else if (buildingDetailInfo.type === 'Mine') {
     buildingComponent = (
       <MineDetail
         goldGenerateRate={goldGeneration}
-        buildingLevel={oneBuildingInfo.level}
-        upgradeBuildingGoldCost={mockedRules.upgradeBuildingGoldCost}
-        upgradeBuildingTimeCost={mockedRules.upgradeBuildingTimeCost}
+        buildingLevel={buildingDetailInfo.level}
+        upgradeBuildingGoldCost={getBuildingUpgradingCost(buildingDetailInfo.level)}
+        upgradeBuildingTimeCost={getBuildingUpgradingTime(buildingDetailInfo.level)}
       />
     );
   }
@@ -153,12 +172,12 @@ function OneBuilding({
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
             <View style={styles.container}>
-              <ModalHeader onClick={onClick} title={oneBuildingInfo.type} />
+              <ModalHeader onClick={onClick} title={buildingDetailInfo.type} />
               <View style={styles.mainBody}>
                 <PopupItem
-                  key={oneBuildingInfo.id}
-                  type={oneBuildingInfo.type}
-                  level={oneBuildingInfo.level}
+                  key={buildingDetailInfo.id}
+                  type={buildingDetailInfo.type}
+                  level={buildingDetailInfo.level}
                   getIconImage={getIconImage}
                 />
                 {buildingComponent}
