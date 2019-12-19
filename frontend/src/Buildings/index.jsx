@@ -16,6 +16,8 @@ import addFarmIcon from '../../assets/buildings/addFarm.png';
 import addMineIcon from '../../assets/buildings/addMine.png';
 import addAcademyIcon from '../../assets/buildings/addAcademy.png';
 import Colors from '../common/colors';
+import { CardView } from '../common/components';
+import Popup from '../OneBuilding';
 
 const styles = StyleSheet.create({
   container: {
