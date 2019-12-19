@@ -33,7 +33,7 @@ function getResources(req, res) {
       generation: resource.generation,
     })),
   };
-  return res.status(200).send(caulatedResources);
+  return res.status(200).send(calculatedResources);
 }
 
 router.get('/', getResources);
