@@ -3,7 +3,6 @@ import {
   View, StyleSheet,
   ScrollView,
 } from 'react-native';
-import { CardView } from '../common/components';
 import RankingItem from './RankingItem';
 import MyRankingItem from './MyRankingItem';
 import RankingAxis from './RankingAxis';
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
 });
 function MyRanking() {
   return (
-    <CardView style={styles.container}>
+    <View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewContainer}
@@ -54,7 +53,7 @@ function MyRanking() {
           </View>
         </View>
       </ScrollView>
-    </CardView>
+    </View>
   );
 }
 
