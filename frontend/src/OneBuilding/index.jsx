@@ -82,7 +82,7 @@ function OneBuilding({
       <Text>{`Oops, ${error.message}`}</Text>
     );
   }
-  if (isLoading) {
+  if (isLoading || oneBuildingInfo === null) {
     return (
       <Popup onClick={onClick}>
         <View style={styles.loading}>
@@ -90,9 +90,6 @@ function OneBuilding({
         </View>
       </Popup>
     );
-  }
-  if (oneBuildingInfo === null) {
-    return <Text>Null</Text>;
   }
   const buildingDetailInfo = oneBuildingInfo.building;
   const { buildingRules } = oneBuildingInfo.rules;

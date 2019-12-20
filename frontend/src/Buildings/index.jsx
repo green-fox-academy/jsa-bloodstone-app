@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
 });
 
 const ICON_LIST = [
-  { type: 'farm', url: addFarmIcon },
-  { type: 'mine', url: addMineIcon },
-  { type: 'academy', url: addAcademyIcon },
+  { type: 'Farm', url: addFarmIcon },
+  { type: 'Mine', url: addMineIcon },
+  { type: 'Academy', url: addAcademyIcon },
 ];
 
 function Buildings() {
