@@ -49,11 +49,7 @@ const styles = StyleSheet.create({
 function OneBuilding({
   onClick, targetBuildingId, getIconImage,
 }) {
-  const buildingDetailInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo.building);
-  const oneBuildingRules = useSelector(
-    (state) => state.oneBuilding.oneBuildingInfo.rules.buildingRules,
-  );
-  const troopsRules = useSelector((state) => state.oneBuilding.oneBuildingInfo.rules.troopsRules);
+  const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
   const error = useSelector((state) => state.oneBuilding.error);
   const dispatch = useDispatch();
@@ -74,33 +70,12 @@ function OneBuilding({
   const foodGeneration = useSelector((state) => state.resources.foodGeneration);
   const goldAmount = useSelector((state) => state.resources.goldAmount);
   const goldGeneration = useSelector((state) => state.resources.goldGeneration);
+
   useEffect(() => {
     dispatch(fetchResources());
     const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
     return () => clearInterval(updateResourcesInterval);
   }, []);
-
-  function getBuildingUpgradingCost(level) {
-    switch (level) {
-      case 1:
-        return oneBuildingRules.upgradingCostLevel1;
-      case 2:
-        return oneBuildingRules.upgradingCostLevel2;
-      default:
-        return null;
-    }
-  }
-
-  function getBuildingUpgradingTime(level) {
-    switch (level) {
-      case 1:
-        return oneBuildingRules.upgradingTimeInSecondsLevel1;
-      case 2:
-        return oneBuildingRules.upgradingTimeInSecondsLevel2;
-      default:
-        return null;
-    }
-  }
 
   if (error) {
     return (
@@ -109,15 +84,42 @@ function OneBuilding({
   }
   if (isLoading) {
     return (
-      <Popup
-        onClick={onClick}
-      >
+      <Popup onClick={onClick}>
         <View style={styles.loading}>
           <ActivityIndicator size="large" color={colors.tealColor} />
         </View>
       </Popup>
     );
   }
+  if (oneBuildingInfo === null) {
+    return <Text>Null</Text>;
+  }
+  const buildingDetailInfo = oneBuildingInfo.building;
+  const { buildingRules } = oneBuildingInfo.rules;
+  const { troopsRules } = oneBuildingInfo.rules;
+
+  function getBuildingUpgradingTime(level) {
+    switch (level) {
+      case 1:
+        return buildingRules.upgradingTimeInSecondsLevel1;
+      case 2:
+        return buildingRules.upgradingTimeInSecondsLevel2;
+      default:
+        return null;
+    }
+  }
+
+  function getBuildingUpgradingCost(level) {
+    switch (level) {
+      case 1:
+        return buildingRules.upgradingCostLevel1;
+      case 2:
+        return buildingRules.upgradingCostLevel2;
+      default:
+        return null;
+    }
+  }
+
   if (Object.keys(buildingDetailInfo).length === 0) {
     return null;
   }
@@ -165,9 +167,7 @@ function OneBuilding({
   }
 
   return (
-    <Popup
-      onClick={onClick}
-    >
+    <Popup onClick={onClick}>
       <TouchableOpacity onPressOut={onClick} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>

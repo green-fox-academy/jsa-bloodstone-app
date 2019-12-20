@@ -69,29 +69,14 @@ function Buildings() {
 
   function getIconImage(type) {
     switch (type) {
-      case 'townhall':
+      case 'Townhall':
         return townhallIcon;
-      case 'academy':
+      case 'Academy':
         return academyIcon;
-      case 'farm':
+      case 'Farm':
         return farmIcon;
-      case 'mine':
+      case 'Mine':
         return mineIcon;
-      default:
-        return null;
-    }
-  }
-
-  function getCapitalFormOfType(type) {
-    switch (type) {
-      case 'townhall':
-        return 'Townhall';
-      case 'academy':
-        return 'Academy';
-      case 'farm':
-        return 'Farm';
-      case 'mine':
-        return 'Mine';
       default:
         return null;
     }
@@ -123,7 +108,7 @@ function Buildings() {
           <AddBuildingItem
             key={addBuildingIcon.type}
             icon={addBuildingIcon.url}
-            type={getCapitalFormOfType(addBuildingIcon.type)}
+            type={addBuildingIcon.type}
             onPress={() => addNewBuilding(addBuildingIcon.type)}
           />
         ))}
@@ -133,7 +118,7 @@ function Buildings() {
           {listOfBuildings.map((building) => (
             <BuildingItem
               key={building.id}
-              type={getCapitalFormOfType(building.type)}
+              type={building.type}
               level={building.level}
               onPress={() => handlePress(building.id)}
               getIconImage={getIconImage}

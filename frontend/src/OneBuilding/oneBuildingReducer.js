@@ -5,7 +5,7 @@ import {
 } from './actionCreator';
 
 const initialState = {
-  oneBuildingInfo: {},
+  oneBuildingInfo: null,
   isLoading: false,
   error: undefined,
 };
