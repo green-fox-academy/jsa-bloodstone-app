@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   contentStyle: {
     flex: 1,
     alignItems: 'center',
-    // borderWidth: 1,
     paddingLeft: 10,
   },
   textStyle: {
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     borderTopColor: colors.transparent,
     borderBottomColor: colors.transparent,
     borderLeftColor: colors.transparent,
-    borderRightColor: '#fff',
+    borderRightColor: colors.whiteColor,
     marginLeft: -35,
   },
 });
@@ -63,11 +62,11 @@ function MyRankingItem({ ranking, gold, kingdom }) {
         <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', marginRight: 10 }}>
             <Image style={styles.iconStyle} source={goldIcon} />
-            <Text style={{ color: '#000' }}>{` ${gold}`}</Text>
+            <Text style={{ color: colors.blackColor }}>{` ${gold}`}</Text>
           </View>
           <View style={{ flexDirection: 'row', marginLeft: 10 }}>
             <Image style={styles.iconStyle} source={crownIcon} />
-            <Text style={{ color: '#000' }}>{` ${kingdom}`}</Text>
+            <Text style={{ color: colors.blackColor }}>{` ${kingdom}`}</Text>
           </View>
         </View>
       </View>

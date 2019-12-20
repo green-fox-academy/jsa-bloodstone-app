@@ -11,13 +11,11 @@ import colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {
-
     backgroundColor: '#ffffffcc',
-
   },
   scrollViewContainer: {
     paddingHorizontal: 10,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
   },
   leftLayout: {
     flexDirection: 'row',
@@ -30,7 +28,10 @@ const styles = StyleSheet.create({
 function MyRanking() {
   return (
     <CardView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollViewContainer}
+      >
         <View style={styles.leftLayout}>
           <RankingAxis amount={2} circleColor={colors.tealColor} />
           <View>
