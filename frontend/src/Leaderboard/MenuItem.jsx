@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   menuItemStyle: {
     flex: 1,
     paddingVertical: 12,
+    alignItems: 'center',
   },
   menuTextStyle: {
     fontSize: 14,
@@ -17,25 +18,33 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  activeIndicatorStyle: {
+    backgroundColor: colors.blueColor,
+    marginTop: 4,
+    marginBottom: -8,
+    height: 4,
+    width: 8,
+    borderRadius: 4,
+  },
 });
 
 function MenuItem({
   title, active, onPress,
 }) {
-  const extraMenuItemStyle = {
-    backgroundColor: title === active ? colors.greyColor : colors.transparent,
-  };
   const extraMenuTextStyle = {
-    color: title === active ? colors.whiteColor : colors.greyColor,
+    color: title === active ? colors.tealColor : colors.greyColor,
   };
-
+  const indicatorColor = {
+    backgroundColor: title === active ? colors.tealColor : colors.transparent,
+  };
   return (
     <TouchableNativeFeedback
       onPress={onPress}
       background={TouchableNativeFeedback.SelectableBackground()}
     >
-      <View style={[styles.menuItemStyle, extraMenuItemStyle]}>
+      <View style={[styles.menuItemStyle]}>
         <Text style={[styles.menuTextStyle, extraMenuTextStyle]}>{title}</Text>
+        <View style={[styles.activeIndicatorStyle, indicatorColor]} />
       </View>
     </TouchableNativeFeedback>
   );

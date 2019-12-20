@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet,
+  View, StyleSheet, Text,
 } from 'react-native';
-
 import TopRanking from './TopRanking';
 import MyRanking from './MyRanking';
 import MenuItem from './MenuItem';
@@ -15,15 +14,25 @@ const MY_RANKING = 'MyRanking';
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 1,
+    flex: 1,
     padding: 0,
-    backgroundColor: '#ffffffcc',
   },
   menuContainer: {
+    backgroundColor: '#ffffffcc',
     flexDirection: 'row',
-    overflow: 'hidden',
-    backgroundColor: '#fff',
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
+  },
+  contentContainer: {
+    flex: 1,
+    elevation: 0,
+    marginBottom: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    backgroundColor: '#ffffffcc',
+    paddingHorizontal: 10,
+    paddingVertical: 0,
   },
   textStyle: {
     color: colors.whiteColor,
@@ -43,7 +52,7 @@ function getChildComponent(active) {
 function Leaderboard() {
   const [activeMenuText, setActiveMenuText] = useState(MY_RANKING);
   return (
-    <CardView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.menuContainer}>
         <MenuItem
           active={activeMenuText}
@@ -56,10 +65,10 @@ function Leaderboard() {
           onPress={() => setActiveMenuText(MY_RANKING)}
         />
       </View>
-      <View style={{ paddingHorizontal: 10 }}>
+      <CardView style={styles.contentContainer}>
         {getChildComponent(activeMenuText)}
-      </View>
-    </CardView>
+      </CardView>
+    </View>
   );
 }
 
