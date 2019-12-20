@@ -4,6 +4,7 @@ const fs = require('fs');
 const buildingsRuleInput = fs.readFileSync(`${__dirname}/buildingsRules.csv`);
 const buildingsRule = parse(buildingsRuleInput, {
   columns: true,
+  cast: true,
 });
 const townhallRule = buildingsRule.filter((building) => building.buildingName === 'townhall')[0];
 const farmRule = buildingsRule.filter((building) => building.buildingName === 'farm')[0];
@@ -13,6 +14,7 @@ const academyRule = buildingsRule.filter((building) => building.buildingName ===
 const troopsRuleInput = fs.readFileSync(`${__dirname}/troopsRules.csv`);
 const troopsRule = parse(troopsRuleInput, {
   columns: true,
+  cast: true,
 });
 const foxRule = troopsRule.filter((troop) => troop.troopName === 'fox')[0];
 
