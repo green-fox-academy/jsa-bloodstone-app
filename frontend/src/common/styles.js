@@ -43,4 +43,11 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  shadowEffect: {
+    shadowColor: Colors.blackColor,
+    shadowOpacity: 0.1,
+    shadowOffset: { x: 0, y: 4 },
+    shadowRadius: 6,
+    elevation: 3,
+  },
 });

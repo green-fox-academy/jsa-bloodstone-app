@@ -6,6 +6,7 @@ export default {
   lightenTeal: '#e0f2f1',
   redColor: '#f44336',
   blackColor: '#000000',
+  greyColor: 'grey',
   transparent: 'transparent',
   whiteColor: '#ffffff',
   white20Color: 'rgba(255,255,255,0.2)',
@@ -13,4 +14,5 @@ export default {
   white90Color: 'rgba(255,255,255,0.9)',
   greenColor: '#68AA2F',
   orangeColor: '#FD730B',
+  blueColor: '#2196f3',
 };
