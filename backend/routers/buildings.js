@@ -10,28 +10,28 @@ const myBuildings = {
   buildings: [
     {
       id: 1,
-      type: 'townhall',
+      type: 'Townhall',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 2,
-      type: 'academy',
+      type: 'Academy',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 3,
-      type: 'farm',
+      type: 'Farm',
       level: 1,
       hp: 1,
       started_at: 12345789,
       finished_at: 12399999,
     }, {
       id: 4,
-      type: 'mine',
+      type: 'Mine',
       level: 1,
       hp: 1,
       started_at: 12345789,
@@ -52,36 +52,36 @@ function getBuildingById(req, res) {
   const targetBuilding = myBuildings.buildings.filter((building) => buildingId === building.id);
   if (targetBuilding.length > 0) {
     switch (targetBuilding[0].type) {
-      case 'townhall':
+      case 'Townhall':
         return res.status(200).send({
           building: targetBuilding[0],
           rules: {
             buildingRules: townhallRule,
-            TroopsRules: foxRule,
+            troopsRules: foxRule,
           },
         });
-      case 'academy':
+      case 'Academy':
         return res.status(200).send({
           building: targetBuilding[0],
           rules: {
             buildingRules: academyRule,
-            TroopsRules: foxRule,
+            troopsRules: foxRule,
           },
         });
-      case 'farm':
+      case 'Farm':
         return res.status(200).send({
           building: targetBuilding[0],
           rules: {
             buildingRules: farmRule,
-            TroopsRules: foxRule,
+            troopsRules: foxRule,
           },
         });
-      case 'mine':
+      case 'Mine':
         return res.status(200).send({
           building: targetBuilding[0],
           rules: {
             buildingRules: mineRule,
-            TroopsRules: foxRule,
+            troopsRules: foxRule,
           },
         });
       default:
