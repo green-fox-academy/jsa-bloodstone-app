@@ -130,7 +130,7 @@ function Buildings() {
             ? (
               <OneBuilding
                 targetBuildingId={activeId}
-                onClick={onCloseAddModal}
+                onClickClose={onCloseAddModal}
                 getIconImage={getIconImage}
               />
             )

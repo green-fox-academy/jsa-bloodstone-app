@@ -6,22 +6,19 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import ModalHeader from './ModalHeader';
-
 import { fetchOneBuilding } from './actionCreator';
-import PopupItem from './popupItem';
-import colors from '../common/colors';
-
 import { fetchTroops } from '../Troops/actionCreator';
-
 import { fetchResources } from '../Resources/actionCreator';
 
+import ModalHeader from './ModalHeader';
+import PopupItem from './popupItem';
 import Popup from '../common/components/Popup';
-
 import TownhallDetail from './TownhallDetail';
 import AcademyDetail from './AcademyDetail';
 import FarmDetail from './FarmDetail';
 import MineDetail from './MineDetail';
+
+import colors from '../common/colors';
 
 const styles = StyleSheet.create({
   background: {
@@ -47,7 +44,7 @@ const styles = StyleSheet.create({
 });
 
 function OneBuilding({
-  onClick, targetBuildingId, getIconImage,
+  onClickClose, targetBuildingId, getIconImage,
 }) {
   const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
@@ -84,7 +81,7 @@ function OneBuilding({
   }
   if (isLoading || oneBuildingInfo === null) {
     return (
-      <Popup onClick={onClick}>
+      <Popup onClick={onClickClose}>
         <View style={styles.loading}>
           <ActivityIndicator size="large" color={colors.tealColor} />
         </View>
@@ -164,12 +161,12 @@ function OneBuilding({
   }
 
   return (
-    <Popup onClick={onClick}>
-      <TouchableOpacity onPressOut={onClick} style={{ flex: 1 }} activeOpacity={1}>
+    <Popup onClick={onClickClose}>
+      <TouchableOpacity onPressOut={onClickClose} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
             <View style={styles.container}>
-              <ModalHeader onClick={onClick} title={buildingDetailInfo.type} />
+              <ModalHeader onClick={onClickClose} title={buildingDetailInfo.type} />
               <View style={styles.mainBody}>
                 <PopupItem
                   key={buildingDetailInfo.id}
@@ -189,7 +186,7 @@ function OneBuilding({
 
 OneBuilding.propTypes = {
   targetBuildingId: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClickClose: PropTypes.func.isRequired,
   getIconImage: PropTypes.func,
 };
 

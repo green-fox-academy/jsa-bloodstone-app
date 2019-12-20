@@ -4,13 +4,13 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
+import UpgradeBuilding from './UpgradeBuilding';
+
 import troopIcon from '../../assets/troop/troop.png';
 import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 
 import commonStyles from './styles';
-
-import UpgradeBuilding from './UpgradeBuilding';
 
 function TownhallDetail({
   troops,

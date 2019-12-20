@@ -4,7 +4,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
-
 import commonStyles from './styles';
 
 const styles = StyleSheet.create({

@@ -23,17 +23,13 @@ function UpgradeBuilding({
           <Entypo name="arrow-with-circle-up" size={32} color="white" />
         </View>
         <View style={commonStyles.description}>
-          <Text
-            style={commonStyles.buttonTextStyle}
-          >
+          <Text style={commonStyles.buttonTextStyle}>
             {`Upgrade to Level ${buildingLevel + 1}`}
           </Text>
           <View style={commonStyles.row}>
             <Text style={commonStyles.buttonTextStyle}>{`cost ${upgradeBuildingGoldCost} ` }</Text>
             <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
-            <Text
-              style={commonStyles.buttonTextStyle}
-            >
+            <Text style={commonStyles.buttonTextStyle}>
               {` in ${upgradeBuildingTimeCost} seconds`}
             </Text>
           </View>

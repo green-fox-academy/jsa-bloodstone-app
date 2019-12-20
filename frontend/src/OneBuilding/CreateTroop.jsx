@@ -21,17 +21,13 @@ function CreateTroop({
       <SubCardView>
         <Image resizeMode="contain" source={troopIcon} style={commonStyles.imageStyle} />
         <View style={commonStyles.description}>
-          <Text
-            style={commonStyles.buttonTextStyle}
-          >
+          <Text style={commonStyles.buttonTextStyle}>
             {`Create troop level ${buildingLevel} `}
           </Text>
           <View style={commonStyles.row}>
             <Text style={commonStyles.buttonTextStyle}>{`cost ${createTroopGoldCost} ` }</Text>
             <Image resizeMode="contain" source={goldIcon} style={commonStyles.iconStyle} />
-            <Text
-              style={commonStyles.buttonTextStyle}
-            >
+            <Text style={commonStyles.buttonTextStyle}>
               {` in ${createTroopTimeCost} seconds`}
             </Text>
           </View>

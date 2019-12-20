@@ -4,11 +4,9 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import cookieIcon from '../../assets/troop/cookie.png';
-
-import commonStyles from './styles';
-
 import UpgradeBuilding from './UpgradeBuilding';
+import cookieIcon from '../../assets/troop/cookie.png';
+import commonStyles from './styles';
 
 function FarmDetail({
   foodGenerateRate,
@@ -21,7 +19,9 @@ function FarmDetail({
       <View style={commonStyles.row}>
         <Text style={commonStyles.textStyle}>The food </Text>
         <Image resizeMode="contain" source={cookieIcon} style={commonStyles.iconStyle} />
-        <Text style={commonStyles.textStyle}>{` generation rate is ${foodGenerateRate}/minute. `}</Text>
+        <Text style={commonStyles.textStyle}>
+          {` generation rate is ${foodGenerateRate}/minute. `}
+        </Text>
       </View>
       <UpgradeBuilding
         buildingLevel={buildingLevel}
