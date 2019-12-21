@@ -1,8 +1,8 @@
+require('dotenv').config();
 const express = require('express');
+const { troops, buildings, resources } = require('./routers');
 
 const app = express();
-const PORT = 4000;
-const { troops, buildings, resources } = require('./routers');
 
 app.use(express.json());
 
@@ -19,6 +19,7 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
+const PORT = process.env.PORT || 4000;
 app.listen(PORT);
 
 module.exports = app;
