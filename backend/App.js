@@ -2,7 +2,9 @@ const express = require('express');
 
 const app = express();
 const PORT = 4000;
-const { troops, buildings, resources, users } = require('./routers');
+const {
+  troops, buildings, resources, users,
+} = require('./routers');
 
 app.use(express.json());
 
