@@ -18,7 +18,7 @@ app.use('/kingdom/resources', resources);
 app.use('/users', users);
 
 app.use((err, req, res, next) => {
-  res.status(500).send('Something broke!');
+  res.status(500).send(err.message);
   next(err);
 });
 
