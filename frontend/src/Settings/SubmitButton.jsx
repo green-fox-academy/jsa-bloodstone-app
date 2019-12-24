@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, TouchableHighlight, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../common/colors';
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 50,
-    width: 60,
-    height: 60,
+    borderRadius: 5,
+    marginLeft: 10,
+    padding: 10,
     backgroundColor: Colors.tealColor,
   },
-  icon: {
-    marginRight: -2,
-    marginTop: -2,
+  text: {
+    fontSize: 16,
+    color: Colors.textColor,
   },
 });
 
@@ -26,7 +23,7 @@ function SubmitButton({ onPress }) {
       underlayColor={Colors.lightenTeal}
       onPress={onPress}
     >
-      <Text>Save</Text>
+      <Text style={styles.text}>Save</Text>
     </TouchableHighlight>
   );
 }

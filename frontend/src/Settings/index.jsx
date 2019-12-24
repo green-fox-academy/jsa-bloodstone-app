@@ -1,9 +1,42 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { View, Button, Alert } from 'react-native';
-import styles from '../common/styles';
+import {
+  View, Text, Alert, StyleSheet, ImageBackground,
+} from 'react-native';
+import Colors from '../common/colors';
+
+import background from '../../assets/login/background.jpg';
 
 import InputField from './InputField';
+import SubmitButton from './SubmitButton';
+
+const styles = StyleSheet.create({
+  titleText: {
+    fontSize: 36,
+    color: Colors.textColor,
+    fontWeight: 'bold',
+  },
+  labelText: {
+    width: 240,
+    fontSize: 16,
+    color: Colors.textColor,
+  },
+  buttonRow: {
+    width: 240,
+    height: 60,
+    flexDirection: 'row-reverse',
+    alignItems: 'flex-start',
+  },
+  container: {
+    paddingTop: 20,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  background: {
+    width: '100%',
+    height: '100%',
+  },
+});
 
 function Settings() {
   const [emailInput, setEmailInput] = useState('');
@@ -28,39 +61,55 @@ function Settings() {
   }
 
   return (
-    <View style={
-      [styles.screenStyle, { flex: 1, justifyContent: 'center', alignItems: 'center' }]
-    }
+    <ImageBackground
+      style={styles.background}
+      resizeMode="cover"
+      source={background}
     >
-      <View>
+      <View style={styles.container}>
+        <Text style={styles.titleText}>Settings</Text>
+
+        <Text style={styles.labelText}>email</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.email)}
+          value={emailInput}
           onChangeText={(val) => setEmailInput(val)}
         />
-        <Button onPress={handleEmailSubmit} />
-      </View>
-      <View>
+        <View style={styles.buttonRow}>
+          {emailInput !== '' && <SubmitButton onPress={handleEmailSubmit} />}
+        </View>
+
+        <Text style={styles.labelText}>username</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.username)}
+          value={usernameInput}
           onChangeText={(val) => setUsernameInput(val)}
         />
-        <Button onPress={handleUsernameSubmit} />
-      </View>
-      <View>
+        <View style={styles.buttonRow}>
+          {usernameInput !== '' && <SubmitButton onPress={handleUsernameSubmit} />}
+        </View>
+
+        <Text style={styles.labelText}>kingdom name</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.kingdomName)}
+          value={kingdomNameInput}
           onChangeText={(val) => setKingdomNameInput(val)}
         />
-        <Button onPress={handleKingdomNameSubmit} />
-      </View>
-      <View>
+        <View style={styles.buttonRow}>
+          {kingdomNameInput !== '' && <SubmitButton onPress={handleKingdomNameSubmit} />}
+        </View>
+
+        <Text style={styles.labelText}>password</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.password)}
+          placeholder="password123"
+          value={passwordInput}
           onChangeText={(val) => setPasswordInput(val)}
         />
-        <Button onPress={handlePasswordSubmit} />
+        <View style={styles.buttonRow}>
+          {passwordInput !== '' && <SubmitButton onPress={handlePasswordSubmit} />}
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 

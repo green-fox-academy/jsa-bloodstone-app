@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from 'react-native';
+import { TextInput, StyleSheet } from 'react-native';
 import { CardView } from '../common/components';
-
-const style = {
-  height: 40,
-  margin: 5,
-  paddingStart: 10,
-  fontSize: 14,
-};
 
 function InputField({
   value, onChangeText, placeholder, secureTextEntry,
 }) {
   const [isFocus, setFocus] = useState(false);
 
-  const extraStyle = {
-    margin: 0,
-    padding: 0,
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,.12)',
-    elevation: isFocus ? 2 : 0,
-  };
+  const styles = StyleSheet.create({
+    cardView: {
+      width: 240,
+      paddingVertical: 6,
+      marginBottom: 0,
+      borderWidth: 1,
+      borderColor: 'rgba(0,0,0,.12)',
+      elevation: isFocus ? 2 : 0,
+    },
+    textInput: {
+      fontSize: 20,
+    },
+  });
 
   return (
-    <CardView style={extraStyle}>
+    <CardView style={styles.cardView}>
       <TextInput
-        style={style}
+        style={styles.textInput}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
