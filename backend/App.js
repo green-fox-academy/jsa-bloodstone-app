@@ -1,9 +1,6 @@
+require('dotenv').config();
 const express = require('express');
-const { config } = require('dotenv');
-require('./database');
 const { troops, buildings, resources } = require('./routers');
-
-config();
 
 const app = express();
 
