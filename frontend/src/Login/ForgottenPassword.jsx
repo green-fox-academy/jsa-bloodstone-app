@@ -17,6 +17,10 @@ import { forgotPassword } from './actionCreator';
 import background from '../../assets/login/background.jpg';
 import Colors from '../common/colors';
 
+import { forgotPassword } from './actionCreator';
+import background from '../../assets/login/background.jpg';
+import Colors from '../common/colors';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
