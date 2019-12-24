@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, Text, ScrollView,
+  View, ScrollView,
   StyleSheet, ActivityIndicator,
 } from 'react-native';
-import { CardView } from '../common/components';
-import BuildingItem from './buildingItem';
-import AddBuildingItem from './addBuildingItem';
+
 import { fetchBuildings, addBuildingSuccess } from './actionCreator';
+
 import townhallIcon from '../../assets/buildings/townhall.png';
 import academyIcon from '../../assets/buildings/academy.png';
 import farmIcon from '../../assets/buildings/factory.png';
@@ -15,8 +14,15 @@ import mineIcon from '../../assets/buildings/mine.png';
 import addFarmIcon from '../../assets/buildings/addFarm.png';
 import addMineIcon from '../../assets/buildings/addMine.png';
 import addAcademyIcon from '../../assets/buildings/addAcademy.png';
+
 import Colors from '../common/colors';
+import { CardView } from '../common/components';
+
+import BuildingItem from './buildingItem';
+import AddBuildingItem from './addBuildingItem';
 import OneBuilding from '../OneBuilding';
+
+import ErrorHandlerPage from '../ErrorHandlerPage';
 
 const styles = StyleSheet.create({
   container: {
@@ -58,6 +64,11 @@ function Buildings() {
   const dispatch = useDispatch();
   const [isModalVisible, setModalVisible] = useState(false);
   const [activeId, setActiveId] = useState(-1);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const onCloseErrorPopup = () => {
+    setIsVisible(false);
+  };
 
   const onCloseAddModal = () => {
     setModalVisible(false);
@@ -93,7 +104,12 @@ function Buildings() {
 
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorHandlerPage
+        onClickClose={onCloseErrorPopup}
+        isVisible={isVisible}
+        ErrorInfo={`Oops, ${error.message}`}
+        ErrorTitle="System Error"
+      />
     );
   }
   if (isLoading) {

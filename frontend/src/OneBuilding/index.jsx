@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Text, View, SafeAreaView, StyleSheet,
+  View, SafeAreaView, StyleSheet,
   ActivityIndicator, TouchableOpacity, TouchableWithoutFeedback,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -10,13 +10,14 @@ import { fetchOneBuilding } from './actionCreator';
 import { fetchTroops } from '../Troops/actionCreator';
 import { fetchResources } from '../Resources/actionCreator';
 
-import ModalHeader from './ModalHeader';
+import ModalHeader from '../common/components/ModalHeader';
 import PopupItem from './popupItem';
 import Popup from '../common/components/Popup';
 import TownhallDetail from './TownhallDetail';
 import AcademyDetail from './AcademyDetail';
 import FarmDetail from './FarmDetail';
 import MineDetail from './MineDetail';
+import ErrorHandlerPage from '../ErrorHandlerPage';
 
 import colors from '../common/colors';
 
@@ -74,9 +75,20 @@ function OneBuilding({
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
+  const [isVisible, setIsVisible] = useState(true);
+
+  const onCloseErrorPopup = () => {
+    setIsVisible(false);
+  };
+
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorHandlerPage
+        onClickClose={onCloseErrorPopup}
+        isVisible={isVisible}
+        ErrorInfo={`Oops, ${error.message}`}
+        ErrorTitle="System Error"
+      />
     );
   }
   if (isLoading || oneBuildingInfo === null) {
@@ -166,7 +178,10 @@ function OneBuilding({
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
             <View style={styles.container}>
-              <ModalHeader onClick={onClickClose} title={buildingDetailInfo.type} />
+              <ModalHeader
+                onClick={onClickClose}
+                title={`${buildingDetailInfo.type} Detail Information`}
+              />
               <View style={styles.mainBody}>
                 <PopupItem
                   key={buildingDetailInfo.id}

@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View, ActivityIndicator,
-  Text, StyleSheet,
+  StyleSheet,
 } from 'react-native';
 import Colors from '../common/colors';
 
 import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
 import TroopLevel from './TroopLevel';
+import ErrorHandlerPage from '../ErrorHandlerPage';
 
 const styles = StyleSheet.create({
   levelList: {
@@ -42,6 +43,11 @@ function Troops() {
   const isLoading = useSelector((state) => state.troops.isLoading);
   const error = useSelector((state) => state.troops.error);
   const dispatch = useDispatch();
+  const [isVisible, setIsVisible] = useState(true);
+
+  const onCloseErrorPopup = () => {
+    setIsVisible(false);
+  };
 
   useEffect(() => {
     dispatch(fetchTroops());
@@ -49,7 +55,12 @@ function Troops() {
 
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorHandlerPage
+        onClickClose={onCloseErrorPopup}
+        isVisible={isVisible}
+        ErrorInfo={`Oops, ${error.message}`}
+        ErrorTitle="System Error"
+      />
     );
   }
 

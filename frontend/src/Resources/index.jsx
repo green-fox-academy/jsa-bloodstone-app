@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -11,6 +11,7 @@ import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
+import ErrorHandlerPage from '../ErrorHandlerPage';
 
 import { fetchResources } from './actionCreator';
 
@@ -102,9 +103,21 @@ function Resources() {
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
+  const [isVisible, setIsVisible] = useState(true);
+
+  const onCloseErrorPopup = () => {
+    setIsVisible(false);
+  };
+
+
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorHandlerPage
+        onClickClose={onCloseErrorPopup}
+        isVisible={isVisible}
+        ErrorInfo={`Oops, ${error.message}`}
+        ErrorTitle="System Error"
+      />
     );
   }
 
