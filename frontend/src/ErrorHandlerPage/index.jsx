@@ -10,7 +10,7 @@ import Popup from '../common/components/Popup';
 import ModalHeader from '../common/components/ModalHeader';
 import CloseButton from './CloseButton';
 
-import error from './assets/error.gif';
+import error from '../../assets/error.gif';
 
 const styles = StyleSheet.create({
   background: {
