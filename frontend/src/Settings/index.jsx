@@ -13,17 +13,18 @@ import SubmitButton from './SubmitButton';
 const styles = StyleSheet.create({
   titleText: {
     fontSize: 36,
-    color: Colors.textColor,
+    color: Colors.whiteColor,
     fontWeight: 'bold',
   },
   labelText: {
     width: 240,
     fontSize: 16,
-    color: Colors.textColor,
+    color: Colors.whiteColor,
   },
   buttonRow: {
     width: 240,
     height: 60,
+    paddingTop: 6,
     flexDirection: 'row-reverse',
     alignItems: 'flex-start',
   },
