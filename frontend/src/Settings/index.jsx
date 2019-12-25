@@ -52,7 +52,7 @@ function Settings() {
     reqObj.username = usernameInput || undefined;
     reqObj.kingdom = kingdomNameInput || undefined;
     reqObj.password = passwordInput || undefined;
-    Alert.alert(`submit email ${JSON.stringify(reqObj)}`);
+    Alert.alert(`submit ${JSON.stringify(reqObj)}`);
   }
 
   return (
