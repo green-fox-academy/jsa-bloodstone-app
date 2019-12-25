@@ -45,20 +45,13 @@ function Settings() {
   const [kingdomNameInput, setKingdomNameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
-  function handleEmailSubmit() {
-    Alert.alert(`submit email ${emailInput}`);
-  }
-
-  function handleUsernameSubmit() {
-    Alert.alert(`submit username ${usernameInput}`);
-  }
-
-  function handleKingdomNameSubmit() {
-    Alert.alert(`submit kingdom ${kingdomNameInput}`);
-  }
-
-  function handlePasswordSubmit() {
-    Alert.alert(`submit password${passwordInput}`);
+  function handleSubmit() {
+    const reqObj = {};
+    reqObj.email = emailInput || undefined;
+    reqObj.username = usernameInput || undefined;
+    reqObj.kingdom = kingdomNameInput || undefined;
+    reqObj.password = passwordInput || undefined;
+    Alert.alert(`submit email ${JSON.stringify(reqObj)}`);
   }
 
   return (
@@ -76,9 +69,6 @@ function Settings() {
           value={emailInput}
           onChangeText={(val) => setEmailInput(val)}
         />
-        <View style={styles.buttonRow}>
-          {emailInput !== '' && <SubmitButton onPress={handleEmailSubmit} />}
-        </View>
 
         <Text style={styles.labelText}>username</Text>
         <InputField
@@ -86,9 +76,6 @@ function Settings() {
           value={usernameInput}
           onChangeText={(val) => setUsernameInput(val)}
         />
-        <View style={styles.buttonRow}>
-          {usernameInput !== '' && <SubmitButton onPress={handleUsernameSubmit} />}
-        </View>
 
         <Text style={styles.labelText}>kingdom name</Text>
         <InputField
@@ -96,9 +83,6 @@ function Settings() {
           value={kingdomNameInput}
           onChangeText={(val) => setKingdomNameInput(val)}
         />
-        <View style={styles.buttonRow}>
-          {kingdomNameInput !== '' && <SubmitButton onPress={handleKingdomNameSubmit} />}
-        </View>
 
         <Text style={styles.labelText}>password</Text>
         <InputField
@@ -106,8 +90,12 @@ function Settings() {
           value={passwordInput}
           onChangeText={(val) => setPasswordInput(val)}
         />
+
         <View style={styles.buttonRow}>
-          {passwordInput !== '' && <SubmitButton onPress={handlePasswordSubmit} />}
+          {
+            (emailInput !== '' || usernameInput !== '' || kingdomNameInput !== '' || passwordInput !== '')
+            && <SubmitButton onPress={handleSubmit} />
+          }
         </View>
       </View>
     </ImageBackground>
