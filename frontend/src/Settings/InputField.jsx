@@ -12,7 +12,7 @@ function InputField({
     cardView: {
       width: 240,
       paddingVertical: 6,
-      marginBottom: 0,
+      marginBottom: 20,
       borderWidth: 1,
       borderColor: 'rgba(0,0,0,.12)',
       elevation: isFocus ? 2 : 0,

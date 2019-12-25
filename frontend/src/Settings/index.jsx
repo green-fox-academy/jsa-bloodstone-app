@@ -12,6 +12,7 @@ import SubmitButton from './SubmitButton';
 
 const styles = StyleSheet.create({
   titleText: {
+    margin: 20,
     fontSize: 36,
     color: Colors.whiteColor,
     fontWeight: 'bold',
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   container: {
-    paddingTop: 20,
+    paddingTop: 40,
     flexDirection: 'column',
     alignItems: 'center',
   },
