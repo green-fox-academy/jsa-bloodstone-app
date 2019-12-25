@@ -4,7 +4,7 @@ export const FETCH_TROOPS_SUCCESS = 'fetchTroopsSuccess';
 export const FETCH_TROOPS_REQUEST = 'fetchTroopsRequest';
 export const FETCH_TROOPS_FAILURE = 'fetchTroopsFailure';
 
-const URL = `http://${SERVER_URL}/kingdom/troops/`;
+const URL = `http://${SERVER_URL}/kingdom/troops`;
 
 export function fetchTroops() {
   return (dispatch) => {

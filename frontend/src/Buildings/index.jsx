@@ -64,7 +64,6 @@ function Buildings() {
   const dispatch = useDispatch();
   const [isModalVisible, setModalVisible] = useState(false);
   const [activeId, setActiveId] = useState(-1);
-  const [isVisible, setVisible] = useState(true);
 
   const onCloseAddModal = () => {
     setModalVisible(false);
@@ -100,12 +99,7 @@ function Buildings() {
 
   if (error) {
     return (
-      <ErrorHandlerPage
-        onClickClose={() => setVisible(false)}
-        isVisible={isVisible}
-        ErrorInfo={`Oops, ${error.message}`}
-        ErrorTitle="System Error"
-      />
+      <ErrorHandlerPage ErrorInfo={`Oops, ${error.message}`} />
     );
   }
   if (isLoading) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   View, SafeAreaView, StyleSheet,
@@ -75,16 +75,9 @@ function OneBuilding({
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
-  const [isVisible, setVisible] = useState(true);
-
   if (error) {
     return (
-      <ErrorHandlerPage
-        onClickClose={() => setVisible(false)}
-        isVisible={isVisible}
-        ErrorInfo={`Oops, ${error.message}`}
-        ErrorTitle="System Error"
-      />
+      <ErrorHandlerPage ErrorInfo={`Oops, ${error.message}`} />
     );
   }
   if (isLoading || oneBuildingInfo === null) {

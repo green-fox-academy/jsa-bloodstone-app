@@ -19,7 +19,9 @@ export default function buildings(state = initialState, action) {
     case ADD_BUILDING_REQUEST:
       return { ...state, isLoading: true };
     case FETCH_BUILDINGS_SUCCESS:
-      return { ...state, listOfBuildings: action.payload, isLoading: false };
+      return {
+        ...state, listOfBuildings: action.payload, isLoading: false, error: undefined,
+      };
     case FETCH_BUILDINGS_FAILURE:
     case ADD_BUILDING_FAILURE:
       return { ...state, isLoading: false, error: action.payload };

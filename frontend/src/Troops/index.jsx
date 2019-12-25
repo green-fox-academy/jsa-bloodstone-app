@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -43,7 +43,6 @@ function Troops() {
   const isLoading = useSelector((state) => state.troops.isLoading);
   const error = useSelector((state) => state.troops.error);
   const dispatch = useDispatch();
-  const [isVisible, setVisible] = useState(true);
 
   useEffect(() => {
     dispatch(fetchTroops());
@@ -51,12 +50,7 @@ function Troops() {
 
   if (error) {
     return (
-      <ErrorHandlerPage
-        onClickClose={() => setVisible(false)}
-        isVisible={isVisible}
-        ErrorInfo={`Oops, ${error.message}`}
-        ErrorTitle="System Error"
-      />
+      <ErrorHandlerPage ErrorInfo={`Oops, ${error.message}`} />
     );
   }
 

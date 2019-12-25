@@ -15,7 +15,9 @@ export default function oneBuilding(state = initialState, action) {
     case FETCH_ONE_BUILDING_REQUEST:
       return { ...state, isLoading: true };
     case FETCH_ONE_BUILDING_SUCCESS:
-      return { ...state, oneBuildingInfo: action.payload, isLoading: false };
+      return {
+        ...state, oneBuildingInfo: action.payload, isLoading: false, error: undefined,
+      };
     case FETCH_ONE_BUILDING_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     default:
