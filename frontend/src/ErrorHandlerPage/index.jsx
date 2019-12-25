@@ -11,6 +11,7 @@ import ModalHeader from '../common/components/ModalHeader';
 import CloseButton from './CloseButton';
 
 import error from '../../assets/error.gif';
+import commonColors from '../common/colors';
 
 const styles = StyleSheet.create({
   background: {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   textStyle: {
     margin: 10,
     fontSize: 20,
-    color: 'white',
+    color: commonColors.whiteColor,
     fontWeight: 'bold',
   },
 });

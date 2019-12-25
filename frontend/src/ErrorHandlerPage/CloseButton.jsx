@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { SubCardView } from '../common/components';
+import commonColors from '../common/colors';
 
 function CloseButton({
   onClickClose,
@@ -12,7 +13,7 @@ function CloseButton({
   return (
     <TouchableHighlight onPress={onClickClose} style={{ padding: 3, width: 100 }}>
       <SubCardView style={{ backgroundColor: '#7519D1', justifyContent: 'center' }}>
-        <Text style={{ fontWeight: 'bold', color: 'white' }}>CLOSE</Text>
+        <Text style={{ fontWeight: 'bold', color: commonColors.whiteColor }}>CLOSE</Text>
       </SubCardView>
     </TouchableHighlight>
   );
