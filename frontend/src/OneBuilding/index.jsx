@@ -75,16 +75,12 @@ function OneBuilding({
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
-  const [isVisible, setIsVisible] = useState(true);
-
-  const onCloseErrorPopup = () => {
-    setIsVisible(false);
-  };
+  const [isVisible, setVisible] = useState(true);
 
   if (error) {
     return (
       <ErrorHandlerPage
-        onClickClose={onCloseErrorPopup}
+        onClickClose={() => setVisible(false)}
         isVisible={isVisible}
         ErrorInfo={`Oops, ${error.message}`}
         ErrorTitle="System Error"
