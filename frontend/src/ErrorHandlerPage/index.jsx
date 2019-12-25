@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, Image,
   SafeAreaView, TouchableWithoutFeedback,
@@ -50,26 +50,25 @@ const styles = StyleSheet.create({
 });
 
 
-function ErrorHandlerPage({
-  onClickClose, ErrorTitle, ErrorInfo, isVisible,
-}) {
+function ErrorHandlerPage({ ErrorInfo }) {
+  const [isVisible, setVisible] = useState(true);
   const gradient = 'linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)';
   return (
-    <Popup onClick={onClickClose} isVisible={isVisible}>
-      <TouchableOpacity onPressOut={onClickClose} style={{ flex: 1 }} activeOpacity={1}>
+    <Popup onClick={() => setVisible(false)} isVisible={isVisible}>
+      <TouchableOpacity onPressOut={() => setVisible(false)} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
             <View>
               <Gradient gradient={gradient} style={styles.container}>
                 <ModalHeader
-                  onClick={onClickClose}
-                  title={ErrorTitle}
+                  onClick={() => setVisible(false)}
+                  title="System Error"
                   style={styles.modalHeader}
                 />
                 <View style={styles.mainBody}>
                   <Image style={styles.imgStyle} source={error} />
                   <Text style={styles.textStyle}>{ErrorInfo}</Text>
-                  <CloseButton onClickClose={onClickClose} />
+                  <CloseButton onClickClose={() => setVisible(false)} />
                 </View>
               </Gradient>
             </View>
@@ -81,15 +80,13 @@ function ErrorHandlerPage({
 }
 
 ErrorHandlerPage.propTypes = {
-  onClickClose: PropTypes.func.isRequired,
+  // onClickClose: PropTypes.func.isRequired,
   ErrorInfo: PropTypes.string,
-  ErrorTitle: PropTypes.string,
-  isVisible: PropTypes.bool.isRequired,
+  // isVisible: PropTypes.bool.isRequired,
 };
 
 ErrorHandlerPage.defaultProps = {
   ErrorInfo: 'Oops, There are some errors!',
-  ErrorTitle: 'Error',
 };
 
 export default ErrorHandlerPage;
