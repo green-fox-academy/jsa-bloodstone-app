@@ -32,21 +32,23 @@ jobs:
             - ./backend/node_modules/
       - run:
           name: Run Frontend ESLint Check
-          command: 'cd frontend && yarn lint --format junit --output-file ~/repo/reports/junit/js-lint-results.xml'
+          command: 'cd frontend && yarn lint'
       - run:
-          name: Run Frontend Jest and Collect Coverage Reports
+          name: Run Frontend Jest
           command: 'cd frontend && yarn test --ci --reporters=default --reporters=jest-junit'
           environment:
             JEST_JUNIT_OUTPUT_DIR: ~/repo/reports/junit
-            JEST_JUNIT_OUTPUT_NAME: js-test-results.xml
-      - store_test_results:
-          path: ~/repo/reports/junit
-      - store_artifacts:
-          path: ~/repo/reports/junit
+            JEST_JUNIT_OUTPUT_NAME: frontend-test-results.xml
       - run:
           name: Run Backend ESLint Check
           command: 'cd backend && yarn lint'
       - run:
           name: Run Backend Tests
-          command: 'cd backend && yarn test'
+          command: 'cd backend && yarn test --reporter mocha-junit-reporter --exit'
+          environment:
+            MOCHA_FILE: ~/repo/reports/junit/backend-test-results.xml
+      - store_test_results:
+          path: ~/repo/reports/junit
+      - store_artifacts:
+          path: ~/repo/reports/junit
 
