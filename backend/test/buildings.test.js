@@ -7,7 +7,7 @@ describe('Buildings', () => {
       request(app)
         .get('/kingdom/buildings')
         .expect('Content-Type', /json/)
-        .expect(404, done);
+        .expect(200, done);
     });
   });
 
