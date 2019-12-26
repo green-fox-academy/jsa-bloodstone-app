@@ -22,7 +22,7 @@ import BuildingItem from './buildingItem';
 import AddBuildingItem from './addBuildingItem';
 import OneBuilding from '../OneBuilding';
 
-import ErrorHandlerPage from '../ErrorHandlerPage';
+import ErrorPopup from '../ErrorPopup';
 
 const styles = StyleSheet.create({
   container: {
@@ -99,7 +99,7 @@ function Buildings() {
 
   if (error) {
     return (
-      <ErrorHandlerPage ErrorInfo={`Oops, ${error.message}`} />
+      <ErrorPopup message={`Oops, ${error.message}`} />
     );
   }
   if (isLoading) {

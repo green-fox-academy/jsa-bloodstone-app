@@ -10,7 +10,7 @@ import Colors from '../common/colors';
 import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
 import TroopLevel from './TroopLevel';
-import ErrorHandlerPage from '../ErrorHandlerPage';
+import ErrorPopup from '../ErrorPopup';
 
 const styles = StyleSheet.create({
   levelList: {
@@ -50,7 +50,7 @@ function Troops() {
 
   if (error) {
     return (
-      <ErrorHandlerPage ErrorInfo={`Oops, ${error.message}`} />
+      <ErrorPopup message={`Oops, ${error.message}`} />
     );
   }
 

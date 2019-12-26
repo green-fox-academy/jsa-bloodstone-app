@@ -17,7 +17,7 @@ import TownhallDetail from './TownhallDetail';
 import AcademyDetail from './AcademyDetail';
 import FarmDetail from './FarmDetail';
 import MineDetail from './MineDetail';
-import ErrorHandlerPage from '../ErrorHandlerPage';
+import ErrorPopup from '../ErrorPopup';
 
 import colors from '../common/colors';
 
@@ -77,7 +77,7 @@ function OneBuilding({
 
   if (error) {
     return (
-      <ErrorHandlerPage ErrorInfo={`Oops, ${error.message}`} />
+      <ErrorPopup message={`Oops, ${error.message}`} />
     );
   }
   if (isLoading || oneBuildingInfo === null) {

@@ -10,7 +10,7 @@ import Popup from '../common/components/Popup';
 import ModalHeader from '../common/components/ModalHeader';
 import CloseButton from './CloseButton';
 
-import error from '../../assets/error.gif';
+import errorImage from '../../assets/error.gif';
 import commonColors from '../common/colors';
 
 const styles = StyleSheet.create({
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 });
 
 
-function ErrorHandlerPage({ ErrorInfo }) {
+function ErrorPopup({ title, message }) {
   const [isVisible, setVisible] = useState(true);
   const gradient = 'linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)';
   return (
@@ -62,12 +62,12 @@ function ErrorHandlerPage({ ErrorInfo }) {
               <Gradient gradient={gradient} style={styles.container}>
                 <ModalHeader
                   onClick={() => setVisible(false)}
-                  title="System Error"
+                  title={title}
                   style={styles.modalHeader}
                 />
                 <View style={styles.mainBody}>
-                  <Image style={styles.imgStyle} source={error} />
-                  <Text style={styles.textStyle}>{ErrorInfo}</Text>
+                  <Image style={styles.imgStyle} source={errorImage} />
+                  <Text style={styles.textStyle}>{message}</Text>
                   <CloseButton onClickClose={() => setVisible(false)} />
                 </View>
               </Gradient>
@@ -79,14 +79,14 @@ function ErrorHandlerPage({ ErrorInfo }) {
   );
 }
 
-ErrorHandlerPage.propTypes = {
-  // onClickClose: PropTypes.func.isRequired,
-  ErrorInfo: PropTypes.string,
-  // isVisible: PropTypes.bool.isRequired,
+ErrorPopup.propTypes = {
+  title: PropTypes.string,
+  message: PropTypes.string,
 };
 
-ErrorHandlerPage.defaultProps = {
-  ErrorInfo: 'Oops, There are some errors!',
+ErrorPopup.defaultProps = {
+  title: 'System Error',
+  message: 'Oops, There are some errors!',
 };
 
-export default ErrorHandlerPage;
+export default ErrorPopup;
