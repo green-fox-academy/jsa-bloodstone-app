@@ -8,7 +8,6 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?react-native|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)',
   ],
-  collectCoverage: true,
   collectCoverageFrom: [
     '**/*.{js,jsx}',
     '!**/coverage/**',
