@@ -14,10 +14,10 @@ jobs:
           name: Install Frontend Dependencies
           command: 'cd frontend && yarn install'
       - save_cache:
-           name: Save Frontend Yarn Package Cache
-           key: v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
-           paths:
-             - ./frontend/node_modules/
+          name: Save Frontend Yarn Package Cache
+          key: v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
+          paths:
+            - ./frontend/node_modules/
       - restore_cache:
           keys:
             - v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
@@ -26,16 +26,24 @@ jobs:
           name: Install Backend Dependencies
           command: 'cd backend && yarn install'
       - save_cache:
-           name: Save Backend Yarn Package Cache
-           key: v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
-           paths:
-             - ./backend/node_modules/
+          name: Save Backend Yarn Package Cache
+          key: v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
+          paths:
+            - ./backend/node_modules/
       - run:
           name: Run Frontend ESLint Check
           command: 'cd frontend && yarn lint'
+      - run:
+          name: Run Frontend Jest and Collect Coverage Reports
+          command: 'cd frontend && yarn test:coverage --passWithNoTests'
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports
       - run:
           name: Run Backend ESLint Check
           command: 'cd backend && yarn lint'
       - run:
           name: Run Backend Tests
           command: 'cd backend && yarn test'
+

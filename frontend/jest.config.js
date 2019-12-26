@@ -1,6 +1,7 @@
 module.exports = {
   verbose: true,
   preset: 'jest-expo',
+  reporters: ['default', 'jest-junit'],
   transform: {
     '^.+\\.jsx$': 'babel-jest',
   },
