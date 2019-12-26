@@ -35,11 +35,11 @@ jobs:
           command: 'cd frontend && yarn lint'
       - run:
           name: Run Frontend Jest and Collect Coverage Reports
-          command: 'cd frontend && yarn test:coverage --passWithNoTests'
+          command: 'cd frontend && yarn test:coverage'
           environment:
-            JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT_DIR: "~/reports/junit/js-test-results.xml"
       - store_test_results:
-          path: reports
+          path: ~/reports
       - run:
           name: Run Backend ESLint Check
           command: 'cd backend && yarn lint'

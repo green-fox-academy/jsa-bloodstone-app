@@ -7,8 +7,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint ./src/**/* --format junit --output-file reports/eslint-frontend.xml",
-    "test": "jest --coverage=false --passWithNoTests --ci --runInBand --reporters=default --reporters=jest-junit",
-    "test:coverage": "jest --coverage=true --passWithNoTests"
+    "test": "jest --coverage=false --passWithNoTests",
+    "test:coverage": "jest --coverage=true --passWithNoTests --ci --runInBand --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.6",
