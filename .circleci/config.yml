@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:10.15.3
+      - image: circleci/node:lts
     steps:
       - checkout
       - restore_cache:
@@ -12,7 +12,9 @@ jobs:
             - v1-yarn-frontend-packages-
       - run:
           name: Install Frontend Dependencies
-          command: 'cd frontend && yarn install'
+          command: |
+            cd frontend
+            yarn install
       - save_cache:
           name: Save Frontend Yarn Package Cache
           key: v1-yarn-frontend-packages-{{ .Branch }}-{{ checksum "frontend/yarn.lock" }}
@@ -24,7 +26,9 @@ jobs:
             - v1-yarn-backend-packages-
       - run:
           name: Install Backend Dependencies
-          command: 'cd backend && yarn install'
+          command: |
+            cd backend
+            yarn install
       - save_cache:
           name: Save Backend Yarn Package Cache
           key: v1-yarn-backend-packages-{{ .Branch }}-{{ checksum "backend/yarn.lock" }}
@@ -32,23 +36,38 @@ jobs:
             - ./backend/node_modules/
       - run:
           name: Run Frontend ESLint Check
-          command: 'cd frontend && yarn lint'
+          command: |
+            cd frontend
+            yarn lint \
+              --format junit \
+              --output-file ~/repo/reports/eslint/frontend-lint-results.xml
       - run:
           name: Run Frontend Jest
-          command: 'cd frontend && yarn test --ci --reporters=default --reporters=jest-junit'
+          command: |
+            cd frontend
+            yarn test \
+              --ci \
+              --collectCoverage \
+              --updateSnapshot
           environment:
-            JEST_JUNIT_OUTPUT_DIR: ~/repo/reports/junit
-            JEST_JUNIT_OUTPUT_NAME: frontend-test-results.xml
+            JEST_JUNIT_OUTPUT_DIR: ~/repo/reports/jest
+            JEST_JUNIT_OUTPUT_NAME: test-results.xml
       - run:
           name: Run Backend ESLint Check
-          command: 'cd backend && yarn lint'
+          command: |
+            cd backend
+            yarn lint \
+              --format junit \
+              --output-file ~/repo/reports/eslint/backend-lint-results.xml
       - run:
           name: Run Backend Tests
-          command: 'cd backend && yarn test --reporter mocha-junit-reporter --exit'
-          environment:
-            MOCHA_FILE: ~/repo/reports/junit/backend-test-results.xml
+          command: |
+            cd backend
+            yarn test
       - store_test_results:
-          path: ~/repo/reports/junit
+          path: ~/repo/reports
       - store_artifacts:
-          path: ~/repo/reports/junit
+          path: ~/repo/reports
+      - store_artifacts:
+          path: ~/repo/frontend/coverage
 
