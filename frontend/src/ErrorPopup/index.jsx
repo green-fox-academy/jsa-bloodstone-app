@@ -22,24 +22,33 @@ const styles = StyleSheet.create({
   },
   container: {
     width: 300,
-    backgroundColor: 'rgb(202,202,202)',
     borderWidth: 2,
-    borderColor: 'yellow',
+    borderColor: 'grey',
     borderRadius: 6,
+    overflow: 'hidden',
+  },
+  modalHeader: {
+    backgroundColor: 'rgba(255,0,0,0.9)',
+    borderTopStartRadius: 0,
+    borderTopRightRadius: 0,
+    borderWidth: 2,
+    borderColor: 'grey',
   },
   mainBody: {
     padding: 20,
+    width: '100%',
     alignItems: 'center',
-  },
-  modalHeader: {
-    backgroundColor: '#FF3333',
-    borderTopStartRadius: 0,
-    borderTopRightRadius: 0,
+    backgroundColor: '#000',
+    borderWidth: 2,
+    borderColor: 'grey',
   },
   imgStyle: {
     height: 175,
     width: 175,
-    borderRadius: 6,
+  },
+  imgContainer: {
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   textStyle: {
     margin: 10,
@@ -49,27 +58,28 @@ const styles = StyleSheet.create({
   },
 });
 
+const gradient = `linear-gradient(-225deg, red 0%, orange 17%, 
+  yellow 34%, green 51%, blue 68%, indigo 84%, purple 100%)`;
 
 function ErrorPopup({ title, message }) {
   const [isVisible, setVisible] = useState(true);
-  const gradient = 'linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)';
   return (
     <Popup onClick={() => setVisible(false)} isVisible={isVisible}>
-      <TouchableOpacity onPressOut={() => setVisible(false)} style={{ flex: 1 }} activeOpacity={1}>
+      <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPressOut={() => setVisible(false)}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
-            <View>
-              <Gradient gradient={gradient} style={styles.container}>
-                <ModalHeader
-                  onClick={() => setVisible(false)}
-                  title={title}
-                  style={styles.modalHeader}
-                />
-                <View style={styles.mainBody}>
+            <View style={styles.container}>
+              <ModalHeader
+                onClick={() => setVisible(false)}
+                title={title}
+                style={styles.modalHeader}
+              />
+              <Gradient gradient={gradient} style={styles.mainBody}>
+                <View style={styles.imgContainer}>
                   <Image style={styles.imgStyle} source={errorImage} />
-                  <Text style={styles.textStyle}>{message}</Text>
-                  <CloseButton onClickClose={() => setVisible(false)} />
                 </View>
+                <Text style={styles.textStyle}>{message}</Text>
+                <CloseButton onClickClose={() => setVisible(false)} />
               </Gradient>
             </View>
           </TouchableWithoutFeedback>

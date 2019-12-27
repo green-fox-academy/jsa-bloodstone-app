@@ -12,7 +12,7 @@ function CloseButton({
 }) {
   return (
     <TouchableHighlight onPress={onClickClose} style={{ padding: 3, width: 100 }}>
-      <SubCardView style={{ backgroundColor: '#7519D1', justifyContent: 'center' }}>
+      <SubCardView style={{ backgroundColor: 'rgba(255,0,0,0.7)', justifyContent: 'center' }}>
         <Text style={{ fontWeight: 'bold', color: commonColors.whiteColor }}>CLOSE</Text>
       </SubCardView>
     </TouchableHighlight>
