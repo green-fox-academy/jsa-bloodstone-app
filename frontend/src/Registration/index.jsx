@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   View, StyleSheet, Text,
   ImageBackground, Alert,
   ActivityIndicator,
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import { registrationSuccess } from './actionCreator';
+
 import validation from '../common/helper';
 import Colors from '../common/colors';
 import background from '../../assets/login/background.jpg';
@@ -76,9 +77,7 @@ function Registration() {
       return showAlert(`Oops, ${registerError.message}`);
     }
     if (isLoading) {
-      return (
-        <ActivityIndicator size="large" color={Colors.tealColor} />
-      );
+      return <ActivityIndicator size="large" color={Colors.tealColor} />;
     }
     showAlert('Registration Success.');
     return navigation.navigate('Map');
