@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
+  buttonContainer: {
     flexDirection: 'row',
     marginTop: 20,
     justifyContent: 'space-between',
@@ -55,7 +55,7 @@ function ForgottenPassword() {
     if (input.length <= 3) {
       return showAlert('Please enter a valid username.');
     }
-    if (!validation(input) && USERNAME_BLACKLIST.includes(input.toLowerCase())) {
+    if (!validation(input) || USERNAME_BLACKLIST.includes(input.toLowerCase())) {
       return showAlert('Please reenter a valid email or username');
     }
     dispatch(forgotPassword(input));
@@ -76,13 +76,9 @@ function ForgottenPassword() {
             value={input}
             onChangeText={(text) => setInput(text)}
           />
-          <View style={styles.button}>
-            <View style={{ transform: [{ rotateY: '180deg' }] }}>
-              <SubmitButton onPress={() => navigation.pop()} />
-            </View>
-            <View>
-              <SubmitButton onPress={handleSubmit} />
-            </View>
+          <View style={styles.buttonContainer}>
+            <SubmitButton onPress={() => navigation.pop()} direction='back' />
+            <SubmitButton onPress={handleSubmit} direction='forward' />
           </View>
         </View>
       </ImageBackground>
