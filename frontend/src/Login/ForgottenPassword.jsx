@@ -77,8 +77,8 @@ function ForgottenPassword() {
             onChangeText={(text) => setInput(text)}
           />
           <View style={styles.buttonContainer}>
-            <SubmitButton onPress={() => navigation.pop()} direction='back' />
-            <SubmitButton onPress={handleSubmit} direction='forward' />
+            <SubmitButton onPress={() => navigation.pop()} direction="back" />
+            <SubmitButton onPress={handleSubmit} direction="forward" />
           </View>
         </View>
       </ImageBackground>
