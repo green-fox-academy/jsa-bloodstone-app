@@ -8,7 +8,6 @@ import { useNavigation } from 'react-navigation-hooks';
 
 import { InputField, SubmitButton } from '../common/components';
 import { forgotPassword } from './actionCreator';
-import validation from '../common/helper';
 import background from '../../assets/login/background.jpg';
 import Colors from '../common/colors';
 
@@ -55,8 +54,8 @@ function ForgottenPassword() {
     if (input.length <= 3) {
       return showAlert('Please enter a valid username.');
     }
-    if (!validation(input) || USERNAME_BLACKLIST.includes(input.toLowerCase())) {
-      return showAlert('Please reenter a valid email or username');
+    if (USERNAME_BLACKLIST.includes(input.toLowerCase())) {
+      return showAlert('Please reenter a valid username');
     }
     dispatch(forgotPassword(input));
     return navigation.pop();
