@@ -4,7 +4,6 @@ import Menu from '../Menu';
 import MainView from '../MainView';
 import background from '../../assets/login/background.jpg';
 import commonStyles from '../common/styles';
-import Resources from '../Resources';
 
 function Game() {
   return (
@@ -15,7 +14,6 @@ function Game() {
     >
       <View style={commonStyles.container}>
         <Menu />
-        <Resources />
         <MainView />
       </View>
     </ImageBackground>
