@@ -8,11 +8,9 @@ async function getResources(req, res, next) {
     const result = await ResourceModel.find({
       owner: 1,
     });
-    const resultFiltered = result.map(({ type, generation, amount}) => ({ type, generation, amount });
-      type: e.type,
-      generation: e.generation,
-      amount: e.amount,
-    }));
+    const resultFiltered = result.map(
+      ({ type, generation, amount }) => ({ type, generation, amount }),
+    );
     res.status(200).send({ resources: resultFiltered });
   } catch (error) {
     next(error);
