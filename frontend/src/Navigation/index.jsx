@@ -24,8 +24,6 @@ const bottomNavigationOptions = {
   order: ['MyKingdom', 'Playground', 'Settings'],
   barStyle: {
     backgroundColor: Colors.tabBar,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: Colors.tabIconDefault,
   },
   resetOnBlur: false,
   shifting: true,
