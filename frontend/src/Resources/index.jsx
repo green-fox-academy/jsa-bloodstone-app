@@ -68,8 +68,8 @@ function ResourceView({
       <Image style={styles.buildingIcon} source={buildingIcon} />
       <View>
         <View style={styles.rowFlex}>
-          <Text style={styles.text}>{amount}</Text>
           <Image style={styles.resourceIcon} source={resourceIcon} />
+          <Text style={styles.text}>{amount}</Text>
         </View>
         <View>
           <Text style={{ ...styles.subText, color: textColor }}>{changeRateStr}</Text>
