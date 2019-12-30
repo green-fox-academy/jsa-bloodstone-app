@@ -15,4 +15,6 @@ export default {
   greenColor: '#68AA2F',
   orangeColor: '#FD730B',
   blueColor: '#2196f3',
+  tabBar: '#ffffff',
+  tabIconDefault: '#595959',
 };
