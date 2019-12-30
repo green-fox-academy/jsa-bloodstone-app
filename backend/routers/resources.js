@@ -8,7 +8,7 @@ async function getResources(req, res, next) {
     const result = await ResourceModel.find({
       owner: 1,
     });
-    const resultFiltered = result.map((e) => ({
+    const resultFiltered = result.map(({ type, generation, amount}) => ({ type, generation, amount });
       type: e.type,
       generation: e.generation,
       amount: e.amount,
