@@ -15,4 +15,6 @@ module.exports = {
     '!**/babel.config.js',
     '!**/jest.config.js',
   ],
+  // Load setup-tests.js before test execution
+  setupFilesAfterEnv: ['./setup-tests.js'],
 };
