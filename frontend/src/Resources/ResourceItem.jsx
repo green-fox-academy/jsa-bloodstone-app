@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   View, Image, StyleSheet, Text,
-  TouchableNativeFeedback,
+  TouchableNativeFeedback, Platform, TouchableHighlight,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Colors from '../common/colors';
@@ -71,8 +71,9 @@ const getRateText = (rate) => {
 function ResourceItem({ type, amount, rate }) {
   const { rateStr, textColor } = getRateText(rate);
   const { buildingIcon, resourceIcon } = icons[type];
+  const Element = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight;
   return (
-    <TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()}>
+    <Element>
       <View style={styles.container}>
         <Image style={styles.buildingIcon} source={buildingIcon} />
         <View>
@@ -85,7 +86,7 @@ function ResourceItem({ type, amount, rate }) {
           </View>
         </View>
       </View>
-    </TouchableNativeFeedback>
+    </Element>
   );
 }
 

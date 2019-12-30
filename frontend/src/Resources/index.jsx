@@ -36,8 +36,8 @@ function Resources() {
   return (
     <View>
       <Text style={styles.headerStyle}>Resources</Text>
-      <ResourceItem type="gold" amount={foodAmount} rate={foodGeneration} />
-      <ResourceItem type="cookie" amount={goldAmount} rate={goldGeneration} />
+      <ResourceItem type="gold" amount={goldAmount} rate={goldGeneration} />
+      <ResourceItem type="cookie" amount={foodAmount} rate={foodGeneration} />
     </View>
   );
 }
