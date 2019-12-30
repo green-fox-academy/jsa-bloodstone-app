@@ -18,9 +18,11 @@ async function getBuildings(req, res, next) {
 
 async function createBuilding(req, res, next) {
   const type = req.params.buildingType;
-
+  const buildings = await BuildingModel.find({});
+  const index = buildings.length ? buildings.length + 1 : 1;
   try {
     const result = await BuildingModel.create({
+      id: index,
       type: type,
       level: 1,
       owner: 1,

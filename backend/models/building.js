@@ -2,12 +2,12 @@ const { Schema } = require('mongoose');
 const conn = require('../database');
 
 const schemaOptions = {
-  id: false,
   versionKey: false,
   autoIndex: false,
 };
 
 const buildingSchema = new Schema({
+  id: Number,
   type: String,
   level: Number,
   owner: Number,

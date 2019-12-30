@@ -35,24 +35,24 @@ GET /kingdom/buildings/
 
 
 
-#### Create a selected type of building
+#### Create a new building
 
-Create a new building. 
+Create a new building with selected type. 
 
 ```
 POST /kingdom/buildings/:buildingType
 ```
 
-| param        | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| buildingType | The type of building have been created<br />{ Farm, Mine, Academy } |
+| param        | Description                                                |
+| ------------ | ---------------------------------------------------------- |
+| buildingType | The type of building have been created<br />{ Farm, Mine } |
 
 #### Upgrade a selected building
 
 description
 
 ```
-PUT /kingdom/troops/upgrade?id=1
+PUT /kingdom/buildings/:id/upgrade
 ```
 
 | param | Description                               |
