@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { BuildingModel } = require('../models');
 
 const router = Router();
 
@@ -6,50 +7,47 @@ const {
   townhallRule, farmRule, mineRule, academyRule, foxRule,
 } = require('../rules');
 
-const myBuildings = {
-  buildings: [
-    {
-      id: 1,
-      type: 'Townhall',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 2,
-      type: 'Academy',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 3,
-      type: 'Farm',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 4,
-      type: 'Mine',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-  ],
-};
-
-function getBuildings(req, res) {
-  return res.status(200).send(myBuildings);
+async function getBuildings(req, res, next) {
+  try {
+    const buildings = await BuildingModel.find({});
+    res.send({ buildings });
+  } catch (error) {
+    next(error);
+  }
 }
 
-function getBuildingById(req, res) {
+async function createBuilding(req, res, next) {
+  const type = req.params.buildingType;
+
+  try {
+    const result = await BuildingModel.create({
+      type: type,
+      level: 1,
+      owner: 1,
+    });
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
+// async function updateBuildingById(req, res, next) {
+//   const id = req.query.id;
+
+//   try {
+//     building = await BuildingModel.find({});
+//   } catch (error) {
+//     next(error);
+//   }
+// }
+
+async function getBuildingById(req, res, next) {
   const buildingId = Number.parseInt(req.params.buildingId, 10);
   if (Number.isNaN(buildingId) || buildingId <= 0) {
     return res.sendStatus(400);
   }
-  const targetBuilding = myBuildings.buildings.filter((building) => buildingId === building.id);
+  const buildings = await BuildingModel.find({});
+  const targetBuilding = buildings.filter((building) => buildingId === building.id);
   if (targetBuilding.length > 0) {
     switch (targetBuilding[0].type) {
       case 'Townhall':
@@ -92,6 +90,8 @@ function getBuildingById(req, res) {
 }
 
 router.get('/', getBuildings);
+router.post('/:buildingType', createBuilding);
 router.get('/:buildingId', getBuildingById);
+// router.put('/:buildingId/upgrade', updateBuildingById);
 
 module.exports = router;
