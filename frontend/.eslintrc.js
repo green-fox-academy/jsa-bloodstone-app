@@ -22,7 +22,6 @@ module.exports = {
   plugins: [
     'react',
   ],
-  ignorePatterns: ['__snapshots__'],
   rules: {
   },
 };
