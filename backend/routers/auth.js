@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
+
 const { Router } = require('express');
 
 const router = Router();
@@ -9,25 +10,28 @@ const userA = {
   email: 'aaa@gmail.com',
 };
 
-async function login(req, res, next) {
-  try {
-    const token = jwt.sign({ userA }, process.env.APP_SECRET);
-    res.status(200).send(token);
-  } catch (error) {
-    next(error);
-  }
+async function login(req, res) {
+  const token = jwt.sign({ userA }, process.env.APP_SECRET);
+  res.status(200).send({ token });
+}
+
+async function testProtected(req, res) {
+  res.status(200).send('protected');
 }
 
 async function auth(req, res, next) {
-  const bearerHeader = req.header.authorization;
-  const token = bearerHeader.split(' ')[1];
+  const bearerHeader = req.headers.authorization;
   try {
+    const token = bearerHeader.split(' ')[1];
     const decoded = jwt.verify(token, process.env.APP_SECRET);
-  } catch {
+    req.decoded = decoded;
+    next();
+  } catch (error) {
     res.sendStatus(403);
-    return;
   }
 }
-router.get('/', login);
+
+router.get('/login', login);
+router.get('/testProtected', auth, testProtected);
 
 module.exports = router;
