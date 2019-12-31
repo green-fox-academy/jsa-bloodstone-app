@@ -16,7 +16,8 @@ app.use('/kingdom/buildings', buildings);
 app.use('/kingdom/resources', resources);
 
 app.use((err, req, res, next) => {
-  res.status(500).send('Something broke!');
+  const { status, message } = err;
+  res.status(status).json({ status, message });
   next(err);
 });
 
