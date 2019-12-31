@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, TouchableHighlight } from 'react-native';
-import Ionicons from '@expo/vector-icons';
-import Colors from '../common/colors';
+import { Ionicons } from '@expo/vector-icons';
+import Colors from '../colors';
 
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
-    width: 60,
-    height: 60,
-    backgroundColor: Colors.tealColor,
+    width: 50,
+    height: 50,
+    backgroundColor: Colors.blueColor,
   },
 });
 
@@ -25,8 +25,7 @@ function SubmitButton({ onPress, direction }) {
       <Ionicons
         name={`ios-arrow-round-${direction}`}
         color="#fff"
-        size={32}
-        style={styles.icon}
+        size={36}
       />
     </TouchableHighlight>
   );

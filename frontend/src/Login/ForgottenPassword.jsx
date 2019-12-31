@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
-
 import { InputField, SubmitButton } from '../common/components';
 import { forgotPassword } from './actionCreator';
 import background from '../../assets/login/background.jpg';

@@ -6,10 +6,10 @@ import {
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import { login } from './actionCreator';
-import Colors from '../common/colors';
+
+import { InputField, SubmitButton } from '../common/components';
 import background from '../../assets/login/background.jpg';
-import InputField from './InputField';
-import SubmitButton from './SubmitButton';
+import Colors from '../common/colors';
 
 const styles = StyleSheet.create({
   container: {

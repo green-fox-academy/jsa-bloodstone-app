@@ -6,3 +6,10 @@ export function login() {
     type: LOGIN,
   };
 }
+
+export function forgotPassword(input) {
+  return {
+    type: FORGOT_PASSWORD,
+    payload: input,
+  };
+}
