@@ -5,10 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 import Colors from '../colors';
 
 const styles = StyleSheet.create({
-  button: {
+  container: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 50,
+    borderRadius: 25,
     width: 50,
     height: 50,
     backgroundColor: Colors.blueColor,
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 function SubmitButton({ onPress, direction }) {
   return (
     <TouchableHighlight
-      style={styles.button}
+      style={styles.container}
       underlayColor={Colors.lightenTeal}
       onPress={onPress}
     >

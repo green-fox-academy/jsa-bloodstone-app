@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, Text,
   ImageBackground, Alert,
-  ActivityIndicator,
+  ActivityIndicator, KeyboardAvoidingView,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
@@ -10,15 +10,11 @@ import { registrationSuccess } from './actionCreator';
 
 import validation from '../common/helper';
 import Colors from '../common/colors';
+import commonStyles from '../common/styles';
 import background from '../../assets/login/background.jpg';
 import { InputField, SubmitButton } from '../common/components';
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-  },
   header: {
     width: 300,
     marginVertical: 12,
@@ -32,11 +28,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
+  layoutContainer: {
+    width: 300,
+  },
+  buttonContainer: {
     flexDirection: 'row',
     marginTop: 20,
     justifyContent: 'space-between',
-    width: '83%',
+    // width: 300,
   },
 });
 
@@ -84,14 +83,18 @@ function Registration() {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.background}
-        resizeMode="cover"
-        source={background}
+    <ImageBackground
+      style={styles.background}
+      resizeMode="cover"
+      source={background}
+    >
+      <KeyboardAvoidingView
+        enabled
+        behavior="padding"
+        style={commonStyles.keyboardAvoidContainer}
       >
-        <Text style={styles.header}>Register</Text>
-        <View style={{ width: 300 }}>
+        <View style={styles.layoutContainer}>
+          <Text style={styles.header}>Register</Text>
           <InputField
             placeholder="Username"
             value={username}
@@ -113,17 +116,13 @@ function Registration() {
             value={kingdomName}
             onChangeText={(text) => setKingdomName(text)}
           />
-        </View>
-        <View style={styles.button}>
-          <View style={{ transform: [{ rotateY: '180deg' }] }}>
-            <SubmitButton onPress={() => navigation.pop()} />
-          </View>
-          <View>
+          <View style={styles.buttonContainer}>
+            <SubmitButton direction="back" onPress={() => navigation.pop()} />
             <SubmitButton onPress={handleSubmit} />
           </View>
         </View>
-      </ImageBackground>
-    </View>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 

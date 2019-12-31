@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, Text,
   ImageBackground, Alert,
-  TouchableHighlight,
+  TouchableHighlight, KeyboardAvoidingView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
@@ -11,12 +11,11 @@ import { login } from './actionCreator';
 import { InputField, SubmitButton } from '../common/components';
 import background from '../../assets/login/background.jpg';
 import Colors from '../common/colors';
+import commonStyles from '../common/styles';
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
+  layoutContainer: {
+    width: 300,
   },
   header: {
     width: 300,
@@ -64,14 +63,18 @@ function Login() {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.background}
-        resizeMode="cover"
-        source={background}
+    <ImageBackground
+      style={styles.background}
+      resizeMode="cover"
+      source={background}
+    >
+      <KeyboardAvoidingView
+        enabled
+        behavior="padding"
+        style={commonStyles.keyboardAvoidContainer}
       >
-        <Text style={styles.header}>Login</Text>
-        <View style={{ width: 300 }}>
+        <View style={styles.layoutContainer}>
+          <Text style={styles.header}>Login</Text>
           <InputField
             placeholder="Username"
             value={username}
@@ -95,8 +98,8 @@ function Login() {
         <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
           <SubmitButton onPress={handleSubmit} />
         </View>
-      </ImageBackground>
-    </View>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
