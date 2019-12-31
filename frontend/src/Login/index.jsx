@@ -80,7 +80,7 @@ function Login() {
             onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <View style={{ marginTop: 50, alignItems: 'flex-end', width: 300 }}>
+        <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
           <SubmitButton onPress={handleSubmit} />
         </View>
       </ImageBackground>
