@@ -59,6 +59,9 @@ function Registration() {
     if (name === '' || email === '' || password === '') {
       return showAlert('All the input fields are required.');
     }
+    if (password.length <= 7) {
+      return showAlert('Password must be at least 8 characters');
+    }
     if (!validation(email)) {
       return showAlert('Please reenter a valid email');
     }
@@ -78,7 +81,7 @@ function Registration() {
       );
     }
     showAlert('Registration Success.');
-    return navigation.pop();
+    return navigation.navigate('Map');
   }
 
   return (

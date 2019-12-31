@@ -63,7 +63,6 @@ const AuthStack = createStackNavigator({
     screen: Login,
     path: 'login/',
   },
-  Registration,
 }, hideHeaderOptions);
 
 const HomeStack = createStackNavigator({
