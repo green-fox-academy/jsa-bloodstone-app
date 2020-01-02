@@ -1,6 +1,7 @@
-const jwt = require('jsonwebtoken');
-
 const { Router } = require('express');
+const jwt = require('jsonwebtoken');
+const createError = require('http-errors');
+const { UserModel } = require('../models');
 
 const router = Router();
 
@@ -10,9 +11,25 @@ const userA = {
   email: 'aaa@gmail.com',
 };
 
-async function login(req, res) {
-  const token = jwt.sign({ userA }, process.env.APP_SECRET);
-  res.status(200).send({ token });
+async function login(req, res, next) {
+  const { username, password } = req.body;
+  try {
+    if (!username) {
+      throw createError(404, 'Username is required.');
+    }
+    if (!password) {
+      throw createError(404, 'Password is required.');
+    }
+    const user = await UserModel.findOne({ username });
+    if (!user) {
+      throw createError(404, 'User not found');
+    }
+    // todo: check password
+    const token = jwt.sign({ userA }, process.env.APP_SECRET);
+    res.status(200).send({ token });
+  } catch (error) {
+    next(error);
+  }
 }
 
 async function testProtected(req, res) {
