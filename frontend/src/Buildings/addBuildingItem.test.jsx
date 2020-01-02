@@ -23,7 +23,7 @@ describe('<AddBuildingItem />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('Should call onPress when AddBuildingItem and match the snapshot', () => {
+  it('Should call onPress when press AddBuildingItem', () => {
     const mockOnPress = jest.fn(() => { });
 
     const testRenderer = renderer.create(<AddBuildingItem
