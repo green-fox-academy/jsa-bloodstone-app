@@ -11,6 +11,7 @@ npm-debug.*
 web-build/
 web-report/
 coverage/**/*
+reports/**/*
 .env
 
 # macOS
