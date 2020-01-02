@@ -19,13 +19,9 @@ async function getBuildings(req, res, next) {
 
 async function createBuilding(req, res, next) {
   const type = req.params.buildingType;
-  const buildings = await BuildingModel.find({});
-  const index = buildings.length ? buildings.length + 1 : 1;
   try {
     const result = await BuildingModel.create({
-      id: index,
       type,
-      level: 1,
       owner: 1,
     });
     res.send(result);
@@ -34,20 +30,12 @@ async function createBuilding(req, res, next) {
   }
 }
 
-function findSelectedRules(type) {
-  switch (type) {
-    case 'Townhall':
-      return townhallRule;
-    case 'Academy':
-      return academyRule;
-    case 'Farm':
-      return farmRule;
-    case 'Mine':
-      return mineRule;
-    default:
-      return null;
-  }
-}
+const typeToRules = {
+  Townhall: townhallRule,
+  Academy: academyRule,
+  Farm: farmRule,
+  Mine: mineRule,
+};
 
 async function getBuildingById(req, res, next) {
   const id = Number.parseInt(req.params.buildingId, 10);
@@ -55,14 +43,14 @@ async function getBuildingById(req, res, next) {
     if (Number.isNaN(id) || id <= 0) {
       throw createError(400, 'Please use a valid building id');
     }
-    const targetBuilding = await BuildingModel.find({ id }, '-_id').limit(1);
-    if (targetBuilding.length === 0) {
+    const [building] = await BuildingModel.find({ id }, '-_id').limit(1);
+    if (!building) {
       throw createError(404, 'Buildings list is empty');
     }
     res.send({
-      building: targetBuilding[0],
+      building,
       rules: {
-        buildingRules: findSelectedRules(targetBuilding[0].type),
+        buildingRules: typeToRules[building.type],
         troopsRules: foxRule,
       },
     });
@@ -71,8 +59,24 @@ async function getBuildingById(req, res, next) {
   }
 }
 
+async function upgradeBuildingById(req, res, next) {
+  const id = Number.parseInt(req.params.buildingId, 10);
+  try {
+    if (Number.isNaN(id) || id <= 0) {
+      throw createError(400, 'Please use a valid building id');
+    }
+    const result = await BuildingModel.findOneAndUpdate(
+      { id }, { $inc: { level: 1 } }, { new: true, fields: '-_id' },
+    ).exec();
+    res.status(200).send(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
 router.get('/', getBuildings);
 router.post('/:buildingType', createBuilding);
 router.get('/:buildingId', getBuildingById);
+router.put('/:buildingId/upgrade', upgradeBuildingById);
 
 module.exports = router;
