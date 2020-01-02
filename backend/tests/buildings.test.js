@@ -8,7 +8,7 @@ describe('Buildings', () => {
         .get('/kingdom/buildings')
         .expect('Content-Type', /json/)
         .expect(200, done);
-    });
+    }).timeout(5000);
   });
 
   describe('GET /kingdom/buildings/non-number', () => {

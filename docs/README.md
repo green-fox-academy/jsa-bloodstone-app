@@ -12,6 +12,53 @@
 }
 ```
 
+
+
+### Building
+
+```js
+{
+  _id:ObjectID,
+  type: String,
+  level: Number,
+  owner: Number,
+}
+```
+
+#### Get buildings
+
+Get a list of buildings
+
+```
+GET /kingdom/buildings/
+```
+
+
+
+#### Create a new building
+
+Create a new building with selected type. 
+
+```
+POST /kingdom/buildings/:buildingType
+```
+
+| param        | Description                                                |
+| ------------ | ---------------------------------------------------------- |
+| buildingType | The type of building have been created<br />{ Farm, Mine } |
+
+#### Upgrade a selected building
+
+description
+
+```
+PUT /kingdom/buildings/:id/upgrade
+```
+
+| param | Description                               |
+| ----- | ----------------------------------------- |
+| id    | The ID of selected building to be upgrade |
+
 ### Troop
 
 ```js
