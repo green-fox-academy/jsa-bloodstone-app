@@ -7,8 +7,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint ./src/**/*",
-    "test": "jest --watch --coverage=false --changedSince=origin/development",
-    "test:coverage": "jest --coverage=true"
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --coverage=true --passWithNoTests"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.6",
@@ -41,7 +41,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
     "jest-expo": "^36.0.1",
+    "jest-junit": "^10.0.0",
     "react-test-renderer": "^16.12.0"
   },
   "private": true
