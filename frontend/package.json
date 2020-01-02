@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint ./src/**/*",
+    "lint": "eslint ./src --ext .js --ext .jsx",
     "test": "jest --passWithNoTests",
     "test:coverage": "jest --coverage=true --passWithNoTests"
   },
@@ -44,7 +44,9 @@
     "jest": "^24.9.0",
     "jest-expo": "^36.0.1",
     "jest-junit": "^10.0.0",
-    "react-test-renderer": "^16.12.0"
+    "react-test-renderer": "^16.12.0",
+    "fetch-mock": "^8.3.0",
+    "redux-mock-store": "^1.5.4"
   },
   "private": true
 }

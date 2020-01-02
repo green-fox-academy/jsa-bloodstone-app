@@ -12,7 +12,7 @@ const URL = `http://${SERVER_URL}/kingdom/buildings`;
 export function fetchBuildings() {
   return (dispatch) => {
     dispatch({ type: FETCH_BUILDINGS_REQUEST });
-    fetch(URL)
+    return fetch(URL)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
@@ -46,7 +46,7 @@ export function addBuildingSuccess(type) {
 export function addBuildings() {
   return (dispatch) => {
     dispatch({ type: ADD_BUILDING_REQUEST });
-    fetch(URL)
+    return fetch(URL)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
