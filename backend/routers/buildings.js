@@ -77,6 +77,6 @@ async function upgradeBuildingById(req, res, next) {
 router.get('/', getBuildings);
 router.post('/:buildingType', createBuilding);
 router.get('/:buildingId', getBuildingById);
-router.put('/:buildingId/upgrade', upgradeBuildingById);
+router.post('/:buildingId/upgrade', upgradeBuildingById);
 
 module.exports = router;
