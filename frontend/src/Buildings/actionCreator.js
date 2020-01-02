@@ -51,7 +51,7 @@ export function addBuildingSuccess(type) {
 export function addBuildings() {
   return (dispatch) => {
     dispatch({ type: ADD_BUILDING_REQUEST });
-    fetch(URL)
+    return fetch(URL)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
