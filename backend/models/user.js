@@ -11,6 +11,7 @@ const userSchema = new Schema({
   email: String,
   username: String,
   kingdomName: String,
+  kingdomList: [Number],
 }, schemaOptions);
 
 module.exports = conn.model('User', userSchema);
