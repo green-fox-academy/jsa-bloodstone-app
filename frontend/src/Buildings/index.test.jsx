@@ -92,13 +92,12 @@ describe('<Buildings />', () => {
 
     const testRenderer = renderer.create(<Buildings />);
     const testInstance = testRenderer.root;
-    act(() => {
-      testInstance.findAllByType(AddBuildingItem).forEach((node) => {
-        node.props.onPress();
-      });
-      expect(mockDispatch).toHaveBeenCalled();
-      expect(mockDispatch).toHaveBeenCalledWith('test_action');
+
+    testInstance.findAllByType(AddBuildingItem).forEach((node) => {
+      node.props.onPress();
     });
+    expect(mockDispatch).toHaveBeenCalled();
+    expect(mockDispatch).toHaveBeenCalledWith('test_action');
   });
 
   it('Should render buildings and match the snapshot', () => {
@@ -125,7 +124,6 @@ describe('<Buildings />', () => {
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));
-    useDispatch.mockReturnValueOnce(() => { });
 
     const tree = renderer.create(<Buildings />).toJSON();
 
