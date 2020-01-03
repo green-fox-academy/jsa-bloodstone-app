@@ -17,9 +17,15 @@ app.use('/kingdom/troops', troops);
 app.use('/kingdom/buildings', buildings);
 app.use('/kingdom/resources', resources);
 app.use('/users', users);
+app.use('/kingdom/progresses', progresses);
 
 app.use((err, req, res, next) => {
   const { status, message } = err;
+  if (!status) {
+    res.sendStatus(500);
+    next(err);
+    return;
+  }
   res.status(status).json({ status, message });
   next(err);
 });
