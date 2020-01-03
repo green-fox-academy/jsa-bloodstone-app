@@ -4,6 +4,8 @@ import {
   View, Image, StyleSheet,
 } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
+
+import logo from '../../assets/kingdomLogo.png';
 import loadingIcon from '../../assets/loadingIcon.gif';
 import loadingKnight from '../../assets/loadingKnight.gif';
 
@@ -28,8 +30,9 @@ function AuthLoadingScreen() {
 
   return (
     <View style={styles.container}>
-      <Image style={{ height: 200, width: 300, marginBottom: 100 }} source={loadingKnight} />
-      <Image style={{ height: 50, width: 50 }} source={loadingIcon} />
+      <Image style={{ height: 100, width: 300, marginTop: -50 }} source={logo} />
+      <Image style={{ height: 200, width: 300, marginTop: 40 }} source={loadingKnight} />
+      <Image style={{ height: 150, width: 150, marginTop: 40 }} source={loadingIcon} />
     </View>
   );
 }
