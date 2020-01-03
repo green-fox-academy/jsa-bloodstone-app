@@ -18,10 +18,27 @@ const troopsRule = parse(troopsRuleInput, {
 });
 const foxRule = troopsRule.filter((troop) => troop.troopName === 'fox')[0];
 
+const unitTypes = {
+  // building types
+  FARM: 'Farm',
+  MINE: 'Mine',
+  ACADEMY: 'Academy',
+  TOWNHALL: 'Townhall',
+  // troop types
+  FOX: 'Fox',
+};
+
+const progressCategories = {
+  BUILDING: 'Building',
+  TROOP: 'Troop',
+};
+
 module.exports = {
   townhallRule,
   farmRule,
   mineRule,
   academyRule,
   foxRule,
+  unitTypes,
+  progressCategories,
 };
