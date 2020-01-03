@@ -15,14 +15,14 @@ async function login(req, res, next) {
   const { username, password } = req.body;
   try {
     if (!username) {
-      throw createError(404, 'Username is required.');
+      throw createError(400, 'Username is required.');
     }
     if (!password) {
-      throw createError(404, 'Password is required.');
+      throw createError(400, 'Password is required.');
     }
     const user = await UserModel.findOne({ username });
     if (!user) {
-      throw createError(404, 'User not found');
+      throw createError(400, 'User not found');
     }
     // todo: check password
     const token = jwt.sign({ userA }, process.env.APP_SECRET || 'testSecret');
