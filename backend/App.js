@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const {
-  troops, buildings, resources, users,
+  troops, buildings, resources, users, progresses,
 } = require('./routers');
 
 const app = express();
