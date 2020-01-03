@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const createError = require('http-errors');
-const { BuildingModel } = require('../models');
+const { BuildingModel, ResourceModel } = require('../models');
 
 const router = Router();
 
@@ -8,9 +8,16 @@ const {
   townhallRule, farmRule, mineRule, academyRule, foxRule,
 } = require('../rules');
 
+const typeToRules = {
+  Townhall: townhallRule,
+  Academy: academyRule,
+  Farm: farmRule,
+  Mine: mineRule,
+};
+
 async function getBuildings(req, res, next) {
   try {
-    const buildings = await BuildingModel.find({}, '-_id');
+    const buildings = await BuildingModel.find({ owner: 1 }, '-_id');
     res.send({ buildings });
   } catch (error) {
     next(error);
@@ -18,24 +25,38 @@ async function getBuildings(req, res, next) {
 }
 
 async function createBuilding(req, res, next) {
-  const type = req.params.buildingType;
+  const { buildingType } = req.params;
   try {
-    const result = await BuildingModel.create({
-      type,
+    if (!buildingType) {
+      throw createError(400, 'Type is required');
+    }
+    if (buildingType !== 'Mine' && buildingType !== 'Farm') {
+      throw createError(400, 'Wrong type');
+    }
+
+    const moneyRequired = parseInt(typeToRules[buildingType].constructionCost, 10);
+    const resourceOfUser = await ResourceModel.find({ owner: 1 });
+    const [moneyInHand] = resourceOfUser
+      .filter(({ type }) => (type === 'gold'))
+      .map(({ amount }) => amount);
+    if (moneyRequired > moneyInHand) {
+      throw createError(400, 'You don\'t have enough money');
+    }
+
+    const minusGold = await ResourceModel.findOneAndUpdate(
+      { owner: 1, type: 'gold' },
+      { $inc: { amount: -{ moneyRequired } } },
+      { new: true, fields: '-_id' },
+    ).exec();
+    const createNewBuilding = await BuildingModel.create({
+      buildingType,
       owner: 1,
     });
-    res.send(result);
+    res.send({ minusGold, createNewBuilding });
   } catch (error) {
     next(error);
   }
 }
-
-const typeToRules = {
-  Townhall: townhallRule,
-  Academy: academyRule,
-  Farm: farmRule,
-  Mine: mineRule,
-};
 
 async function getBuildingById(req, res, next) {
   const id = Number.parseInt(req.params.buildingId, 10);
