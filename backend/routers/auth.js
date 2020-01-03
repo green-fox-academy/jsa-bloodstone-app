@@ -25,7 +25,7 @@ async function login(req, res, next) {
       throw createError(404, 'User not found');
     }
     // todo: check password
-    const token = jwt.sign({ userA }, process.env.APP_SECRET);
+    const token = jwt.sign({ userA }, process.env.APP_SECRET || 'testSecret');
     res.status(200).send({ token });
   } catch (error) {
     next(error);
