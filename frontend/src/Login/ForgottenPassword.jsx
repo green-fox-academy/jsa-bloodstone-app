@@ -5,9 +5,8 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
-import { login } from './actionCreator';
-
 import { InputField, SubmitButton } from '../common/components';
+import { forgotPassword } from './actionCreator';
 import background from '../../assets/login/background.jpg';
 import Colors from '../common/colors';
 
@@ -30,33 +29,35 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'space-between',
+  },
 });
-
-const mockedUser = {
-  username: 'kyya',
-  password: 'password',
-};
 
 function showAlert(text) {
   Alert.alert('Warning', text);
 }
 
-function Login() {
-  const dispatch = useDispatch();
+function ForgottenPassword() {
   const navigation = useNavigation();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [input, setInput] = useState('');
+  const dispatch = useDispatch();
+  const USERNAME_BLACKLIST = ['admin', 'root'];
 
   function handleSubmit() {
-    const name = username.toLowerCase();
-    if (name === '' || password === '') {
-      return showAlert('All the input fields are required.');
+    if (input === '') {
+      return showAlert('The input field is required.');
     }
-    if (name !== mockedUser.username || password !== mockedUser.password) {
-      return showAlert('Wrong username or password.');
+    if (input.length <= 3) {
+      return showAlert('Please enter a valid username.');
     }
-    dispatch(login());
-    return navigation.navigate('Home');
+    if (USERNAME_BLACKLIST.includes(input.toLowerCase())) {
+      return showAlert('Please reenter a valid username');
+    }
+    dispatch(forgotPassword(input));
+    return navigation.pop();
   }
 
   return (
@@ -66,26 +67,21 @@ function Login() {
         resizeMode="cover"
         source={background}
       >
-        <Text style={styles.header}>Login</Text>
+        <Text style={styles.header}>Forget Password</Text>
         <View style={{ width: 300 }}>
           <InputField
-            placeholder="Username"
-            value={username}
-            onChangeText={(text) => setUsername(text)}
+            placeholder="Username or Email"
+            value={input}
+            onChangeText={(text) => setInput(text)}
           />
-          <InputField
-            secureTextEntry
-            placeholder="Password"
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
-        </View>
-        <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
-          <SubmitButton onPress={handleSubmit} />
+          <View style={styles.buttonContainer}>
+            <SubmitButton onPress={() => navigation.pop()} direction="back" />
+            <SubmitButton onPress={handleSubmit} direction="forward" />
+          </View>
         </View>
       </ImageBackground>
     </View>
   );
 }
 
-export default Login;
+export default ForgottenPassword;

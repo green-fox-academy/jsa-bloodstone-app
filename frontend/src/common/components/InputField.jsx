@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
-import { CardView } from '../common/components';
+import CardView from './CardView';
 
 const style = {
   height: 40,
