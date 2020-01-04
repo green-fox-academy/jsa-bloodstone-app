@@ -86,7 +86,7 @@ const AppNavigator = createSwitchNavigator({
   Home: HomeStack,
   Map: MapStack,
 }, {
-  initialRouteName: 'Map',
+  initialRouteName: 'Auth',
   ...hideHeaderOptions,
 });
 
