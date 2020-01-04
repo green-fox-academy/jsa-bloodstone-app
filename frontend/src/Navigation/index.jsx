@@ -7,6 +7,7 @@ import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
 import Login from '../Login';
+import Registration from '../Registration';
 
 const hideHeaderOptions = {
   headerMode: 'none',
@@ -63,6 +64,7 @@ const AuthStack = createStackNavigator({
     screen: Login,
     path: 'login/',
   },
+  Registration,
 }, hideHeaderOptions);
 
 const HomeStack = createStackNavigator({
