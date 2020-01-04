@@ -7,6 +7,7 @@ import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
 import Login from '../Login';
+import Map from '../Map';
 
 const hideHeaderOptions = {
   headerMode: 'none',
@@ -72,11 +73,20 @@ const HomeStack = createStackNavigator({
   },
 }, hideHeaderOptions);
 
+const MapStack = createStackNavigator({
+  Map: {
+    screen: Map,
+    path: 'map/',
+  },
+}, hideHeaderOptions);
+
+
 const AppNavigator = createSwitchNavigator({
   Auth: AuthStack,
   Home: HomeStack,
+  Map: MapStack,
 }, {
-  initialRouteName: 'Auth',
+  initialRouteName: 'Map',
   ...hideHeaderOptions,
 });
 
