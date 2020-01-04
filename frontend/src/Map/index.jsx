@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 function Map() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
-
+  const displayList = ['blue', 'green', 'orange', 'pink', 'purple'];
   function handleSubmit() {
     Alert.alert('INFO', selected);
     navigation.navigate('Home');
@@ -40,11 +40,16 @@ function Map() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollViewContainer}
         >
-          <PlanetItem type="blue" selected={selected} onSelect={(type) => setSelected(type)} />
-          <PlanetItem type="green" selected={selected} onSelect={(type) => setSelected(type)} />
-          <PlanetItem type="orange" selected={selected} onSelect={(type) => setSelected(type)} />
-          <PlanetItem type="pink" selected={selected} onSelect={(type) => setSelected(type)} />
-          <PlanetItem type="purple" selected={selected} onSelect={(type) => setSelected(type)} />
+          {displayList.map(
+            (item) => (
+              <PlanetItem
+                key={item}
+                type={item}
+                selected={selected}
+                onSelect={(type) => setSelected(type)}
+              />
+            ),
+          )}
         </ScrollView>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <Text style={{ color: '#fff', paddingHorizontal: 10 }}>{`Current: ${selected}`}</Text>
