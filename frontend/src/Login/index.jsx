@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, Text,
   ImageBackground, Alert,
+  TouchableHighlight,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
@@ -29,6 +30,9 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  touchableText: {
+    color: Colors.whiteColor,
   },
 });
 
@@ -79,6 +83,9 @@ function Login() {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
+          <TouchableHighlight onPress={() => navigation.push('Registration')}>
+            <Text style={styles.touchableText}>Register</Text>
+          </TouchableHighlight>
         </View>
         <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
           <SubmitButton onPress={handleSubmit} />
