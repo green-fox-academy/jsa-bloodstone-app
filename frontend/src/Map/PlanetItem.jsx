@@ -42,11 +42,10 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: '100%',
     height: '100%',
-    opacity: 0.7,
   },
   textStyle: {
     fontSize: 18,
-    color: '#999',
+    color: '#fff',
     fontFamily: 'Roboto',
   },
 });
