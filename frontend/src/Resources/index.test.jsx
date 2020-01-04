@@ -1,7 +1,6 @@
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchResources } from './actionCreator';
 
 import ResourceView from '.';
 
