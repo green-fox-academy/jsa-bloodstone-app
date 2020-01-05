@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RankingItem /> Should render RankingItem and match the snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignSelf": "stretch",
+        "backgroundColor": "#10978b",
+        "borderRadius": 10,
+        "elevation": 1,
+        "flexDirection": "row",
+        "marginBottom": 2,
+        "padding": 12,
+        "shadowColor": "#000000",
+        "shadowOffset": Object {
+          "x": 0,
+          "y": 4,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 6,
+      },
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 16,
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "marginBottom": 5,
+          "marginTop": 5,
+          "minWidth": 250,
+        },
+        Object {
+          "backgroundColor": "grey",
+        },
+      ],
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "transparent",
+          "borderTopColor": "transparent",
+          "borderWidth": 10,
+        },
+        Object {
+          "borderLeftColor": "transparent",
+          "borderRightColor": "grey",
+          "marginLeft": -30,
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#ffffff",
+        "fontWeight": "bold",
+        "paddingHorizontal": 10,
+      }
+    }
+  >
+    1
+  </Text>
+  <Image
+    resizeMode="contain"
+    source={1}
+    style={
+      Object {
+        "height": 48,
+        "marginRight": 15,
+        "width": 48,
+      }
+    }
+  />
+  <View>
+    <Text
+      numberOfLines={1}
+      style={
+        Object {
+          "color": "#ffffff",
+          "fontSize": 15,
+          "fontWeight": "bold",
+          "maxWidth": 130,
+        }
+      }
+    >
+      The Incredible
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "marginTop": 5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 20,
+              "width": 20,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#ffffff",
+            }
+          }
+        >
+           0
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginLeft": 10,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 20,
+              "width": 20,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#ffffff",
+            }
+          }
+        >
+           0
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
