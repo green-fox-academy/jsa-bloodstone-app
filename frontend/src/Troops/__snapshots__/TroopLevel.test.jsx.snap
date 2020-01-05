@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TroopLevel /> Should render buildings and match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "marginBottom": 8,
+      "marginHorizontal": 10,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#10978b",
+        "borderRadius": 10,
+        "flex": 1,
+        "flexDirection": "row",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 40,
+            "marginRight": 12,
+            "width": 40,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 16,
+          }
+        }
+      >
+        Level undefined: undefined Troops
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f44336",
+        "borderBottomEndRadius": 5,
+        "borderTopEndRadius": 5,
+        "height": 40,
+        "justifyContent": "center",
+        "textAlign": "center",
+        "width": 0,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={null}
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 8,
+          }
+        }
+      >
+        UPGRADE
+      </Text>
+    </View>
+  </View>
+</View>
+`;
