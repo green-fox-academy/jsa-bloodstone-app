@@ -14,20 +14,21 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 5,
+    marginVertical: 2,
+    paddingVertical: 8,
   },
   text: {
     fontSize: 14,
     color: Colors.whiteColor,
   },
   usernameText: {
-    width: 80,
+    width: 120,
     fontSize: 14,
     color: Colors.whiteColor,
   },
   userAvatar: {
-    width: 28,
-    height: 28,
+    width: 24,
+    height: 24,
     marginHorizontal: 8,
   },
   icon: {
