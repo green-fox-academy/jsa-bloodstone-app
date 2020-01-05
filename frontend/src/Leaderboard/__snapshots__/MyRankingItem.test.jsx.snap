@@ -1,0 +1,959 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MyRankingItem /> Should render MyRankingItem and match the snapshot 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "height": 48,
+          "marginBottom": 8,
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        onSubmitEditing={[Function]}
+        placeholder="🔎Search for users"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "fontSize": 24,
+            },
+            Object {
+              "backgroundColor": "#bdbdbd",
+              "borderRadius": 10,
+              "fontSize": 24,
+              "width": "100%",
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 6,
+            "elevation": 3,
+            "marginBottom": 10,
+            "padding": 15,
+            "shadowColor": "#000000",
+            "shadowOffset": Object {
+              "x": 0,
+              "y": 4,
+            },
+            "shadowOpacity": 0.1,
+            "shadowRadius": 6,
+          },
+          Object {
+            "padding": 10,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#10978b",
+              "borderRadius": 10,
+              "elevation": 1,
+              "flexDirection": "row",
+              "marginBottom": 2,
+              "padding": 12,
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "x": 0,
+                "y": 4,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 6,
+            },
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginVertical": 3,
+              "paddingVertical": 7,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+              }
+            }
+          >
+            1
+          </Text>
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 28,
+                "marginHorizontal": 8,
+                "width": 28,
+              }
+            }
+          />
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "width": 80,
+              }
+            }
+          >
+            userA
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              10
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              10
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#10978b",
+              "borderRadius": 10,
+              "elevation": 1,
+              "flexDirection": "row",
+              "marginBottom": 2,
+              "padding": 12,
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "x": 0,
+                "y": 4,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 6,
+            },
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginVertical": 3,
+              "paddingVertical": 7,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+              }
+            }
+          >
+            2
+          </Text>
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 28,
+                "marginHorizontal": 8,
+                "width": 28,
+              }
+            }
+          />
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "width": 80,
+              }
+            }
+          >
+            userB
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#10978b",
+              "borderRadius": 10,
+              "elevation": 1,
+              "flexDirection": "row",
+              "marginBottom": 2,
+              "padding": 12,
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "x": 0,
+                "y": 4,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 6,
+            },
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginVertical": 3,
+              "paddingVertical": 7,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+              }
+            }
+          >
+            3
+          </Text>
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 28,
+                "marginHorizontal": 8,
+                "width": 28,
+              }
+            }
+          />
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "width": 80,
+              }
+            }
+          >
+            userCCCCCCCCCCCcCCC
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`<RankRow /> Should render MyRankingItem and match the snapshot 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "height": 48,
+          "marginBottom": 8,
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        onSubmitEditing={[Function]}
+        placeholder="🔎Search for users"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "fontSize": 24,
+            },
+            Object {
+              "backgroundColor": "#bdbdbd",
+              "borderRadius": 10,
+              "fontSize": 24,
+              "width": "100%",
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 6,
+            "elevation": 3,
+            "marginBottom": 10,
+            "padding": 15,
+            "shadowColor": "#000000",
+            "shadowOffset": Object {
+              "x": 0,
+              "y": 4,
+            },
+            "shadowOpacity": 0.1,
+            "shadowRadius": 6,
+          },
+          Object {
+            "padding": 10,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#10978b",
+              "borderRadius": 10,
+              "elevation": 1,
+              "flexDirection": "row",
+              "marginBottom": 2,
+              "padding": 12,
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "x": 0,
+                "y": 4,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 6,
+            },
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginVertical": 3,
+              "paddingVertical": 7,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+              }
+            }
+          >
+            1
+          </Text>
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 28,
+                "marginHorizontal": 8,
+                "width": 28,
+              }
+            }
+          />
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "width": 80,
+              }
+            }
+          >
+            userA
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              10
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              10
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#10978b",
+              "borderRadius": 10,
+              "elevation": 1,
+              "flexDirection": "row",
+              "marginBottom": 2,
+              "padding": 12,
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "x": 0,
+                "y": 4,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 6,
+            },
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginVertical": 3,
+              "paddingVertical": 7,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+              }
+            }
+          >
+            2
+          </Text>
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 28,
+                "marginHorizontal": 8,
+                "width": 28,
+              }
+            }
+          />
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "width": 80,
+              }
+            }
+          >
+            userB
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#10978b",
+              "borderRadius": 10,
+              "elevation": 1,
+              "flexDirection": "row",
+              "marginBottom": 2,
+              "padding": 12,
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "x": 0,
+                "y": 4,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 6,
+            },
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginVertical": 3,
+              "paddingVertical": 7,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+              }
+            }
+          >
+            3
+          </Text>
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 28,
+                "marginHorizontal": 8,
+                "width": 28,
+              }
+            }
+          />
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "width": 80,
+              }
+            }
+          >
+            userCCCCCCCCCCCcCCC
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginRight": 6,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 20,
+                  "marginHorizontal": 4,
+                  "width": 20,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              12
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
