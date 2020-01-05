@@ -2,7 +2,7 @@ import React from 'react';
 import { createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
