@@ -315,3 +315,319 @@ exports[`<ResourceView /> Should render resources and match the snapshot 1`] = `
   </View>
 </View>
 `;
+
+exports[`<Resources /> Should render error and match the snapshot 1`] = `
+<Text>
+  Oops, test error
+</Text>
+`;
+
+exports[`<Resources /> Should render loading and match the snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderRadius": 6,
+        "elevation": 3,
+        "marginBottom": 10,
+        "padding": 15,
+        "shadowColor": "#000000",
+        "shadowOffset": Object {
+          "x": 0,
+          "y": 4,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 6,
+      },
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 32,
+          "marginRight": 4,
+          "width": 32,
+        }
+      }
+    />
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#55565a",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1578153586
+        </Text>
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 14,
+              "marginHorizontal": 4,
+              "width": 14,
+            }
+          }
+        />
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#68AA2F",
+              "fontSize": 12,
+            }
+          }
+        >
+          +60/minute
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 32,
+          "marginRight": 4,
+          "width": 32,
+        }
+      }
+    />
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#55565a",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1578153704
+        </Text>
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 14,
+              "marginHorizontal": 4,
+              "width": 14,
+            }
+          }
+        />
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#68AA2F",
+              "fontSize": 12,
+            }
+          }
+        >
+          +60/minute
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<Resources /> Should render resources and match the snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderRadius": 6,
+        "elevation": 3,
+        "marginBottom": 10,
+        "padding": 15,
+        "shadowColor": "#000000",
+        "shadowOffset": Object {
+          "x": 0,
+          "y": 4,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 6,
+      },
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 32,
+          "marginRight": 4,
+          "width": 32,
+        }
+      }
+    />
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#55565a",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1578153586
+        </Text>
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 14,
+              "marginHorizontal": 4,
+              "width": 14,
+            }
+          }
+        />
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#68AA2F",
+              "fontSize": 12,
+            }
+          }
+        >
+          +60/minute
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 32,
+          "marginRight": 4,
+          "width": 32,
+        }
+      }
+    />
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#55565a",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1578153704
+        </Text>
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 14,
+              "marginHorizontal": 4,
+              "width": 14,
+            }
+          }
+        />
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#68AA2F",
+              "fontSize": 12,
+            }
+          }
+        >
+          +60/minute
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

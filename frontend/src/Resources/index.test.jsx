@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ResourceView from '.';
+import Resources from '.';
 
 jest.mock('react-redux');
 jest.mock('./actionCreator');
@@ -20,7 +20,7 @@ const resources = [
   },
 ];
 
-describe('<ResourceView />', () => {
+describe('<Resources />', () => {
   beforeEach(() => {
     useDispatch.mockImplementation(() => () => {});
   });
@@ -42,7 +42,7 @@ describe('<ResourceView />', () => {
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
-    const tree = renderer.create(<ResourceView />).toJSON();
+    const tree = renderer.create(<Resources />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -60,7 +60,7 @@ describe('<ResourceView />', () => {
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
-    const tree = renderer.create(<ResourceView />).toJSON();
+    const tree = renderer.create(<Resources />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -78,7 +78,7 @@ describe('<ResourceView />', () => {
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
-    const tree = renderer.create(<ResourceView />).toJSON();
+    const tree = renderer.create(<Resources />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
