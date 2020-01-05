@@ -1,52 +1,37 @@
 import React from 'react';
 import {
-  View, Text, TouchableNativeFeedback, StyleSheet,
+  View, Text, StyleSheet, TouchableWithoutFeedback,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import colors from '../common/colors';
+import Colors from '../common/colors';
 
 const styles = StyleSheet.create({
-  menuItemStyle: {
+  itemStyle: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 16,
     alignItems: 'center',
   },
-  menuTextStyle: {
+  textStyle: {
     fontSize: 14,
-    color: colors.greyColor,
+    color: Colors.greyColor,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  activeIndicatorStyle: {
-    backgroundColor: colors.blueColor,
-    marginTop: 4,
-    marginBottom: -8,
-    height: 4,
-    width: 8,
-    borderRadius: 4,
   },
 });
 
 function MenuItem({
   title, active, onPress,
 }) {
-  const extraMenuTextStyle = {
-    color: title === active ? colors.tealColor : colors.greyColor,
-  };
-  const indicatorColor = {
-    backgroundColor: title === active ? colors.tealColor : colors.transparent,
+  const extraTextStyle = {
+    color: title === active ? Colors.tealColor : Colors.greyColor,
   };
   return (
-    <TouchableNativeFeedback
-      onPress={onPress}
-      background={TouchableNativeFeedback.SelectableBackground()}
-    >
-      <View style={[styles.menuItemStyle]}>
-        <Text style={[styles.menuTextStyle, extraMenuTextStyle]}>{title}</Text>
-        <View style={[styles.activeIndicatorStyle, indicatorColor]} />
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.itemStyle}>
+        <Text style={[styles.textStyle, extraTextStyle]}>{title}</Text>
       </View>
-    </TouchableNativeFeedback>
+    </TouchableWithoutFeedback>
   );
 }
 
