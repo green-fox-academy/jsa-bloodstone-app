@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   container: {
+    flex: 1,
     paddingTop: 40,
     flexDirection: 'column',
     alignItems: 'center',
@@ -37,6 +38,14 @@ const styles = StyleSheet.create({
   background: {
     width: '100%',
     height: '100%',
+  },
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 60,
+  },
+  logoutButton: {
+    width: 280,
   },
 });
 
@@ -108,7 +117,11 @@ function Settings() {
         />
 
         <View style={styles.buttonRow}>
-          <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} />
+          <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} text="Save" />
+          <SubmitButton text="Cancel" />
+        </View>
+        <View style={styles.footer}>
+          <SubmitButton style={styles.logoutButton} text="Logout" />
         </View>
       </View>
     </ImageBackground>
