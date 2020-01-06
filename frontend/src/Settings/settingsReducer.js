@@ -3,9 +3,9 @@ import {
 } from './actionCreator';
 
 const initialState = {
-  email: undefined,
-  username: undefined,
-  kingdomName: undefined,
+  email: 'example@email.com',
+  username: 'example name',
+  kingdomName: 'your kingdom\'s name',
   isLoading: false,
   error: undefined,
 };
