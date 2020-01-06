@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  View, Text, TouchableHighlight, StyleSheet,
+  View, Text, TouchableHighlight, StyleSheet, ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
-import colors from '../common/colors';
+import colors from '../colors';
 
 const styles = StyleSheet.create({
   header: {
@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function ModalHeader({ onClick, title }) {
+function ModalHeader({ style, onClick, title }) {
   return (
-    <View style={styles.header}>
-      <Text style={styles.title}>{`${title} Detail Information`}</Text>
+    <View style={[styles.header, style]}>
+      <Text style={styles.title}>{title}</Text>
       <TouchableHighlight style={styles.closeButton} onPress={onClick}>
         <AntDesign name="closecircleo" size={15} color="white" />
       </TouchableHighlight>
@@ -38,11 +38,13 @@ function ModalHeader({ onClick, title }) {
 }
 
 ModalHeader.propTypes = {
+  style: ViewPropTypes.style,
   onClick: PropTypes.func,
   title: PropTypes.string,
 };
 
 ModalHeader.defaultProps = {
+  style: null,
   onClick: null,
   title: 'Title',
 };

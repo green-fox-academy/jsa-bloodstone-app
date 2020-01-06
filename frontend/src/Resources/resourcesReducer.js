@@ -28,6 +28,7 @@ export default function resources(state = initialState, action) {
         goldGeneration: action.payload[1].generation,
 
         isLoading: false,
+        error: undefined,
       };
     case FETCH_RESOURCES_FAILURE:
       return { ...state, isLoading: false, error: action.payload };

@@ -11,7 +11,9 @@ export default function troops(state = initialState, action) {
     case FETCH_TROOPS_REQUEST:
       return { ...state, isLoading: true };
     case FETCH_TROOPS_SUCCESS:
-      return { ...state, listOfTroops: action.payload, isLoading: false };
+      return {
+        ...state, listOfTroops: action.payload, isLoading: false, error: undefined,
+      };
     case FETCH_TROOPS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     default:
