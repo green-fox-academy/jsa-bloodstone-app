@@ -27,8 +27,8 @@ const persistConfig = {
   whitelist: ['auth'],
 };
 
-const pReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(pReducer, applyMiddleware(thunk));
+export const store = createStore(persistedReducer, applyMiddleware(thunk));
 
 export const persistor = persistStore(store);
