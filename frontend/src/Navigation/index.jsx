@@ -7,6 +7,7 @@ import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
 import Login from '../Login';
+import ForgottenPassword from '../Login/ForgottenPassword';
 import Registration from '../Registration';
 import Map from '../Map';
 
@@ -66,6 +67,7 @@ const AuthStack = createStackNavigator({
     path: 'login/',
   },
   Registration,
+  ForgottenPassword,
 }, hideHeaderOptions);
 
 const HomeStack = createStackNavigator({
@@ -76,8 +78,8 @@ const HomeStack = createStackNavigator({
 }, hideHeaderOptions);
 
 const AppNavigator = createSwitchNavigator({
-  Auth: AuthStack,
   Map,
+  Auth: AuthStack,
   Home: HomeStack,
 }, {
   initialRouteName: 'Auth',

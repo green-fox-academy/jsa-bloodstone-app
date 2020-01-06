@@ -83,9 +83,14 @@ function Login() {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <TouchableHighlight onPress={() => navigation.push('Registration')}>
-            <Text style={styles.touchableText}>Register</Text>
-          </TouchableHighlight>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableHighlight onPress={() => navigation.push('ForgottenPassword')}>
+              <Text style={styles.touchableText}>Forgot Password?</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => navigation.push('Registration')}>
+              <Text style={styles.touchableText}>Register</Text>
+            </TouchableHighlight>
+          </View>
         </View>
         <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
           <SubmitButton onPress={handleSubmit} />
