@@ -50,4 +50,10 @@ export default StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
   },
+  keyboardAvoidContainer: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

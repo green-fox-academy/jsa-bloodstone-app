@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   View, StyleSheet, Text,
-  ImageBackground, Alert,
+  ImageBackground, Alert, KeyboardAvoidingView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
@@ -9,12 +9,11 @@ import { InputField, SubmitButton } from '../common/components';
 import { forgotPassword } from './actionCreator';
 import background from '../../assets/login/background.jpg';
 import Colors from '../common/colors';
+import commonStyles from '../common/styles';
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
+  layoutContainer: {
+    width: 300,
   },
   header: {
     width: 300,
@@ -61,14 +60,18 @@ function ForgottenPassword() {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.background}
-        resizeMode="cover"
-        source={background}
+    <ImageBackground
+      style={styles.background}
+      resizeMode="cover"
+      source={background}
+    >
+      <KeyboardAvoidingView
+        enabled
+        behavior="padding"
+        style={commonStyles.keyboardAvoidContainer}
       >
-        <Text style={styles.header}>Forget Password</Text>
-        <View style={{ width: 300 }}>
+        <View style={styles.layoutContainer}>
+          <Text style={styles.header}>Forget Password</Text>
           <InputField
             placeholder="Username or Email"
             value={input}
@@ -79,8 +82,8 @@ function ForgottenPassword() {
             <SubmitButton onPress={handleSubmit} direction="forward" />
           </View>
         </View>
-      </ImageBackground>
-    </View>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 

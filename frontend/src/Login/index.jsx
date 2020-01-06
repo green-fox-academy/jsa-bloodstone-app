@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, Text,
   ImageBackground, Alert,
-  TouchableHighlight,
+  TouchableHighlight, KeyboardAvoidingView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
@@ -11,12 +11,12 @@ import { login } from './actionCreator';
 import { InputField, SubmitButton } from '../common/components';
 import background from '../../assets/login/background.jpg';
 import Colors from '../common/colors';
+import commonStyles from '../common/styles';
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
+  layoutContainer: {
+    alignSelf: 'center',
+    width: 300,
   },
   header: {
     width: 300,
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   touchableText: {
+    fontSize: 15,
     color: Colors.whiteColor,
   },
 });
@@ -64,14 +65,18 @@ function Login() {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.background}
-        resizeMode="cover"
-        source={background}
+    <ImageBackground
+      style={styles.background}
+      resizeMode="cover"
+      source={background}
+    >
+      <KeyboardAvoidingView
+        enabled
+        behavior="padding"
+        style={commonStyles.keyboardAvoidContainer}
       >
-        <Text style={styles.header}>Login</Text>
-        <View style={{ width: 300 }}>
+        <View style={styles.layoutContainer}>
+          <Text style={styles.header}>Login</Text>
           <InputField
             placeholder="Username"
             value={username}
@@ -83,15 +88,22 @@ function Login() {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <TouchableHighlight onPress={() => navigation.push('Registration')}>
-            <Text style={styles.touchableText}>Register</Text>
-          </TouchableHighlight>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableHighlight onPress={() => navigation.push('ForgottenPassword')}>
+              <Text style={styles.touchableText}>Forgot Password?</Text>
+            </TouchableHighlight>
+          </View>
         </View>
         <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
           <SubmitButton onPress={handleSubmit} />
         </View>
-      </ImageBackground>
-    </View>
+        <View style={{ position: 'absolute', bottom: 20 }}>
+          <TouchableHighlight onPress={() => navigation.push('Registration')}>
+            <Text style={styles.touchableText}>Register ?</Text>
+          </TouchableHighlight>
+        </View>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
