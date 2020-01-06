@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const gradient = `linear-gradient(-225deg, red 0%, orange 17%, 
+const gradient = `linear-gradient(-195deg, red 0%, orange 20%, 
   yellow 34%, green 51%, blue 68%, indigo 84%, purple 100%)`;
 
 function ErrorPopup({ title, message }) {
