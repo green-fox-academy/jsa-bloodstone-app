@@ -16,12 +16,13 @@ const styles = StyleSheet.create({
   },
 });
 
-function SubmitButton({ onPress }) {
+function SubmitButton({ onPress, disabled }) {
   return (
     <TouchableHighlight
-      style={styles.button}
+      style={[styles.button, disabled ? { backgroundColor: Colors.greyColor } : {}]}
       underlayColor={Colors.lightenTeal}
       onPress={onPress}
+      disabled={disabled}
     >
       <Text style={styles.text}>Save</Text>
     </TouchableHighlight>
@@ -30,10 +31,12 @@ function SubmitButton({ onPress }) {
 
 SubmitButton.propTypes = {
   onPress: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 SubmitButton.defaultProps = {
   onPress: null,
+  disabled: false,
 };
 
 export default SubmitButton;

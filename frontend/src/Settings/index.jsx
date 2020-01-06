@@ -55,6 +55,8 @@ function Settings() {
     Alert.alert(`submit ${JSON.stringify(reqObj)}`);
   }
 
+  const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
+
   return (
     <ImageBackground
       style={styles.background}
@@ -93,10 +95,7 @@ function Settings() {
         />
 
         <View style={styles.buttonRow}>
-          {
-            (emailInput !== '' || usernameInput !== '' || kingdomNameInput !== '' || passwordInput !== '')
-            && <SubmitButton onPress={handleSubmit} />
-          }
+          <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} />
         </View>
       </View>
     </ImageBackground>
