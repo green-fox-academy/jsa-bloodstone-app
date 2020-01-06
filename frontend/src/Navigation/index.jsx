@@ -10,6 +10,7 @@ import Login from '../Login';
 import ForgottenPassword from '../Login/ForgottenPassword';
 import Registration from '../Registration';
 import Map from '../Map';
+import AuthLoadingScreen from '../AuthLoadingScreen';
 
 const hideHeaderOptions = {
   headerMode: 'none',
@@ -77,12 +78,20 @@ const HomeStack = createStackNavigator({
   },
 }, hideHeaderOptions);
 
+const AuthLoadingStack = createStackNavigator({
+  AuthLoading: {
+    screen: AuthLoadingScreen,
+    path: 'authLoading/',
+  },
+}, hideHeaderOptions);
+
 const AppNavigator = createSwitchNavigator({
   Map,
   Auth: AuthStack,
   Home: HomeStack,
+  AuthLoading: AuthLoadingStack,
 }, {
-  initialRouteName: 'Auth',
+  initialRouteName: 'AuthLoading',
   ...hideHeaderOptions,
 });
 
