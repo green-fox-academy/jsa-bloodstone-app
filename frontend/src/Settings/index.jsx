@@ -92,28 +92,28 @@ function Settings() {
         <InputField
           placeholder={useSelector((state) => state.settings.email)}
           value={emailInput}
-          onChangeText={(val) => setEmailInput(val)}
+          onChangeText={(value) => setEmailInput(value)}
         />
 
         <Text style={styles.labelText}>username</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.username)}
           value={usernameInput}
-          onChangeText={(val) => setUsernameInput(val)}
+          onChangeText={(value) => setUsernameInput(value)}
         />
 
         <Text style={styles.labelText}>Enter your new Kingdom Name here</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.kingdomName)}
           value={kingdomNameInput}
-          onChangeText={(val) => setKingdomNameInput(val)}
+          onChangeText={(value) => setKingdomNameInput(value)}
         />
 
         <Text style={styles.labelText}>password</Text>
         <InputField
           placeholder="password123"
           value={passwordInput}
-          onChangeText={(val) => setPasswordInput(val)}
+          onChangeText={(value) => setPasswordInput(value)}
         />
 
         <View style={styles.buttonRow}>
