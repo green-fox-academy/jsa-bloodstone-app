@@ -6,7 +6,6 @@ const initialState = {
   email: undefined,
   username: undefined,
   kingdomName: undefined,
-
   isLoading: false,
   error: undefined,
 };
@@ -18,11 +17,9 @@ export default function settings(state = initialState, action) {
     case FETCH_SETTINGS_SUCCESS:
       return {
         ...state,
-        // settings
         email: action.payload.email,
         username: action.payload.username,
         kingdomName: action.payload.kingdomName,
-        // loading
         isLoading: false,
       };
     case FETCH_SETTINGS_FAILURE:

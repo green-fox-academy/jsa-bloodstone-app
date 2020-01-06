@@ -10,7 +10,7 @@ function InputField({
 
   const styles = StyleSheet.create({
     cardView: {
-      width: 240,
+      width: 280,
       paddingVertical: 6,
       marginBottom: 20,
       borderWidth: 1,

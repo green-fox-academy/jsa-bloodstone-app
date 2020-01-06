@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   labelText: {
-    width: 240,
+    width: 280,
     fontSize: 16,
     color: Colors.whiteColor,
   },
   buttonRow: {
-    width: 240,
+    width: 280,
     height: 60,
     paddingTop: 6,
     flexDirection: 'row-reverse',
@@ -47,12 +47,29 @@ function Settings() {
   const [passwordInput, setPasswordInput] = useState('');
 
   function handleSubmit() {
-    const reqObj = {};
-    reqObj.email = emailInput || undefined;
-    reqObj.username = usernameInput || undefined;
-    reqObj.kingdom = kingdomNameInput || undefined;
-    reqObj.password = passwordInput || undefined;
-    Alert.alert(`submit ${JSON.stringify(reqObj)}`);
+    const settings = {};
+    let message = '';
+    if (emailInput) {
+      settings.email = emailInput;
+      message += 'Your email has changed.\n';
+    }
+    if (usernameInput) {
+      settings.username = usernameInput;
+      message += 'Your username has changed.\n';
+    }
+    if (kingdomNameInput) {
+      settings.kingdom = kingdomNameInput;
+      message += 'Your kingdom\'s name has changed.\n';
+    }
+    if (passwordInput) {
+      settings.password = passwordInput;
+      message += 'Your password has changed.\n';
+    }
+    settings.email = emailInput || undefined;
+    settings.username = usernameInput || undefined;
+    settings.kingdom = kingdomNameInput || undefined;
+    settings.password = passwordInput || undefined;
+    Alert.alert('Settings', message);
   }
 
   const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
@@ -80,7 +97,7 @@ function Settings() {
           onChangeText={(val) => setUsernameInput(val)}
         />
 
-        <Text style={styles.labelText}>kingdom name</Text>
+        <Text style={styles.labelText}>Enter your new Kingdom Name here</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.kingdomName)}
           value={kingdomNameInput}
