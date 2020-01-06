@@ -1,20 +1,42 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
-  View, Image, StyleSheet,
+  View, Image, StyleSheet, ImageBackground,
 } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
 
-import logo from '../../assets/kingdomLogo.png';
-import loadingIcon from '../../assets/loadingIcon.gif';
-import loadingKnight from '../../assets/loadingKnight.gif';
+import logo from '../../assets/logoSpace.png';
+import loadingIcon from '../../assets/loading.gif';
+import background from '../../assets/authBackground.gif';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgb(65,65,65)',
+    backgroundColor: 'black',
+  },
+  background: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imgContainer: {
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  logo: {
+    height: 200,
+    width: 300,
+    position: 'absolute',
+    top: 5,
+  },
+  loading: {
+    height: 100,
+    width: 300,
+    position: 'absolute',
+    bottom: 50,
   },
 });
 
@@ -30,9 +52,14 @@ function AuthLoadingScreen() {
 
   return (
     <View style={styles.container}>
-      <Image style={{ height: 100, width: 300, marginTop: -50 }} source={logo} />
-      <Image style={{ height: 200, width: 300, marginTop: 40 }} source={loadingKnight} />
-      <Image style={{ height: 150, width: 150, marginTop: 40 }} source={loadingIcon} />
+      <ImageBackground
+        style={styles.background}
+        resizeMode="cover"
+        source={background}
+      >
+        <Image style={styles.logo} source={logo} />
+        <Image style={styles.loading} source={loadingIcon} />
+      </ImageBackground>
     </View>
   );
 }
