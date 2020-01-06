@@ -65,10 +65,6 @@ function Settings() {
       settings.password = passwordInput;
       message += 'Your password has changed.\n';
     }
-    settings.email = emailInput || undefined;
-    settings.username = usernameInput || undefined;
-    settings.kingdom = kingdomNameInput || undefined;
-    settings.password = passwordInput || undefined;
     Alert.alert('Settings', message);
   }
 
