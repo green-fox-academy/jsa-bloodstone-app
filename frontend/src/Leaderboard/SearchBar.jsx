@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   TextInput, StyleSheet,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { CardView } from '../common/components';
 import colors from '../common/colors';
@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 24,
-    // elevation: 0,
   },
   inputStyle: {
     flex: 1,
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
 
 function SearchBar({ onSubmit, placeholder }) {
   const [value, setValue] = useState('');
-
   return (
     <CardView style={styles.container}>
       <Ionicons name="md-search" size={20} color={colors.tealColor} />
