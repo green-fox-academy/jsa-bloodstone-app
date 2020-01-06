@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text,
+  View, StyleSheet,
 } from 'react-native';
 import TopRanking from './TopRanking';
 import MyRanking from './MyRanking';

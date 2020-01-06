@@ -7,7 +7,6 @@ import RankingItem from './RankingItem';
 import MyRankingItem from './MyRankingItem';
 import RankingAxis from './RankingAxis';
 import colors from '../common/colors';
-import { CardView } from '../common/components';
 
 const styles = StyleSheet.create({
   container: {

@@ -11,25 +11,24 @@ import userAvatar from '../../assets/user-avatar.png';
 import Colors from '../common/colors';
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 5,
+  },
   text: {
     fontSize: 14,
     color: Colors.whiteColor,
   },
   usernameText: {
+    width: 80,
     fontSize: 14,
     color: Colors.whiteColor,
-    width: 80,
   },
   userAvatar: {
     width: 28,
     height: 28,
     marginHorizontal: 8,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 7,
-    marginVertical: 3,
   },
   icon: {
     width: 20,
@@ -51,7 +50,7 @@ function RankRow({
   rank, username, gold, kingdoms,
 }) {
   return (
-    <SubCardView style={styles.row}>
+    <SubCardView style={styles.container}>
       <View style={styles.rowFlex}>
         <Text style={styles.text}>{rank}</Text>
         <Image style={styles.userAvatar} source={userAvatar} />
