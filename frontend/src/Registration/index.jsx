@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 20,
     justifyContent: 'space-between',
-    // width: 300,
   },
 });
 
