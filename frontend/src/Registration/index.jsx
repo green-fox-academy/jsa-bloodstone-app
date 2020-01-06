@@ -79,7 +79,7 @@ function Registration() {
     if (isLoading) {
       return <ActivityIndicator size="large" color={Colors.tealColor} />;
     }
-    showAlert('Registration Success.');
+    Alert.alert('Congratulation', 'Registration Success.');
     return navigation.navigate('Map');
   }
 
