@@ -9,7 +9,7 @@ const URL = `http://${SERVER_URL}/kingdom/resources`;
 export function fetchResources() {
   return (dispatch) => {
     dispatch({ type: FETCH_RESOURCES_REQUEST });
-    fetch(URL)
+    return fetch(URL)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
