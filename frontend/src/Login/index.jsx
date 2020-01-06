@@ -15,6 +15,7 @@ import commonStyles from '../common/styles';
 
 const styles = StyleSheet.create({
   layoutContainer: {
+    alignSelf: 'center',
     width: 300,
   },
   header: {
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   touchableText: {
+    fontSize: 15,
     color: Colors.whiteColor,
   },
 });
@@ -90,13 +92,15 @@ function Login() {
             <TouchableHighlight onPress={() => navigation.push('ForgottenPassword')}>
               <Text style={styles.touchableText}>Forgot Password?</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPress={() => navigation.push('Registration')}>
-              <Text style={styles.touchableText}>Register</Text>
-            </TouchableHighlight>
           </View>
         </View>
         <View style={{ marginTop: 10, alignItems: 'flex-end', width: 300 }}>
           <SubmitButton onPress={handleSubmit} />
+        </View>
+        <View style={{ position: 'absolute', bottom: 20 }}>
+          <TouchableHighlight onPress={() => navigation.push('Registration')}>
+            <Text style={styles.touchableText}>Register ?</Text>
+          </TouchableHighlight>
         </View>
       </KeyboardAvoidingView>
     </ImageBackground>
