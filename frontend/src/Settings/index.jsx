@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
 });
 
 function Settings() {
+  const error = useSelector((state) => state.settings.error);
   const [emailInput, setEmailInput] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [kingdomNameInput, setKingdomNameInput] = useState('');
@@ -92,6 +93,12 @@ function Settings() {
   }
 
   const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
+
+  if (error) {
+    return (
+      <Text>{`Oops, ${error.message}`}</Text>
+    );
+  }
 
   return (
     <ImageBackground
