@@ -19,7 +19,8 @@ app.use('/kingdom/resources', resources);
 app.use('/notification', notification);
 
 app.use((err, req, res, next) => {
-  res.status(500).send(err.message);
+  const { status, message } = err;
+  res.status(status).json({ status, message });
   next(err);
 });
 
