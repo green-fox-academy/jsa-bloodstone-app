@@ -4,6 +4,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import {
   View, Text, Alert, StyleSheet, ImageBackground,
 } from 'react-native';
+import validation from '../common/helper';
 import Colors from '../common/colors';
 
 import background from '../../assets/login/background.jpg';
@@ -65,10 +66,18 @@ function Settings() {
     setPasswordInput('');
   }
 
+  function showAlert(text) {
+    Alert.alert('Warning', text);
+  }
+
   function handleSubmit() {
     const settings = {};
     let message = '';
     if (emailInput) {
+      if (!validation(emailInput)) {
+        showAlert('Please reenter a valid email');
+        return;
+      }
       settings.email = emailInput;
       message += 'Your email has changed.\n';
     }
@@ -81,6 +90,10 @@ function Settings() {
       message += 'Your kingdom\'s name has changed.\n';
     }
     if (passwordInput) {
+      if (passwordInput.length < 8) {
+        showAlert('Password must be at least 8 characters');
+        return;
+      }
       settings.password = passwordInput;
       message += 'Your password has changed.\n';
     }
