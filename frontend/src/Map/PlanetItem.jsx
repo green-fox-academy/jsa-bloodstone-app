@@ -3,8 +3,6 @@ import {
   View,
   Image,
   Animated,
-  Easing,
-  Text,
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
@@ -16,37 +14,23 @@ import orangePlanetImg from '../../assets/map/orange-planet.png';
 import pinkPlanetImg from '../../assets/map/pink-planet.png';
 import purplePlanetImg from '../../assets/map/purple-planet.png';
 
+import { getPlanetAnimation, resetPlanetAnimation } from './animations';
+
 const PLANET_IMAGES = {
-  blue: {
-    title: 'Junter',
-    src: bluePlanetImg,
-  },
-  green: {
-    title: 'Greennnn',
-    src: greenPlanetImg,
-  },
-  orange: {
-    title: 'Orhsad',
-    src: orangePlanetImg,
-  },
-  pink: {
-    title: 'Pinnkl',
-    src: pinkPlanetImg,
-  },
-  purple: {
-    title: 'Purrrrl',
-    src: purplePlanetImg,
-  },
+  blue: { title: 'Junter', src: bluePlanetImg },
+  green: { title: 'Greennnn', src: greenPlanetImg },
+  orange: { title: 'Orhsad', src: orangePlanetImg },
+  pink: { title: 'Pinnkl', src: pinkPlanetImg },
+  purple: { title: 'Purrrrl', src: purplePlanetImg },
 };
+
 const styles = StyleSheet.create({
   imageStyle: {
     width: '100%',
     height: '100%',
   },
-  textStyle: {
-    fontSize: 18,
-    color: '#fff',
-    fontFamily: 'Roboto',
+  textContainer: {
+    opacity: 0.85,
   },
 });
 
@@ -54,15 +38,12 @@ function PlanetItem({
   initialSize, type, selected, onSelect,
 }) {
   const planetImage = PLANET_IMAGES[type];
-  const [size] = useState(new Animated.Value(initialSize));
+  const [planetSize] = useState(new Animated.Value(initialSize));
+  const [rotateZ] = useState(new Animated.Value(0));
 
   function handlePress() {
     if (type !== selected) {
-      Animated.timing(size, {
-        toValue: initialSize * 2,
-        duration: 1000,
-        easing: Easing.elastic(1.8),
-      }).start();
+      getPlanetAnimation(initialSize, planetSize, rotateZ).start();
       onSelect(type);
     } else {
       onSelect(null);
@@ -71,27 +52,30 @@ function PlanetItem({
 
   useEffect(() => {
     if (type !== selected) {
-      Animated.timing(size, {
-        toValue: initialSize,
-        duration: 1000,
-        easing: Easing.elastic(1.8),
-      }).start();
+      resetPlanetAnimation(initialSize, planetSize, rotateZ).start();
     }
   }, [selected]);
 
   const itemStyle = {
-    width: size,
-    height: size,
-    marginRight: 24,
+    width: planetSize,
+    height: planetSize,
+    transform: [{ rotateZ }],
   };
-  const resizeMode = ['pink', 'purple'].includes(type) ? 'center' : 'cover';
+  const textStyle = {
+    fontSize: Animated.divide(planetSize, 7),
+    fontWeight: 'bold',
+    color: '#fff',
+  };
+
   return (
-    <TouchableWithoutFeedback onPress={handlePress} style={{ borderWidth: 1, borderColor: 'white' }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
         <Animated.View style={itemStyle}>
-          <Image source={planetImage.src} resizeMode={resizeMode} style={styles.imageStyle} />
+          <Image source={planetImage.src} resizeMode="contain" style={styles.imageStyle} />
         </Animated.View>
-        <Text numberOfLines={1} style={styles.textStyle}>{planetImage.title}</Text>
+        <View style={styles.textContainer}>
+          <Animated.Text numberOfLines={1} style={textStyle}>{planetImage.title}</Animated.Text>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
