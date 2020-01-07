@@ -8,7 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import Roboto from 'native-base/Fonts/Roboto.ttf';
 import RobotoMedium from 'native-base/Fonts/Roboto_medium.ttf';
-import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store';
 import TabNavigator from './Navigation';
 
 const AppContainer = createAppContainer(TabNavigator);
@@ -36,9 +37,11 @@ function App() {
     ? <AppLoading />
     : (
       <Provider store={store}>
-        <Root>
-          <AppContainer />
-        </Root>
+        <PersistGate loading={null} persistor={persistor}>
+          <Root>
+            <AppContainer />
+          </Root>
+        </PersistGate>
       </Provider>
     );
 }
