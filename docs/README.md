@@ -80,19 +80,29 @@ POST /kingdom/buildings/:buildingType
 | ------------ | ---------------------------------------------------------- |
 | buildingType | The type of building have been created<br />{ Farm, Mine } |
 
-
-
-#### Upgrade a selected building
+#### Get a building with id
 
 description
 
 ```
-PUT /kingdom/buildings/:id/upgrade
+POST /kingdom/buildings/:buildingId
 ```
 
-| param | Description                               |
-| ----- | ----------------------------------------- |
-| id    | The ID of selected building to be upgrade |
+| param      | Description                               |
+| ---------- | ----------------------------------------- |
+| buildingId | The ID of selected building to be upgrade |
+
+#### Upgrade a building with id
+
+description
+
+```
+PUT /kingdom/buildings/:buildingId/upgrade
+```
+
+| param      | Description                               |
+| ---------- | ----------------------------------------- |
+| buildingId | The ID of selected building to be upgrade |
 
 
 

@@ -1,9 +1,16 @@
 const { createConnection } = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
 const DB_URI = process.env.DB_URI || 'mongodb://127.0.0.1/test';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 };
 
-module.exports = createConnection(DB_URI, options);
+
+const connection = createConnection(DB_URI, options);
+
+autoIncrement.initialize(connection);
+
+module.exports = connection;
