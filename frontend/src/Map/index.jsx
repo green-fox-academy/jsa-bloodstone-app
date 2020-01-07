@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, ImageBackground, ScrollView, Button, Alert,
 } from 'react-native';
-
+import { useNavigation } from 'react-navigation-hooks';
 import PlanetItem from './PlanetItem';
 import background from '../../assets/map/space.jpg';
 
@@ -21,10 +21,14 @@ const styles = StyleSheet.create({
 });
 
 function Map() {
+  const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+
   function handleSubmit() {
     Alert.alert('INFO', selected);
+    navigation.navigate('Home');
   }
+
   return (
     <View style={styles.container}>
       <ImageBackground
