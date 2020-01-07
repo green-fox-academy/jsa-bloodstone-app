@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const createError = require('http-errors');
+const { BuildingModel } = require('../models');
 
 const router = Router();
 
@@ -6,92 +8,71 @@ const {
   townhallRule, farmRule, mineRule, academyRule, foxRule,
 } = require('../rules');
 
-const myBuildings = {
-  buildings: [
-    {
-      id: 1,
-      type: 'Townhall',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 2,
-      type: 'Academy',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 3,
-      type: 'Farm',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 4,
-      type: 'Mine',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-  ],
-};
-
-function getBuildings(req, res) {
-  return res.status(200).send(myBuildings);
+async function getBuildings(req, res, next) {
+  try {
+    const buildings = await BuildingModel.find({}, '-_id');
+    res.send({ buildings });
+  } catch (error) {
+    next(error);
+  }
 }
 
-function getBuildingById(req, res) {
-  const buildingId = Number.parseInt(req.params.buildingId, 10);
-  if (Number.isNaN(buildingId) || buildingId <= 0) {
-    return res.sendStatus(400);
+async function createBuilding(req, res, next) {
+  const type = req.params.buildingType;
+  const buildings = await BuildingModel.find({});
+  const index = buildings.length ? buildings.length + 1 : 1;
+  try {
+    const result = await BuildingModel.create({
+      id: index,
+      type,
+      level: 1,
+      owner: 1,
+    });
+    res.send(result);
+  } catch (error) {
+    next(error);
   }
-  const targetBuilding = myBuildings.buildings.filter((building) => buildingId === building.id);
-  if (targetBuilding.length > 0) {
-    switch (targetBuilding[0].type) {
-      case 'Townhall':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: townhallRule,
-            troopsRules: foxRule,
-          },
-        });
-      case 'Academy':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: academyRule,
-            troopsRules: foxRule,
-          },
-        });
-      case 'Farm':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: farmRule,
-            troopsRules: foxRule,
-          },
-        });
-      case 'Mine':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: mineRule,
-            troopsRules: foxRule,
-          },
-        });
-      default:
-        return res.sendStatus(404);
+}
+
+function findSelectedRules(type) {
+  switch (type) {
+    case 'Townhall':
+      return townhallRule;
+    case 'Academy':
+      return academyRule;
+    case 'Farm':
+      return farmRule;
+    case 'Mine':
+      return mineRule;
+    default:
+      return null;
+  }
+}
+
+async function getBuildingById(req, res, next) {
+  const id = Number.parseInt(req.params.buildingId, 10);
+  try {
+    if (Number.isNaN(id) || id <= 0) {
+      throw createError(400, 'Please use a valid building id');
     }
+    const targetBuilding = await BuildingModel.find({ id }, '-_id').limit(1);
+    if (targetBuilding.length === 0) {
+      throw createError(404, 'Buildings list is empty');
+    }
+    res.send({
+      building: targetBuilding[0],
+      rules: {
+        buildingRules: findSelectedRules(targetBuilding[0].type),
+        troopsRules: foxRule,
+      },
+    });
+  } catch (error) {
+    next(error);
   }
-  return res.sendStatus(404);
 }
 
 router.get('/', getBuildings);
+router.post('/:buildingType', createBuilding);
 router.get('/:buildingId', getBuildingById);
 
 module.exports = router;
