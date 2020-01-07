@@ -4,7 +4,7 @@
 
 ```js
 {
-  uid: ObjectID,
+  uid: ObjectId,
   username: String,
   email: String,
   password: String,
@@ -14,16 +14,49 @@
 
 
 
+#### Get a user
+
+Get a specified user by id
+
+```
+GET /users/1
+```
+
+
+
+#### Register a user
+
+Register a user by giving some informations
+
+```
+POST /users/register
+```
+
+
+
+##### Request
+
+```json
+{
+  "username": "kyya",
+  "password": "233qwq"
+}
+```
+
+
+
 ### Building
 
 ```js
 {
-  _id:ObjectID,
+  _id: ObjectId,
   type: String,
   level: Number,
   owner: Number,
 }
 ```
+
+
 
 #### Get buildings
 
@@ -47,6 +80,8 @@ POST /kingdom/buildings/:buildingType
 | ------------ | ---------------------------------------------------------- |
 | buildingType | The type of building have been created<br />{ Farm, Mine } |
 
+
+
 #### Upgrade a selected building
 
 description
@@ -58,6 +93,8 @@ PUT /kingdom/buildings/:id/upgrade
 | param | Description                               |
 | ----- | ----------------------------------------- |
 | id    | The ID of selected building to be upgrade |
+
+
 
 ### Troop
 
@@ -80,6 +117,8 @@ PUT /kingdom/buildings/:id/upgrade
   hp: Number
 }
 ```
+
+
 
 #### Get troops
 
