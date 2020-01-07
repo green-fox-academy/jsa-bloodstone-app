@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Text, Button, TextInput, StyleSheet,
 } from 'react-native';
-import Toast from 'react-native-simple-toast';
+import { Toast } from 'native-base';
 import { Notifications } from 'expo';
 
 import sendNotification from '.';
@@ -36,7 +36,12 @@ function NotificationTestExample() {
   function handlePress() {
     sendNotification({ title, body, token })
       .then(() => {
-        Toast.show(`${title} - ${body} has been sent.`);
+        Toast.show({
+          type: 'success',
+          duration: 5000,
+          text: `${title} - ${body} has been sent.`,
+          buttonText: 'Okay',
+        });
       });
   }
   return (
