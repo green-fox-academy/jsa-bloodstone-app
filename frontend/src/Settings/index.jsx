@@ -57,6 +57,13 @@ function Settings() {
   const [passwordInput, setPasswordInput] = useState('');
   const navigation = useNavigation();
 
+  function resetForm() {
+    setEmailInput('');
+    setUsernameInput('');
+    setKingdomNameInput('');
+    setPasswordInput('');
+  }
+
   function handleSubmit() {
     const settings = {};
     let message = '';
@@ -77,6 +84,7 @@ function Settings() {
       message += 'Your password has changed.\n';
     }
     Alert.alert('Settings', message);
+    resetForm();
   }
 
   function handleCancel() {
