@@ -34,7 +34,10 @@ describe('troops actions', () => {
     });
     const expectedActions = [
       { type: actionCreator.FETCH_TROOPS_REQUEST },
-      { type: actionCreator.FETCH_TROOPS_FAILURE, payload: new Error(404) },
+      {
+        type: actionCreator.FETCH_TROOPS_FAILURE,
+        payload: new Error('An error has occurred, please try later!'),
+      },
     ];
     const store = mockStore();
     return store.dispatch(actionCreator.fetchTroops()).then(() => {
