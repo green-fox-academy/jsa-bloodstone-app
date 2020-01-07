@@ -12,7 +12,7 @@ const schemaOptions = {
 };
 
 const troopSchema = new Schema({
-  owner: Number,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
   countByLevel: [Object],
 }, schemaOptions);
 
@@ -27,20 +27,43 @@ function getDefenceByLevel(level) {
 troopSchema.virtual('attack').get(function () {
   return this.countByLevel
     .map((item) => item.count * getAttackByLevel(item.level))
-    .reduce((a, b) => a + b);
+    .reduce(((a, b) => a + b), 0);
 });
 
 troopSchema.virtual('defence').get(function () {
   return this.countByLevel
     .map((item) => item.count * getDefenceByLevel(item.level))
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => a + b, 0);
 });
 
 troopSchema.virtual('hp').get(function () {
   return this.countByLevel
     .map((item) => item.count)
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => a + b, 0);
 });
+
+troopSchema.statics.createTroop = async function (owner, level) {
+  const troop = await this.findOne({ owner });
+  if (!troop) {
+    return this.create({
+      owner,
+      countByLevel: [{
+        level,
+        count: 1,
+      }],
+    });
+  }
+  const index = troop.countByLevel.findIndex((element) => element.level === level);
+  if (index !== -1) {
+    troop.countByLevel[index].count += 1;
+  } else {
+    troop.countByLevel.push({
+      level,
+      count: 1,
+    });
+  }
+  return troop.save();
+};
 
 const TroopModel = conn.model('Troop', troopSchema);
 module.exports = TroopModel;

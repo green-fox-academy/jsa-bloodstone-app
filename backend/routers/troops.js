@@ -6,9 +6,9 @@ const router = Router();
 
 async function getTroops(req, res, next) {
   const { user } = req;
-  console.log(user);
+  const { _id } = user;
   try {
-    const troops = await TroopModel.find({ owner: user.id });
+    const troops = await TroopModel.find({ owner: _id });
     res.send({ troops });
   } catch (error) {
     next(error);
@@ -17,19 +17,11 @@ async function getTroops(req, res, next) {
 
 async function createTroop(req, res, next) {
   const { user } = req;
-  console.log(user);
+  const { _id } = user;
   const level = Number.parseInt(req.query.level, 10) || 1;
-  const countByLevel = {
-    level,
-    count: 1,
-  };
-
   try {
-    const result = await TroopModel.create({
-      owner: 1,
-      countByLevel,
-    });
-    res.send(result);
+    const troops = await TroopModel.createTroop(_id, level);
+    res.send({ troops });
   } catch (error) {
     next(error);
   }
