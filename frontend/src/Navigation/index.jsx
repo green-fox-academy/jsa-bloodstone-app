@@ -85,11 +85,18 @@ const AuthLoadingStack = createStackNavigator({
   },
 }, hideHeaderOptions);
 
+const MapStack = createStackNavigator({
+  Map: {
+    screen: Map,
+    path: 'map/',
+  },
+}, hideHeaderOptions);
+
 const AppNavigator = createSwitchNavigator({
-  Map,
   Auth: AuthStack,
   Home: HomeStack,
   AuthLoading: AuthLoadingStack,
+  Map: MapStack,
 }, {
   initialRouteName: 'AuthLoading',
   ...hideHeaderOptions,
