@@ -18,7 +18,7 @@ function SubmitButton({
     },
     text: {
       fontSize: 16,
-      color: Colors.textColor,
+      color: Colors.whiteColor,
       textAlign: 'center',
     },
   });
