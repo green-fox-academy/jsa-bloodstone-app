@@ -4,7 +4,7 @@ import {
 } from './actionCreator';
 
 const initialState = {
-  email: 'Example@email.com',
+  email: 'example@email.com',
   username: 'New Username',
   kingdomName: 'Your kingdom\'s new name',
   isLoading: false,
