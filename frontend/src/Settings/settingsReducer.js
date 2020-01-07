@@ -30,9 +30,6 @@ export default function settings(state = initialState, action) {
     case CHANGE_SETTINGS_SUCCESS:
       return {
         ...state,
-        email: action.payload.email,
-        username: action.payload.username,
-        kingdomName: action.payload.kingdomName,
         isLoading: false,
       };
     case CHANGE_SETTINGS_FAILURE:
