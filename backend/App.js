@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
 app.use('/kingdom/troops', troops);
 app.use('/kingdom/buildings', buildings);
 app.use('/kingdom/resources', resources);
+app.use('/kingdom/progresses', progresses);
 app.use('/notification', notification);
 app.use('/users', users);
-app.use('/kingdom/progresses', progresses);
 
 app.use((err, req, res, next) => {
   const { status, message } = err;
