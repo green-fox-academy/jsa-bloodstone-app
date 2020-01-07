@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TroopInformation /> Should render buildings and match the snapshot 1`] = `
+exports[`<TroopInformation /> Should render troop information and match the snapshot 1`] = `
 <View
   style={
     Array [

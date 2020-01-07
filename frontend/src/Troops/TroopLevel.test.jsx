@@ -7,7 +7,7 @@ jest.mock('react-redux');
 jest.mock('./actionCreator');
 
 describe('<TroopLevel />', () => {
-  it('Should render buildings and match the snapshot', () => {
+  it('Should render troop level and match the snapshot', () => {
     const component = renderer.create(<TroopLevel />);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();

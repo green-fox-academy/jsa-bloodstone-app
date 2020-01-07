@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<InputField /> Should render buildings and match the snapshot 1`] = `
+exports[`<InputField /> Should render input field and match the snapshot 1`] = `
 <View
   style={
     Array [
