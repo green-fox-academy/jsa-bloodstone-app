@@ -10,6 +10,7 @@ const userSchema = new Schema({
   id: Number,
   email: String,
   username: String,
+  password: String,
   kingdomName: String,
   kingdomList: [Number],
 }, schemaOptions);
