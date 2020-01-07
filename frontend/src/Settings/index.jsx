@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigation } from 'react-navigation-hooks';
 import {
   View, Text, Alert, StyleSheet, ImageBackground,
 } from 'react-native';
@@ -54,6 +55,7 @@ function Settings() {
   const [usernameInput, setUsernameInput] = useState('');
   const [kingdomNameInput, setKingdomNameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const navigation = useNavigation();
 
   function handleSubmit() {
     const settings = {};
@@ -75,6 +77,10 @@ function Settings() {
       message += 'Your password has changed.\n';
     }
     Alert.alert('Settings', message);
+  }
+
+  function handleCancel() {
+    navigation.navigate('MyKingdom');
   }
 
   const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
@@ -118,7 +124,7 @@ function Settings() {
 
         <View style={styles.buttonRow}>
           <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} text="Save" />
-          <SubmitButton text="Cancel" />
+          <SubmitButton onPress={handleCancel} text="Cancel" />
         </View>
         <View style={styles.footer}>
           <SubmitButton style={styles.logoutButton} text="Logout" />
