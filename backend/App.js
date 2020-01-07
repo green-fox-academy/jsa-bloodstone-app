@@ -20,6 +20,8 @@ app.use('/kingdom/progresses', progresses);
 app.use('/notification', notification);
 app.use('/users', users);
 app.use('/kingdom/progresses', progresses);
+app.use('/users', users);
+app.use('/auth', auth);
 
 app.use((err, req, res, next) => {
   const { status, message } = err;
