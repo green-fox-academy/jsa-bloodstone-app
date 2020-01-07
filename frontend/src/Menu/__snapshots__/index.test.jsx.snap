@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Menu /> Should render buildings and match the snapshot 1`] = `
+exports[`<Menu /> Should render menu and match the snapshot 1`] = `
 <View
   style={
     Array [
