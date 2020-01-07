@@ -19,8 +19,6 @@ app.use('/kingdom/resources', resources);
 app.use('/kingdom/progresses', progresses);
 app.use('/notification', notification);
 app.use('/users', users);
-app.use('/kingdom/progresses', progresses);
-app.use('/users', users);
 
 app.use((err, req, res, next) => {
   const { status, message } = err;

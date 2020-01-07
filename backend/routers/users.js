@@ -96,48 +96,39 @@ async function login(req, res, next) {
   }
 }
 
-// async function sendUserInfo(req, res, next) {
-//   try {
-//     const { username, email, kingdomName } = req.user;
-//     const response = { username, email, kingdomName };
-//     res.status(200).send(response);
-//   } catch (error) {
-//     next(error);
-//   }
-// }
-
 async function resetUserInfo(req, res, next) {
   const { username: oldUsername } = req.user;
   const {
     username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
   } = req.body;
   try {
-    const changedValue = [];
     let changedTarget = {};
     if (newUsername) {
-      changedValue.push('username');
       changedTarget = Object.assign(changedTarget, { username: newUsername });
     }
     if (newEmail) {
-      changedValue.push('email');
       changedTarget = Object.assign(changedTarget, { email: newEmail });
     }
     if (newPassword) {
-      changedValue.push('password');
       changedTarget = Object.assign(changedTarget, { password: newPassword });
     }
     if (newKingdomName) {
-      changedValue.push('kingdomName');
       changedTarget = Object.assign(changedTarget, { kingdomName: newKingdomName });
     }
-
+    const changedValue = Object.keys(changedTarget);
+    if (changedValue.length === 0) {
+      throw createError(400, 'Please fill at least one element');
+    }
     const user = await UserModel.findOneAndUpdate(
-      { oldUsername },
-      changedTarget,
-      { new: true, fields: '-_id' && 'password' },
-    ).exec();
+      { username: oldUsername },
+      { $set: changedTarget },
+      { new: true, fields: '-_id' },
+    );
+    if (!user) {
+      throw createError(400, 'Can\'t find this username in database');
+    }
     const message = `${changedValue.join(', ')} are successfully changed!`;
-    res.status(202).send(user, message);
+    res.status(202).send({ message });
   } catch (error) {
     next(error);
   }
@@ -146,6 +137,6 @@ async function resetUserInfo(req, res, next) {
 router.get('/:uid?', getUser);
 router.post('/login', login);
 router.post('/register', register);
-router.patch('/kingdom', auth, resetUserInfo);
+router.patch('/setting', auth, resetUserInfo);
 
 module.exports = router;
