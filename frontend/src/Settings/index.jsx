@@ -102,14 +102,14 @@ function Settings() {
       <View style={styles.container}>
         <Text style={styles.titleText}>Settings</Text>
 
-        <Text style={styles.labelText}>email</Text>
+        <Text style={styles.labelText}>Email</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.email)}
           value={emailInput}
           onChangeText={(value) => setEmailInput(value)}
         />
 
-        <Text style={styles.labelText}>username</Text>
+        <Text style={styles.labelText}>Username</Text>
         <InputField
           placeholder={useSelector((state) => state.settings.username)}
           value={usernameInput}
@@ -123,7 +123,7 @@ function Settings() {
           onChangeText={(value) => setKingdomNameInput(value)}
         />
 
-        <Text style={styles.labelText}>password</Text>
+        <Text style={styles.labelText}>Password</Text>
         <InputField
           placeholder="password123"
           value={passwordInput}
