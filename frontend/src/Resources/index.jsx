@@ -11,6 +11,7 @@ import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 import Colors from '../common/colors';
 import { CardView } from '../common/components';
+import ErrorPopup from '../ErrorPopup';
 
 import { fetchResources } from './actionCreator';
 
@@ -104,7 +105,7 @@ function Resources() {
 
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorPopup message={`Oops, ${error.message}`} />
     );
   }
 

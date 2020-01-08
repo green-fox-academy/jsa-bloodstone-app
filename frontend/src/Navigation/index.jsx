@@ -2,11 +2,15 @@ import React from 'react';
 import { createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import Settings from '../Settings';
 import colors from '../common/colors';
 import Game from '../Game';
 import Login from '../Login';
+import ForgottenPassword from '../Login/ForgottenPassword';
+import Registration from '../Registration';
+import Map from '../Map';
+import AuthLoadingScreen from '../AuthLoadingScreen';
 
 const hideHeaderOptions = {
   headerMode: 'none',
@@ -63,6 +67,8 @@ const AuthStack = createStackNavigator({
     screen: Login,
     path: 'login/',
   },
+  Registration,
+  ForgottenPassword,
 }, hideHeaderOptions);
 
 const HomeStack = createStackNavigator({
@@ -72,11 +78,20 @@ const HomeStack = createStackNavigator({
   },
 }, hideHeaderOptions);
 
+const AuthLoadingStack = createStackNavigator({
+  AuthLoading: {
+    screen: AuthLoadingScreen,
+    path: 'authLoading/',
+  },
+}, hideHeaderOptions);
+
 const AppNavigator = createSwitchNavigator({
+  Map,
   Auth: AuthStack,
   Home: HomeStack,
+  AuthLoading: AuthLoadingStack,
 }, {
-  initialRouteName: 'Auth',
+  initialRouteName: 'AuthLoading',
   ...hideHeaderOptions,
 });
 

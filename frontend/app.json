@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true
     },
-    "entryPoint": "./src/App.jsx"
+    "entryPoint": "./src/App.jsx",
+    "notification": {
+      "iosDisplayInForeground": true
+    }
   }
 }

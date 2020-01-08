@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View, ActivityIndicator,
-  Text, StyleSheet,
+  StyleSheet,
 } from 'react-native';
 import Colors from '../common/colors';
 
 import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
 import TroopLevel from './TroopLevel';
+import ErrorPopup from '../ErrorPopup';
 
 const styles = StyleSheet.create({
   levelList: {
@@ -49,7 +50,7 @@ function Troops() {
 
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorPopup message={`Oops, ${error.message}`} />
     );
   }
 

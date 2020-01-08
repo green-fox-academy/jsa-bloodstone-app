@@ -11,7 +11,7 @@ const schemaOptions = {
 };
 
 const progressSchema = new Schema({
-  owner: Number,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
   category: String,
   type: String,
   toLevel: Number,

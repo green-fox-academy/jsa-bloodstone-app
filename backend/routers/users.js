@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const createError = require('http-errors');
 const { UserModel } = require('../models');
+const { auth } = require('../middlewares');
 
 const router = Router();
 
@@ -12,7 +13,7 @@ async function getUser(req, res, next) {
     if (!id) {
       throw createError(400, 'Please specify user id');
     }
-    const user = await UserModel.find({ id }, '-_id').limit(1);
+    const user = await UserModel.find({ id });
     if (user.length === 0) {
       throw createError(404, 'User not found with that id');
     }
@@ -95,8 +96,47 @@ async function login(req, res, next) {
   }
 }
 
+async function resetUserInfo(req, res, next) {
+  const { username: oldUsername } = req.user;
+  const {
+    username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
+  } = req.body;
+  try {
+    const changedTarget = {};
+    if (newUsername) {
+      changedTarget.username = newUsername;
+    }
+    if (newEmail) {
+      changedTarget.email = newEmail;
+    }
+    if (newPassword) {
+      changedTarget.password = newPassword;
+    }
+    if (newKingdomName) {
+      changedTarget.kingdomName = newKingdomName;
+    }
+    const changedValue = Object.keys(changedTarget);
+    if (changedValue.length === 0) {
+      throw createError(400, 'Please fill at least one element');
+    }
+    const user = await UserModel.findOneAndUpdate(
+      { username: oldUsername },
+      { $set: changedTarget },
+      { new: true, fields: '-_id' },
+    );
+    if (!user) {
+      throw createError(400, 'Can\'t find this username in database');
+    }
+    const message = `${changedValue.join(', ')} are successfully changed!`;
+    res.status(202).send({ message });
+  } catch (error) {
+    next(error);
+  }
+}
+
+router.get('/:uid?', getUser);
 router.post('/login', login);
 router.post('/register', register);
-router.get('/:uid?', getUser);
+router.patch('/setting', auth, resetUserInfo);
 
 module.exports = router;

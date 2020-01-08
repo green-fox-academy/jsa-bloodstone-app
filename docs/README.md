@@ -45,6 +45,30 @@ POST /users/register
 
 
 
+### Setting
+
+#### Reset user information
+
+```
+PATCH /users/setting
+```
+
+
+
+##### Request
+
+```json
+ex.:
+{
+  "username": "kyya",
+  "email": "kyya@gmail.com",
+  "password": "233qwq",
+  "kingdomName": "Kyya's Kingdom"
+}
+```
+
+
+
 ### Building
 
 ```js
@@ -52,7 +76,7 @@ POST /users/register
   _id: ObjectId,
   type: String,
   level: Number,
-  owner: Number,
+  owner: ObjectId,
 }
 ```
 

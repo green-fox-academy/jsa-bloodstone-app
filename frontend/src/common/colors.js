@@ -14,5 +14,5 @@ export default {
   white90Color: 'rgba(255,255,255,0.9)',
   greenColor: '#68AA2F',
   orangeColor: '#FD730B',
-  blueColor: '#2196f3',
+  blueColor: '#1976d2',
 };
