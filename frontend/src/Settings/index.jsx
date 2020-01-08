@@ -10,6 +10,7 @@ import Colors from '../common/colors';
 import background from '../../assets/login/background.jpg';
 
 import { InputField } from '../common/components';
+import ErrorPopup from '../ErrorPopup';
 import SubmitButton from './SubmitButton';
 
 const styles = StyleSheet.create({
@@ -110,7 +111,7 @@ function Settings() {
 
   if (error) {
     return (
-      <Text>{`Oops, ${error.message}`}</Text>
+      <ErrorPopup message={`Oops, ${error.message}`} />
     );
   }
 
