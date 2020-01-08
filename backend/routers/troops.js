@@ -14,6 +14,7 @@ async function getTroops(req, res, next) {
 
 async function createTroop(req, res, next) {
   const level = Number.parseInt(req.query.level, 10) || 1;
+  const { _id: owner } = req.user;
   const countByLevel = {
     level,
     count: 1,
@@ -21,7 +22,7 @@ async function createTroop(req, res, next) {
 
   try {
     const result = await TroopModel.create({
-      owner: 1,
+      owner,
       countByLevel,
     });
     res.send(result);
