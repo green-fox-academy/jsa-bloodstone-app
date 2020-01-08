@@ -13,7 +13,7 @@ async function getUser(req, res, next) {
     if (!id) {
       throw createError(400, 'Please specify user id');
     }
-    const user = await UserModel.find({ id }, '-_id').limit(1);
+    const user = await UserModel.find({ id });
     if (user.length === 0) {
       throw createError(404, 'User not found with that id');
     }
