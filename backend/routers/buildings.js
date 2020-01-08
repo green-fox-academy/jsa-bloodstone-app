@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const createError = require('http-errors');
 const { BuildingModel, ResourceModel } = require('../models');
+const { auth } = require('../middlewares');
 
 const router = Router();
 
@@ -16,8 +17,9 @@ const typeToRules = {
 };
 
 async function getBuildings(req, res, next) {
+  const { _id: owner } = req.user;
   try {
-    const buildings = await BuildingModel.find({ owner: 1 }, '-_id');
+    const buildings = await BuildingModel.find({ owner });
     res.send({ buildings });
   } catch (error) {
     next(error);
@@ -25,6 +27,7 @@ async function getBuildings(req, res, next) {
 }
 
 async function createBuilding(req, res, next) {
+  const { _id: owner } = req.user;
   const { buildingType } = req.params;
   try {
     if (!buildingType) {
@@ -35,7 +38,7 @@ async function createBuilding(req, res, next) {
     }
 
     const moneyRequired = parseInt(typeToRules[buildingType].constructionCost, 10);
-    const resourceOfUser = await ResourceModel.find({ owner: 1 });
+    const resourceOfUser = await ResourceModel.find({ owner });
     const [moneyInHand] = resourceOfUser
       .filter(({ type }) => (type === 'gold'))
       .map(({ amount }) => amount);
@@ -44,13 +47,13 @@ async function createBuilding(req, res, next) {
     }
 
     const minusGold = await ResourceModel.findOneAndUpdate(
-      { owner: 1, type: 'gold' },
+      { owner, type: 'gold' },
       { $inc: { amount: -{ moneyRequired } } },
       { new: true, fields: '-_id' },
     ).exec();
     const createNewBuilding = await BuildingModel.create({
-      buildingType,
-      owner: 1,
+      type: buildingType,
+      owner,
     });
     res.send({ minusGold, createNewBuilding });
   } catch (error) {
@@ -59,14 +62,11 @@ async function createBuilding(req, res, next) {
 }
 
 async function getBuildingById(req, res, next) {
-  const id = Number.parseInt(req.params.buildingId, 10);
+  const id = req.params.buildingId;
   try {
-    if (Number.isNaN(id) || id <= 0) {
-      throw createError(400, 'Please use a valid building id');
-    }
-    const [building] = await BuildingModel.find({ id }, '-_id').limit(1);
+    const building = await BuildingModel.findById(id);
     if (!building) {
-      throw createError(404, 'Buildings list is empty');
+      throw createError(404, 'This building doesn\'t exist.');
     }
     res.send({
       building,
@@ -81,13 +81,10 @@ async function getBuildingById(req, res, next) {
 }
 
 async function upgradeBuildingById(req, res, next) {
-  const id = Number.parseInt(req.params.buildingId, 10);
+  const id = req.params.buildingId;
   try {
-    if (Number.isNaN(id) || id <= 0) {
-      throw createError(400, 'Please use a valid building id');
-    }
-    const result = await BuildingModel.findOneAndUpdate(
-      { id }, { $inc: { level: 1 } }, { new: true, fields: '-_id' },
+    const result = await BuildingModel.findByIdAndUpdate(
+      id, { $inc: { level: 1 } }, { new: true },
     ).exec();
     res.status(200).send(result);
   } catch (error) {
@@ -95,8 +92,8 @@ async function upgradeBuildingById(req, res, next) {
   }
 }
 
-router.get('/', getBuildings);
-router.post('/:buildingType', createBuilding);
+router.get('/', auth, getBuildings);
+router.post('/:buildingType', auth, createBuilding);
 router.get('/:buildingId', getBuildingById);
 router.post('/:buildingId/upgrade', upgradeBuildingById);
 

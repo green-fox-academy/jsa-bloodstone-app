@@ -76,7 +76,7 @@ ex.:
   _id: ObjectId,
   type: String,
   level: Number,
-  owner: Number,
+  owner: ObjectId,
 }
 ```
 
