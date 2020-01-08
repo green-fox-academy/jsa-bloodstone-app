@@ -2,6 +2,14 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import Colors from './colors';
 
+const shadowEffect = {
+  shadowColor: Colors.blackColor,
+  shadowOpacity: 0.1,
+  shadowOffset: { x: 0, y: 4 },
+  shadowRadius: 5,
+  elevation: 3,
+};
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -15,15 +23,11 @@ export default StyleSheet.create({
     letterSpacing: 0.15,
   },
   cardStyle: {
-    shadowColor: Colors.blackColor,
-    shadowOpacity: 0.1,
-    shadowOffset: { x: 0, y: 4 },
-    shadowRadius: 6,
+    ...shadowEffect,
     padding: 15,
     marginBottom: 10,
-    backgroundColor: Colors.whiteColor,
-    borderRadius: 6,
-    elevation: 3,
+    borderRadius: 5,
+    backgroundColor: Colors.transparentWhiteColor,
   },
   subCardStyle: {
     shadowColor: Colors.blackColor,
@@ -42,12 +46,11 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  shadowEffect: {
-    shadowColor: Colors.blackColor,
-    shadowOpacity: 0.1,
-    shadowOffset: { x: 0, y: 4 },
-    shadowRadius: 6,
-    elevation: 3,
+  keyboardAvoidContainer: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   keyboardAvoidContainer: {
     width: '100%',

@@ -1,21 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  View, Text, StyleSheet,
-} from 'react-native';
+import { View, Text } from 'react-native';
 
 import ResourceItem from './ResourceItem';
 import { fetchResources } from './actionCreator';
 import ErrorPopup from '../ErrorPopup';
-
-const styles = StyleSheet.create({
-  headerStyle: {
-    marginTop: 12,
-    paddingHorizontal: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 
 function Resources() {
   const dispatch = useDispatch();
@@ -34,10 +23,9 @@ function Resources() {
   }
 
   return (
-    <View>
-      <Text style={styles.headerStyle}>Resources</Text>
-      <ResourceItem type="gold" amount={goldAmount} rate={goldGeneration} />
+    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
       <ResourceItem type="cookie" amount={foodAmount} rate={foodGeneration} />
+      <ResourceItem type="gold" amount={goldAmount} rate={goldGeneration} />
     </View>
   );
 }

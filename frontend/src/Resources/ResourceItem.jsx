@@ -1,13 +1,10 @@
 import React from 'react';
 import {
   View, Image, StyleSheet, Text,
-  TouchableNativeFeedback, Platform, TouchableHighlight,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Colors from '../common/colors';
 
-import factoryIcon from '../../assets/buildings/factory.png';
-import mineIcon from '../../assets/buildings/mine.png';
 import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 
@@ -15,25 +12,20 @@ const icons = {
   gold: {
     type: 'gold',
     resourceIcon: goldIcon,
-    buildingIcon: mineIcon,
   },
   cookie: {
     type: 'cookie',
     resourceIcon: cookieIcon,
-    buildingIcon: factoryIcon,
   },
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  buildingIcon: {
-    width: 48,
-    height: 48,
-    marginRight: 10,
+    // borderWidth: 1,
   },
   resourceIcon: {
     width: 14,
@@ -41,12 +33,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
     color: Colors.textColor,
     fontWeight: 'bold',
   },
   subText: {
-    fontSize: 14,
+    fontSize: 10,
     color: Colors.greenColor,
   },
   row: {
@@ -59,10 +51,10 @@ const getRateText = (rate) => {
   let rateStr;
   let textColor;
   if (rate < 0) {
-    rateStr = `${rate}/minute`;
+    rateStr = `${rate}/min`;
     textColor = Colors.orangeColor;
   } else {
-    rateStr = `+${rate}/minute`;
+    rateStr = `+${rate}/min`;
     textColor = Colors.greenColor;
   }
   return { rateStr, textColor };
@@ -70,23 +62,19 @@ const getRateText = (rate) => {
 
 function ResourceItem({ type, amount, rate }) {
   const { rateStr, textColor } = getRateText(rate);
-  const { buildingIcon, resourceIcon } = icons[type];
-  const Element = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight;
+  const { resourceIcon } = icons[type];
   return (
-    <Element>
-      <View style={styles.container}>
-        <Image style={styles.buildingIcon} source={buildingIcon} />
-        <View>
-          <View style={styles.row}>
-            <Text style={styles.text}>{amount}</Text>
-            <Image style={styles.resourceIcon} source={resourceIcon} />
-          </View>
-          <View>
-            <Text style={{ ...styles.subText, color: textColor }}>{rateStr}</Text>
-          </View>
+    <View style={styles.container}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={styles.row}>
+          <Image style={styles.resourceIcon} source={resourceIcon} />
+          <Text style={styles.text}>{amount}</Text>
+        </View>
+        <View style={{ marginLeft: 4 }}>
+          <Text style={{ ...styles.subText, color: textColor }}>{rateStr}</Text>
         </View>
       </View>
-    </Element>
+    </View>
   );
 }
 

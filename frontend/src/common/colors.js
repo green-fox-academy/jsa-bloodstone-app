@@ -12,6 +12,7 @@ export default {
   white20Color: 'rgba(255,255,255,0.2)',
   white25Color: 'rgba(255,255,255,0.25)',
   white90Color: 'rgba(255,255,255,0.9)',
+  transparentWhiteColor: '#ffffffdd',
   greenColor: '#68AA2F',
   orangeColor: '#FD730B',
   blueColor: '#1976d2',
