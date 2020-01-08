@@ -18,8 +18,8 @@ import purplePlanetImg from '../../assets/map/purple-planet.png';
 import { getPlanetAnimation, resetPlanetAnimation } from './animations';
 
 const PLANET_IMAGES = {
-  blue: { title: 'Junter', src: bluePlanetImg },
-  green: { title: 'Greennnn', src: greenPlanetImg },
+  blue: { title: 'Juniper', src: bluePlanetImg },
+  green: { title: 'Gree', src: greenPlanetImg },
   yellow: { title: 'Orhsad', src: yellowPlanetImg },
   red: { title: 'Pinnkl', src: redPlanetImg },
   purple: { title: 'Purrrrl', src: purplePlanetImg },

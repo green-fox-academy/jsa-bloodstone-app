@@ -18,7 +18,7 @@ function RegistrationMap() {
       text: `You selected ${selected} planet.`,
       buttonText: 'Okay',
     });
-    navigation.navigate('Home');
+    navigation.navigate('Auth');
   }
   return (
     <View style={StyleSheet.absoluteFill}>
