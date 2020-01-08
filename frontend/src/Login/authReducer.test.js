@@ -8,6 +8,16 @@ describe('auth reducer', () => {
     );
   });
 
+  it('should return the initial state', () => {
+    expect(
+      reducer(undefined, {
+        type: actionCreator.FORGOT_PASSWORD,
+      }),
+    ).toEqual(
+      { isLoggedIn: false },
+    );
+  });
+
   it('should handle LOGIN', () => {
     expect(
       reducer({ isLoggedIn: false }, {
