@@ -39,7 +39,7 @@ describe('resources actions', () => {
       { type: actionCreator.FETCH_RESOURCES_REQUEST },
       {
         type: actionCreator.FETCH_RESOURCES_FAILURE,
-        payload: new Error(404),
+        payload: new Error('An error has occurred, please try later!'),
       },
     ];
     const store = mockStore();
