@@ -5,10 +5,8 @@ import {
 const initialState = {
   foodAmount: 0,
   foodGeneration: 0,
-
   goldAmount: 0,
   goldGeneration: 0,
-
   isLoading: false,
   error: undefined,
 };
@@ -20,13 +18,10 @@ export default function resources(state = initialState, action) {
     case FETCH_RESOURCES_SUCCESS:
       return {
         ...state,
-
         foodAmount: action.payload[0].amount,
         foodGeneration: action.payload[0].generation,
-
         goldAmount: action.payload[1].amount,
         goldGeneration: action.payload[1].generation,
-
         isLoading: false,
         error: undefined,
       };

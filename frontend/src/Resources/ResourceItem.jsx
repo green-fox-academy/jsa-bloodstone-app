@@ -53,6 +53,16 @@ const getRateText = (rate) => {
   return { rateStr, textColor };
 };
 
+function handleAmount(amount) {
+  if (amount > 1000000) {
+    return `${Number.parseInt(amount / 1000000, 10)}M`;
+  }
+  if (amount > 1000) {
+    return `${Number.parseInt(amount / 1000, 10)}K`;
+  }
+  return `${amount}`;
+}
+
 function ResourceItem({ type, amount, rate }) {
   const { rateStr, textColor } = getRateText(rate);
   const { icon } = ICONS[type];
@@ -61,7 +71,7 @@ function ResourceItem({ type, amount, rate }) {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={styles.row}>
           <Image style={styles.iconStyle} source={icon} />
-          <Text style={styles.text}>{amount}</Text>
+          <Text style={styles.text}>{handleAmount(amount)}</Text>
         </View>
         <View style={{ marginLeft: 4 }}>
           <Text style={{ ...styles.subText, color: textColor }}>{rateStr}</Text>
