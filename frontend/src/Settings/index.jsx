@@ -9,33 +9,33 @@ import Colors from '../common/colors';
 
 import background from '../../assets/login/background.jpg';
 
-import InputField from './InputField';
+import { InputField } from '../common/components';
 import SubmitButton from './SubmitButton';
 
 const styles = StyleSheet.create({
   titleText: {
     margin: 20,
+    alignSelf: 'center',
     fontSize: 36,
     color: Colors.whiteColor,
     fontWeight: 'bold',
   },
   labelText: {
-    width: 280,
     fontSize: 16,
     color: Colors.whiteColor,
   },
   buttonRow: {
-    width: 280,
     height: 60,
     paddingTop: 6,
     flexDirection: 'row-reverse',
     alignItems: 'flex-start',
+    justifyContent: 'space-evenly',
   },
   container: {
     flex: 1,
     paddingTop: 40,
-    flexDirection: 'column',
-    alignItems: 'center',
+    alignSelf: 'center',
+    width: 300,
   },
   background: {
     width: '100%',
@@ -44,10 +44,11 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     justifyContent: 'flex-end',
+    alignItems: 'center',
     marginBottom: 60,
   },
   logoutButton: {
-    width: 280,
+    width: 300,
   },
 });
 
@@ -148,6 +149,7 @@ function Settings() {
           placeholder="password123"
           value={passwordInput}
           onChangeText={(value) => setPasswordInput(value)}
+          secureTextEntry
         />
 
         <View style={styles.buttonRow}>

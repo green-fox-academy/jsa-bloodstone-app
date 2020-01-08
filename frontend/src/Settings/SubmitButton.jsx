@@ -12,7 +12,6 @@ function SubmitButton({
     button: {
       borderRadius: 5,
       width: 100,
-      marginLeft: 10,
       padding: 10,
       backgroundColor: disabled ? Colors.greyColor : Colors.tealColor,
     },
