@@ -8,32 +8,25 @@ import Colors from '../common/colors';
 import cookieIcon from '../../assets/troop/cookie.png';
 import goldIcon from '../../assets/gold.png';
 
-const icons = {
-  gold: {
-    type: 'gold',
-    resourceIcon: goldIcon,
-  },
-  cookie: {
-    type: 'cookie',
-    resourceIcon: cookieIcon,
-  },
+const ICONS = {
+  gold: { type: 'gold', icon: goldIcon },
+  cookie: { type: 'cookie', icon: cookieIcon },
 };
 
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: 7,
     paddingHorizontal: 10,
-    paddingVertical: 6,
     flexDirection: 'row',
     alignItems: 'center',
-    // borderWidth: 1,
   },
-  resourceIcon: {
+  iconStyle: {
     width: 14,
     height: 14,
     marginHorizontal: 4,
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.textColor,
     fontWeight: 'bold',
   },
@@ -62,12 +55,12 @@ const getRateText = (rate) => {
 
 function ResourceItem({ type, amount, rate }) {
   const { rateStr, textColor } = getRateText(rate);
-  const { resourceIcon } = icons[type];
+  const { icon } = ICONS[type];
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={styles.row}>
-          <Image style={styles.resourceIcon} source={resourceIcon} />
+          <Image style={styles.iconStyle} source={icon} />
           <Text style={styles.text}>{amount}</Text>
         </View>
         <View style={{ marginLeft: 4 }}>
@@ -79,7 +72,7 @@ function ResourceItem({ type, amount, rate }) {
 }
 
 ResourceItem.propTypes = {
-  type: PropTypes.oneOf(Object.keys(icons)).isRequired,
+  type: PropTypes.oneOf(Object.keys(ICONS)).isRequired,
   amount: PropTypes.number.isRequired,
   rate: PropTypes.number.isRequired,
 };

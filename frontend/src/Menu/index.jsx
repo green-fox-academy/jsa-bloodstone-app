@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { CardView } from '../common/components';
 import { changeDisplayedComponent } from './actionCreator';
 
@@ -24,6 +24,22 @@ const styles = StyleSheet.create({
     padding: 0,
     height: 150,
   },
+  headerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.08)',
+    marginHorizontal: 10,
+  },
+  titleStyle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  itemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+  },
 });
 
 function Menu() {
@@ -36,10 +52,13 @@ function Menu() {
 
   return (
     <CardView style={styles.container}>
-      <View style={{ borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.08)', marginHorizontal: 10 }}>
+      <View style={styles.headerStyle}>
+        <View style={{ paddingVertical: 7 }}>
+          <Text style={styles.titleStyle}>My Kingdom</Text>
+        </View>
         <Resources />
       </View>
-      <View style={{ flexDirection: 'row', flex: 1, padding: 10 }}>
+      <View style={styles.itemContainer}>
         {ICON_LIST.map((element) => (
           <MenuItem
             key={element.url}

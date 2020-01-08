@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 import ResourceItem from './ResourceItem';
 import { fetchResources } from './actionCreator';
