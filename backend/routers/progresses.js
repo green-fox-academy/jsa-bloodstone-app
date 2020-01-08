@@ -8,9 +8,7 @@ async function getProgress(req, res, next) {
   const { _id: owner } = req.user;
   try {
     const result = await ProgressModel.find(
-      {
-        owner,
-      },
+      { owner },
       {
         category: true,
         type: true,
