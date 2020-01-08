@@ -104,16 +104,16 @@ async function resetUserInfo(req, res, next) {
   try {
     let changedTarget = {};
     if (newUsername) {
-      changedTarget = Object.assign(changedTarget, { username: newUsername });
+      changedTarget.username = newUsername;
     }
     if (newEmail) {
-      changedTarget = Object.assign(changedTarget, { email: newEmail });
+      changedTarget.email = newEmail;
     }
     if (newPassword) {
-      changedTarget = Object.assign(changedTarget, { password: newPassword });
+      changedTarget.password = newPassword;
     }
     if (newKingdomName) {
-      changedTarget = Object.assign(changedTarget, { kingdomName: newKingdomName });
+      changedTarget.kingdomName = newKingdomName;
     }
     const changedValue = Object.keys(changedTarget);
     if (changedValue.length === 0) {
