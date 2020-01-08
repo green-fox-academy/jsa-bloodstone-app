@@ -102,7 +102,7 @@ async function resetUserInfo(req, res, next) {
     username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
   } = req.body;
   try {
-    let changedTarget = {};
+    const changedTarget = {};
     if (newUsername) {
       changedTarget.username = newUsername;
     }
