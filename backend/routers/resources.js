@@ -1,12 +1,14 @@
 const { Router } = require('express');
 const { ResourceModel } = require('../models');
+const { auth } = require('../middlewares');
 
 const router = Router();
 
 async function getResources(req, res, next) {
+  const { _id: owner } = req.user;
   try {
     const result = await ResourceModel.find({
-      owner: 1,
+      owner,
     });
     const resultFiltered = result.map(
       ({ type, generation, amount }) => ({ type, generation, amount }),
@@ -17,6 +19,6 @@ async function getResources(req, res, next) {
   }
 }
 
-router.get('/', getResources);
+router.get('/', auth, getResources);
 
 module.exports = router;
