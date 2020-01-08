@@ -12,7 +12,7 @@ const schemaOptions = {
 };
 
 const troopSchema = new Schema({
-  owner: Number,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
   countByLevel: [Object],
 }, schemaOptions);
 
