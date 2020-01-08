@@ -1,63 +1,40 @@
 import React, { useState } from 'react';
-import {
-  View, Text, StyleSheet, ImageBackground, ScrollView, Button, Alert,
-} from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
-import PlanetItem from './PlanetItem';
+import { View, StyleSheet, ImageBackground } from 'react-native';
+import { Toast } from 'native-base';
+
+import PlanetSwitch from './PlanetSwitch';
 import background from '../../assets/map/space.jpg';
+import styles from '../common/styles';
 
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFill,
-  },
-  scrollViewContainer: {
-    padding: 20,
-    flexGrow: 1,
-  },
-  background: {
-    width: '100%',
-    height: '100%',
-  },
-});
-
-function Map() {
+function RegistrationMap() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
-  const displayList = ['blue', 'green', 'orange', 'pink', 'purple'];
+
   function handleSubmit() {
-    Alert.alert('INFO', selected);
+    Toast.show({
+      type: 'success',
+      duration: 5000,
+      text: `You selected ${selected} planet.`,
+      buttonText: 'Okay',
+    });
     navigation.navigate('Home');
   }
-
   return (
-    <View style={styles.container}>
+    <View style={StyleSheet.absoluteFill}>
       <ImageBackground
-        style={styles.background}
         resizeMode="cover"
         source={background}
+        style={styles.background}
       >
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollViewContainer}
-        >
-          {displayList.map(
-            (item) => (
-              <PlanetItem
-                key={item}
-                type={item}
-                selected={selected}
-                onSelect={(type) => setSelected(type)}
-              />
-            ),
-          )}
-        </ScrollView>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Text style={{ color: '#fff', paddingHorizontal: 10 }}>{`Current: ${selected}`}</Text>
-          <Button title="OK" onPress={handleSubmit} />
-        </View>
+        <PlanetSwitch
+          selected={selected}
+          onSelectChange={setSelected}
+          onSubmit={handleSubmit}
+        />
       </ImageBackground>
     </View>
   );
 }
 
-export default Map;
+export default RegistrationMap;
