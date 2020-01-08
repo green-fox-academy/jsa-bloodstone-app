@@ -9,7 +9,7 @@ describe('Progresses', () => {
         .expect('Content-Type', /json/)
         .expect(200, done);
     });
-  });
+  }).timeout(5000);
 
   describe('GET /kingdom/progresses/non-exist', () => {
     it('should return 404 when accessing non-exist endpoints', (done) => {

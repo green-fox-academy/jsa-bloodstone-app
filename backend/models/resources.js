@@ -11,7 +11,7 @@ const schemaOptions = {
 };
 
 const resourceSchema = new Schema({
-  owner: Number,
+  owner: Schema.Types.ObjectId,
   type: String,
   initialAmount: Number,
   generation: Number,
