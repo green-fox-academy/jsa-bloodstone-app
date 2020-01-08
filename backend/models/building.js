@@ -9,7 +9,7 @@ const schemaOptions = {
 const buildingSchema = new Schema({
   type: String,
   level: { type: Number, default: 1 },
-  owner: Schema.Types.ObjectId,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
 }, schemaOptions);
 
 const BuildingModel = conn.model('Building', buildingSchema);
