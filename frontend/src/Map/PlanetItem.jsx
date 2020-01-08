@@ -43,15 +43,14 @@ const styles = StyleSheet.create({
 });
 
 function PlanetItem({
-  initialSize, type, selected, onSelectChange, onSubmit,
+  initialSize, type, active, onSelectChange, onSubmit,
 }) {
   const planetImage = PLANET_IMAGES[type];
   const [planetSize] = useState(new Animated.Value(initialSize));
   const [rotateZ] = useState(new Animated.Value(0));
 
   function handlePress() {
-    console.log(`PlanetItem: ${onSelectChange}`);
-    if (type !== selected) {
+    if (!active) {
       getPlanetAnimation(initialSize, planetSize, rotateZ).start();
       onSelectChange(type);
     } else {
@@ -60,10 +59,10 @@ function PlanetItem({
   }
 
   useEffect(() => {
-    if (type !== selected) {
+    if (!active) {
       resetPlanetAnimation(initialSize, planetSize, rotateZ).start();
     }
-  }, [selected]);
+  }, [active]);
 
   const itemStyle = {
     width: planetSize,
@@ -85,7 +84,7 @@ function PlanetItem({
         </Animated.View>
         <View style={styles.textContainer}>
           <Animated.Text numberOfLines={1} style={textStyle}>{planetImage.title}</Animated.Text>
-          {type === selected
+          {active
             ? (
               <TouchableWithoutFeedback onPress={onSubmit}>
                 <Ionicons
@@ -105,14 +104,15 @@ function PlanetItem({
 PlanetItem.propTypes = {
   initialSize: PropTypes.number,
   type: PropTypes.oneOf(Object.keys(PLANET_IMAGES)).isRequired,
-  selected: PropTypes.string,
+  active: PropTypes.bool,
   onSelectChange: PropTypes.func,
   onSubmit: PropTypes.func,
+
 };
 
 PlanetItem.defaultProps = {
   initialSize: 100,
-  selected: null,
+  active: false,
   onSelectChange: null,
   onSubmit: null,
 };

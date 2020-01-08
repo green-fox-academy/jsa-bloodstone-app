@@ -24,11 +24,11 @@ function PlanetSwitch({
       contentContainerStyle={styles.scrollViewContainer}
     >
       {displayList.map(
-        (item) => (
+        (type) => (
           <PlanetItem
-            key={item}
-            type={item}
-            selected={selected}
+            key={type}
+            type={type}
+            active={type === selected}
             onSelectChange={onSelectChange}
             onSubmit={onSubmit}
           />
