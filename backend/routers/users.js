@@ -58,14 +58,16 @@ async function register(req, res, next) {
       throw createError(400, 'Email is already taken.');
     }
     const passwordHash = await bcrypt.hash(password, 8);
-    const result = await UserModel.create({
+    const user = await UserModel.create({
       email,
       username,
       password: passwordHash,
       kingdomName: kingdomName || `${username}'s kingdom`,
       kingdomList: [],
     });
-    res.status(200).send(result);
+    user.password = undefined;
+    const token = jwt.sign({ user }, process.env.APP_SECRET || 'testSecret');
+    res.status(201).send({ token });
   } catch (error) {
     next(error);
   }
@@ -96,7 +98,7 @@ async function login(req, res, next) {
   }
 }
 
-async function resetUserInfo(req, res, next) {
+async function updateUserInfo(req, res, next) {
   const { username: oldUsername } = req.user;
   const {
     username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
@@ -137,6 +139,6 @@ async function resetUserInfo(req, res, next) {
 router.get('/:uid?', getUser);
 router.post('/login', login);
 router.post('/register', register);
-router.patch('/setting', auth, resetUserInfo);
+router.patch('/settings', auth, updateUserInfo);
 
 module.exports = router;

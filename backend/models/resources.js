@@ -24,4 +24,14 @@ resourceSchema.virtual('amount').get(function () {
   return Math.round(this.initialAmount + this.generation * minutesPassed);
 });
 
+resourceSchema.statics.createNewItem = async function (owner, priceOfItem) {
+  const currentAmountOfGoal = await this.findOne({ owner, type: 'goal' });
+  if (currentAmountOfGoal.amount < priceOfItem) {
+    return false;
+  }
+  currentAmountOfGoal.initialAmount -= priceOfItem;
+  await currentAmountOfGoal.save();
+  return true;
+}
+
 module.exports = conn.model('Resource', resourceSchema);
