@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const {
-  users, troops, buildings, resources, notification, progresses,
+  users, setup, troops, buildings, resources, notification, progresses,
 } = require('./routers');
 
 const app = express();
@@ -19,6 +19,7 @@ app.use('/kingdom/resources', resources);
 app.use('/kingdom/progresses', progresses);
 app.use('/notification', notification);
 app.use('/users', users);
+app.use('/kingdom/register', setup);
 
 app.use((err, req, res, next) => {
   const { status, message } = err;
