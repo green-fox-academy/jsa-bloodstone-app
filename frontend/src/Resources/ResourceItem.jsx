@@ -3,6 +3,7 @@ import {
   View, Image, StyleSheet, Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import AnimateNumber from 'react-native-animate-number';
 import Colors from '../common/colors';
 
 import cookieIcon from '../../assets/troop/cookie.png';
@@ -60,18 +61,20 @@ function handleAmount(amount) {
   if (amount >= 10000) {
     return `${Number.parseInt(amount / 1000, 10)}K`;
   }
-  return `${amount}`;
+  return `${Number.parseInt(amount, 10)}`;
 }
 
 function ResourceItem({ type, amount, rate }) {
   const { rateStr, textColor } = getRateText(rate);
   const { icon } = ICONS[type];
+
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={styles.row}>
           <Image style={styles.iconStyle} source={icon} />
-          <Text style={styles.text}>{handleAmount(amount)}</Text>
+          <AnimateNumber value={amount} formatter={handleAmount} />
+          {/* <Text style={styles.text}>{amount}</Text> */}
         </View>
         <View style={{ marginLeft: 4 }}>
           <Text style={{ ...styles.subText, color: textColor }}>{rateStr}</Text>
