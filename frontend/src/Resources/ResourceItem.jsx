@@ -54,10 +54,10 @@ const getRateText = (rate) => {
 };
 
 function handleAmount(amount) {
-  if (amount > 1000000) {
+  if (amount >= 10000000) {
     return `${Number.parseInt(amount / 1000000, 10)}M`;
   }
-  if (amount > 1000) {
+  if (amount >= 10000) {
     return `${Number.parseInt(amount / 1000, 10)}K`;
   }
   return `${amount}`;
