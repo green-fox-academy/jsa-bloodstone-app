@@ -27,25 +27,10 @@ import mineIcon from '../../assets/buildings/mine.png';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // borderWidth: 1,
-    // borderColor: '#fff',
-    // paddingBottom: 120,
-  },
-  scrollViewStyle: {
-    flex: 1,
-    // borderWidth: 1,
-    // borderColor: 'blue',
-    // marginHorizontal: -5,
-    // marginBottom: -10,
   },
   scrollViewContainer: {
-    justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    borderWidth: 1,
-    borderColor: 'red',
-    // paddingHorizontal: 10,
-    // paddingVertical: 16,
   },
   textStyle: {
     fontSize: 15,
@@ -114,10 +99,10 @@ function Buildings() {
           />
         ))}
       </CardView>
-      <CardView style={{ flex: 1, width: '100%', padding: 0, marginBottom: 0 }}>
+      <CardView style={{ flex: 1, padding: 0, marginBottom: 0 }}>
         <ScrollView
           bounces
-          style={styles.scrollViewStyle}
+          style={{ flex: 1 }}
           contentContainerStyle={styles.scrollViewContainer}
         >
           {listOfBuildings.map((building) => (
