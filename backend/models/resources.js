@@ -26,17 +26,15 @@ resourceSchema.virtual('amount').get(function () {
 
 resourceSchema.statics.purchaseItem = async function (owner, priceOfItem) {
   const currentAmountOfGoal = await this.findOne({ owner, type: 'gold' });
-  if (!currentAmountOfGoal){
+  if (!currentAmountOfGoal) {
     return false;
   }
-  //console.log(currentAmountOfGoal);
   if (currentAmountOfGoal.amount < priceOfItem) {
     return false;
   }
   currentAmountOfGoal.initialAmount -= priceOfItem;
   await currentAmountOfGoal.save();
-  //console.log(currentAmountOfGoal);
   return true;
-}
+};
 
 module.exports = conn.model('Resource', resourceSchema);
