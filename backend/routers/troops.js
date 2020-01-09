@@ -5,9 +5,9 @@ const { auth } = require('../middlewares');
 const router = Router();
 
 async function getTroops(req, res, next) {
-  const { _id } = req.user;
+  const { _id: owner } = req.user;
   try {
-    const troops = await TroopModel.find({ owner: _id });
+    const troops = await TroopModel.find({ owner });
     res.send({ troops });
   } catch (error) {
     next(error);
@@ -15,10 +15,10 @@ async function getTroops(req, res, next) {
 }
 
 async function createTroop(req, res, next) {
-  const { _id } = req.user;
+  const { _id: owner } = req.user;
   const level = Number.parseInt(req.query.level, 10) || 1;
   try {
-    const troops = await TroopModel.createTroop(_id, level);
+    const troops = await TroopModel.createTroop(owner, level);
     res.send({ troops });
   } catch (error) {
     next(error);
