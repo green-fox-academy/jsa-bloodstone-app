@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Troops from '../Troops';
 import Leaderboard from '../Leaderboard';
 import Buildings from '../Buildings';
+import Battle from '../Battle';
 
 const mainViewStyle = {
   flex: 1,
@@ -20,7 +21,7 @@ function MainView() {
       componentToRender = <Troops />;
       break;
     case 'Battle':
-      componentToRender = <Text>not implemented</Text>;
+      componentToRender = <Battle />;
       break;
     case 'Leaderboard':
       componentToRender = <Leaderboard />;
