@@ -28,7 +28,8 @@ async function getBuildings(req, res, next) {
 
 async function createBuilding(req, res, next) {
   const { _id: owner } = req.user;
-  const { buildingType } = req.body;
+  const buildingType = req.body.type;
+  //console.log(buildingType);
   try {
     if (!buildingType) {
       throw createError(400, 'Type is required');
@@ -38,22 +39,10 @@ async function createBuilding(req, res, next) {
     }
 
     const priceOfItem = parseInt(buildingRules[buildingType].constructionCost, 10);
-    const upgradeBuilding = await ResourceModel.createNewItem(owner, priceOfItem);
-    if (!upgradeBuilding){
+    const purchase = await ResourceModel.purchaseItem(owner, priceOfItem);
+    if (!purchase){
       throw createError(400, 'You don\'t have enough money');
     }
-    // const resourcesOfUser = await ResourceModel.find({ owner });
-    // const [moneyInHand] = resourcesOfUser
-    //   .filter(({ type }) => (type === 'gold'))
-    //   .map(({ amount }) => amount);
-    // if (moneyRequired > moneyInHand) {
-    //   throw createError(400, 'You don\'t have enough money');
-    // }
-    // const minusGold = await ResourceModel.findOneAndUpdate(
-    //   { owner, type: 'gold' },
-    //   { $inc: { amount: -{ moneyRequired } } },
-    //   { new: true, fields: '-_id' },
-    // ).exec();
     const newBuilding = await BuildingModel.create({
       type: buildingType,
       owner,
@@ -87,16 +76,42 @@ async function getBuildingById(req, res, next) {
   }
 }
 
-
-// TODO
 async function upgradeBuildingById(req, res, next) {
   const { _id: owner } = req.user;
   const id = req.params.buildingId;
   try {
-    const result = await BuildingModel.findOneAndUpdate(
-      { id, owner }, { $inc: { level: 1 } }, { new: true },
-    ).exec();
-    res.status(200).send(result);
+    const { level: maxLevel } = await BuildingModel.findOne({ type: "Townhall", owner });
+    console.log(maxLevel);
+    const upgradeBuilding = await BuildingModel.findOne({ _id: id, owner });
+    console.log(upgradeBuilding);
+    if(!upgradeBuilding){
+      throw createError(400, 'This building doesn\'t exist');
+    }
+    if(upgradeBuilding.level >= maxLevel){
+      throw createError(400, 'Currently this building reaches its maximum level');
+    }
+    let priceOfItem = 0;
+    switch(upgradeBuilding.level){
+      case 1:
+        priceOfItem = parseInt(buildingRules[upgradeBuilding.type].upgradingCostLevel1, 10);
+        break;
+      case 2:
+        priceOfItem = parseInt(buildingRules[upgradeBuilding.type].upgradingCostLevel2, 10);
+        break;
+      case 3:
+        priceOfItem = parseInt(buildingRules[upgradeBuilding.type].upgradingCostLevel3, 10);
+        break;
+      default:
+        priceOfItem = 1;
+    }
+    console.log(priceOfItem);
+    const purchase = await ResourceModel.purchaseItem(owner, priceOfItem);
+    if (!purchase){
+      throw createError(400, 'You don\'t have enough money');
+    }
+    upgradeBuilding.level += 1;
+    await upgradeBuilding.save();
+    res.status(202).send(upgradeBuilding);
   } catch (error) {
     next(error);
   }

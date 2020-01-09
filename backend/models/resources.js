@@ -24,13 +24,18 @@ resourceSchema.virtual('amount').get(function () {
   return Math.round(this.initialAmount + this.generation * minutesPassed);
 });
 
-resourceSchema.statics.createNewItem = async function (owner, priceOfItem) {
-  const currentAmountOfGoal = await this.findOne({ owner, type: 'goal' });
+resourceSchema.statics.purchaseItem = async function (owner, priceOfItem) {
+  const currentAmountOfGoal = await this.findOne({ owner, type: 'gold' });
+  if (!currentAmountOfGoal){
+    return false;
+  }
+  //console.log(currentAmountOfGoal);
   if (currentAmountOfGoal.amount < priceOfItem) {
     return false;
   }
   currentAmountOfGoal.initialAmount -= priceOfItem;
   await currentAmountOfGoal.save();
+  //console.log(currentAmountOfGoal);
   return true;
 }
 
