@@ -89,7 +89,7 @@ function Registration() {
       .then(() => {
         setIsLoading(false);
         Alert.alert('Congratulation', 'Registration Success.');
-        navigation.navigate('Map');
+        navigation.navigate('Login');
       })
       .catch((error) => {
         setIsLoading(false);
