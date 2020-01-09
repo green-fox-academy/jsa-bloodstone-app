@@ -11,14 +11,12 @@ import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
 import TroopLevel from './TroopLevel';
 import ErrorPopup from '../ErrorPopup';
+import { CardView } from '../common/components';
 
 const styles = StyleSheet.create({
   levelList: {
     paddingVertical: 10,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    paddingBottom: 3,
-    borderRadius: 7,
+    marginTop: 8,
   },
 });
 
@@ -49,15 +47,11 @@ function Troops() {
   }, []);
 
   if (error) {
-    return (
-      <ErrorPopup message={`Oops, ${error.message}`} />
-    );
+    return <ErrorPopup message={`Oops, ${error.message}`} />;
   }
 
   if (isLoading) {
-    return (
-      <ActivityIndicator size="large" color={Colors.tealColor} />
-    );
+    return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
   const level1TroopNum = listOfTroops.filter((troop) => troop.level === 1).length;
@@ -68,7 +62,7 @@ function Troops() {
   const sustenance = level1TroopNum + level2TroopNum + level3TroopNum;
 
   return (
-    <View style={{ flexDirection: 'column' }}>
+    <CardView style={{ flex: 1 }}>
       <TroopInformation
         attack={attack}
         defence={defence}
@@ -79,7 +73,7 @@ function Troops() {
         level2TroopNum={level2TroopNum}
         level3TroopNum={level3TroopNum}
       />
-    </View>
+    </CardView>
   );
 }
 
