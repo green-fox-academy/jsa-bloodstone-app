@@ -1,14 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { CardView } from '../common/components';
 import { changeDisplayedComponent } from './actionCreator';
+
 import MenuItem from './MenuItem';
+import Resources from '../Resources';
+
 import buildingMenuIcon from '../../assets/menu/Buildings.png';
 import troopsMenuIcon from '../../assets/menu/Troops.png';
 import battleMenuIcon from '../../assets/menu/Battle.png';
 import leaderBoardMenuIcon from '../../assets/menu/Leaderboard.png';
-import Colors from '../common/colors';
 
 const ICON_LIST = [
   { name: 'Buildings', url: buildingMenuIcon },
@@ -19,10 +21,24 @@ const ICON_LIST = [
 
 const styles = StyleSheet.create({
   container: {
+    padding: 0,
+    height: 150,
+  },
+  headerStyle: {
     flexDirection: 'row',
-    height: 120,
-    paddingVertical: 10,
-    backgroundColor: Colors.whiteColor,
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.08)',
+    marginHorizontal: 10,
+  },
+  titleStyle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  itemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
   },
 });
 
@@ -36,15 +52,23 @@ function Menu() {
 
   return (
     <CardView style={styles.container}>
-      {ICON_LIST.map((element) => (
-        <MenuItem
-          key={element.url}
-          src={element.url}
-          name={element.name}
-          onPress={handlePress}
-          activeComponent={activeComponent}
-        />
-      ))}
+      <View style={styles.headerStyle}>
+        <View style={{ paddingVertical: 7 }}>
+          <Text style={styles.titleStyle}>My Kingdom</Text>
+        </View>
+        <Resources />
+      </View>
+      <View style={styles.itemContainer}>
+        {ICON_LIST.map((element) => (
+          <MenuItem
+            key={element.url}
+            src={element.url}
+            name={element.name}
+            onPress={handlePress}
+            activeComponent={activeComponent}
+          />
+        ))}
+      </View>
     </CardView>
   );
 }
