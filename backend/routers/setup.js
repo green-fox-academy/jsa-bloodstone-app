@@ -54,7 +54,9 @@ async function setupBasicItems(req, res, next) {
       { owner, type: 'food', updatedAt: currentTime },
       { owner, type: 'gold', updatedAt: currentTime },
     );
-    res.status(201).send({ message: 'Welcome to Your Kingdom'});
+    res.status(201).send({
+      setupBuilding, setupTroop, setupResource, message: 'Welcome to Your Kingdom',
+    });
   } catch (error) {
     next(error);
   }
