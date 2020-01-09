@@ -73,7 +73,7 @@ function ResourceItem({ type, amount, rate }) {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={styles.row}>
           <Image style={styles.iconStyle} source={icon} />
-          <AnimateNumber value={amount} formatter={handleAmount} />
+          <AnimateNumber style={styles.text} value={amount} formatter={handleAmount} />
           {/* <Text style={styles.text}>{amount}</Text> */}
         </View>
         <View style={{ marginLeft: 4 }}>
