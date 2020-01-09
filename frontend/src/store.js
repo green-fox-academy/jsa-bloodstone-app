@@ -10,6 +10,7 @@ import registration from './Registration/registReducer';
 import troops from './Troops/troopReducer';
 import resources from './Resources/resourcesReducer';
 import oneBuilding from './OneBuilding/oneBuildingReducer';
+import settings from './Settings/settingsReducer';
 
 const rootReducer = combineReducers({
   auth,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   troops,
   resources,
   oneBuilding,
+  settings,
 });
 
 const persistConfig = {
