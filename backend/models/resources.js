@@ -13,8 +13,8 @@ const schemaOptions = {
 const resourceSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   type: String,
-  initialAmount: Number,
-  generation: Number,
+  initialAmount: { type: Number, default: 200 },
+  generation: { type: Number, default: 60 },
   updatedAt: Number,
 }, schemaOptions);
 
