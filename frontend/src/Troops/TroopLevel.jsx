@@ -11,9 +11,9 @@ import troopRound from '../../assets/troop/troop.png';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: 6,
     alignItems: 'center',
-    marginHorizontal: 10,
+    // marginHorizontal: 10,
   },
   roundAvatar: {
     width: 40,
