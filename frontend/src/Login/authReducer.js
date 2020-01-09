@@ -1,16 +1,24 @@
 import {
-  LOGIN,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
   FORGOT_PASSWORD,
 } from './actionCreator';
 
 const initialState = {
-  isLoggedIn: false,
+  isLoading: false,
+  token: '',
+  message: '',
 };
 
 export default function auth(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
-      return { ...state, isLoggedIn: true };
+    case LOGIN_REQUEST:
+      return { ...state, isLoading: true };
+    case LOGIN_SUCCESS:
+      return { ...state, isLoading: false, token: action.payload };
+    case LOGIN_FAILURE:
+      return { ...state, isLoading: false, message: action.payload.message };
     case FORGOT_PASSWORD:
       return state;
     default:

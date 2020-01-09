@@ -3,7 +3,11 @@ import { SERVER_URL } from 'react-native-dotenv';
 export const FETCH_ONE_BUILDING_REQUEST = 'fetchOneBuildingRequest';
 export const FETCH_ONE_BUILDING_SUCCESS = 'fetchOneBuildingSuccess';
 export const FETCH_ONE_BUILDING_FAILURE = 'fetchOneBuildingFailure';
+export const UPGRADE_ONE_BUILDING_REQUEST = 'upgradeOneBuildingRequest';
+export const UPGRADE_ONE_BUILDING_SUCCESS = 'upgradeOneBuildingSuccess';
+export const UPGRADE_ONE_BUILDING_FAILURE = 'upgradeOneBuildingFailure';
 
+// need to changed
 const URL = `http://${SERVER_URL}/kingdom/buildings/`;
 
 export function fetchOneBuilding(buildingId) {

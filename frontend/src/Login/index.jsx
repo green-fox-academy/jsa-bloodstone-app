@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text,
-  ImageBackground, Alert,
+  View, StyleSheet, Text, Alert,
+  ImageBackground, ActivityIndicator,
   TouchableHighlight, KeyboardAvoidingView,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import { login } from './actionCreator';
 
@@ -35,6 +35,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: Colors.whiteColor,
   },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.white20Color,
+  },
 });
 
 const mockedUser = {
@@ -48,6 +54,9 @@ function showAlert(text) {
 
 function Login() {
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.auth);
+  const {isLoading, message} = userInfo;
+
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -70,6 +79,13 @@ function Login() {
       resizeMode="cover"
       source={background}
     >
+      {isLoading && (
+        <Popup>
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" />
+          </View>
+        </Popup>
+      )}
       <KeyboardAvoidingView
         enabled
         behavior="padding"
