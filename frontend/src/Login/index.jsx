@@ -43,11 +43,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const mockedUser = {
-  username: 'kyya',
-  password: 'password',
-};
-
 function showAlert(text) {
   Alert.alert('Warning', text);
 }
@@ -55,7 +50,7 @@ function showAlert(text) {
 function Login() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth);
-  const {isLoading, message} = userInfo;
+  const {isLoading, error} = userInfo;
 
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
@@ -66,10 +61,7 @@ function Login() {
     if (name === '' || password === '') {
       return showAlert('All the input fields are required.');
     }
-    if (name !== mockedUser.username || password !== mockedUser.password) {
-      return showAlert('Wrong username or password.');
-    }
-    dispatch(login());
+    dispatch(login(username, password));
     return navigation.navigate('Home');
   }
 
@@ -86,7 +78,7 @@ function Login() {
           </View>
         </Popup>
       )}
-      {/* {message && (
+      {/* {error && (
         <Popup>
           <View style={styles.loading}>
             <Text>{message}</Text>

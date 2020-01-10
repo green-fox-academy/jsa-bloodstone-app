@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
 
 function Settings() {
   const error = useSelector((state) => state.settings.error);
+  const token = useSelector((state) => state.auth.token);
   const [emailInput, setEmailInput] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [kingdomNameInput, setKingdomNameInput] = useState('');
@@ -105,6 +106,10 @@ function Settings() {
 
   function handleCancel() {
     navigation.navigate('MyKingdom');
+  }
+
+  function handleLogout() {
+    navigation.navigate('Auth');
   }
 
   const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
@@ -158,7 +163,7 @@ function Settings() {
           <SubmitButton onPress={handleCancel} text="Cancel" />
         </View>
         <View style={styles.footer}>
-          <SubmitButton style={styles.logoutButton} text="Logout" />
+          <SubmitButton style={styles.logoutButton} text="Logout" onPress={handleLogout} />
         </View>
       </View>
     </ImageBackground>

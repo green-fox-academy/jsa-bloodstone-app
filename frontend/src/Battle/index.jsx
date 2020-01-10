@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Text } from 'react-native';
 import battleAnimation from '../../assets/ship.gif';
 
 const styles = StyleSheet.create({
@@ -15,7 +15,8 @@ function Battle() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.imageContainer}>
-        <Image resizeMode="center" source={battleAnimation} />
+        {/* <Image resizeMode="center" source={battleAnimation} /> */}
+        <Text>Hahahahahaahahahaha</Text>
       </View>
     </View>
   );

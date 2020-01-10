@@ -5,7 +5,7 @@ import {
   StyleSheet, ActivityIndicator,
 } from 'react-native';
 
-import { fetchBuildings, addBuildingSuccess } from './actionCreator';
+import { fetchBuildings, addBuildings } from './actionCreator';
 
 import addFarmIcon from '../../assets/buildings/addFarm.png';
 import addMineIcon from '../../assets/buildings/addMine.png';
@@ -76,17 +76,20 @@ function Buildings() {
     setModalVisible(false);
   };
 
+  const { token } = useSelector((state) => state.auth);
+  console.log(`token: ${token}`);
+
   useEffect(() => {
-    dispatch(fetchBuildings());
-  }, []);
+    dispatch(fetchBuildings(token));
+  }, [buildings.length]);
 
   function handlePress(id) {
     setModalVisible(true);
     setActiveId(id);
   }
 
-  function addNewBuilding(type) {
-    dispatch(addBuildingSuccess(type));
+  function addNewBuilding(type, token) {
+    dispatch(addBuildings(type, token));
   }
 
   if (error) {
@@ -120,7 +123,7 @@ function Buildings() {
               key={addBuildingIcon.type}
               icon={addBuildingIcon.url}
               type={addBuildingIcon.type}
-              onPress={() => addNewBuilding(addBuildingIcon.type)}
+              onPress={() => addNewBuilding(addBuildingIcon.type, token)}
             />
           ))}
         </View>

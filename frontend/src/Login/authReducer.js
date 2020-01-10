@@ -7,8 +7,8 @@ import {
 
 const initialState = {
   isLoading: false,
-  token: '',
-  message: '',
+  token: undefined,
+  error: undefined,
 };
 
 export default function auth(state = initialState, action) {
@@ -16,9 +16,9 @@ export default function auth(state = initialState, action) {
     case LOGIN_REQUEST:
       return { ...state, isLoading: true };
     case LOGIN_SUCCESS:
-      return { ...state, isLoading: false, token: action.payload };
+      return { ...state, isLoading: false, token: action.payload, error: undefined };
     case LOGIN_FAILURE:
-      return { ...state, isLoading: false, message: action.payload.message };
+      return { ...state, isLoading: false, error: action.payload };
     case FORGOT_PASSWORD:
       return state;
     default:

@@ -22,11 +22,16 @@ export default function buildings(state = initialState, action) {
       return {
         ...state, listOfBuildings: action.payload, isLoading: false, error: undefined,
       };
+    case ADD_BUILDING_SUCCESS:
+      return {
+        ...state,
+        listOfBuildings: [...state.listOfBuildings, action.payload],
+        isLoading: false,
+        error: undefined,
+      };
     case FETCH_BUILDINGS_FAILURE:
     case ADD_BUILDING_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    case ADD_BUILDING_SUCCESS:
-      return { ...state, listOfBuildings: [...state.listOfBuildings, action.payload] };
     default:
       return state;
   }

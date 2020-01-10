@@ -46,7 +46,7 @@ async function createBuilding(req, res, next) {
       type: buildingType,
       owner,
     });
-    res.send({ newBuilding });
+    res.status(201).send({ newBuilding });
   } catch (error) {
     next(error);
   }
@@ -60,7 +60,8 @@ async function getBuildingById(req, res, next) {
     if (!building) {
       throw createError(404, 'This building doesn\'t exist.');
     }
-    if (building.owner != owner) {
+    const { owner: buildingOwner } = building;
+    if (buildingOwner !== owner) {
       throw createError(404, 'This building doesn\'t belong to you');
     }
     res.send({
