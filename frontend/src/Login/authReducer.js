@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   FORGOT_PASSWORD,
+  LOGOUT,
 } from './actionCreator';
 
 const initialState = {
@@ -16,11 +17,15 @@ export default function auth(state = initialState, action) {
     case LOGIN_REQUEST:
       return { ...state, isLoading: true };
     case LOGIN_SUCCESS:
-      return { ...state, isLoading: false, token: action.payload, error: undefined };
+      return {
+        ...state, isLoading: false, token: action.payload, error: undefined,
+      };
     case LOGIN_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case FORGOT_PASSWORD:
       return state;
+    case LOGOUT:
+      return { ...state, token: undefined };
     default:
       return state;
   }

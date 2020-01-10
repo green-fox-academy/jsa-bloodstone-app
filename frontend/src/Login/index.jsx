@@ -57,12 +57,21 @@ function Login() {
   const [password, setPassword] = useState('');
 
   function handleSubmit() {
-    const name = username.toLowerCase();
+    const name = username.toLowerCase().trim();
     if (name === '' || password === '') {
       return showAlert('All the input fields are required.');
     }
-    dispatch(login(username, password));
-    return navigation.navigate('Home');
+    dispatch(login(name, password))
+      .then((response) => {
+        if (response.type === 'loginSuccess') {
+          navigation.navigate('Home');
+        }
+        if (response.type === 'loginFailure') {
+          return showAlert('wrong username or password.');
+        }
+        return null;
+      });
+    return null;
   }
 
   return (
