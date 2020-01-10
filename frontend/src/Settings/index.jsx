@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
 
 function Settings() {
   const error = useSelector((state) => state.settings.error);
-  const token = useSelector((state) => state.auth.token);
   const [emailInput, setEmailInput] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [kingdomNameInput, setKingdomNameInput] = useState('');
