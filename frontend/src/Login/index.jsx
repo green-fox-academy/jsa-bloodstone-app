@@ -86,6 +86,13 @@ function Login() {
           </View>
         </Popup>
       )}
+      {/* {message && (
+        <Popup>
+          <View style={styles.loading}>
+            <Text>{message}</Text>
+          </View>
+        </Popup>
+      )} */}
       <KeyboardAvoidingView
         enabled
         behavior="padding"
