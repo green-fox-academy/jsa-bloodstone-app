@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
 
 function AuthLoadingScreen() {
   const navigation = useNavigation();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { token } = useSelector((state) => state.auth);
   setTimeout(() => {
-    if (isLoggedIn) {
+    if (token) {
       return navigation.navigate('Home');
     }
     return navigation.navigate('Auth');
