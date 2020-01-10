@@ -19,15 +19,15 @@ export function fetchBuildings(token) {
         'Content-Type': 'application/json',
       }
     })
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          return response.json();
-        }
-        throw new Error('An error has occurred, please try later!');
-      })
-      .then((response) => dispatch({ type: FETCH_BUILDINGS_SUCCESS, payload: response.buildings }))
-      .catch((error) => dispatch({ type: FETCH_BUILDINGS_FAILURE, payload: error }));
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        return response.json();
+      }
+      throw new Error('An error has occurred, please try later!');
+    })
+    .then((response) => dispatch({ type: FETCH_BUILDINGS_SUCCESS, payload: response.buildings }))
+    .catch((error) => dispatch({ type: FETCH_BUILDINGS_FAILURE, payload: error }));
   };
 }
 
@@ -68,7 +68,7 @@ export function addBuildings(type, token) {
       }
       throw new Error('An error has occurred, please try later!');
     })
-    .then((response) => dispatch({ type: ADD_BUILDING_SUCCESS, payload: response.newBuilding }))
+    .then((response) => dispatch({ type: ADD_BUILDING_SUCCESS, payload: response }))
     .catch((error) => dispatch({ type: ADD_BUILDING_FAILURE, payload: error }));
   };
 }

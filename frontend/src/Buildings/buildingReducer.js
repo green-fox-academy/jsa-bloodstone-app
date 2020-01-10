@@ -25,7 +25,7 @@ export default function buildings(state = initialState, action) {
     case ADD_BUILDING_SUCCESS:
       return {
         ...state,
-        listOfBuildings: [...state.listOfBuildings, action.payload],
+        listOfBuildings: [...state.listOfBuildings,action.payload.newBuilding],
         isLoading: false,
         error: undefined,
       };

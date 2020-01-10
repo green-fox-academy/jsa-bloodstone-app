@@ -68,6 +68,7 @@ function Buildings() {
   const dispatch = useDispatch();
   const buildings = useSelector((state) => state.buildings);
   const { listOfBuildings, isLoading, error } = buildings;
+  const { token } = useSelector((state) => state.auth);
 
   const [activeId, setActiveId] = useState(-1);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -76,7 +77,6 @@ function Buildings() {
     setModalVisible(false);
   };
 
-  const { token } = useSelector((state) => state.auth);
   console.log(`token: ${token}`);
 
   useEffect(() => {
@@ -110,7 +110,7 @@ function Buildings() {
         >
           {listOfBuildings.map((building) => (
             <BuildingItem
-              key={building.id}
+              key={building._id}
               type={building.type}
               level={building.level}
               onPress={() => handlePress(building.id)}
@@ -133,6 +133,7 @@ function Buildings() {
           ? (
             <OneBuilding
               targetBuildingId={activeId}
+              token={token}
               onClickClose={onCloseAddModal}
               getIconImage={getIconImage}
             />
