@@ -46,7 +46,8 @@ async function createBuilding(req, res, next) {
       type: buildingType,
       owner,
     });
-    res.status(201).send({ newBuilding });
+    const currentResource = await ResourceModel.findOne({ owner });
+    res.status(201).send({ newBuilding, currentResource });
   } catch (error) {
     next(error);
   }

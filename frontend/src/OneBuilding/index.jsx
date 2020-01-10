@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 function OneBuilding({
-  onClickClose, targetBuildingId, getIconImage,
+  onClickClose, targetBuildingId, getIconImage, token,
 }) {
   const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
   const isLoading = useSelector((state) => state.oneBuilding.isLoading);
@@ -54,7 +54,7 @@ function OneBuilding({
 
   useEffect(() => {
     if (targetBuildingId !== -1) {
-      dispatch(fetchOneBuilding(targetBuildingId));
+      dispatch(fetchOneBuilding(targetBuildingId, token));
     }
   }, [targetBuildingId]);
 
@@ -192,6 +192,7 @@ OneBuilding.propTypes = {
   targetBuildingId: PropTypes.number.isRequired,
   onClickClose: PropTypes.func.isRequired,
   getIconImage: PropTypes.func,
+  token: PropTypes.string.isRequired,
 };
 
 OneBuilding.defaultProps = {
