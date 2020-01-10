@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {
   View, StyleSheet, Text, Alert,
-  ImageBackground, ActivityIndicator,
+  ImageBackground,
   TouchableHighlight, KeyboardAvoidingView,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import { login } from './actionCreator';
 
@@ -49,9 +49,6 @@ function showAlert(text) {
 
 function Login() {
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.auth);
-  const {isLoading, error} = userInfo;
-
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -80,20 +77,6 @@ function Login() {
       resizeMode="cover"
       source={background}
     >
-      {isLoading && (
-        <Popup>
-          <View style={styles.loading}>
-            <ActivityIndicator size="large" />
-          </View>
-        </Popup>
-      )}
-      {/* {error && (
-        <Popup>
-          <View style={styles.loading}>
-            <Text>{message}</Text>
-          </View>
-        </Popup>
-      )} */}
       <KeyboardAvoidingView
         enabled
         behavior="padding"
