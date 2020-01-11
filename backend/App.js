@@ -23,13 +23,13 @@ app.use('/kingdom/register', setup);
 
 app.use((err, req, res, next) => {
   const { status, message } = err;
-  if (!status) {
-    res.sendStatus(500);
-    next(err);
-    return;
+  if (process.env.NODE_ENV !== 'production') {
+    next(err.message);
   }
-  res.status(status).json({ status, message });
-  next(err);
+  if (status) {
+    return res.status(status).json({ status, message });
+  }
+  return res.sendStatus(500);
 });
 
 const PORT = process.env.PORT || 4000;
