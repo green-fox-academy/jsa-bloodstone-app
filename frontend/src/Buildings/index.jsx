@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   View, ScrollView,
   StyleSheet, ActivityIndicator,
 } from 'react-native';
 
-import { fetchBuildings, addBuildingSuccess } from './actionCreator';
+import { addBuildingSuccess } from './actionCreator';
 
 import townhallIcon from '../../assets/buildings/townhall.png';
 import academyIcon from '../../assets/buildings/academy.png';

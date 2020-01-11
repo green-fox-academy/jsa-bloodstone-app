@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   View, ActivityIndicator,
@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import Colors from '../common/colors';
 
-import { fetchTroops } from './actionCreator';
 import TroopInformation from './TroopInformation';
 import TroopLevel from './TroopLevel';
 import ErrorPopup from '../ErrorPopup';
@@ -42,11 +41,6 @@ function Troops() {
   const listOfTroops = useSelector((state) => state.troops.listOfTroops);
   const isLoading = useSelector((state) => state.troops.isLoading);
   const error = useSelector((state) => state.troops.error);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchTroops());
-  // }, []);
 
   if (error) {
     return (
