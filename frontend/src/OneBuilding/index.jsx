@@ -189,7 +189,7 @@ function OneBuilding({
 }
 
 OneBuilding.propTypes = {
-  targetBuildingId: PropTypes.number.isRequired,
+  targetBuildingId: PropTypes.string.isRequired,
   onClickClose: PropTypes.func.isRequired,
   getIconImage: PropTypes.func,
   token: PropTypes.string.isRequired,

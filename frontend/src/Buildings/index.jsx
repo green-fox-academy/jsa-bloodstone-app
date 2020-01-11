@@ -84,6 +84,7 @@ function Buildings() {
   }, [buildings.length]);
 
   function handlePress(id) {
+    console.log('================'+id);
     setModalVisible(true);
     setActiveId(id);
   }
@@ -113,7 +114,7 @@ function Buildings() {
               key={building._id}
               type={building.type}
               level={building.level}
-              onPress={() => handlePress(building.id)}
+              onPress={() => handlePress(building._id)}
             />
           ))}
         </ScrollView>

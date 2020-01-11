@@ -11,9 +11,10 @@ export const UPGRADE_ONE_BUILDING_FAILURE = 'upgradeOneBuildingFailure';
 const URL = `http://${SERVER_URL}/kingdom/buildings/`;
 
 export function fetchOneBuilding(buildingId, token) {
+  console.log(buildingId);
   return (dispatch) => {
     dispatch({ type: FETCH_ONE_BUILDING_REQUEST });
-    fetch(`http://${URL}/${buildingId}`, {
+    fetch(`${URL}${buildingId}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -22,6 +23,7 @@ export function fetchOneBuilding(buildingId, token) {
     })
     .then((response) => {
       if (response.status === 200) {
+        console.log(response.json()+'dddddddddd');
         return response.json();
       }
       throw new Error('An error has occurred, please try later!');
