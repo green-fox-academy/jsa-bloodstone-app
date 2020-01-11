@@ -1,5 +1,6 @@
 import {
   FETCH_RESOURCES_REQUEST, FETCH_RESOURCES_SUCCESS, FETCH_RESOURCES_FAILURE,
+  UPDATE_RESOURCE,
 } from './actionCreator';
 
 const initialState = {
@@ -18,15 +19,21 @@ export default function resources(state = initialState, action) {
     case FETCH_RESOURCES_SUCCESS:
       return {
         ...state,
-        foodAmount: action.payload[0].amount,
+        foodAmount: 200,
         foodGeneration: action.payload[0].generation,
-        goldAmount: action.payload[1].amount,
+        goldAmount: 200,
         goldGeneration: action.payload[1].generation,
         isLoading: false,
         error: undefined,
       };
     case FETCH_RESOURCES_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+    case UPDATE_RESOURCE:
+      return {
+        ...state,
+        foodAmount: state.foodAmount + state.foodGeneration,
+        goldAmount: state.goldAmount + state.goldGeneration,
+      };
     default:
       return state;
   }

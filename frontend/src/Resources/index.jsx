@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { View } from 'react-native';
 
 import ResourceItem from './ResourceItem';
-import { fetchResources } from './actionCreator';
+import { fetchResources, UPDATE_RESOURCE } from './actionCreator';
 import ErrorPopup from '../ErrorPopup';
 
 function Resources() {
@@ -14,7 +14,9 @@ function Resources() {
 
   useEffect(() => {
     dispatch(fetchResources());
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
+    const updateResourcesInterval = setInterval(() => dispatch({
+      type: UPDATE_RESOURCE,
+    }), 60000);
     return () => clearInterval(updateResourcesInterval);
   }, []);
 
