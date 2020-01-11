@@ -77,7 +77,7 @@ function Buildings() {
     setModalVisible(false);
   };
 
-  console.log(`token: ${token}`);
+  console.log(`building Index token: ${token}`);
 
   useEffect(() => {
     dispatch(fetchBuildings(token));

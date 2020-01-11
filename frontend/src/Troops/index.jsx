@@ -40,10 +40,11 @@ function Troops() {
   const listOfTroops = useSelector((state) => state.troops.listOfTroops);
   const isLoading = useSelector((state) => state.troops.isLoading);
   const error = useSelector((state) => state.troops.error);
+  const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTroops());
+    dispatch(fetchTroops(token));
   }, []);
 
   if (error) {
@@ -54,19 +55,16 @@ function Troops() {
     return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
-  const level1TroopNum = listOfTroops.filter((troop) => troop.level === 1).length;
-  const level2TroopNum = listOfTroops.filter((troop) => troop.level === 2).length;
-  const level3TroopNum = listOfTroops.filter((troop) => troop.level === 3).length;
-  const attack = level1TroopNum + level2TroopNum * 2 + level3TroopNum * 3;
-  const defence = level1TroopNum + level2TroopNum * 2 + level3TroopNum * 3;
-  const sustenance = level1TroopNum + level2TroopNum + level3TroopNum;
+  const level1TroopNum = listOfTroops.countByLevel ? listOfTroops.countByLevel[0].count : 0;
+  const level2TroopNum = listOfTroops.countByLevel ? listOfTroops.countByLevel[1].count : 0;
+  const level3TroopNum = listOfTroops.countByLevel ? listOfTroops.countByLevel[2].count : 0;
 
   return (
     <CardView style={{ flex: 1 }}>
       <TroopInformation
-        attack={attack}
-        defence={defence}
-        sustenance={sustenance}
+        attack={listOfTroops.attack}
+        defence={listOfTroops.defence}
+        sustenance={listOfTroops.hp}
       />
       <TroopLevels
         level1TroopNum={level1TroopNum}

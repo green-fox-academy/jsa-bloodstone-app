@@ -15,7 +15,7 @@ function Resources() {
 
   useEffect(() => {
     dispatch(fetchResources(token));
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources(token)), 5000);
+    const updateResourcesInterval = setInterval(() => dispatch(fetchResources(token)), 30000);
     return () => clearInterval(updateResourcesInterval);
   }, [goldAmount, foodAmount]);
 

@@ -20,7 +20,7 @@ export function fetchBuildings(token) {
       }
     })
     .then((response) => {
-      console.log(response);
+      console.log(`building response: ${response}`);
       if (response.status === 200) {
         return response.json();
       }
@@ -40,7 +40,7 @@ export function fetchBuildings(token) {
 //     level: 1,
 //   };
 // };
-// export function addBuildingSuccess(type) {
+// export function addBuilding(type) {
 //   return {
 //     type: ADD_BUILDING_SUCCESS,
 //     payload: getMockedBuilding(type),

@@ -21,6 +21,7 @@ export function login(username, password) {
     })
       .then((response) => {
         if (response.status === 200) {
+          console.log(response);
           return response.json();
         }
         throw new Error(response.status);

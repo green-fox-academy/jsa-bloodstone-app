@@ -18,6 +18,7 @@ export function fetchResources(token) {
     })
     .then((response) => {
       if (response.status === 200) {
+        console.log(`resource responce: ${response}`)
         return response.json();
       }
       throw new Error('An error has occurred, please try later!');
