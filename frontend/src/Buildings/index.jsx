@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, ScrollView, SafeAreaView,
-  StyleSheet, ActivityIndicator,
+  View, ScrollView, StyleSheet, ActivityIndicator,
 } from 'react-native';
 
 import { fetchBuildings, addBuildingSuccess } from './actionCreator';
@@ -18,15 +17,14 @@ import AddBuildingItem from './addBuildingItem';
 import OneBuilding from '../OneBuilding';
 
 import ErrorPopup from '../ErrorPopup';
-
-import townhallIcon from '../../assets/buildings/townhall.png';
-import academyIcon from '../../assets/buildings/academy.png';
-import farmIcon from '../../assets/buildings/factory.png';
-import mineIcon from '../../assets/buildings/mine.png';
+import getIconImage from './assets';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 0,
+    marginBottom: 0,
+    paddingBottom: 52,
   },
   scrollViewContainer: {
     flexDirection: 'row',
@@ -53,17 +51,6 @@ const ADD_ICON_LIST = [
   { type: 'Mine', url: addMineIcon },
 ];
 
-const ICON_LIST = {
-  Townhall: { name: 'Townhall', icon: townhallIcon },
-  Academy: { name: 'Academy', icon: academyIcon },
-  Farm: { name: 'Farm', icon: farmIcon },
-  Mine: { name: 'Mine', icon: mineIcon },
-};
-
-function getIconImage(type) {
-  return ICON_LIST[type].icon;
-}
-
 function Buildings() {
   const dispatch = useDispatch();
   const buildings = useSelector((state) => state.buildings);
@@ -71,10 +58,6 @@ function Buildings() {
 
   const [activeId, setActiveId] = useState(-1);
   const [isModalVisible, setModalVisible] = useState(false);
-
-  const onCloseAddModal = () => {
-    setModalVisible(false);
-  };
 
   useEffect(() => {
     dispatch(fetchBuildings());
@@ -98,8 +81,8 @@ function Buildings() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <CardView style={{ flex: 1, padding: 0, marginBottom: 0, paddingBottom: 52 }}>
+    <View style={{ flex: 1 }}>
+      <CardView style={styles.container}>
         <ScrollView
           bounces
           style={{ flex: 1 }}
@@ -125,18 +108,13 @@ function Buildings() {
           ))}
         </View>
       </CardView>
-      {
-        isModalVisible
-          ? (
-            <OneBuilding
-              targetBuildingId={activeId}
-              onClickClose={onCloseAddModal}
-              getIconImage={getIconImage}
-            />
-          )
-          : null
-      }
-    </SafeAreaView>
+      <OneBuilding
+        visible={isModalVisible}
+        onClickClose={() => setModalVisible(false)}
+        targetBuildingId={activeId}
+        getIconImage={getIconImage}
+      />
+    </View>
   );
 }
 
