@@ -42,11 +42,11 @@ function Troops() {
   const listOfTroops = useSelector((state) => state.troops.listOfTroops);
   const isLoading = useSelector((state) => state.troops.isLoading);
   const error = useSelector((state) => state.troops.error);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchTroops());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchTroops());
+  // }, []);
 
   if (error) {
     return (

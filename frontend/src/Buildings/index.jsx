@@ -69,9 +69,9 @@ function Buildings() {
     setModalVisible(false);
   };
 
-  useEffect(() => {
-    dispatch(fetchBuildings());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchBuildings());
+  // }, []);
 
   function getIconImage(type) {
     switch (type) {

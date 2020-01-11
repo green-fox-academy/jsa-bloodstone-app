@@ -12,11 +12,11 @@ function Resources() {
   const { goldAmount, goldGeneration } = useSelector((state) => state.resources);
   const error = useSelector((state) => state.resources.error);
 
-  useEffect(() => {
-    dispatch(fetchResources());
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
-    return () => clearInterval(updateResourcesInterval);
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchResources());
+  //   const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
+  //   return () => clearInterval(updateResourcesInterval);
+  // }, []);
 
   if (error) {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
