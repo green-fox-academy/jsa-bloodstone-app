@@ -8,30 +8,29 @@ import FontStyle from '../common/fonts';
 
 const styles = StyleSheet.create({
   itemStyle: {
-    flex: 1,
     alignItems: 'center',
-    padding: 2,
+    flexDirection: 'row',
+    marginRight: 8,
   },
   iconStyle: {
-    width: 60,
-    height: 60,
+    width: 32,
+    height: 32,
   },
   textStyle: {
+    marginLeft: 8,
     fontSize: FontStyle.fontSize,
     fontWeight: 'bold',
-    lineHeight: 24,
-    marginBottom: -5,
   },
 });
 
 function AddBuildingItem({ icon, type, onPress }) {
   return (
-    <View style={styles.itemStyle}>
-      <TouchableHighlight underlayColor="transparent" onPress={onPress}>
+    <TouchableHighlight underlayColor="transparent" onPress={onPress}>
+      <View style={styles.itemStyle}>
         <Image style={styles.iconStyle} source={icon} />
-      </TouchableHighlight>
-      <Text style={styles.textStyle}>{`Add ${type}`}</Text>
-    </View>
+        <Text style={styles.textStyle}>{`Add ${type}`}</Text>
+      </View>
+    </TouchableHighlight>
   );
 }
 
