@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 8,
     alignItems: 'center',
-    marginHorizontal: 10,
   },
   roundAvatar: {
     width: 40,
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function TroopLevel({ troops, level }) {
+function TroopLevel({ count, level }) {
   const [showUpgradeButton, setShowUpgradeButton] = useState(false);
   const [widthOfUpgrade] = useState(new Animated.Value(0));
 
@@ -71,7 +70,7 @@ function TroopLevel({ troops, level }) {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image source={troopRound} style={styles.roundAvatar} />
-          <Text style={styles.cardText}>{`Level ${level}: ${troops} Troops`}</Text>
+          <Text style={styles.cardText}>{`Level ${level}: ${count} Troops`}</Text>
         </View>
       </TouchableHighlight>
       <Animated.View style={{ ...styles.upgradeStyle, width: widthOfUpgrade }}>
@@ -85,7 +84,7 @@ function TroopLevel({ troops, level }) {
 
 TroopLevel.propTypes = {
   level: PropTypes.number.isRequired,
-  troops: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export default TroopLevel;
