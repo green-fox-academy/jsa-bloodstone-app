@@ -9,15 +9,21 @@ export const ADD_BUILDING_FAILURE = 'addBuildingFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/buildings`;
 
-export function fetchBuildings() {
+export function fetchBuildings(token) {
   return (dispatch) => {
     dispatch({ type: FETCH_BUILDINGS_REQUEST });
-    fetch(URL)
+    fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.status === 200) {
           return response.json();
         }
-        throw new Error('An error has occurred, please try later!');
+        throw new Error('Fetch buildings');
       })
       .then((response) => dispatch({ type: FETCH_BUILDINGS_SUCCESS, payload: response.buildings }))
       .catch((error) => dispatch({ type: FETCH_BUILDINGS_FAILURE, payload: error }));

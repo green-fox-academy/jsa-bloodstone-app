@@ -61,6 +61,7 @@ function Buildings() {
   const listOfBuildings = useSelector((state) => state.buildings.listOfBuildings);
   const isLoading = useSelector((state) => state.buildings.isLoading);
   const error = useSelector((state) => state.buildings.error);
+  const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const [isModalVisible, setModalVisible] = useState(false);
   const [activeId, setActiveId] = useState(-1);
@@ -70,7 +71,7 @@ function Buildings() {
   };
 
   useEffect(() => {
-    dispatch(fetchBuildings());
+    dispatch(fetchBuildings(token));
   }, []);
 
   function getIconImage(type) {
