@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
 import { SERVER_URL } from 'react-native-dotenv';
+import { useDispatch } from 'react-redux';
+import { LOGIN_SUCCESS } from '../Login/actionCreator';
 
 import validation from '../common/helper';
 import Colors from '../common/colors';
@@ -49,13 +51,48 @@ function showAlert(text) {
 
 function Registration() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [kingdomName, setKingdomName] = useState('');
   const USERNAME_BLACKLIST = ['admin', 'root'];
-  const URL = `http://${SERVER_URL}/registration`;
+  const URL = `http://${SERVER_URL}/users/register`;
+
+  function fetchRegister() {
+    setIsLoading(true);
+    fetch(URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        kingdomName,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 400) {
+          setIsLoading(false);
+          showAlert(`Oops, ${response.message}`);
+          return;
+        }
+        if (response.status === 201) {
+          setIsLoading(false);
+          Alert.alert('Congratulation', 'Registration Success.');
+          dispatch({ type: LOGIN_SUCCESS, payload: response.token });
+          navigation.navigate('Map');
+          return;
+        }
+        throw new Error('Unexpected status code');
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        showAlert(`Oops, ${error.message}`);
+      });
+  }
 
   function handleSubmit() {
     const name = username.toLowerCase();
@@ -63,38 +100,22 @@ function Registration() {
       showAlert('All the input fields are required.');
       return;
     }
-    if (password.length <= 7) {
+    if (password.length < 8) {
       showAlert('Password must be at least 8 characters');
       return;
     }
     if (!validation(email)) {
-      showAlert('Please reenter a valid email');
+      showAlert('Please enter a valid email');
       return;
     }
     if (USERNAME_BLACKLIST.includes(name.toLowerCase())) {
-      showAlert('Please reenter a valid username');
+      showAlert('Please enter a valid username');
       return;
     }
     if (!kingdomName) {
       setKingdomName(`${name}'s Kingdom`);
     }
-    setIsLoading(true);
-    fetch(URL)
-      .then((response) => {
-        if (response.status === 201) {
-          return response.json();
-        }
-        throw new Error('An error has occurred, please try later!');
-      })
-      .then(() => {
-        setIsLoading(false);
-        Alert.alert('Congratulation', 'Registration Success.');
-        navigation.navigate('Login');
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        showAlert(`Oops, ${error.message}`);
-      });
+    fetchRegister();
   }
 
   return (
