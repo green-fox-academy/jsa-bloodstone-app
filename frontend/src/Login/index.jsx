@@ -67,7 +67,7 @@ function Login() {
     if (type === LOGIN_SUCCESS) {
       return navigation.navigate('Home');
     }
-    return showAlert(error);
+    return showAlert(error.message);
   }
 
   return (

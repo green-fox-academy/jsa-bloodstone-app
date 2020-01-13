@@ -26,7 +26,7 @@ export function login(username, password) {
         }
         throw new Error(response.status);
       })
-      .catch((error) => dispatch({ type: LOGIN_FAILURE, payload: error.message }));
+      .catch((error) => dispatch({ type: LOGIN_FAILURE, payload: error }));
   };
 }
 

@@ -106,7 +106,7 @@ function Settings() {
   }
 
   function handleCancel() {
-    navigation.navigate('MyKingdom');
+    navigation.navigate('Home');
   }
 
   function handleLogout() {
