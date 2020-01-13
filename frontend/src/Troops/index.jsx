@@ -1,9 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
   View, ActivityIndicator,
-  StyleSheet,
 } from 'react-native';
 import { CardView } from '../common/components';
 import Colors from '../common/colors';
@@ -45,7 +44,13 @@ function Troops() {
         sustenance={sustenance}
       />
       <View style={{ paddingVertical: 20 }}>
-        {countByLevel.map((item) => <TroopLevel level={item.level} count={item.count} />)}
+        {countByLevel.map((item, index) => (
+          <TroopLevel
+            key={index}
+            level={item.level}
+            count={item.count}
+          />
+        ))}
       </View>
     </CardView>
   );
