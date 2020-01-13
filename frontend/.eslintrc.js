@@ -26,7 +26,6 @@ module.exports = {
   overrides: [{
     files: ["**/*.test.js", "**/*.test.jsx"],
     env: {
-      browser: true,
       jest: true,
     },
   }],
