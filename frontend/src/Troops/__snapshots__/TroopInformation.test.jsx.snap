@@ -5,8 +5,8 @@ exports[`<TroopInformation /> Should render troop information and match the snap
   style={
     Array [
       Object {
-        "backgroundColor": "#ffffff",
-        "borderRadius": 6,
+        "backgroundColor": "#ffffffdd",
+        "borderRadius": 5,
         "elevation": 3,
         "marginBottom": 10,
         "padding": 15,
@@ -16,7 +16,7 @@ exports[`<TroopInformation /> Should render troop information and match the snap
           "y": 4,
         },
         "shadowOpacity": 0.1,
-        "shadowRadius": 6,
+        "shadowRadius": 5,
       },
       Object {
         "alignItems": "center",

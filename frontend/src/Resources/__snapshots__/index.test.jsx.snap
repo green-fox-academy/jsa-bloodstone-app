@@ -8,51 +8,45 @@ exports[`<Resources /> Should render error and match the snapshot 1`] = `
 `;
 
 exports[`<Resources /> Should render loading and match the snapshot 1`] = `
-<CardView
+<View
   style={
     Object {
-      "alignItems": "center",
       "flexDirection": "row",
-      "justifyContent": "space-around",
+      "justifyContent": "flex-end",
     }
   }
 >
-  <ResourceView
+  <ResourceItem
     amount={1578153586}
-    buildingIcon={1}
-    changeRate={60}
-    resourceIcon={1}
+    rate={60}
+    type="cookie"
   />
-  <ResourceView
+  <ResourceItem
     amount={1578153704}
-    buildingIcon={1}
-    changeRate={60}
-    resourceIcon={1}
+    rate={60}
+    type="gold"
   />
-</CardView>
+</View>
 `;
 
 exports[`<Resources /> Should render resources and match the snapshot 1`] = `
-<CardView
+<View
   style={
     Object {
-      "alignItems": "center",
       "flexDirection": "row",
-      "justifyContent": "space-around",
+      "justifyContent": "flex-end",
     }
   }
 >
-  <ResourceView
+  <ResourceItem
     amount={1578153586}
-    buildingIcon={1}
-    changeRate={60}
-    resourceIcon={1}
+    rate={60}
+    type="cookie"
   />
-  <ResourceView
+  <ResourceItem
     amount={1578153704}
-    buildingIcon={1}
-    changeRate={60}
-    resourceIcon={1}
+    rate={60}
+    type="gold"
   />
-</CardView>
+</View>
 `;
