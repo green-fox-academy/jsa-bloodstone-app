@@ -1,61 +1,31 @@
 const { Router } = require('express');
+const { TroopModel } = require('../models');
+const { auth } = require('../middlewares');
 
 const router = Router();
 
-const myTroops = {
-  troops: [
-    {
-      id: 1,
-      level: 1,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 2,
-      level: 1,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 3,
-      level: 2,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 4,
-      level: 3,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 5,
-      level: 3,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-  ],
-};
-
-function getTroops(req, res) {
-  return res.status(200).send(myTroops);
+async function getTroops(req, res, next) {
+  const { _id: owner } = req.user;
+  try {
+    const troops = await TroopModel.find({ owner });
+    res.send({ troops });
+  } catch (error) {
+    next(error);
+  }
 }
 
-router.get('/', getTroops);
+async function createTroop(req, res, next) {
+  const { _id: owner } = req.user;
+  const level = Number.parseInt(req.query.level, 10) || 1;
+  try {
+    const troops = await TroopModel.createTroop(owner, level);
+    res.send({ troops });
+  } catch (error) {
+    next(error);
+  }
+}
+
+router.get('/', auth, getTroops);
+router.post('/', auth, createTroop);
 
 module.exports = router;

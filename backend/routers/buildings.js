@@ -1,4 +1,7 @@
 const { Router } = require('express');
+const createError = require('http-errors');
+const { BuildingModel, ResourceModel } = require('../models');
+const { auth } = require('../middlewares');
 
 const router = Router();
 
@@ -6,92 +9,113 @@ const {
   townhallRule, farmRule, mineRule, academyRule, foxRule,
 } = require('../rules');
 
-const myBuildings = {
-  buildings: [
-    {
-      id: 1,
-      type: 'Townhall',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 2,
-      type: 'Academy',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 3,
-      type: 'Farm',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    }, {
-      id: 4,
-      type: 'Mine',
-      level: 1,
-      hp: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-  ],
+const buildingRules = {
+  Townhall: townhallRule,
+  Academy: academyRule,
+  Farm: farmRule,
+  Mine: mineRule,
 };
 
-function getBuildings(req, res) {
-  return res.status(200).send(myBuildings);
+async function getBuildings(req, res, next) {
+  const { _id: owner } = req.user;
+  try {
+    const buildings = await BuildingModel.find({ owner });
+    res.send({ buildings });
+  } catch (error) {
+    next(error);
+  }
 }
 
-function getBuildingById(req, res) {
-  const buildingId = Number.parseInt(req.params.buildingId, 10);
-  if (Number.isNaN(buildingId) || buildingId <= 0) {
-    return res.sendStatus(400);
-  }
-  const targetBuilding = myBuildings.buildings.filter((building) => buildingId === building.id);
-  if (targetBuilding.length > 0) {
-    switch (targetBuilding[0].type) {
-      case 'Townhall':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: townhallRule,
-            troopsRules: foxRule,
-          },
-        });
-      case 'Academy':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: academyRule,
-            troopsRules: foxRule,
-          },
-        });
-      case 'Farm':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: farmRule,
-            troopsRules: foxRule,
-          },
-        });
-      case 'Mine':
-        return res.status(200).send({
-          building: targetBuilding[0],
-          rules: {
-            buildingRules: mineRule,
-            troopsRules: foxRule,
-          },
-        });
-      default:
-        return res.sendStatus(404);
+async function createBuilding(req, res, next) {
+  const { _id: owner } = req.user;
+  const buildingType = req.body.type;
+  try {
+    if (!buildingType) {
+      throw createError(400, 'Type is required');
     }
+    if (buildingType !== 'Mine' && buildingType !== 'Farm') {
+      throw createError(400, 'Wrong type');
+    }
+
+    const priceOfItem = parseInt(buildingRules[buildingType].constructionCost, 10);
+    const purchase = await ResourceModel.purchaseItem(owner, priceOfItem);
+    if (!purchase) {
+      throw createError(400, 'You don\'t have enough money');
+    }
+    const newBuilding = await BuildingModel.create({
+      type: buildingType,
+      owner,
+    });
+    res.send({ newBuilding });
+  } catch (error) {
+    next(error);
   }
-  return res.sendStatus(404);
 }
 
-router.get('/', getBuildings);
-router.get('/:buildingId', getBuildingById);
+async function getBuildingById(req, res, next) {
+  const { _id: owner } = req.user;
+  const id = req.params.buildingId;
+  try {
+    const building = await BuildingModel.findById(id);
+    if (!building) {
+      throw createError(404, 'This building doesn\'t exist.');
+    }
+    if (building.owner !== owner) {
+      throw createError(404, 'This building doesn\'t belong to you');
+    }
+    res.send({
+      building,
+      rules: {
+        buildingRules: buildingRules[building.type],
+        troopsRules: foxRule,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function upgradeBuildingById(req, res, next) {
+  const { _id: owner } = req.user;
+  const id = req.params.buildingId;
+  try {
+    const { level: maxLevel } = await BuildingModel.findOne({ type: 'Townhall', owner });
+    const upgradeBuilding = await BuildingModel.findOne({ _id: id, owner });
+    if (!upgradeBuilding) {
+      throw createError(400, 'This building doesn\'t exist');
+    }
+    if (upgradeBuilding.level >= maxLevel) {
+      throw createError(400, 'Currently this building reaches its maximum level');
+    }
+    let priceOfItem = 0;
+    switch (upgradeBuilding.level) {
+      case 1:
+        priceOfItem = parseInt(buildingRules[upgradeBuilding.type].upgradingCostLevel1, 10);
+        break;
+      case 2:
+        priceOfItem = parseInt(buildingRules[upgradeBuilding.type].upgradingCostLevel2, 10);
+        break;
+      case 3:
+        priceOfItem = parseInt(buildingRules[upgradeBuilding.type].upgradingCostLevel3, 10);
+        break;
+      default:
+        priceOfItem = 1;
+    }
+    const purchase = await ResourceModel.purchaseItem(owner, priceOfItem);
+    if (!purchase) {
+      throw createError(400, 'You don\'t have enough money');
+    }
+    upgradeBuilding.level += 1;
+    await upgradeBuilding.save();
+    res.status(202).send(upgradeBuilding);
+  } catch (error) {
+    next(error);
+  }
+}
+
+router.get('/', auth, getBuildings);
+router.post('/', auth, createBuilding);
+router.get('/:buildingId', auth, getBuildingById);
+router.patch('/:buildingId', auth, upgradeBuildingById);
 
 module.exports = router;

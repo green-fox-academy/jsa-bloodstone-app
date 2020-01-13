@@ -1,12 +1,13 @@
+require('dotenv').config();
 const express = require('express');
-
-const app = express();
-const PORT = 4000;
 const {
-  troops, buildings, resources, notification,
+  users, setup, troops, buildings, resources, notification, progresses,
 } = require('./routers');
 
+const app = express();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello world');
@@ -15,13 +16,23 @@ app.get('/', (req, res) => {
 app.use('/kingdom/troops', troops);
 app.use('/kingdom/buildings', buildings);
 app.use('/kingdom/resources', resources);
+app.use('/kingdom/progresses', progresses);
 app.use('/notification', notification);
+app.use('/users', users);
+app.use('/kingdom/register', setup);
 
 app.use((err, req, res, next) => {
-  res.status(500).send(err.message);
+  const { status, message } = err;
+  if (!status) {
+    res.sendStatus(500);
+    next(err);
+    return;
+  }
+  res.status(status).json({ status, message });
   next(err);
 });
 
+const PORT = process.env.PORT || 4000;
 app.listen(PORT);
 
 module.exports = app;

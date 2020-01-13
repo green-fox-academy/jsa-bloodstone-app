@@ -36,6 +36,3 @@ jobs:
       - run:
           name: Run Backend ESLint Check
           command: 'cd backend && yarn lint'
-      - run:
-          name: Run Backend Tests
-          command: 'cd backend && yarn test'

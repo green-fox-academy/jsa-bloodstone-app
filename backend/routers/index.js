@@ -1,11 +1,17 @@
-const troops = require('./troops');
-const buildings = require('./buildings');
+const users = require('./users');
+const setup = require('./setup');
 const resources = require('./resources');
+const buildings = require('./buildings');
+const troops = require('./troops');
+const progresses = require('./progresses');
 const notification = require('./notification');
 
 module.exports = {
-  troops,
-  buildings,
+  users,
+  setup,
   resources,
+  buildings,
+  troops,
+  progresses,
   notification,
 };
