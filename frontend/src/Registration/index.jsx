@@ -4,6 +4,7 @@ import {
   ImageBackground, Alert,
   ActivityIndicator, KeyboardAvoidingView,
 } from 'react-native';
+import { Toast } from 'native-base';
 import { useNavigation } from 'react-navigation-hooks';
 import { SERVER_URL } from 'react-native-dotenv';
 import { useDispatch } from 'react-redux';
@@ -81,7 +82,12 @@ function Registration() {
         }
         if (response.status === 201) {
           setIsLoading(false);
-          Alert.alert('Congratulation', 'Registration Success.');
+          Toast.show({
+            type: 'success',
+            duration: 3000,
+            text: 'Please select a planet to live in.',
+            buttonText: 'Okay',
+          });
           dispatch({ type: LOGIN_SUCCESS, payload: response.token });
           navigation.navigate('Map');
           return;
