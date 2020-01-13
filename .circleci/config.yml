@@ -59,4 +59,15 @@ jobs:
             JEST_JUNIT_OUTPUT_NAME: test-results.xml
       - run:
           name: Run Backend ESLint Check
-          command: 'cd backend && yarn lint'
+          command: |
+            cd backend
+            yarn lint \
+              --format junit \
+              --output-file ~/repo/reports/eslint/backend-lint-results.xml
+      - store_test_results:
+          path: ~/repo/reports
+      - store_artifacts:
+          path: ~/repo/reports
+      - store_artifacts:
+          path: ~/repo/frontend/coverage
+
