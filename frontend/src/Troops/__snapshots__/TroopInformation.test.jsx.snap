@@ -52,7 +52,7 @@ exports[`<TroopInformation /> Should render troop information and match the snap
           }
         }
       >
-        Attack: undefined
+        Attack: 10
       </Text>
       <Image
         resizeMode="contain"
@@ -80,7 +80,7 @@ exports[`<TroopInformation /> Should render troop information and match the snap
           }
         }
       >
-        Defence: undefined
+        Defence: 10
       </Text>
       <Image
         resizeMode="contain"
@@ -108,7 +108,7 @@ exports[`<TroopInformation /> Should render troop information and match the snap
           }
         }
       >
-        Sustenance: undefined
+        Sustenance: 10
       </Text>
       <Image
         resizeMode="contain"

@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer, { act } from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBuildingSuccess } from './actionCreator';
 
@@ -110,7 +111,8 @@ describe('<Buildings />', () => {
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
-    const tree = renderer.create(<Buildings />).toJSON();
+    const shallowRenderer = new ShallowRenderer();
+    const tree = shallowRenderer.render(<Buildings />);
 
     expect(tree).toMatchSnapshot();
   });
@@ -125,7 +127,8 @@ describe('<Buildings />', () => {
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
-    const tree = renderer.create(<Buildings />).toJSON();
+    const shallowRenderer = new ShallowRenderer();
+    const tree = shallowRenderer.render(<Buildings />);
 
     expect(tree).toMatchSnapshot();
   });
@@ -140,7 +143,8 @@ describe('<Buildings />', () => {
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
-    const tree = renderer.create(<Buildings />).toJSON();
+    const shallowRenderer = new ShallowRenderer();
+    const tree = shallowRenderer.render(<Buildings />);
 
     expect(tree).toMatchSnapshot();
   });

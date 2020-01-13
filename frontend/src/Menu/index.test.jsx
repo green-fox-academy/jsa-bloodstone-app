@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import Menu from '.';
 
@@ -8,8 +8,8 @@ jest.mock('./actionCreator');
 
 describe('<Menu />', () => {
   it('Should render menu and match the snapshot', () => {
-    const component = renderer.create(<Menu />);
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    const renderer = new ShallowRenderer();
+    const component = renderer.render(<Menu />);
+    expect(component).toMatchSnapshot();
   });
 });

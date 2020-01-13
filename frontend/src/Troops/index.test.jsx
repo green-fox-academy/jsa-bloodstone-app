@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Troops from '.';
@@ -74,7 +74,8 @@ describe('<Troops />', () => {
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));
-    const tree = renderer.create(<Troops />).toJSON();
+    const renderer = new ShallowRenderer();
+    const tree = renderer.render(<Troops />);
     expect(tree).toMatchSnapshot();
   });
 
@@ -87,7 +88,8 @@ describe('<Troops />', () => {
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));
-    const tree = renderer.create(<Troops />).toJSON();
+    const renderer = new ShallowRenderer();
+    const tree = renderer.render(<Troops />);
     expect(tree).toMatchSnapshot();
   });
 });
