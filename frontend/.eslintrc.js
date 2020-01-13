@@ -2,7 +2,6 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -24,4 +23,12 @@ module.exports = {
   ],
   rules: {
   },
+  overrides: [{
+    files: ["**/*.test.js", "**/*.test.jsx"],
+    env: {
+      browser: true,
+      es6: true,
+      jest: true,
+    },
+  }],
 };
