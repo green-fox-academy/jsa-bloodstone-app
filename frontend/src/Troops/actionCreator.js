@@ -9,7 +9,7 @@ const URL = `http://${SERVER_URL}/kingdom/troops`;
 export function fetchTroops(token) {
   return (dispatch) => {
     dispatch({ type: FETCH_TROOPS_REQUEST });
-    fetch(URL, {
+    return fetch(URL, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
