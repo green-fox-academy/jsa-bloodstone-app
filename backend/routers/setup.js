@@ -30,32 +30,33 @@ async function chooseKingdom(req, res, next) {
 async function setupBasicItems(req, res, next) {
   const { owner } = req;
   try {
-    const checkBuilding = await BuildingModel.findOne(owner);
-    const checkTroop = await TroopModel.findOne(owner);
-    const checkResource = await ResourceModel.findOne(owner);
-    if (checkBuilding || checkTroop || checkResource) {
-      throw createError(400, 'This user already have basic items');
+    const checkBuilding = BuildingModel.findOne({ owner });
+    const checkResource = ResourceModel.findOne({ owner });
+    const checkTroop = TroopModel.findOne({ owner });
+
+    const checks = await Promise.all([
+      checkBuilding,
+      checkResource,
+      checkTroop,
+    ]);
+    const filter = checks.filter((item) => item !== null);
+    if (filter.length > 0) {
+      throw createError(400, 'This user already have basic items.');
     }
 
-    const setupBuilding = await BuildingModel.create(
-      { type: 'Townhall', owner },
-      { type: 'Academy', owner },
-      { type: 'Farm', owner },
-      { type: 'Mine', owner },
-    );
+    const setupResource = ResourceModel.createBasicResources(owner);
+    const setupBuilding = BuildingModel.createBasicBuildings(owner);
+    const setupTroop = TroopModel.createBasicTroops(owner);
 
-    const setupTroop = await TroopModel.create({
-      owner,
-      countByLevel: { level: 1, count: 1 },
-    });
+    await Promise.all([
+      setupResource,
+      setupBuilding,
+      setupTroop,
+    ]);
 
-    const currentTime = new Date().getTime();
-    const setupResource = await ResourceModel.create(
-      { owner, type: 'food', updatedAt: currentTime },
-      { owner, type: 'gold', updatedAt: currentTime },
-    );
     res.status(201).send({
-      setupBuilding, setupTroop, setupResource, message: 'Welcome to Your Kingdom',
+      status: 201,
+      message: 'Welcome to Your Kingdom',
     });
   } catch (error) {
     next(error);

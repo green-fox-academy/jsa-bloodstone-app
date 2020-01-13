@@ -24,6 +24,14 @@ resourceSchema.virtual('amount').get(function () {
   return Math.round(this.initialAmount + this.generation * minutesPassed);
 });
 
+resourceSchema.statics.createBasicResources = async function (owner) {
+  const currentTime = new Date().getTime();
+  return this.create(
+    { owner, type: 'food', updatedAt: currentTime },
+    { owner, type: 'gold', updatedAt: currentTime },
+  );
+};
+
 resourceSchema.statics.purchaseItem = async function (owner, priceOfItem) {
   const currentAmountOfGoal = await this.findOne({ owner, type: 'gold' });
   if (!currentAmountOfGoal) {
