@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text,
-  ImageBackground, Alert,
+  View, StyleSheet, Text, Alert,
+  ImageBackground,
   TouchableHighlight, KeyboardAvoidingView,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
-import { login } from './actionCreator';
+import { login, LOGIN_SUCCESS } from './actionCreator';
 
 import { InputField, SubmitButton } from '../common/components';
 import background from '../../assets/login/background.jpg';
@@ -35,12 +35,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: Colors.whiteColor,
   },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.white20Color,
+  },
 });
-
-const mockedUser = {
-  username: 'kyya',
-  password: 'password',
-};
 
 function showAlert(text) {
   Alert.alert('Warning', text);
@@ -49,19 +50,24 @@ function showAlert(text) {
 function Login() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const { error } = useSelector((state) => state.auth);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit() {
-    const name = username.toLowerCase();
+  async function handleSubmit() {
+    const name = username.toLowerCase().trim();
     if (name === '' || password === '') {
       return showAlert('All the input fields are required.');
     }
-    if (name !== mockedUser.username || password !== mockedUser.password) {
-      return showAlert('Wrong username or password.');
+    if (password.length < 8) {
+      return showAlert('Password must longer than 8.');
     }
-    dispatch(login());
-    return navigation.navigate('Home');
+    const { type } = await dispatch(login(name, password));
+    if (type === LOGIN_SUCCESS) {
+      return navigation.navigate('Home');
+    }
+    return showAlert(error);
   }
 
   return (
