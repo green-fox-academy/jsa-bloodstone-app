@@ -39,7 +39,11 @@ function UserItem() {
       <Image style={styles.imageStyle} source={userAvatar} />
       <View style={{ paddingHorizontal: 12 }}>
         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-          <IconText text="Lv.12" style={{ backgroundColor: Colors.blueColor }} textStyle={{ color: Colors.whiteColor }} />
+          <IconText
+            text="Lv.12"
+            style={{ backgroundColor: Colors.blueColor }}
+            textStyle={{ color: Colors.whiteColor }}
+          />
           <IconText text="Kyya" />
         </View>
         <View style={{ flexDirection: 'row' }}>
