@@ -54,7 +54,6 @@ jobs:
             yarn test \
               --ci \
               --collectCoverage \
-              --updateSnapshot
           environment:
             JEST_JUNIT_OUTPUT_DIR: ~/repo/reports/jest
             JEST_JUNIT_OUTPUT_NAME: test-results.xml
