@@ -42,6 +42,13 @@ troopSchema.virtual('hp').get(function () {
     .reduce((a, b) => a + b, 0);
 });
 
+troopSchema.statics.createBasicTroops = async function (owner) {
+  return this.create({
+    owner,
+    countByLevel: { level: 1, count: 1 },
+  });
+};
+
 troopSchema.statics.createTroop = async function (owner, level) {
   const troop = await this.findOne({ owner });
   if (!troop) {

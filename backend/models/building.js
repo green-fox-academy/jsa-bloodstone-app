@@ -12,5 +12,14 @@ const buildingSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
 }, schemaOptions);
 
+buildingSchema.statics.createBasicBuildings = async function (owner) {
+  return this.create(
+    { type: 'Townhall', owner },
+    { type: 'Academy', owner },
+    { type: 'Farm', owner },
+    { type: 'Mine', owner },
+  );
+};
+
 const BuildingModel = conn.model('Building', buildingSchema);
 module.exports = BuildingModel;
