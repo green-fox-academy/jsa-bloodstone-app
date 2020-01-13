@@ -4,7 +4,6 @@
   "description": "",
   "main": "App.js",
   "scripts": {
-    "test": "mocha 'tests/**/*.js' --exit",
     "lint": "eslint .",
     "start": "node ./App.js",
     "start:dev": "nodemon ./App.js"

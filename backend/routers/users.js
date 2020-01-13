@@ -65,7 +65,7 @@ async function register(req, res, next) {
       kingdomName: kingdomName || `${username}'s kingdom`,
       kingdomList: [],
     });
-    user.password = undefined;
+    delete user.password;
     const token = jwt.sign({ user }, process.env.APP_SECRET || 'testSecret');
     res.status(201).send({ token });
   } catch (error) {
@@ -90,7 +90,7 @@ async function login(req, res, next) {
       throw createError(400, 'Username or password is incorrect.');
     }
 
-    user.password = undefined;
+    delete user.password;
     const token = jwt.sign({ user }, process.env.APP_SECRET || 'testSecret');
     res.status(200).send({ token });
   } catch (error) {
@@ -129,8 +129,7 @@ async function updateUserInfo(req, res, next) {
     if (!user) {
       throw createError(400, 'Can\'t find this username in database');
     }
-    const message = `${changedValue.join(', ')} are successfully changed!`;
-    res.status(202).send({ message });
+    res.status(202).send({ changes: Object.keys(changedTarget) });
   } catch (error) {
     next(error);
   }
