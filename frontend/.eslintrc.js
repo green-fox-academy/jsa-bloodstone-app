@@ -27,7 +27,6 @@ module.exports = {
     files: ["**/*.test.js", "**/*.test.jsx"],
     env: {
       browser: true,
-      es6: true,
       jest: true,
     },
   }],
