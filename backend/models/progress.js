@@ -19,7 +19,7 @@ const progressSchema = new Schema({
   finishAt: Number,
 }, schemaOptions);
 
-progressSchema.virtual('isUpgrade').get(function () {
+progressSchema.virtual('isUpgrading').get(function () {
   return this.toLevel > 1;
 });
 
