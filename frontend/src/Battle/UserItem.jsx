@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(0,0,0,0.12)',
+    borderRadius: 8,
+    backgroundColor: '#ffffffdd',
+    marginBottom: 5,
   },
   imageStyle: {
     width: 64,
@@ -24,7 +25,6 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 16,
-    // lineHeight: 32,
   },
   iconStyle: {
     width: 14,

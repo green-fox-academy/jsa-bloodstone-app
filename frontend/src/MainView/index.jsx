@@ -8,6 +8,7 @@ import Battle from '../Battle';
 
 const mainViewStyle = {
   flex: 1,
+  paddingTop: 10,
 };
 
 function MainView() {
