@@ -23,7 +23,7 @@ export function fetchBuildings(token) {
         if (response.status === 200) {
           return response.json();
         }
-        throw new Error('Fetch buildings');
+        throw new Error('An error has occurred, please try later!');
       })
       .then((response) => dispatch({ type: FETCH_BUILDINGS_SUCCESS, payload: response.buildings }))
       .catch((error) => dispatch({ type: FETCH_BUILDINGS_FAILURE, payload: error }));
