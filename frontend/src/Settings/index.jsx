@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import {
   View, Text, Alert, StyleSheet, ImageBackground,
 } from 'react-native';
 import validation from '../common/helper';
 import Colors from '../common/colors';
+import { logout } from '../Login/actionCreator';
 
 import background from '../../assets/login/background.jpg';
 
@@ -60,6 +61,7 @@ function Settings() {
   const [kingdomNameInput, setKingdomNameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   function resetForm() {
     setEmailInput('');
@@ -105,6 +107,11 @@ function Settings() {
 
   function handleCancel() {
     navigation.navigate('MyKingdom');
+  }
+
+  function handleLogout() {
+    dispatch(logout());
+    navigation.navigate('Auth');
   }
 
   const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
@@ -158,7 +165,7 @@ function Settings() {
           <SubmitButton onPress={handleCancel} text="Cancel" />
         </View>
         <View style={styles.footer}>
-          <SubmitButton style={styles.logoutButton} text="Logout" />
+          <SubmitButton onPress={handleLogout} style={styles.logoutButton} text="Logout" />
         </View>
       </View>
     </ImageBackground>
