@@ -92,7 +92,7 @@ async function login(req, res, next) {
 
     delete user.password;
     const token = jwt.sign({ user }, process.env.APP_SECRET || 'testSecret');
-    res.status(200).send({ token });
+    res.status(200).send({ status: 200, token });
   } catch (error) {
     next(error);
   }
