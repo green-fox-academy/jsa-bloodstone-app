@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -90,10 +91,10 @@ function Buildings() {
         >
           {listOfBuildings.map((building) => (
             <BuildingItem
-              key={building.id}
+              key={building._id}
               type={building.type}
               level={building.level}
-              onPress={() => handlePress(building.id)}
+              onPress={() => handlePress(building._id)}
             />
           ))}
         </ScrollView>
