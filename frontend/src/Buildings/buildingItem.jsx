@@ -5,18 +5,8 @@ import {
   StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import townhallIcon from '../../assets/buildings/townhall.png';
-import academyIcon from '../../assets/buildings/academy.png';
-import farmIcon from '../../assets/buildings/factory.png';
-import mineIcon from '../../assets/buildings/mine.png';
 import Colors from '../common/colors';
-
-const ICON_LIST = {
-  Townhall: { name: 'Townhall', icon: townhallIcon },
-  Academy: { name: 'Academy', icon: academyIcon },
-  Farm: { name: 'Farm', icon: farmIcon },
-  Mine: { name: 'Mine', icon: mineIcon },
-};
+import getIconImage from './assets';
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -65,12 +55,15 @@ const styles = StyleSheet.create({
 function BuildingItem({
   type, level, onPress,
 }) {
-  const { icon } = ICON_LIST[type];
   return (
-    <TouchableHighlight underlayColor="transparent" onPress={onPress} style={{ flex: 1, flexBasis: 120 }}>
+    <TouchableHighlight
+      underlayColor="transparent"
+      onPress={onPress}
+      style={{ flex: 1, flexBasis: 120 }}
+    >
       <View style={styles.itemContainer}>
         <View style={styles.imageContainer}>
-          <Image style={styles.iconStyle} source={icon} />
+          <Image style={styles.iconStyle} source={getIconImage(type)} />
           <View style={styles.textContainer}>
             <Text style={styles.titleStyle}>{type}</Text>
           </View>
