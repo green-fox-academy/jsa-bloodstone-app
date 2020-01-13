@@ -11,7 +11,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   kingdomName: String,
-  kingdomList: [String],
+  planetList: [String],
 }, schemaOptions);
 
 module.exports = conn.model('User', userSchema);

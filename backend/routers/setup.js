@@ -9,16 +9,16 @@ const router = Router();
 
 async function chooseKingdom(req, res, next) {
   const { _id: owner } = req.user;
-  const { kingdomList } = req.body;
+  const { selectedPlanet } = req.body;
   try {
-    if (!kingdomList) {
+    if (!selectedPlanet) {
       throw createError(400, 'Please choose a kingdom to start your trip.');
     }
     const userInfo = await UserModel.findById(owner);
-    if (userInfo.kingdomList.length !== 0) {
+    if (userInfo.planetList.length !== 0) {
       throw createError(400, 'This kingdom list is not empty.');
     }
-    userInfo.kingdomList.push(kingdomList);
+    userInfo.planetList.push(selectedPlanet);
     userInfo.save();
     req.owner = owner;
     next();
