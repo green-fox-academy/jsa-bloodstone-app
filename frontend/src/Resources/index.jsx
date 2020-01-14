@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View } from 'react-native';
+import { View, YellowBox } from 'react-native';
 
 import ResourceItem from './ResourceItem';
 import { fetchResources } from './actionCreator';
 import ErrorPopup from '../ErrorPopup';
+
+YellowBox.ignoreWarnings(['Warning']);
 
 function Resources() {
   const dispatch = useDispatch();
