@@ -10,13 +10,14 @@ function Resources() {
   const dispatch = useDispatch();
   const { foodAmount, foodGeneration } = useSelector((state) => state.resources);
   const { goldAmount, goldGeneration } = useSelector((state) => state.resources);
+  const { token } = useSelector((state) => state.auth);
   const error = useSelector((state) => state.resources.error);
 
   useEffect(() => {
-    dispatch(fetchResources());
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
+    dispatch(fetchResources(token));
+    const updateResourcesInterval = setInterval(() => dispatch(fetchResources(token)), 30000);
     return () => clearInterval(updateResourcesInterval);
-  }, []);
+  }, [goldAmount, foodAmount]);
 
   if (error) {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
