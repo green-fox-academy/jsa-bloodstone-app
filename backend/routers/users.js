@@ -135,7 +135,24 @@ async function updateUserInfo(req, res, next) {
   }
 }
 
+async function getUsersInPlanet(req, res, next) {
+  const { planet } = req.params;
+  try {
+    const usersInPlanet = await UserModel.find(
+      { planetList: planet },
+      {
+        email: false,
+        password: false,
+      },
+    ).populate('troop');
+    res.send({ usersInPlanet });
+  } catch (error) {
+    next(error);
+  }
+}
+
 router.get('/:uid?', getUser);
+router.get('/planet/:planet', getUsersInPlanet);
 router.post('/login', login);
 router.post('/register', register);
 router.patch('/settings', auth, updateUserInfo);
