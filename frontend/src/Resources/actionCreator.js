@@ -6,10 +6,16 @@ export const FETCH_RESOURCES_FAILURE = 'fetchResourcesFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/resources`;
 
-export function fetchResources() {
+export function fetchResources(token) {
   return (dispatch) => {
     dispatch({ type: FETCH_RESOURCES_REQUEST });
-    fetch(URL)
+    fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.status === 200) {
           return response.json();
