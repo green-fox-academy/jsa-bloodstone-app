@@ -19,7 +19,8 @@ import FarmDetail from './FarmDetail';
 import MineDetail from './MineDetail';
 import ErrorPopup from '../ErrorPopup';
 
-import colors from '../common/colors';
+import Colors from '../common/colors';
+import getIconImage from '../Buildings/assets';
 
 const styles = StyleSheet.create({
   background: {
@@ -45,11 +46,12 @@ const styles = StyleSheet.create({
 });
 
 function OneBuilding({
-  onClickClose, targetBuildingId, getIconImage,
+  onClickClose, targetBuildingId, isVisible,
 }) {
-  const oneBuildingInfo = useSelector((state) => state.oneBuilding.oneBuildingInfo);
-  const isLoading = useSelector((state) => state.oneBuilding.isLoading);
-  const error = useSelector((state) => state.oneBuilding.error);
+  if (!isVisible) {
+    return null;
+  }
+  const { oneBuildingInfo, isLoading, error } = useSelector((state) => state.oneBuilding);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,10 +66,10 @@ function OneBuilding({
   }, []);
   const totalNumOfTroops = listOfTroops.length;
 
-  const foodAmount = useSelector((state) => state.resources.foodAmount);
-  const foodGeneration = useSelector((state) => state.resources.foodGeneration);
-  const goldAmount = useSelector((state) => state.resources.goldAmount);
-  const goldGeneration = useSelector((state) => state.resources.goldGeneration);
+  const {
+    foodAmount, foodGeneration,
+    goldAmount, goldGeneration,
+  } = useSelector((state) => state.resources);
 
   useEffect(() => {
     dispatch(fetchResources());
@@ -76,47 +78,42 @@ function OneBuilding({
   }, []);
 
   if (error) {
-    return (
-      <ErrorPopup message={`Oops, ${error.message}`} />
-    );
+    return <ErrorPopup message={`Oops, ${error.message}`} />;
   }
+
   if (isLoading || oneBuildingInfo === null) {
     return (
       <Popup onClick={onClickClose}>
         <View style={styles.loading}>
-          <ActivityIndicator size="large" color={colors.tealColor} />
+          <ActivityIndicator size="large" color={Colors.tealColor} />
         </View>
       </Popup>
     );
   }
-  const buildingDetailInfo = oneBuildingInfo.building;
-  const { buildingRules } = oneBuildingInfo.rules;
-  const { troopsRules } = oneBuildingInfo.rules;
 
-  function getBuildingUpgradingTime(level) {
-    switch (level) {
-      case 1:
-        return buildingRules.upgradingTimeInSecondsLevel1;
-      case 2:
-        return buildingRules.upgradingTimeInSecondsLevel2;
-      default:
-        return null;
-    }
-  }
-
-  function getBuildingUpgradingCost(level) {
-    switch (level) {
-      case 1:
-        return buildingRules.upgradingCostLevel1;
-      case 2:
-        return buildingRules.upgradingCostLevel2;
-      default:
-        return null;
-    }
-  }
+  const {
+    building: buildingDetailInfo,
+    buildingRules, troopsRules,
+  } = oneBuildingInfo;
 
   if (Object.keys(buildingDetailInfo).length === 0) {
     return null;
+  }
+
+  function getBuildingUpgradingTime(level) {
+    const time = buildingRules[`upgradingTimeInSecondsLevel${level}`];
+    if (!time) {
+      throw new Error(`Can not find upgrading time rules about level ${level}`);
+    }
+    return time;
+  }
+
+  function getBuildingUpgradingCost(level) {
+    const cost = buildingRules[`upgradingCostLevel${level}`];
+    if (!cost) {
+      throw new Error(`Can not find upgrading cost rules about level ${level}`);
+    }
+    return cost;
   }
 
   let buildingComponent = null;
@@ -162,7 +159,7 @@ function OneBuilding({
   }
 
   return (
-    <Popup onClick={onClickClose}>
+    <Popup onPress={onClickClose} visible={isVisible}>
       <TouchableOpacity onPressOut={onClickClose} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
@@ -191,11 +188,11 @@ function OneBuilding({
 OneBuilding.propTypes = {
   targetBuildingId: PropTypes.number.isRequired,
   onClickClose: PropTypes.func.isRequired,
-  getIconImage: PropTypes.func,
+  isVisible: PropTypes.bool,
 };
 
 OneBuilding.defaultProps = {
-  getIconImage: null,
+  isVisible: false,
 };
 
 export default OneBuilding;
