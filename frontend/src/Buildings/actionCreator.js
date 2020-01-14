@@ -9,10 +9,15 @@ export const ADD_BUILDING_FAILURE = 'addBuildingFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/buildings`;
 
-export function fetchBuildings() {
+export function fetchBuildings(token) {
   return (dispatch) => {
     dispatch({ type: FETCH_BUILDINGS_REQUEST });
-    fetch(URL)
+    return fetch(URL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.status === 200) {
           return response.json();

@@ -63,7 +63,7 @@ async function register(req, res, next) {
       username,
       password: passwordHash,
       kingdomName: kingdomName || `${username}'s kingdom`,
-      kingdomList: [],
+      planetList: [],
     });
     delete user.password;
     const token = jwt.sign({ user }, process.env.APP_SECRET || 'testSecret');
