@@ -19,7 +19,7 @@ export function login(username, password) {
       .then((response) => response.json())
       .then((response) => {
         if (response.status === 400) {
-          return dispatch({ type: LOGIN_FAILURE, payload: response.message });
+          return dispatch({ type: LOGIN_FAILURE, payload: response });
         }
         if (response.status === 200) {
           return dispatch({ type: LOGIN_SUCCESS, payload: response.token });
