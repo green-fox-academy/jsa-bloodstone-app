@@ -12,6 +12,7 @@ const userSchema = new Schema({
   password: String,
   kingdomName: String,
   planetList: [String],
+  troop: { type: Schema.Types.ObjectId, ref: 'Troop' },
 }, schemaOptions);
 
 module.exports = conn.model('User', userSchema);
