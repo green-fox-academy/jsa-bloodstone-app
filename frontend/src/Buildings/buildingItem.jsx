@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     paddingVertical: 7,
+    marginHorizontal: -4,
     alignItems: 'center',
   },
 });
@@ -59,7 +60,7 @@ function BuildingItem({
     <TouchableHighlight
       underlayColor="transparent"
       onPress={onPress}
-      style={{ flex: 1, flexBasis: 120 }}
+      style={{ flexBasis: '33%' }}
     >
       <View style={styles.itemContainer}>
         <View style={styles.imageContainer}>
