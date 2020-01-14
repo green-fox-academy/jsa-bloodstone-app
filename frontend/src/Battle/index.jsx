@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View, StyleSheet, ScrollView,
 } from 'react-native';
@@ -25,7 +25,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const PLANETS = ['blue', 'green', 'yellow', 'red', 'purple'];
+
 function Battle() {
+  const [active, setActive] = useState(null);
   return (
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
@@ -35,11 +38,16 @@ function Battle() {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.planetsContainer}>
-            <PlanetItem type="blue" />
-            <PlanetItem type="green" />
-            <PlanetItem type="yellow" />
-            <PlanetItem type="red" />
-            <PlanetItem type="purple" />
+            {PLANETS.map(
+              (type) => (
+                <PlanetItem
+                  key={type}
+                  type={type}
+                  active={active === type}
+                  onSelectChange={setActive}
+                />
+              ),
+            )}
           </View>
           <UserItem />
           <UserItem />

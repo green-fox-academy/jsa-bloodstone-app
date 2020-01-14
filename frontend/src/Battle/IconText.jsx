@@ -38,7 +38,7 @@ IconText.propTypes = {
   icon: PropTypes.node,
   text: PropTypes.string,
   style: ViewPropTypes.style,
-  textStyle: ViewPropTypes.style,
+  textStyle: Text.propTypes.style,
 };
 
 IconText.defaultProps = {
