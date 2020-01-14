@@ -28,25 +28,24 @@ function RegistrationMap() {
       .then((response) => response.json())
       .then((response) => {
         if (response.status === 201) {
-          Toast.show({
+          return Toast.show({
             type: 'success',
             duration: 5000,
             text: `You selected ${selected} planet.`,
             buttonText: 'Okay',
           });
-          return navigation.navigate('Auth');
         }
         if (response.status === 400) {
-          Toast.show({
+          return Toast.show({
             type: 'warning',
             duration: 5000,
             text: `Oops, ${response.message}`,
             buttonText: 'Okay',
           });
-          return navigation.navigate('Home');
         }
         throw new Error('Unexpected status code.');
       })
+      .then(() => navigation.navigate('Home'))
       .catch((error) => {
         Toast.show({
           type: 'failure',
