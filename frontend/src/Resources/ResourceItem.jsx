@@ -67,7 +67,7 @@ function handleAmount(amount) {
 function ResourceItem({ type, amount, rate }) {
   const { rateStr, textColor } = getRateText(rate);
   const { icon } = ICONS[type];
-  
+
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
