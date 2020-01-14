@@ -70,7 +70,10 @@ function TroopLevel({ count, level }) {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image source={troopRound} style={styles.roundAvatar} />
-          <Text style={styles.cardText}>{`Level ${level}: ${count} Troops`}</Text>
+          {}
+          <Text style={styles.cardText}>
+            {`Level ${level}: ${count} Troop${count > 1 ? 's' : ''}`}
+          </Text>
         </View>
       </TouchableHighlight>
       <Animated.View style={{ ...styles.upgradeStyle, width: widthOfUpgrade }}>

@@ -12,7 +12,6 @@ export function fetchTroops(token) {
     return fetch(URL, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     })
