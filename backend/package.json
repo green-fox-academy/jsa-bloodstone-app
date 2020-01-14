@@ -4,6 +4,7 @@
   "description": "",
   "main": "App.js",
   "scripts": {
+    "test": "mocha --exit --reporter-options mochaFile=../reports/mocha/test-results.xml",
     "lint": "eslint .",
     "start": "node ./App.js",
     "start:dev": "nodemon ./App.js"

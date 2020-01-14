@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0020" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-01-14T03:29:36" tests="0" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Rules" timestamp="2020-01-14T03:29:36" tests="0" file="C:\Users\Jialu_Gu\EPAM\JSA\Project\jsa-bloodstone-app\backend\test\rules.test.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="townhallRule" timestamp="2020-01-14T03:29:36" tests="1" file="C:\Users\Jialu_Gu\EPAM\JSA\Project\jsa-bloodstone-app\backend\test\rules.test.js" time="0.0010" failures="0">
+    <testcase name="Rules townhallRule should return data object when getting townhallRule" time="0.0010" classname="should return data object when getting townhallRule">
+    </testcase>
+  </testsuite>
+  <testsuite name="farmRule" timestamp="2020-01-14T03:29:36" tests="1" file="C:\Users\Jialu_Gu\EPAM\JSA\Project\jsa-bloodstone-app\backend\test\rules.test.js" time="0.0010" failures="0">
+    <testcase name="Rules farmRule should return data object when getting farmRule" time="0.0010" classname="should return data object when getting farmRule">
+    </testcase>
+  </testsuite>
+  <testsuite name="mineRule" timestamp="2020-01-14T03:29:36" tests="1" file="C:\Users\Jialu_Gu\EPAM\JSA\Project\jsa-bloodstone-app\backend\test\rules.test.js" time="0.0000" failures="0">
+    <testcase name="Rules mineRule should return data object when getting mineRule" time="0.0000" classname="should return data object when getting mineRule">
+    </testcase>
+  </testsuite>
+  <testsuite name="academyRule" timestamp="2020-01-14T03:29:36" tests="1" file="C:\Users\Jialu_Gu\EPAM\JSA\Project\jsa-bloodstone-app\backend\test\rules.test.js" time="0.0000" failures="0">
+    <testcase name="Rules academyRule should return data object when getting academyRule" time="0.0000" classname="should return data object when getting academyRule">
+    </testcase>
+  </testsuite>
+  <testsuite name="foxRule" timestamp="2020-01-14T03:29:36" tests="1" file="C:\Users\Jialu_Gu\EPAM\JSA\Project\jsa-bloodstone-app\backend\test\rules.test.js" time="0.0000" failures="0">
+    <testcase name="Rules foxRule should return data object when getting foxRule" time="0.0000" classname="should return data object when getting foxRule">
+    </testcase>
+  </testsuite>
+</testsuites>
