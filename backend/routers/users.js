@@ -112,7 +112,8 @@ async function updateUserInfo(req, res, next) {
       changedTarget.email = newEmail;
     }
     if (newPassword) {
-      changedTarget.password = newPassword;
+      const passwordHash = await bcrypt.hash(newPassword, 8);
+      changedTarget.password = passwordHash;
     }
     if (newKingdomName) {
       changedTarget.kingdomName = newKingdomName;
@@ -129,7 +130,7 @@ async function updateUserInfo(req, res, next) {
     if (!user) {
       throw createError(400, 'Can\'t find this username in database');
     }
-    res.status(202).send({ changes: Object.keys(changedTarget) });
+    res.status(202).send({ status: 202, changes: Object.keys(changedTarget) });
   } catch (error) {
     next(error);
   }

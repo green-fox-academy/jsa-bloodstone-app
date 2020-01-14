@@ -4,6 +4,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import {
   View, Text, Alert, StyleSheet, ImageBackground,
 } from 'react-native';
+import { Toast } from 'native-base';
 import validation from '../common/helper';
 import Colors from '../common/colors';
 import { logout } from '../Login/actionCreator';
@@ -43,12 +44,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginBottom: 60,
-  },
   logoutButton: {
     width: 300,
   },
@@ -71,6 +66,22 @@ function Settings() {
   }
 
   function showAlert(text) {
+    const { type: actionType } = await dispatch(addBuilding(type, token));
+    if (actionType === CHANGE_SETTINGS_FAILURE) {
+      Toast.show({
+        type: 'warning',
+        duration: 3000,
+        text: error,
+        buttonText: 'Okay',
+      });
+    } else {
+      Toast.show({
+        type: 'success',
+        duration: 3000,
+        text: 'Building is succesfully added',
+        buttonText: 'Okay',
+      });
+    }
     Alert.alert('Warning', text);
   }
 
@@ -103,10 +114,6 @@ function Settings() {
     }
     Alert.alert('Settings', message);
     resetForm();
-  }
-
-  function handleCancel() {
-    navigation.navigate('Home');
   }
 
   function handleLogout() {
@@ -161,11 +168,8 @@ function Settings() {
         />
 
         <View style={styles.buttonRow}>
+          <SubmitButton onPress={handleLogout} text="Logout" />
           <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} text="Save" />
-          <SubmitButton onPress={handleCancel} text="Cancel" />
-        </View>
-        <View style={styles.footer}>
-          <SubmitButton onPress={handleLogout} style={styles.logoutButton} text="Logout" />
         </View>
       </View>
     </ImageBackground>
