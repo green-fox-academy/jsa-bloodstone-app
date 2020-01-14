@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-native';
 
-function Popup({ visible, onPress, children }) {
+function Popup({ isVisible, onPress, children }) {
   return (
     <Modal
       animationType="fade"
       transparent
-      visible={visible}
+      visible={isVisible}
       presentationStyle="overFullScreen"
       onRequestClose={onPress}
     >
@@ -21,12 +21,12 @@ Popup.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  visible: PropTypes.bool,
+  isVisible: PropTypes.bool,
   onPress: PropTypes.func,
 };
 
 Popup.defaultProps = {
-  visible: false,
+  isVisible: false,
   onPress: null,
 };
 

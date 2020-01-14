@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
 });
 
 function OneBuilding({
-  onClickClose, targetBuildingId, visible,
+  onClickClose, targetBuildingId, isVisible,
 }) {
-  if (!visible) {
+  if (!isVisible) {
     return null;
   }
   const { oneBuildingInfo, isLoading, error } = useSelector((state) => state.oneBuilding);
@@ -159,7 +159,7 @@ function OneBuilding({
   }
 
   return (
-    <Popup onPress={onClickClose} visible={visible}>
+    <Popup onPress={onClickClose} visible={isVisible}>
       <TouchableOpacity onPressOut={onClickClose} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
@@ -188,11 +188,11 @@ function OneBuilding({
 OneBuilding.propTypes = {
   targetBuildingId: PropTypes.number.isRequired,
   onClickClose: PropTypes.func.isRequired,
-  visible: PropTypes.bool,
+  isVisible: PropTypes.bool,
 };
 
 OneBuilding.defaultProps = {
-  visible: false,
+  isVisible: false,
 };
 
 export default OneBuilding;

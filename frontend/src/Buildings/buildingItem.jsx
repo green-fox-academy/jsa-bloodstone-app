@@ -68,7 +68,7 @@ function BuildingItem({
             <Text style={styles.titleStyle}>{type}</Text>
           </View>
           <View style={styles.levelContainer}>
-            <Text style={styles.levelStyle}>{`Lv.${level}`}</Text>
+            <Text style={styles.levelStyle}>{`Lv. ${level}`}</Text>
           </View>
         </View>
       </View>
