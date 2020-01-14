@@ -5,6 +5,7 @@ const buildings = require('./buildings');
 const troops = require('./troops');
 const progresses = require('./progresses');
 const notification = require('./notification');
+const battle = require('./battle');
 
 module.exports = {
   users,
@@ -14,4 +15,5 @@ module.exports = {
   troops,
   progresses,
   notification,
+  battle,
 };
