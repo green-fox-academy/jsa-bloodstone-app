@@ -2,45 +2,34 @@ const request = require('supertest');
 const app = require('../App');
 
 describe('Buildings', () => {
+  let token = null;
+
+  before((done) => {
+    request(app)
+      .post('/users/login')
+      .send({ username: 'testuser2', password: '12345678' })
+      .end((err, res) => {
+        token = res.body.token;
+        done();
+      });
+  });
+
   describe('GET /kingdom/buildings', () => {
     it('should return 200 when getting all buildings', (done) => {
       request(app)
         .get('/kingdom/buildings')
+        .set('Authorization', `bearer ${token}`)
         .expect('Content-Type', /json/)
         .expect(200, done);
     });
   });
 
-  describe('GET /kingdom/buildings/non-number', () => {
-    it('should return 400 when the building id is not a number', (done) => {
+  describe('GET /kingdom/buildings/5e0358c033372b3a7c5ee05a', () => {
+    it('should return 404 when accessing non-exist id', (done) => {
       request(app)
-        .get('/kingdom/buildings/non-number')
-        .expect(400, done);
-    });
-  });
-
-  describe('GET /kingdom/buildings/-1', () => {
-    it('should return 400 when trying to get a building with id -1', (done) => {
-      request(app)
-        .get('/kingdom/buildings/-1')
-        .expect(400, done);
-    });
-  });
-
-  describe('GET /kingdom/buildings/0', () => {
-    it('should return 400 when trying to get a building with id 0', (done) => {
-      request(app)
-        .get('/kingdom/buildings/0')
-        .expect(400, done);
-    });
-  });
-
-  describe('GET /kingdom/buildings/2', () => {
-    it('should return 200 when getting a building', (done) => {
-      request(app)
-        .get('/kingdom/buildings/2')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-    });
+        .get('/kingdom/buildings/5e0358c033372b3a7c5ee05a')
+        .set('Authorization', `bearer ${token}`)
+        .expect(404, done);
+    }).timeout(5000);
   });
 });
