@@ -2,7 +2,7 @@ import React from 'react';
 import {
   View, Image, StyleSheet,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import userAvatar from '../../assets/user-avatar.png';
 import IconText from './IconText';
 
@@ -71,10 +71,21 @@ function UserItem() {
             icon={(
               <AntDesign
                 name="heart"
-                style={[styles.iconStyle, { color: Colors.redColor }]}
+                size={14}
+                style={{ marginRight: 3, color: Colors.redColor }}
               />
             )}
             text="1000"
+          />
+          <IconText
+            icon={(
+              <Ionicons
+                name="md-planet"
+                size={17}
+                style={{ marginRight: 3, color: Colors.tealColor }}
+              />
+            )}
+            text="1"
           />
         </View>
       </View>
