@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { UserModel } = require('../models');
+const { TroopModel } = require('../models');
 
 const router = Router();
 
@@ -12,19 +13,20 @@ async function getUsersInPlanet(req, res, next) {
         email: false,
         password: false,
       },
-    ).populate('troop');
-    const usersInPlanetFiltered = usersInPlanet.map((element) => {
+    );
+    const usersInPlanetFiltered = await Promise.all(usersInPlanet.map(async (element) => {
       const { _id } = element;
+      const troop = await TroopModel.findOne({ owner: _id });
       return {
         _id,
         username: element.username,
-        hp: element.troop ? element.troop.hp : 0,
-        attack: element.troop ? element.troop.attack : 0,
-        defence: element.troop ? element.troop.defence : 0,
-        allLevels: element.troop ? element.troop.battleRating : 0,
+        hp: troop ? troop.hp : 0,
+        attack: troop ? troop.attack : 0,
+        defence: troop ? troop.defence : 0,
+        allLevels: troop ? troop.battleRating : 0,
         planetList: element.planetList,
       };
-    });
+    }));
     res.send({ usersInPlanet: usersInPlanetFiltered });
   } catch (error) {
     next(error);
