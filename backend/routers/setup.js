@@ -7,6 +7,10 @@ const { auth } = require('../middlewares');
 
 const router = Router();
 
+function union(array, element) {
+  return [...new Set([...array, element])];
+}
+
 async function chooseKingdom(req, res, next) {
   const { _id: owner } = req.user;
   const { selectedPlanet } = req.body;
@@ -18,7 +22,7 @@ async function chooseKingdom(req, res, next) {
     if (userInfo.planetList.length !== 0) {
       throw createError(400, 'This kingdom list is not empty.');
     }
-    userInfo.planetList.push(selectedPlanet);
+    userInfo.planetList = union(userInfo.planetList, selectedPlanet);
     userInfo.save();
     req.owner = owner;
     next();
