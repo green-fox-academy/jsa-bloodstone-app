@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
-import { login, LOGIN_SUCCESS } from './actionCreator';
+import { login, LOGIN_SUCCESS, LOGIN_FAILURE } from './actionCreator';
 
 import { InputField, SubmitButton } from '../common/components';
 import background from '../../assets/login/background.jpg';
@@ -63,9 +63,12 @@ function Login() {
     if (password.length < 8) {
       return showAlert('Password must longer than 8.');
     }
-    const { type } = await dispatch(login(name, password));
+    const { type, payload } = await dispatch(login(name, password));
     if (type === LOGIN_SUCCESS) {
       return navigation.navigate('Home');
+    }
+    if (type === LOGIN_FAILURE) {
+      return showAlert(payload.message);
     }
     return showAlert(error.message);
   }
