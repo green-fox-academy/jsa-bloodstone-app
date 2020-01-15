@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const createError = require('http-errors');
 const { UserModel } = require('../models');
 const { TroopModel } = require('../models');
 const { auth } = require('../middlewares');
@@ -38,6 +39,119 @@ async function getUsersOnPlanet(req, res, next) {
   }
 }
 
+function getCasualtyPercentage(troop, targetTroop, correction = 1) {
+  return (targetTroop.attack / (targetTroop.attack + troop.attack))
+    * ((troop.defence + 100) / (2 * troop.defence + 100))
+    * (0.6 + 0.8 * Math.random())
+    * correction;
+}
+
+function applyCasualty(troop, casualtyPercentage) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const element of troop.countByLevel) {
+    element.count = Math.floor(element.count * (1 - casualtyPercentage));
+  }
+}
+
+async function battle(req, res, next) {
+  const { _id: attackerId } = req.user;
+  const { targetId } = req.params;
+  try {
+    if (attackerId === targetId) {
+      throw createError(400, 'Cannot attack yourself');
+    }
+    const attacker = await UserModel.findOne({ _id: attackerId });
+    const defender = await UserModel.findOne({ _id: targetId });
+    if (!attacker || !defender) {
+      throw createError(404, 'User not found');
+    }
+    const attackerTroop = await TroopModel.findOne(
+      { owner: attackerId },
+      { _id: false, owner: false },
+    );
+    const defenderTroop = await TroopModel.findOne(
+      { owner: targetId },
+      { _id: false, owner: false },
+    );
+
+    const battleReport = [];
+
+    if (!attackerTroop || !attackerTroop.countByLevel || attackerTroop.hp === 0) {
+      throw createError(400, 'You don\'t have troops for attacking');
+    }
+    if (!defenderTroop || !defenderTroop.countByLevel || defenderTroop.hp === 0) {
+      battleReport.push('No enemy troop in the kingdom\n');
+      res.status(201).send({
+        isWin: true,
+        battleReport,
+        myTroopLeft: attackerTroop.hp,
+        enemyTroopLeft: defenderTroop.hp,
+      });
+    }
+
+    // Fleet battle stage
+    const atkCasualtyFleetBattle = getCasualtyPercentage(attackerTroop, defenderTroop);
+    const defCasualtyFleetBattle = getCasualtyPercentage(defenderTroop, attackerTroop);
+    applyCasualty(attackerTroop, atkCasualtyFleetBattle);
+    applyCasualty(defenderTroop, defCasualtyFleetBattle);
+    const fleetBattleWin = atkCasualtyFleetBattle < defCasualtyFleetBattle;
+    battleReport.push({
+      name: fleetBattleWin ? 'Fleet Battle win' : 'Fleet Battle loss',
+      myLoss: Math.round(atkCasualtyFleetBattle * 100),
+      enemyLoss: Math.round(defCasualtyFleetBattle * 100),
+    });
+    if (!fleetBattleWin) {
+      res.status(201).send({
+        isWin: false,
+        battleReport,
+        myTroopLeft: attackerTroop.hp,
+        enemyTroopLeft: defenderTroop.hp,
+      });
+      return;
+    }
+
+    // Orbital striking stage
+    const defCasualtyStriking = getCasualtyPercentage(defenderTroop, attackerTroop, 0.2);
+    applyCasualty(defenderTroop, defCasualtyStriking);
+    battleReport.push({
+      name: 'Orbital striking',
+      myLoss: 0,
+      enemyLoss: Math.round(defCasualtyStriking * 100),
+    });
+
+    // Landing operation stage
+    const atkCasualtyLandingOperation = getCasualtyPercentage(attackerTroop, defenderTroop);
+    const defCasualtyLandingOperation = getCasualtyPercentage(defenderTroop, attackerTroop, 0.8);
+    applyCasualty(attackerTroop, atkCasualtyLandingOperation);
+    applyCasualty(defenderTroop, defCasualtyLandingOperation);
+    const landOperationWin = atkCasualtyLandingOperation < defCasualtyLandingOperation;
+    battleReport.push({
+      name: landOperationWin ? 'Landing operation win' : 'Landing operation loss',
+      myLoss: Math.round(atkCasualtyLandingOperation * 100),
+      enemyLoss: Math.round(defCasualtyLandingOperation * 100),
+    });
+    if (!landOperationWin) {
+      res.status(201).send({
+        isWin: false,
+        battleReport,
+        myTroopLeft: attackerTroop.hp,
+        enemyTroopLeft: defenderTroop.hp,
+      });
+      return;
+    }
+
+    res.status(201).send({
+      isWin: true,
+      battleReport,
+      myTroopLeft: attackerTroop.hp,
+      enemyTroopLeft: defenderTroop.hp,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+router.get('/:targetId', auth, battle);
 router.get('/planet/:planet', auth, getUsersOnPlanet);
 
 module.exports = router;
