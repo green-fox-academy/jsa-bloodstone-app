@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
     borderRadius: 8,
     backgroundColor: '#ffffffdd',
     marginBottom: 5,
@@ -23,6 +24,12 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: 64,
     height: 64,
+  },
+  levelStyle: {
+    backgroundColor: Colors.blueColor,
+    marginTop: -12,
+    marginRight: 0,
+    borderRadius: 5,
   },
   textStyle: {
     fontSize: 16,
@@ -39,10 +46,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   attackIconStyle: {
-    paddingHorizontal: 12,
+    padding: 12,
     backgroundColor: '#ffffff66',
     borderRadius: 32,
-    padding: 12,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(0,0,0,0.12)',
   },
@@ -59,45 +65,52 @@ function PlayerItem({
   }
   return (
     <View style={styles.container}>
-      <Image style={styles.imageStyle} source={userAvatar} />
       <View style={styles.mainStyle}>
-        <View style={{ paddingHorizontal: 12 }}>
-          <View style={{ flexDirection: 'row' }}>
+        <View style={{ justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
+            <Image style={styles.imageStyle} source={userAvatar} />
             <IconText
               text={`Lv.${allLevels}`}
-              style={{ backgroundColor: Colors.blueColor }}
-              textStyle={{ color: Colors.whiteColor }}
-            />
-            { name === 'clay' && <IconText text="SVIP 12" style={{ backgroundColor: '#ffcc66' }} textStyle={{ color: '#fff', fontWeight: 'bold' }} />}
-            <IconText text={name.toUpperCase()} style={{ backgroundColor: Colors.pinkColor }} textStyle={{ color: '#fff' }} />
-            <IconText
-              icon={(
-                <Ionicons name="md-planet" size={17} style={{ marginRight: 3, color: Colors.whiteColor }} />
-              )}
-              style={{ backgroundColor: Colors.tealColor }}
-              textStyle={{ color: Colors.whiteColor }}
-              text={`${planets}`}
+              style={styles.levelStyle}
+              textStyle={{ color: Colors.whiteColor, fontWeight: 'bold' }}
             />
           </View>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <IconText
-              icon={(
-                <AntDesign name="heart" size={14} style={{ marginRight: 3, color: Colors.redColor }} />
-              )}
-              text={`${hp}`}
-            />
-            <IconText
-              icon={(
-                <Image source={attackIcon} resizeMode="contain" style={styles.iconStyle} />
-              )}
-              text={`${attack}`}
-            />
-            <IconText
-              icon={(
-                <Image source={defenceIcon} resizeMode="contain" style={styles.iconStyle} />
-              )}
-              text={`${defence}`}
-            />
+          <View style={{ paddingHorizontal: 10 }}>
+            <View style={{ flexDirection: 'row' }}>
+              <IconText
+                text={name.toUpperCase()}
+                style={{ backgroundColor: Colors.tealColor }}
+                textStyle={{ color: Colors.white90Color }}
+              />
+              <IconText
+                icon={(
+                  <Ionicons name="md-planet" size={17} style={{ marginRight: 3, color: Colors.whiteColor }} />
+                )}
+                style={{ backgroundColor: Colors.pinkColor }}
+                textStyle={{ color: Colors.whiteColor }}
+                text={`${planets}`}
+              />
+            </View>
+            <View style={{ flexDirection: 'row', marginTop: 15 }}>
+              <IconText
+                icon={(
+                  <AntDesign name="heart" size={14} style={{ marginRight: 3, color: Colors.redColor }} />
+                )}
+                text={`${hp}`}
+              />
+              <IconText
+                icon={(
+                  <Image source={attackIcon} resizeMode="contain" style={styles.iconStyle} />
+                )}
+                text={`${attack}`}
+              />
+              <IconText
+                icon={(
+                  <Image source={defenceIcon} resizeMode="contain" style={styles.iconStyle} />
+                )}
+                text={`${defence}`}
+              />
+            </View>
           </View>
         </View>
         <TouchableHighlight

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     paddingVertical: 2,
     paddingHorizontal: 10,
     borderRadius: 12,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 12,
     color: Colors.blackColor,
-    lineHeight: 20,
+    lineHeight: 18,
   },
 });
 
