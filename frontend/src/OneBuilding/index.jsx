@@ -53,29 +53,30 @@ function OneBuilding({
   }
   const { oneBuildingInfo, isLoading, error } = useSelector((state) => state.oneBuilding);
   const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (targetBuildingId !== -1) {
-      dispatch(fetchOneBuilding(targetBuildingId));
+      dispatch(fetchOneBuilding(targetBuildingId, token));
     }
   }, [targetBuildingId]);
 
-  const listOfTroops = useSelector((state) => state.troops.listOfTroops);
   useEffect(() => {
-    dispatch(fetchTroops());
+    dispatch(fetchTroops(token));
   }, []);
-  const totalNumOfTroops = listOfTroops.length;
+  const { listOfTroops } = useSelector((state) => state.troops);
+  const [troop] = listOfTroops;
+
+  useEffect(() => {
+    dispatch(fetchResources(token));
+    const updateResourcesInterval = setInterval(() => dispatch(fetchResources(token)), 30000);
+    return () => clearInterval(updateResourcesInterval);
+  }, []);
 
   const {
     foodAmount, foodGeneration,
     goldAmount, goldGeneration,
   } = useSelector((state) => state.resources);
-
-  useEffect(() => {
-    dispatch(fetchResources());
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources()), 60000);
-    return () => clearInterval(updateResourcesInterval);
-  }, []);
 
   if (error) {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
@@ -91,10 +92,9 @@ function OneBuilding({
     );
   }
 
-  const {
-    building: buildingDetailInfo,
-    buildingRules, troopsRules,
-  } = oneBuildingInfo;
+  const { building: buildingDetailInfo } = oneBuildingInfo;
+  const { buildingRules, troopsRules } = oneBuildingInfo.rules;
+  const { hp: totalNumOfTroops } = troop;
 
   if (Object.keys(buildingDetailInfo).length === 0) {
     return null;
@@ -103,7 +103,7 @@ function OneBuilding({
   function getBuildingUpgradingTime(level) {
     const time = buildingRules[`upgradingTimeInSecondsLevel${level}`];
     if (!time) {
-      throw new Error(`Can not find upgrading time rules about level ${level}`);
+      throw new Error('Cannot upgrade now, please try later!');
     }
     return time;
   }
@@ -111,7 +111,7 @@ function OneBuilding({
   function getBuildingUpgradingCost(level) {
     const cost = buildingRules[`upgradingCostLevel${level}`];
     if (!cost) {
-      throw new Error(`Can not find upgrading cost rules about level ${level}`);
+      throw new Error('Cannot upgrade now, please try later!');
     }
     return cost;
   }
@@ -159,7 +159,7 @@ function OneBuilding({
   }
 
   return (
-    <Popup onPress={onClickClose} visible={isVisible}>
+    <Popup onPress={onClickClose} isVisible={isVisible}>
       <TouchableOpacity onPressOut={onClickClose} style={{ flex: 1 }} activeOpacity={1}>
         <SafeAreaView style={styles.background}>
           <TouchableWithoutFeedback>
@@ -186,7 +186,7 @@ function OneBuilding({
 }
 
 OneBuilding.propTypes = {
-  targetBuildingId: PropTypes.number.isRequired,
+  targetBuildingId: PropTypes.string.isRequired,
   onClickClose: PropTypes.func.isRequired,
   isVisible: PropTypes.bool,
 };

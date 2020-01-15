@@ -6,10 +6,15 @@ export const FETCH_ONE_BUILDING_FAILURE = 'fetchOneBuildingFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/buildings/`;
 
-export function fetchOneBuilding(buildingId) {
+export function fetchOneBuilding(buildingId, token) {
   return (dispatch) => {
     dispatch({ type: FETCH_ONE_BUILDING_REQUEST });
-    fetch(`${URL}${buildingId}`)
+    return fetch(`${URL}${buildingId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.status === 200) {
           return response.json();

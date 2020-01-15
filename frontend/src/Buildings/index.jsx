@@ -18,7 +18,6 @@ import AddBuildingItem from './addBuildingItem';
 import OneBuilding from '../OneBuilding';
 
 import ErrorPopup from '../ErrorPopup';
-import getIconImage from './assets';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,7 +56,7 @@ function Buildings() {
   const token = useSelector((state) => state.auth.token);
   const { listOfBuildings, isLoading, error } = useSelector((state) => state.buildings);
 
-  const [activeId, setActiveId] = useState(-1);
+  const [activeId, setActiveId] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -110,10 +109,9 @@ function Buildings() {
         </View>
       </CardView>
       <OneBuilding
-        visible={isModalVisible}
+        isVisible={isModalVisible}
         onClickClose={() => setModalVisible(false)}
         targetBuildingId={activeId}
-        getIconImage={getIconImage}
       />
     </View>
   );
