@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, ActivityIndicator,
+  View, ActivityIndicator, ScrollView,
 } from 'react-native';
 import { CardView } from '../common/components';
 import Colors from '../common/colors';
@@ -37,21 +37,23 @@ function Troops() {
   } = troop;
 
   return (
-    <CardView style={{ flexDirection: 'column' }}>
-      <TroopInformation
-        attack={attack}
-        defence={defence}
-        sustenance={sustenance}
-      />
-      <View style={{ paddingVertical: 20 }}>
-        {countByLevel.map((item, index) => (
-          <TroopLevel
-            key={index}
-            level={item.level}
-            count={item.count}
-          />
-        ))}
-      </View>
+    <CardView style={{ flexDirection: 'column', marginBottom: 0 }}>
+      <ScrollView>
+        <TroopInformation
+          attack={attack}
+          defence={defence}
+          sustenance={sustenance}
+        />
+        <View style={{ paddingVertical: 20 }}>
+          {countByLevel.map((item, index) => (
+            <TroopLevel
+              key={index}
+              level={item.level}
+              count={item.count}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </CardView>
   );
 }
