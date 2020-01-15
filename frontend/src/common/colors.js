@@ -16,4 +16,6 @@ export default {
   greenColor: '#68AA2F',
   orangeColor: '#FD730B',
   blueColor: '#1976d2',
+  pinkColor: '#e91e63',
+  purpleColor: '#673ab7',
 };
