@@ -22,19 +22,17 @@ function Troops() {
 
   const { listOfTroops, isLoading, error } = useSelector((state) => state.troops);
 
-  const [troop] = listOfTroops;
-
   if (error) {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
   }
 
-  if (isLoading || !troop) {
+  if (isLoading || !listOfTroops) {
     return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
   const {
     attack, defence, hp: sustenance, countByLevel,
-  } = troop;
+  } = listOfTroops;
 
   return (
     <CardView style={{ flexDirection: 'column', marginBottom: 0 }}>

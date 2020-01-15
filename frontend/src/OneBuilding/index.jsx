@@ -88,10 +88,10 @@ function OneBuilding({
 
   const { building: buildingDetailInfo } = oneBuildingInfo;
   const { buildingRules, troopsRules } = oneBuildingInfo.rules;
-  const [troop] = listOfTroops;
+
   let totalNumOfTroops = '?';
-  if (troop) {
-    totalNumOfTroops = troop.hp;
+  if (listOfTroops) {
+    totalNumOfTroops = listOfTroops.hp;
   }
 
   if (Object.keys(buildingDetailInfo).length === 0) {

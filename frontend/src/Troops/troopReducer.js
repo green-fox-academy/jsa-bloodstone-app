@@ -4,7 +4,7 @@ import {
 } from './actionCreator';
 
 const initialState = {
-  listOfTroops: [],
+  listOfTroops: {},
   isLoading: false,
   error: undefined,
 };
