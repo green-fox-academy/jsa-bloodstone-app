@@ -66,7 +66,6 @@ function Battle() {
           if (response.status === 200) {
             return response.json();
           }
-          console.log(response.status);
           throw new Error('unexpected status code');
         })
         .then((response) => setPlayers(response.usersOnPlanet))
@@ -84,7 +83,7 @@ function Battle() {
     if (!players.length) {
       return (
         <CardView>
-          <Text>No players in this planet.</Text>
+          <Text>No players on this planet.</Text>
         </CardView>
       );
     }
