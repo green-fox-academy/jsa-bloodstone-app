@@ -25,7 +25,7 @@ function TownhallDetail({
       <View style={commonStyles.row}>
         <Text style={commonStyles.textStyle}>{`You have ${troops} `}</Text>
         <Image resizeMode="contain" source={troopIcon} style={commonStyles.iconStyle} />
-        <Text style={commonStyles.textStyle}> troops.</Text>
+        <Text style={commonStyles.textStyle}> in your kingdom.</Text>
       </View>
       <View style={commonStyles.row}>
         <Text style={commonStyles.textStyle}>{`You have ${food} `}</Text>
