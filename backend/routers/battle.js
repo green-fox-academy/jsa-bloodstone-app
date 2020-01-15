@@ -82,69 +82,73 @@ async function battle(req, res, next) {
     if (!defenderTroop || !defenderTroop.countByLevel || defenderTroop.hp === 0) {
       battleReport.push('No enemy troop in the kingdom\n');
       res.status(201).send({
-        isWin: true,
+        isWinner: true,
         battleReport,
-        myTroopLeft: attackerTroop.hp,
-        enemyTroopLeft: defenderTroop.hp,
+        myTroopsLeft: attackerTroop.hp,
+        enemyTroopsLeft: defenderTroop.hp,
       });
     }
 
     // Fleet battle stage
-    const atkCasualtyFleetBattle = getCasualtyPercentage(attackerTroop, defenderTroop);
-    const defCasualtyFleetBattle = getCasualtyPercentage(defenderTroop, attackerTroop);
-    applyCasualty(attackerTroop, atkCasualtyFleetBattle);
-    applyCasualty(defenderTroop, defCasualtyFleetBattle);
-    const fleetBattleWin = atkCasualtyFleetBattle < defCasualtyFleetBattle;
+    const attackCasualtyFleetBattle = getCasualtyPercentage(attackerTroop, defenderTroop);
+    const defenceCasualtyFleetBattle = getCasualtyPercentage(defenderTroop, attackerTroop);
+    applyCasualty(attackerTroop, attackCasualtyFleetBattle);
+    applyCasualty(defenderTroop, defenceCasualtyFleetBattle);
+    const fleetBattleIsWinner = attackCasualtyFleetBattle < defenceCasualtyFleetBattle;
     battleReport.push({
-      name: fleetBattleWin ? 'Fleet Battle win' : 'Fleet Battle loss',
-      myLoss: Math.round(atkCasualtyFleetBattle * 100),
-      enemyLoss: Math.round(defCasualtyFleetBattle * 100),
+      name: fleetBattleIsWinner ? 'Fleet Battle win' : 'Fleet Battle loss',
+      myLoss: Math.round(attackCasualtyFleetBattle * 100),
+      enemyLoss: Math.round(defenceCasualtyFleetBattle * 100),
     });
-    if (!fleetBattleWin) {
+    if (!fleetBattleIsWinner) {
       res.status(201).send({
-        isWin: false,
+        isWinner: false,
         battleReport,
-        myTroopLeft: attackerTroop.hp,
-        enemyTroopLeft: defenderTroop.hp,
+        myTroopsLeft: attackerTroop.hp,
+        enemyTroopsLeft: defenderTroop.hp,
       });
       return;
     }
 
     // Orbital striking stage
-    const defCasualtyStriking = getCasualtyPercentage(defenderTroop, attackerTroop, 0.2);
-    applyCasualty(defenderTroop, defCasualtyStriking);
+    const defenceCasualtyStriking = getCasualtyPercentage(defenderTroop, attackerTroop, 0.2);
+    applyCasualty(defenderTroop, defenceCasualtyStriking);
     battleReport.push({
       name: 'Orbital striking',
       myLoss: 0,
-      enemyLoss: Math.round(defCasualtyStriking * 100),
+      enemyLoss: Math.round(defenceCasualtyStriking * 100),
     });
 
     // Landing operation stage
-    const atkCasualtyLandingOperation = getCasualtyPercentage(attackerTroop, defenderTroop);
-    const defCasualtyLandingOperation = getCasualtyPercentage(defenderTroop, attackerTroop, 0.8);
-    applyCasualty(attackerTroop, atkCasualtyLandingOperation);
-    applyCasualty(defenderTroop, defCasualtyLandingOperation);
-    const landOperationWin = atkCasualtyLandingOperation < defCasualtyLandingOperation;
+    const attackCasualtyLandingOperation = getCasualtyPercentage(attackerTroop, defenderTroop);
+    const defenceCasualtyLandingOperation = getCasualtyPercentage(
+      defenderTroop,
+      attackerTroop,
+      0.8,
+    );
+    applyCasualty(attackerTroop, attackCasualtyLandingOperation);
+    applyCasualty(defenderTroop, defenceCasualtyLandingOperation);
+    const landOperationIsWinner = attackCasualtyLandingOperation < defenceCasualtyLandingOperation;
     battleReport.push({
-      name: landOperationWin ? 'Landing operation win' : 'Landing operation loss',
-      myLoss: Math.round(atkCasualtyLandingOperation * 100),
-      enemyLoss: Math.round(defCasualtyLandingOperation * 100),
+      name: landOperationIsWinner ? 'Landing operation win' : 'Landing operation loss',
+      myLoss: Math.round(attackCasualtyLandingOperation * 100),
+      enemyLoss: Math.round(defenceCasualtyLandingOperation * 100),
     });
-    if (!landOperationWin) {
+    if (!landOperationIsWinner) {
       res.status(201).send({
-        isWin: false,
+        isWinner: false,
         battleReport,
-        myTroopLeft: attackerTroop.hp,
-        enemyTroopLeft: defenderTroop.hp,
+        myTroopsLeft: attackerTroop.hp,
+        enemyTroopsLeft: defenderTroop.hp,
       });
       return;
     }
 
     res.status(201).send({
-      isWin: true,
+      isWinner: true,
       battleReport,
-      myTroopLeft: attackerTroop.hp,
-      enemyTroopLeft: defenderTroop.hp,
+      myTroopsLeft: attackerTroop.hp,
+      enemyTroopsLeft: defenderTroop.hp,
     });
   } catch (error) {
     next(error);
