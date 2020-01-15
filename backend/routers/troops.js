@@ -22,8 +22,8 @@ async function createTroop(req, res, next) {
   const level = Number.parseInt(req.query.level, 10) || 1;
   try {
     const cost = parseInt(foxRule.constructionCost, 10);
-    const purchase = await ResourceModel.purchaseItem(owner, cost);
-    if (!purchase) {
+    const hasEnoughMoney = await ResourceModel.purchaseItem(owner, cost);
+    if (!hasEnoughMoney) {
       throw createError(400, 'You don\'t have enough money');
     }
     const troops = await TroopModel.createTroop(owner, level);

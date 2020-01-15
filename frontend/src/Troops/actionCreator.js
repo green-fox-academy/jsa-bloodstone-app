@@ -32,7 +32,7 @@ export function fetchTroops(token) {
 export function createTroop(level, token) {
   return (dispatch) => {
     dispatch({ type: CREATE_TROOP_REQUEST });
-    return fetch(`${URL}?level=${level}`, {
+    return fetch(`${URL}/?level=${level}`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,

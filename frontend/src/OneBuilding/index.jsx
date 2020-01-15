@@ -52,7 +52,7 @@ function OneBuilding({
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  const { listOfTroops } = useSelector((state) => state.troops);
+  const { infoOfTroops } = useSelector((state) => state.troops);
   useEffect(() => {
     dispatch(fetchTroops(token));
   }, []);
@@ -90,8 +90,8 @@ function OneBuilding({
   const { buildingRules, troopsRules } = oneBuildingInfo.rules;
 
   let totalNumOfTroops = '?';
-  if (listOfTroops) {
-    totalNumOfTroops = listOfTroops.hp;
+  if (infoOfTroops) {
+    totalNumOfTroops = infoOfTroops.hp;
   }
 
   if (Object.keys(buildingDetailInfo).length === 0) {

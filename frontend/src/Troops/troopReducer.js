@@ -4,7 +4,7 @@ import {
 } from './actionCreator';
 
 const initialState = {
-  listOfTroops: {},
+  infoOfTroops: {},
   isLoading: false,
   error: undefined,
 };
@@ -17,7 +17,7 @@ export default function troops(state = initialState, action) {
     case FETCH_TROOPS_SUCCESS:
     case CREATE_TROOP_SUCCESS:
       return {
-        ...state, listOfTroops: action.payload, isLoading: false, error: undefined,
+        ...state, infoOfTroops: action.payload, isLoading: false, error: undefined,
       };
     case FETCH_TROOPS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };

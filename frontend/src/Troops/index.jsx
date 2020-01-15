@@ -20,19 +20,19 @@ function Troops() {
     dispatch(fetchTroops(token));
   }, []);
 
-  const { listOfTroops, isLoading, error } = useSelector((state) => state.troops);
+  const { infoOfTroops, isLoading, error } = useSelector((state) => state.troops);
 
   if (error) {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
   }
 
-  if (isLoading || Object.keys(listOfTroops.length === 0)) {
+  if (isLoading || Object.keys(infoOfTroops.length === 0)) {
     return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
   const {
     attack, defence, hp: sustenance, countByLevel,
-  } = listOfTroops;
+  } = infoOfTroops;
 
   return (
     <CardView style={{ flexDirection: 'column', marginBottom: 0 }}>
