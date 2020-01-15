@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Notifications } from 'expo';
 import { createTroop } from '../Troops/actionCreator';
-import { fetchResources } from '../Resources/actionCreator';
 import sendNotification from '../Notification';
 
 import attackIcon from '../../assets/troop/attack.png';
@@ -35,7 +34,6 @@ function AcademyDetail({
       body: 'You have created a new troop',
       token: pushToken,
     });
-    dispatch(fetchResources(token));
   }
 
   return (
