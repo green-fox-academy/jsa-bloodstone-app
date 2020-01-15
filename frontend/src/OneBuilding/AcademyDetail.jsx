@@ -4,7 +4,10 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { Notifications } from 'expo';
 import { createTroop } from '../Troops/actionCreator';
+import { fetchResources } from '../Resources/actionCreator';
+import sendNotification from '../Notification';
 
 import attackIcon from '../../assets/troop/attack.png';
 import defenceIcon from '../../assets/troop/defence.png';
@@ -24,8 +27,15 @@ function AcademyDetail({
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  function createTroops() {
-    dispatch(createTroop(buildingLevel, token));
+  async function createTroops() {
+    const pushToken = await Notifications.getExpoPushTokenAsync();
+    await dispatch(createTroop(buildingLevel, token));
+    sendNotification({
+      title: 'Congrats',
+      body: 'You have created a new troop',
+      token: pushToken,
+    });
+    dispatch(fetchResources(token));
   }
 
   return (
