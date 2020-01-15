@@ -1,50 +1,32 @@
 import { SERVER_URL } from 'react-native-dotenv';
 
-export const FETCH_SETTINGS_REQUEST = 'fetchSettingsRequest';
-export const FETCH_SETTINGS_SUCCESS = 'fetchSettingsSuccess';
-export const FETCH_SETTINGS_FAILURE = 'fetchSettingsFailure';
-
-const FETCH_SETTINGS_URL = `http://${SERVER_URL}/kingdom/settings`;
-
-// mocked fetch
-export function fetchSettings() {
-  return (dispatch) => {
-    dispatch({ type: FETCH_SETTINGS_REQUEST });
-    fetch(FETCH_SETTINGS_URL)
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        }
-        throw new Error(response.status);
-      })
-      .then((response) => dispatch({ type: FETCH_SETTINGS_SUCCESS, payload: response.settings }))
-      .catch((error) => dispatch({ type: FETCH_SETTINGS_FAILURE, payload: error }));
-  };
-}
-
 export const CHANGE_SETTINGS_REQUEST = 'changeSettingsRequest';
 export const CHANGE_SETTINGS_SUCCESS = 'changeSettingsSuccess';
 export const CHANGE_SETTINGS_FAILURE = 'changeSettingsFailure';
 
-const CHANGE_SETTINGS_URL = `http://${SERVER_URL}/kingdom/settings`;
+const URL = `http://${SERVER_URL}/users/settings`;
 
-export function changeSettings(settings) {
+export function changeSettings(settings, token) {
   return (dispatch) => {
     dispatch({ type: CHANGE_SETTINGS_REQUEST });
-    return fetch(CHANGE_SETTINGS_URL, {
+    return fetch(URL, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(settings),
     })
+      .then((response) => response.json())
       .then((response) => {
-        if (response.status === 201) {
-          return response.json();
+        if (response.status === 202) {
+          return dispatch({ type: CHANGE_SETTINGS_SUCCESS, payload: response });
+        }
+        if (response.status === 400) {
+          return dispatch({ type: CHANGE_SETTINGS_FAILURE, payload: response.message });
         }
         throw new Error(response.status);
       })
-      .then((response) => dispatch({ type: CHANGE_SETTINGS_SUCCESS, payload: response.settings }))
       .catch((error) => dispatch({ type: CHANGE_SETTINGS_FAILURE, payload: error }));
   };
 }
