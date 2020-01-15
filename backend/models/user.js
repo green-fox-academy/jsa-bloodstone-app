@@ -15,4 +15,8 @@ const userSchema = new Schema({
   troop: { type: Schema.Types.ObjectId, ref: 'Troop' },
 }, schemaOptions);
 
+userSchema.methods.addPlanet = function addPlanet(planet) {
+  this.planetList = [...new Set([...this.planetList, planet])];
+};
+
 module.exports = conn.model('User', userSchema);
