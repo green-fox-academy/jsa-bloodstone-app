@@ -4,15 +4,17 @@ import {
   ImageBackground, Alert,
   ActivityIndicator, KeyboardAvoidingView,
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { Toast } from 'native-base';
 import { useNavigation } from 'react-navigation-hooks';
-import { registrationSuccess } from './actionCreator';
+import { SERVER_URL } from 'react-native-dotenv';
+import { useDispatch } from 'react-redux';
+import { LOGIN_SUCCESS } from '../Login/actionCreator';
 
 import validation from '../common/helper';
 import Colors from '../common/colors';
 import commonStyles from '../common/styles';
 import background from '../../assets/login/background.jpg';
-import { InputField, SubmitButton } from '../common/components';
+import { InputField, SubmitButton, Popup } from '../common/components';
 
 const styles = StyleSheet.create({
   header: {
@@ -36,6 +38,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'space-between',
   },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.white20Color,
+  },
 });
 
 function showAlert(text) {
@@ -43,42 +51,77 @@ function showAlert(text) {
 }
 
 function Registration() {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const isLoading = useSelector((state) => state.registration.isLoading);
-  const registerError = useSelector((state) => state.registration.error);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [kingdomName, setKingdomName] = useState('');
   const USERNAME_BLACKLIST = ['admin', 'root'];
+  const URL = `http://${SERVER_URL}/users/register`;
+
+  function fetchRegister() {
+    setIsLoading(true);
+    fetch(URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        kingdomName,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 400) {
+          setIsLoading(false);
+          showAlert(`Oops, ${response.message}`);
+          return;
+        }
+        if (response.status === 201) {
+          setIsLoading(false);
+          Toast.show({
+            type: 'success',
+            duration: 3000,
+            text: 'Please select a planet to live in.',
+            buttonText: 'Okay',
+          });
+          dispatch({ type: LOGIN_SUCCESS, payload: response.token });
+          navigation.navigate('Map');
+          return;
+        }
+        throw new Error('Unexpected status code');
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        showAlert(`Oops, ${error.message}`);
+      });
+  }
 
   function handleSubmit() {
     const name = username.toLowerCase();
     if (name === '' || email === '' || password === '') {
-      return showAlert('All the input fields are required.');
+      showAlert('All the input fields are required.');
+      return;
     }
-    if (password.length <= 7) {
-      return showAlert('Password must be at least 8 characters');
+    if (password.length < 8) {
+      showAlert('Password must be at least 8 characters');
+      return;
     }
     if (!validation(email)) {
-      return showAlert('Please reenter a valid email');
+      showAlert('Please enter a valid email');
+      return;
     }
     if (USERNAME_BLACKLIST.includes(name.toLowerCase())) {
-      return showAlert('Please reenter a valid username');
+      showAlert('Please enter a valid username');
+      return;
     }
     if (!kingdomName) {
       setKingdomName(`${name}'s Kingdom`);
     }
-    dispatch(registrationSuccess());
-    if (registerError !== undefined) {
-      return showAlert(`Oops, ${registerError.message}`);
-    }
-    if (isLoading) {
-      return <ActivityIndicator size="large" color={Colors.tealColor} />;
-    }
-    Alert.alert('Congratulation', 'Registration Success.');
-    return navigation.navigate('Map');
+    fetchRegister();
   }
 
   return (
@@ -87,6 +130,13 @@ function Registration() {
       resizeMode="cover"
       source={background}
     >
+      {isLoading && (
+        <Popup>
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" />
+          </View>
+        </Popup>
+      )}
       <KeyboardAvoidingView
         enabled
         behavior="padding"

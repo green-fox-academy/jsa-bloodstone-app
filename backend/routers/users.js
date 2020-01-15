@@ -67,7 +67,7 @@ async function register(req, res, next) {
     });
     delete user.password;
     const token = jwt.sign({ user }, process.env.APP_SECRET || 'testSecret');
-    res.status(201).send({ token });
+    res.status(201).send({ status: 201, token });
   } catch (error) {
     next(error);
   }

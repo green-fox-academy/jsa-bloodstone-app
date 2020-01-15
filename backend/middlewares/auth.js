@@ -8,7 +8,7 @@ async function auth(req, res, next) {
     req.user = user;
     next();
   } catch (error) {
-    res.sendStatus(403);
+    res.status(403).send({ status: 403 });
   }
 }
 
