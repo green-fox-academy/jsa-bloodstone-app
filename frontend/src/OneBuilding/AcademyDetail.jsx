@@ -3,6 +3,8 @@ import {
   View, Text, Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { createTroop } from '../Troops/actionCreator';
 
 import attackIcon from '../../assets/troop/attack.png';
 import defenceIcon from '../../assets/troop/defence.png';
@@ -19,6 +21,13 @@ function AcademyDetail({
   upgradeBuildingGoldCost,
   upgradeBuildingTimeCost,
 }) {
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+
+  function createTroops() {
+    dispatch(createTroop(buildingLevel, token));
+  }
+
   return (
     <View>
       <Text style={commonStyles.textStyle}>
@@ -46,6 +55,7 @@ function AcademyDetail({
           buildingLevel={buildingLevel}
           createTroopGoldCost={createTroopGoldCost}
           createTroopTimeCost={createTroopTimeCost}
+          createTroop={createTroops}
         />
         <UpgradeBuilding
           buildingLevel={buildingLevel}
