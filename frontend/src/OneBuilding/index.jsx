@@ -48,9 +48,6 @@ const styles = StyleSheet.create({
 function OneBuilding({
   onClickClose, targetBuildingId, isVisible,
 }) {
-  if (!isVisible) {
-    return null;
-  }
   const { oneBuildingInfo, isLoading, error } = useSelector((state) => state.oneBuilding);
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
@@ -68,8 +65,6 @@ function OneBuilding({
 
   useEffect(() => {
     dispatch(fetchResources(token));
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources(token)), 30000);
-    return () => clearInterval(updateResourcesInterval);
   }, []);
 
   const {
