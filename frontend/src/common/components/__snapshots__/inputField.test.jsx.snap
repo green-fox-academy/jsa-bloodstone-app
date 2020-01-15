@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputField /> Should render input field and match the snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffffdd",
+        "borderRadius": 5,
+        "elevation": 3,
+        "marginBottom": 10,
+        "padding": 15,
+        "shadowColor": "#000000",
+        "shadowOffset": Object {
+          "x": 0,
+          "y": 4,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 5,
+      },
+      Object {
+        "borderColor": "rgba(0,0,0,.12)",
+        "borderWidth": 1,
+        "elevation": 0,
+        "margin": 0,
+        "padding": 0,
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={null}
+    onFocus={[Function]}
+    placeholder="placeholder"
+    placeholderTextColor="#aaa"
+    rejectResponderTermination={true}
+    secureTextEntry={false}
+    style={
+      Object {
+        "fontSize": 14,
+        "height": 40,
+        "margin": 5,
+        "paddingStart": 10,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+</View>
+`;

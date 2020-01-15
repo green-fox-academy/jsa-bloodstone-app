@@ -5,11 +5,15 @@ npm-debug.*
 *.p8
 *.p12
 *.key
+*.log
 *.mobileprovision
 *.orig.*
 web-build/
 web-report/
+coverage/**/*
+reports/**/*
 .env
+junit.xml
 
 # macOS
 .DS_Store

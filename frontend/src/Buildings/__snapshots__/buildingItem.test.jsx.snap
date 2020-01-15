@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BuildingItem /> Should render BuildingItem and match the snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "flexBasis": "33%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff66",
+        "borderColor": "rgba(0,0,0,.12)",
+        "borderRadius": 10,
+        "borderWidth": 0.5,
+        "flexBasis": 120,
+        "margin": 5,
+        "padding": 24,
+        "paddingBottom": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "position": "relative",
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 64,
+            "width": 64,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginHorizontal": -4,
+            "paddingVertical": 7,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#000000",
+              "fontSize": 14,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Farm
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#1976d2",
+            "borderRadius": 10,
+            "paddingHorizontal": 6,
+            "paddingVertical": 2,
+            "position": "absolute",
+            "right": -12,
+            "top": -8,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ffffff",
+              "fontSize": 10,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Lv. 1
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

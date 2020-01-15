@@ -9,7 +9,7 @@ const URL = `http://${SERVER_URL}/kingdom/resources`;
 export function fetchResources(token) {
   return (dispatch) => {
     dispatch({ type: FETCH_RESOURCES_REQUEST });
-    fetch(URL, {
+    return fetch(URL, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

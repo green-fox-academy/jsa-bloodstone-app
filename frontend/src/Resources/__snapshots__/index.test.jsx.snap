@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Resources /> Should render error and match the snapshot 1`] = `
+<ErrorPopup
+  message="Oops, test error"
+  title="System Error"
+/>
+`;
+
+exports[`<Resources /> Should render loading and match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "flex-end",
+    }
+  }
+>
+  <ResourceItem
+    amount={1578153586}
+    rate={60}
+    type="cookie"
+  />
+  <ResourceItem
+    amount={1578153704}
+    rate={60}
+    type="gold"
+  />
+</View>
+`;
+
+exports[`<Resources /> Should render resources and match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "flex-end",
+    }
+  }
+>
+  <ResourceItem
+    amount={1578153586}
+    rate={60}
+    type="cookie"
+  />
+  <ResourceItem
+    amount={1578153704}
+    rate={60}
+    type="gold"
+  />
+</View>
+`;

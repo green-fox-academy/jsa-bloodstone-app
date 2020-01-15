@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Troops /> Should render error and match the snapshot 1`] = `
+<ErrorPopup
+  message="Oops, test error"
+  title="System Error"
+/>
+`;
+
+exports[`<Troops /> Should render loading and match the snapshot 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="#10978b"
+  hidesWhenStopped={true}
+  size="large"
+/>
+`;

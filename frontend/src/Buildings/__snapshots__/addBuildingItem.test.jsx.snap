@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddBuildingItem /> Should render AddBuildingItem and match the snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginRight": 8,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 32,
+          "width": 32,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "marginLeft": 8,
+        }
+      }
+    >
+      Add test type
+    </Text>
+  </View>
+</View>
+`;
