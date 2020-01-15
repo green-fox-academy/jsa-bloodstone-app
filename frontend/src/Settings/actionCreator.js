@@ -7,6 +7,7 @@ export const CHANGE_SETTINGS_FAILURE = 'changeSettingsFailure';
 const URL = `http://${SERVER_URL}/kingdom/settings`;
 
 export function changeSettings(settings, token) {
+  console.log(settings);
   return (dispatch) => {
     dispatch({ type: CHANGE_SETTINGS_REQUEST });
     return fetch(URL, {

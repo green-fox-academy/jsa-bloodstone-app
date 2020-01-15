@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import {
-  View, Text, Alert, StyleSheet, ImageBackground,
+  View, Text, StyleSheet,
+  ImageBackground, ActivityIndicator,
 } from 'react-native';
 import { Toast } from 'native-base';
 import validation from '../common/helper';
@@ -12,8 +13,9 @@ import { logout } from '../Login/actionCreator';
 import background from '../../assets/login/background.jpg';
 
 import { InputField } from '../common/components';
-import ErrorPopup from '../ErrorPopup';
+// import ErrorPopup from '../ErrorPopup';
 import SubmitButton from './SubmitButton';
+import { changeSettings } from './actionCreator';
 
 const styles = StyleSheet.create({
   titleText: {
@@ -50,69 +52,73 @@ const styles = StyleSheet.create({
 });
 
 function Settings() {
-  const error = useSelector((state) => state.settings.error);
-  const [emailInput, setEmailInput] = useState('');
-  const [usernameInput, setUsernameInput] = useState('');
-  const [kingdomNameInput, setKingdomNameInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
+  const { changes, isLoading, error } = useSelector((state) => state.settings);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [kingdomName, setKingdomName] = useState('');
+  const [password, setPassword] = useState('');
+  const token = useSelector((state) => state.auth.token);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   function resetForm() {
-    setEmailInput('');
-    setUsernameInput('');
-    setKingdomNameInput('');
-    setPasswordInput('');
+    setEmail('');
+    setUsername('');
+    setKingdomName('');
+    setPassword('');
   }
 
   function showAlert(text) {
-    const { type: actionType } = await dispatch(addBuilding(type, token));
-    if (actionType === CHANGE_SETTINGS_FAILURE) {
-      Toast.show({
-        type: 'warning',
-        duration: 3000,
-        text: error,
-        buttonText: 'Okay',
-      });
-    } else {
-      Toast.show({
-        type: 'success',
-        duration: 3000,
-        text: 'Building is succesfully added',
-        buttonText: 'Okay',
-      });
-    }
-    Alert.alert('Warning', text);
+    Toast.show({
+      type: 'Warning',
+      duration: 3000,
+      text: text,
+      buttonText: 'Okay',
+    });
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const settings = {};
-    let message = '';
-    if (emailInput) {
-      if (!validation(emailInput)) {
+    if (email) {
+      if (!validation(email)) {
         showAlert('Please reenter a valid email');
         return;
       }
-      settings.email = emailInput;
-      message += 'Your email has changed.\n';
+      settings.email = email;
     }
-    if (usernameInput) {
-      settings.username = usernameInput;
-      message += 'Your username has changed.\n';
+    if (username) {
+      settings.username = username;
     }
-    if (kingdomNameInput) {
-      settings.kingdom = kingdomNameInput;
-      message += 'Your kingdom\'s name has changed.\n';
+    if (kingdomName) {
+      settings.kingdom = kingdomName;
     }
-    if (passwordInput) {
-      if (passwordInput.length < 8) {
+    if (password) {
+      if (password.length < 8) {
         showAlert('Password must be at least 8 characters');
         return;
       }
-      settings.password = passwordInput;
-      message += 'Your password has changed.\n';
+      settings.password = password;
     }
-    Alert.alert('Settings', message);
+    const { type: actionType } = await dispatch(changeSettings(settings, token));
+    let message = '';
+    if (actionType === CHANGE_SETTINGS_SUCCESS) {
+      if(changes.length = 1){
+        message += `${changes[0]} is successfully changed!`;
+      } else if (changes.length > 1) {
+        message += `${changes.join(', ')} are successfully changed!`;
+      } else {
+        showAlert('error occured');
+      }
+      Toast.show({
+        type: 'Success',
+        duration: 3000,
+        text: message,
+        buttonText: 'Okay',
+      });
+    } else {
+      showAlert(error);
+      return;
+    }
     resetForm();
   }
 
@@ -121,12 +127,10 @@ function Settings() {
     navigation.navigate('Auth');
   }
 
-  const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
+  const submitButtonIsDisabled = email === '' && username === '' && kingdomName === '' && password === '';
 
-  if (error) {
-    return (
-      <ErrorPopup message={`Oops, ${error.message}`} />
-    );
+  if (isLoading) {
+    return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
   return (
@@ -138,33 +142,29 @@ function Settings() {
       <View style={styles.container}>
         <Text style={styles.titleText}>Settings</Text>
 
-        <Text style={styles.labelText}>Email</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.email)}
-          value={emailInput}
-          onChangeText={(value) => setEmailInput(value)}
+          placeholder="Username"
+          value={username}
+          onChangeText={(value) => setUsername(value)}
         />
 
-        <Text style={styles.labelText}>Username</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.username)}
-          value={usernameInput}
-          onChangeText={(value) => setUsernameInput(value)}
+          placeholder="Email"
+          value={email}
+          onChangeText={(value) => setEmail(value)}
         />
 
-        <Text style={styles.labelText}>Enter your new Kingdom Name here</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.kingdomName)}
-          value={kingdomNameInput}
-          onChangeText={(value) => setKingdomNameInput(value)}
-        />
-
-        <Text style={styles.labelText}>Password</Text>
-        <InputField
-          placeholder="password123"
-          value={passwordInput}
-          onChangeText={(value) => setPasswordInput(value)}
+          placeholder="Password"
+          value={password}
+          onChangeText={(value) => setPassword(value)}
           secureTextEntry
+        />
+
+        <InputField
+          placeholder="KingdomName"
+          value={kingdomName}
+          onChangeText={(value) => setKingdomName(value)}
         />
 
         <View style={styles.buttonRow}>

@@ -102,7 +102,7 @@ async function updateUserInfo(req, res, next) {
   const { username: oldUsername } = req.user;
   const {
     username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
-  } = req.body;
+  } = req.body.settings;
   try {
     const changedTarget = {};
     if (newUsername) {
