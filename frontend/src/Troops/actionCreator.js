@@ -6,10 +6,15 @@ export const FETCH_TROOPS_FAILURE = 'fetchTroopsFailure';
 
 const URL = `http://${SERVER_URL}/kingdom/troops`;
 
-export function fetchTroops() {
+export function fetchTroops(token) {
   return (dispatch) => {
     dispatch({ type: FETCH_TROOPS_REQUEST });
-    fetch(URL)
+    return fetch(URL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.status === 200) {
           return response.json();

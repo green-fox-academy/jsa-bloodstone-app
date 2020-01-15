@@ -69,6 +69,7 @@ troopSchema.statics.createTroop = async function (owner, level) {
       count: 1,
     });
   }
+  troop.markModified('countByLevel');
   return troop.save();
 };
 

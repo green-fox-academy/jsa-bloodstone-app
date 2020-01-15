@@ -4,7 +4,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { CardView } from '../common/components';
 import troopAvatar from '../../assets/troop/troop-avatar.jpg';
 import attackIcon from '../../assets/troop/attack.png';
 import defenceIcon from '../../assets/troop/defence.png';
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
 
 function TroopInformation({ attack, defence, sustenance }) {
   return (
-    <CardView style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <Image style={styles.troopAvatar} source={troopAvatar} />
       <View>
         <View style={styles.fieldStyle}>
@@ -54,7 +53,7 @@ function TroopInformation({ attack, defence, sustenance }) {
           <Image resizeMode="contain" source={cookieIcon} style={styles.iconStyle} />
         </View>
       </View>
-    </CardView>
+    </View>
   );
 }
 
