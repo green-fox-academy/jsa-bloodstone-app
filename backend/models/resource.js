@@ -32,17 +32,15 @@ resourceSchema.statics.createBasicResources = async function (owner) {
   );
 };
 
-resourceSchema.statics.purchaseItem = async function (owner, priceOfItem) {
-  const currentAmountOfGoal = await this.findOne({ owner, type: 'gold' });
-  if (!currentAmountOfGoal) {
-    return false;
-  }
-  if (currentAmountOfGoal.amount < priceOfItem) {
-    return false;
-  }
-  currentAmountOfGoal.initialAmount -= priceOfItem;
-  await currentAmountOfGoal.save();
-  return true;
+resourceSchema.statics.checkIfHasEnoughGold = async function (owner, priceOfItem) {
+  const currentAmountOfGold = await this.findOne({ owner, type: 'gold' });
+  return currentAmountOfGold && currentAmountOfGold.amount >= priceOfItem;
+};
+
+resourceSchema.statics.reduceGold = async function (owner, amount) {
+  const currentAmountOfGold = await this.findOne({ owner, type: 'gold' });
+  currentAmountOfGold.initialAmount -= amount;
+  await currentAmountOfGold.save();
 };
 
 module.exports = conn.model('Resource', resourceSchema);

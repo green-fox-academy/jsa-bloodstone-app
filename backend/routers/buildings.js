@@ -38,10 +38,10 @@ async function createBuilding(req, res, next) {
     }
 
     const priceOfItem = parseInt(buildingRules[buildingType].constructionCost, 10);
-    const purchase = await ResourceModel.purchaseItem(owner, priceOfItem);
-    if (!purchase) {
+    if (!await ResourceModel.checkIfHasEnoughGold(owner, priceOfItem)) {
       throw createError(400, 'You don\'t have enough money');
     }
+    await ResourceModel.reduceGold(owner, priceOfItem);
     const newBuilding = await BuildingModel.create({
       type: buildingType,
       owner,
@@ -101,10 +101,10 @@ async function upgradeBuildingById(req, res, next) {
       default:
         priceOfItem = 1;
     }
-    const purchase = await ResourceModel.purchaseItem(owner, priceOfItem);
-    if (!purchase) {
+    if (!await ResourceModel.checkIfHasEnoughGold(owner, priceOfItem)) {
       throw createError(400, 'You don\'t have enough money');
     }
+    await ResourceModel.reduceGold(owner, priceOfItem);
     upgradeBuilding.level += 1;
     await upgradeBuilding.save();
     res.status(202).send(upgradeBuilding);
