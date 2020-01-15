@@ -40,9 +40,13 @@ async function getUsersOnPlanet(req, res, next) {
 }
 
 function getCasualtyPercentage(troop, targetTroop, correction = 1) {
+  // base casualty percentage derived from two troops' attack
   return (targetTroop.attack / (targetTroop.attack + troop.attack))
+  // apply defence reduction of casualty percentage
     * ((troop.defence + 100) / (2 * troop.defence + 100))
-    * (0.6 + 0.8 * Math.random())
+  // add randomness to battle casualty percentage
+    * (0.6 + 0.4 * Math.random())
+  // add correction factor
     * correction;
 }
 
