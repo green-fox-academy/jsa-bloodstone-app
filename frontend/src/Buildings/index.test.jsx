@@ -63,6 +63,9 @@ describe('<Buildings />', () => {
         isLoading: false,
         error: undefined,
       },
+      auth: {
+        token: 'test token',
+      },
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
@@ -84,6 +87,9 @@ describe('<Buildings />', () => {
         listOfBuildings: buildings,
         isLoading: false,
         error: undefined,
+      },
+      auth: {
+        token: 'test token',
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));
@@ -108,6 +114,9 @@ describe('<Buildings />', () => {
         isLoading: false,
         error: undefined,
       },
+      auth: {
+        token: 'test token',
+      },
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
@@ -124,6 +133,9 @@ describe('<Buildings />', () => {
         isLoading: true,
         error: undefined,
       },
+      auth: {
+        token: 'test token',
+      },
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
@@ -139,6 +151,9 @@ describe('<Buildings />', () => {
         listOfBuildings: buildings,
         isLoading: true,
         error: new Error('test error'),
+      },
+      auth: {
+        token: 'test token',
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));

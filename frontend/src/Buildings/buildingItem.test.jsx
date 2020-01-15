@@ -4,10 +4,6 @@ import { TouchableHighlight } from 'react-native';
 
 import BuildingItem from './buildingItem';
 
-import farmIcon from '../../assets/buildings/factory.png';
-
-const mockGetIconImage = jest.fn(() => farmIcon);
-
 describe('<BuildingItem />', () => {
   afterAll(() => {
     jest.resetModules();
@@ -17,10 +13,9 @@ describe('<BuildingItem />', () => {
     const mockOnPress = jest.fn(() => { });
 
     const tree = renderer.create(<BuildingItem
-      type="test type"
+      type="Farm"
       level={1}
       onPress={mockOnPress}
-      getIconImage={mockGetIconImage}
     />).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -30,10 +25,9 @@ describe('<BuildingItem />', () => {
     const mockOnPress = jest.fn(() => { });
 
     const testRenderer = renderer.create(<BuildingItem
-      type="test type"
+      type="Farm"
       level={1}
       onPress={mockOnPress}
-      getIconImage={mockGetIconImage}
     />);
     const testInstance = testRenderer.root;
 

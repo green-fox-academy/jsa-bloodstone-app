@@ -2,48 +2,47 @@
 
 exports[`<AddBuildingItem /> Should render AddBuildingItem and match the snapshot 1`] = `
 <View
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "padding": 2,
-    }
-  }
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
 >
   <View
-    accessible={true}
-    focusable={true}
-    isTVSelectable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={null}
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginRight": 8,
+      }
+    }
   >
     <Image
       source={1}
       style={
         Object {
-          "height": 60,
-          "width": 60,
+          "height": 32,
+          "width": 32,
         }
       }
     />
-  </View>
-  <Text
-    style={
-      Object {
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "lineHeight": 24,
-        "marginBottom": -5,
+    <Text
+      style={
+        Object {
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "marginLeft": 8,
+        }
       }
-    }
-  >
-    Add test type
-  </Text>
+    >
+      Add test type
+    </Text>
+  </View>
 </View>
 `;

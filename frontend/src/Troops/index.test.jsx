@@ -6,55 +6,24 @@ import Troops from '.';
 
 jest.mock('react-redux');
 
-const myTroops = {
-  troops: [
+const myTroops = [{
+  countByLevel: [
     {
-      id: 1,
-      level: 1,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
+      level: 3,
+      count: 6,
     },
     {
-      id: 2,
-      level: 1,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 3,
       level: 2,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 4,
-      level: 3,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
-    },
-    {
-      id: 5,
-      level: 3,
-      hp: 1,
-      attack: 1,
-      defence: 1,
-      started_at: 12345789,
-      finished_at: 12399999,
+      count: 4,
     },
   ],
-};
+  _id: '5e153c8390324235e87f2256',
+  owner: '5e12cae11f7ea21cc843f669',
+  attack: 26,
+  defence: 26,
+  hp: 10,
+  battleRating: 26,
+}];
 
 describe('<Troops />', () => {
   beforeEach(() => {
@@ -72,6 +41,9 @@ describe('<Troops />', () => {
         isLoading: true,
         error: undefined,
       },
+      auth: {
+        token: 'test token',
+      },
     };
     useSelector.mockImplementation((func) => func(mockedState));
     const renderer = new ShallowRenderer();
@@ -85,6 +57,9 @@ describe('<Troops />', () => {
         listOfTroops: myTroops,
         isLoading: true,
         error: new Error('test error'),
+      },
+      auth: {
+        token: 'test token',
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));

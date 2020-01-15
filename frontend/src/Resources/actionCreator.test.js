@@ -26,7 +26,7 @@ describe('resources actions', () => {
       },
     ];
     const store = mockStore();
-    return store.dispatch(actionCreator.fetchResources()).then(() => {
+    return store.dispatch(actionCreator.fetchResources('test token')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -43,7 +43,7 @@ describe('resources actions', () => {
       },
     ];
     const store = mockStore();
-    return store.dispatch(actionCreator.fetchResources()).then(() => {
+    return store.dispatch(actionCreator.fetchResources('test token')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

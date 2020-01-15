@@ -4,40 +4,17 @@ exports[`<Buildings /> Should render buildings and match the snapshot 1`] = `
 <View
   style={
     Object {
-      "alignItems": "center",
       "flex": 1,
-      "justifyContent": "center",
     }
   }
 >
   <CardView
     style={
       Object {
-        "flexDirection": "row",
-      }
-    }
-  >
-    <Unknown
-      icon={1}
-      onPress={[Function]}
-      type="Farm"
-    />
-    <Unknown
-      icon={1}
-      onPress={[Function]}
-      type="Mine"
-    />
-    <Unknown
-      icon={1}
-      onPress={[Function]}
-      type="Academy"
-    />
-  </CardView>
-  <CardView
-    style={
-      Object {
         "flex": 1,
-        "flexDirection": "row",
+        "marginBottom": 0,
+        "padding": 0,
+        "paddingBottom": 52,
       }
     }
   >
@@ -47,36 +24,66 @@ exports[`<Buildings /> Should render buildings and match the snapshot 1`] = `
         Object {
           "flexDirection": "row",
           "flexWrap": "wrap",
-          "justifyContent": "space-around",
+        }
+      }
+      style={
+        Object {
+          "flex": 1,
         }
       }
     >
       <Unknown
-        getIconImage={[Function]}
         level={1}
         onPress={[Function]}
         type="Townhall"
       />
       <Unknown
-        getIconImage={[Function]}
         level={1}
         onPress={[Function]}
         type="Academy"
       />
       <Unknown
-        getIconImage={[Function]}
         level={1}
         onPress={[Function]}
         type="Farm"
       />
       <Unknown
-        getIconImage={[Function]}
         level={1}
         onPress={[Function]}
         type="Mine"
       />
     </ScrollViewMock>
+    <View
+      style={
+        Object {
+          "borderTopColor": "rgba(0,0,0,0.08)",
+          "borderTopWidth": 1,
+          "bottom": 0,
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+          "paddingVertical": 10,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <Unknown
+        icon={1}
+        onPress={[Function]}
+        type="Farm"
+      />
+      <Unknown
+        icon={1}
+        onPress={[Function]}
+        type="Mine"
+      />
+    </View>
   </CardView>
+  <Unknown
+    isVisible={false}
+    onClickClose={[Function]}
+    targetBuildingId=""
+  />
 </View>
 `;
 

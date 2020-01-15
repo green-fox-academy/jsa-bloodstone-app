@@ -39,6 +39,9 @@ describe('<Resources />', () => {
         isLoading: false,
         error: undefined,
       },
+      auth: {
+        token: 'test token',
+      },
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
@@ -58,6 +61,9 @@ describe('<Resources />', () => {
         isLoading: true,
         error: undefined,
       },
+      auth: {
+        token: 'test token',
+      },
     };
     useSelector.mockImplementation((func) => func(mockedState));
 
@@ -76,6 +82,9 @@ describe('<Resources />', () => {
         goldGeneration: resources[1].generation,
         isLoading: true,
         error: new Error('test error'),
+      },
+      auth: {
+        token: 'test token',
       },
     };
     useSelector.mockImplementation((func) => func(mockedState));
