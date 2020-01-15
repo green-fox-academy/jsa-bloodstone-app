@@ -18,7 +18,7 @@ async function chooseKingdom(req, res, next) {
     if (userInfo.planetList.length !== 0) {
       throw createError(400, 'This kingdom list is not empty.');
     }
-    userInfo.planetList.push(selectedPlanet);
+    userInfo.addPlanet(selectedPlanet);
     userInfo.save();
     req.owner = owner;
     next();

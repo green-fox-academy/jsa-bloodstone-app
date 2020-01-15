@@ -42,6 +42,12 @@ troopSchema.virtual('hp').get(function () {
     .reduce((a, b) => a + b, 0);
 });
 
+troopSchema.virtual('battleRating').get(function () {
+  return this.countByLevel
+    .map((item) => item.count * item.level)
+    .reduce((a, b) => a + b, 0);
+});
+
 troopSchema.statics.createBasicTroops = async function (owner) {
   return this.create({
     owner,
