@@ -26,7 +26,7 @@ function Troops() {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
   }
 
-  if (isLoading || !listOfTroops) {
+  if (isLoading || Object.keys(listOfTroops.length === 0)) {
     return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
