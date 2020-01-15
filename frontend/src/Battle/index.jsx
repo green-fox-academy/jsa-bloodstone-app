@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, StyleSheet, ScrollView, Text, Alert, Button,
 } from 'react-native';
-// import { SERVER_URL } from 'react-native-dotenv';
+import { useSelector } from 'react-redux';
+import { SERVER_URL } from 'react-native-dotenv';
+import { Toast } from 'native-base';
 import PlanetItem from './PlanetItem';
 import PlayerItem from './PlayerItem';
 import { CardView } from '../common/components';
@@ -29,71 +31,14 @@ const styles = StyleSheet.create({
 
 const PLANETS = ['blue', 'green', 'yellow', 'red', 'purple'];
 
-const mockedUsers = [
-  {
-    _id: '5e12d061f22b9d30a8ac7507',
-    username: 'testuser3',
-    hp: 0,
-    attack: 0,
-    defence: 0,
-    allLevels: 0,
-    planetList: [
-      'green',
-      'blue',
-      'yellow',
-    ],
-  },
-  {
-    _id: '5e18181bc5cbf11a8870837e',
-    username: 'clay',
-    hp: 64,
-    attack: 177,
-    defence: 177,
-    allLevels: 276,
-    planetList: [
-      'yellow',
-    ],
-  },
-  {
-    _id: '5e1b1689f09b912f0461ed61',
-    username: 'wind',
-    hp: 0,
-    attack: 0,
-    defence: 0,
-    allLevels: 0,
-    planetList: [
-      'yellow',
-    ],
-  },
-  {
-    _id: '5e1b23104320f53d4c8593f3',
-    username: 'jialu',
-    hp: 0,
-    attack: 0,
-    defence: 0,
-    allLevels: 0,
-    planetList: [
-      'yellow',
-    ],
-  },
-];
-
 const BATTLE_PREPARE = 'battlePrepare';
 const BATTLE_REPORT = 'battleReport';
 
 function Battle() {
   const [battleStatus, setBattleStatus] = useState(BATTLE_PREPARE);
   const [active, setActive] = useState(null);
-  const [players] = useState(mockedUsers);
-
-  if (battleStatus === BATTLE_REPORT) {
-    return (
-      <CardView>
-        <Text>Here is mocked Battle report</Text>
-        <Button onPress={() => setBattleStatus(BATTLE_PREPARE)} title="BACK" />
-      </CardView>
-    );
-  }
+  const [players, setPlayers] = useState([]);
+  const { token } = useSelector((state) => state.auth);
 
   function handleBattleStart(id, name) {
     Alert.alert(
@@ -110,25 +55,30 @@ function Battle() {
     );
   }
 
-  // useEffect(() => {
-  //   if (active) {
-  //     fetch(`http://${SERVER_URL}/battle/planet/${active}`)
-  //       .then((response) => {
-  //         if (response.status === 200) {
-  //           return response.json();
-  //         }
-  //         throw new Error('Unexpected status code');
-  //       })
-  //       .then((response) => setPlayers(response.usersInPlanet))
-  //       .catch((error) => {
-  //         Toast.show({
-  //           type: 'warning',
-  //           text: `Oops, ${error.message}`,
-  //           buttonText: 'Okay',
-  //         });
-  //       });
-  //   }
-  // }, [active]);
+  useEffect(() => {
+    if (active) {
+      fetch(`http://${SERVER_URL}/battle/planet/${active}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          console.log(response.status);
+          throw new Error('unexpected status code');
+        })
+        .then((response) => setPlayers(response.usersOnPlanet))
+        .catch((error) => {
+          Toast.show({
+            type: 'warning',
+            text: `Oops, ${error.message}`,
+            buttonText: 'Okay',
+          });
+        });
+    }
+  }, [active]);
 
   function renderPlayers() {
     if (!players.length) {
@@ -160,6 +110,16 @@ function Battle() {
       </View>
     );
   }
+
+  if (battleStatus === BATTLE_REPORT) {
+    return (
+      <CardView>
+        <Text>Here is mocked Battle report</Text>
+        <Button onPress={() => setBattleStatus(BATTLE_PREPARE)} title="BACK" />
+      </CardView>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
