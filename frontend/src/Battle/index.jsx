@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, ScrollView, Text,
+  View, StyleSheet, ScrollView, Text, Alert, Button,
 } from 'react-native';
 // import { SERVER_URL } from 'react-native-dotenv';
-import { Toast } from 'native-base';
 import PlanetItem from './PlanetItem';
 import PlayerItem from './PlayerItem';
 import { CardView } from '../common/components';
@@ -79,14 +78,36 @@ const mockedUsers = [
   },
 ];
 
+const BATTLE_PREPARE = 'battlePrepare';
+const BATTLE_REPORT = 'battleReport';
+
 function Battle() {
+  const [battleStatus, setBattleStatus] = useState(BATTLE_PREPARE);
   const [active, setActive] = useState(null);
   const [players] = useState(mockedUsers);
 
+  if (battleStatus === BATTLE_REPORT) {
+    return (
+      <CardView>
+        <Text>Here is mocked Battle report</Text>
+        <Button onPress={() => setBattleStatus(BATTLE_PREPARE)} title="BACK" />
+      </CardView>
+    );
+  }
+
   function handleBattleStart(id, name) {
-    Toast.show({
-      text: `You are going to battle with ${name.toUpperCase()}`,
-    });
+    Alert.alert(
+      'Battle Starting...',
+      `You are going to battle with ${name.toUpperCase()}`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'OK',
+          onPress: () => setBattleStatus(BATTLE_REPORT),
+        },
+      ],
+      { cancelable: false },
+    );
   }
 
   // useEffect(() => {
