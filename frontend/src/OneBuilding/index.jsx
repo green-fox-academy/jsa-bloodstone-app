@@ -55,17 +55,16 @@ function OneBuilding({
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
+  const { listOfTroops } = useSelector((state) => state.troops);
+  useEffect(() => {
+    dispatch(fetchTroops(token));
+  }, []);
+
   useEffect(() => {
     if (targetBuildingId !== -1) {
       dispatch(fetchOneBuilding(targetBuildingId, token));
     }
   }, [targetBuildingId]);
-
-  useEffect(() => {
-    dispatch(fetchTroops(token));
-  }, []);
-  const { listOfTroops } = useSelector((state) => state.troops);
-  const [troop] = listOfTroops;
 
   useEffect(() => {
     dispatch(fetchResources(token));
@@ -94,7 +93,11 @@ function OneBuilding({
 
   const { building: buildingDetailInfo } = oneBuildingInfo;
   const { buildingRules, troopsRules } = oneBuildingInfo.rules;
-  const { hp: totalNumOfTroops } = troop;
+  const [troop] = listOfTroops;
+  let totalNumOfTroops = '?';
+  if (troop) {
+    totalNumOfTroops = troop.hp;
+  }
 
   if (Object.keys(buildingDetailInfo).length === 0) {
     return null;
