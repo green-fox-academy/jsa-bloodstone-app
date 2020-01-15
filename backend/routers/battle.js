@@ -42,7 +42,7 @@ async function getUsersOnPlanet(req, res, next) {
 function getCasualtyPercentage(troop, targetTroop, correction = 1) {
   return (targetTroop.attack / (targetTroop.attack + troop.attack))
     * ((troop.defence + 100) / (2 * troop.defence + 100))
-    * (0.6 + 0.8 * Math.random())
+    * (0.6 + 0.4 * Math.random())
     * correction;
 }
 
@@ -155,7 +155,7 @@ async function battle(req, res, next) {
   }
 }
 
-router.get('/:targetId', auth, battle);
+router.post('/:targetId', auth, battle);
 router.get('/planet/:planet', auth, getUsersOnPlanet);
 
 module.exports = router;
