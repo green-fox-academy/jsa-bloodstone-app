@@ -5,6 +5,7 @@ exports[`<Menu /> Should render menu and match the snapshot 1`] = `
   style={
     Object {
       "height": 150,
+      "marginBottom": 0,
       "padding": 0,
     }
   }

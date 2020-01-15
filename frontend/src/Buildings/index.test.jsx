@@ -17,28 +17,28 @@ jest.mock('../OneBuilding', () => () => 'oneBuilding');
 
 const buildings = [
   {
-    id: 1,
+    _id: 1,
     type: 'Townhall',
     level: 1,
     hp: 1,
     started_at: 12345789,
     finished_at: 12399999,
   }, {
-    id: 2,
+    _id: 2,
     type: 'Academy',
     level: 1,
     hp: 1,
     started_at: 12345789,
     finished_at: 12399999,
   }, {
-    id: 3,
+    _id: 3,
     type: 'Farm',
     level: 1,
     hp: 1,
     started_at: 12345789,
     finished_at: 12399999,
   }, {
-    id: 4,
+    _id: 4,
     type: 'Mine',
     level: 1,
     hp: 1,

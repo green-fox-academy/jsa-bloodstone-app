@@ -57,7 +57,7 @@ exports[`<TroopLevel /> Should render troop level and match the snapshot 1`] = `
           }
         }
       >
-        Level 1: undefined Troop
+        Level 1: 1 Troop
       </Text>
     </View>
   </View>
