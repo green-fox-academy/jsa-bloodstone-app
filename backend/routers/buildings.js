@@ -60,7 +60,7 @@ async function getBuildingById(req, res, next) {
     if (!building) {
       throw createError(404, 'This building doesn\'t exist.');
     }
-    if (building.owner !== owner) {
+    if (building.owner.toHexString() !== owner) {
       throw createError(404, 'This building doesn\'t belong to you');
     }
     res.send({
