@@ -15,7 +15,7 @@ import background from '../../assets/login/background.jpg';
 import { InputField } from '../common/components';
 // import ErrorPopup from '../ErrorPopup';
 import SubmitButton from './SubmitButton';
-import { changeSettings } from './actionCreator';
+import { changeSettings, CHANGE_SETTINGS_SUCCESS } from './actionCreator';
 
 const styles = StyleSheet.create({
   titleText: {
@@ -46,18 +46,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  logoutButton: {
-    width: 300,
-  },
 });
 
 function Settings() {
-  const { changes, isLoading, error } = useSelector((state) => state.settings);
+  const { isLoading, error } = useSelector((state) => state.settings);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [kingdomName, setKingdomName] = useState('');
   const [password, setPassword] = useState('');
-  const token = useSelector((state) => state.auth.token);
+  const { token } = useSelector((state) => state.auth);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -72,7 +69,7 @@ function Settings() {
     Toast.show({
       type: 'Warning',
       duration: 3000,
-      text: text,
+      text,
       buttonText: 'Okay',
     });
   }
@@ -87,10 +84,13 @@ function Settings() {
       settings.email = email;
     }
     if (username) {
+      if (username.length < 3) {
+        showAlert('Please reenter a valid username');
+      }
       settings.username = username;
     }
     if (kingdomName) {
-      settings.kingdom = kingdomName;
+      settings.kingdomName = kingdomName;
     }
     if (password) {
       if (password.length < 8) {
@@ -99,18 +99,18 @@ function Settings() {
       }
       settings.password = password;
     }
-    const { type: actionType } = await dispatch(changeSettings(settings, token));
+    const { type: actionType, payload } = await dispatch(changeSettings(settings, token));
     let message = '';
     if (actionType === CHANGE_SETTINGS_SUCCESS) {
-      if(changes.length = 1){
-        message += `${changes[0]} is successfully changed!`;
-      } else if (changes.length > 1) {
-        message += `${changes.join(', ')} are successfully changed!`;
+      if (payload.changes.length === 1) {
+        message += `${payload.changes[0]} is successfully changed!`;
+      } else if (payload.changes.length > 1) {
+        message += `${payload.changes.join(', ')} are successfully changed!`;
       } else {
-        showAlert('error occured');
+        showAlert(payload);
       }
       Toast.show({
-        type: 'Success',
+        type: 'success',
         duration: 3000,
         text: message,
         buttonText: 'Okay',
@@ -162,7 +162,7 @@ function Settings() {
         />
 
         <InputField
-          placeholder="KingdomName"
+          placeholder="Kingdom Name"
           value={kingdomName}
           onChangeText={(value) => setKingdomName(value)}
         />

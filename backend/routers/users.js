@@ -99,10 +99,10 @@ async function login(req, res, next) {
 }
 
 async function updateUserInfo(req, res, next) {
-  const { username: oldUsername } = req.user;
+  const { _id } = req.user;
   const {
     username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
-  } = req.body.settings;
+  } = req.body;
   try {
     const changedTarget = {};
     if (newUsername) {
@@ -122,8 +122,8 @@ async function updateUserInfo(req, res, next) {
     if (changedValue.length === 0) {
       throw createError(400, 'Please fill at least one element');
     }
-    const user = await UserModel.findOneAndUpdate(
-      { username: oldUsername },
+    const user = await UserModel.findByIdAndUpdate(
+      _id,
       { $set: changedTarget },
       { new: true, fields: '-_id' },
     );

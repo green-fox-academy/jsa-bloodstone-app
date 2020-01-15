@@ -17,7 +17,7 @@ export default function settings(state = initialState, action) {
     case CHANGE_SETTINGS_SUCCESS:
       return {
         ...state,
-        changes: action.payload.changes,
+        changes: action.payload,
         isLoading: false,
       };
     case CHANGE_SETTINGS_FAILURE:

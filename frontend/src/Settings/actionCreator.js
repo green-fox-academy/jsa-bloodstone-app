@@ -4,10 +4,9 @@ export const CHANGE_SETTINGS_REQUEST = 'changeSettingsRequest';
 export const CHANGE_SETTINGS_SUCCESS = 'changeSettingsSuccess';
 export const CHANGE_SETTINGS_FAILURE = 'changeSettingsFailure';
 
-const URL = `http://${SERVER_URL}/kingdom/settings`;
+const URL = `http://${SERVER_URL}/users/settings`;
 
 export function changeSettings(settings, token) {
-  console.log(settings);
   return (dispatch) => {
     dispatch({ type: CHANGE_SETTINGS_REQUEST });
     return fetch(URL, {
@@ -20,11 +19,11 @@ export function changeSettings(settings, token) {
     })
       .then((response) => response.json())
       .then((response) => {
+        if (response.status === 202) {
+          return dispatch({ type: CHANGE_SETTINGS_SUCCESS, payload: response });
+        }
         if (response.status === 400) {
           return dispatch({ type: CHANGE_SETTINGS_FAILURE, payload: response.message });
-        }
-        if (response.status === 202) {
-          return dispatch({ type: CHANGE_SETTINGS_SUCCESS, payload: response.changes });
         }
         throw new Error(response.status);
       })
