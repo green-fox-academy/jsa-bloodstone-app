@@ -1,14 +1,19 @@
 const { Router } = require('express');
 const { UserModel } = require('../models');
 const { TroopModel } = require('../models');
+const { auth } = require('../middlewares');
 
 const router = Router();
 
 async function getUsersInPlanet(req, res, next) {
+  const { _id: userId } = req.user;
   const { planet } = req.params;
   try {
     const usersInPlanet = await UserModel.find(
-      { planetList: planet },
+      {
+        planetList: planet,
+        _id: { $ne: userId },
+      },
       {
         email: false,
         password: false,
@@ -33,6 +38,6 @@ async function getUsersInPlanet(req, res, next) {
   }
 }
 
-router.get('/planet/:planet', getUsersInPlanet);
+router.get('/planet/:planet', auth, getUsersInPlanet);
 
 module.exports = router;
