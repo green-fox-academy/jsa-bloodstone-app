@@ -5,11 +5,11 @@ const { auth } = require('../middlewares');
 
 const router = Router();
 
-async function getUsersInPlanet(req, res, next) {
+async function getUsersOnPlanet(req, res, next) {
   const { _id: userId } = req.user;
   const { planet } = req.params;
   try {
-    const usersInPlanet = await UserModel.find(
+    const usersOnPlanet = await UserModel.find(
       {
         planetList: planet,
         _id: { $ne: userId },
@@ -19,7 +19,7 @@ async function getUsersInPlanet(req, res, next) {
         password: false,
       },
     );
-    const usersInPlanetFiltered = await Promise.all(usersInPlanet.map(async (element) => {
+    const usersOnPlanetFiltered = await Promise.all(usersOnPlanet.map(async (element) => {
       const { _id } = element;
       const troop = await TroopModel.findOne({ owner: _id });
       return {
@@ -32,12 +32,12 @@ async function getUsersInPlanet(req, res, next) {
         planetList: element.planetList,
       };
     }));
-    res.send({ usersInPlanet: usersInPlanetFiltered });
+    res.send({ usersOnPlanet: usersOnPlanetFiltered });
   } catch (error) {
     next(error);
   }
 }
 
-router.get('/planet/:planet', auth, getUsersInPlanet);
+router.get('/planet/:planet', auth, getUsersOnPlanet);
 
 module.exports = router;
