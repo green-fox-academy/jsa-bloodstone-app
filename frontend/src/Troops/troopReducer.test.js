@@ -48,7 +48,7 @@ describe('troops reducer', () => {
       ),
     ).toEqual(
       {
-        infoOfTroops: ['test'],
+        infoOfTroops: 'test',
         isLoading: false,
         error: undefined,
       },
