@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   View, ScrollView, StyleSheet, ActivityIndicator,
 } from 'react-native';
+import { Toast } from 'native-base';
 
-import { fetchBuildings, addBuildingSuccess } from './actionCreator';
+import { fetchBuildings, addBuilding, ADD_BUILDING_FAILURE } from './actionCreator';
 
 import addFarmIcon from '../../assets/buildings/addFarm.png';
 import addMineIcon from '../../assets/buildings/addMine.png';
@@ -16,8 +17,6 @@ import { CardView } from '../common/components';
 import BuildingItem from './buildingItem';
 import AddBuildingItem from './addBuildingItem';
 import OneBuilding from '../OneBuilding';
-
-import ErrorPopup from '../ErrorPopup';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,11 +52,11 @@ const ADD_ICON_LIST = [
 
 function Buildings() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
-  const { listOfBuildings, isLoading, error } = useSelector((state) => state.buildings);
-
-  const [activeId, setActiveId] = useState('');
+  const buildings = useSelector((state) => state.buildings);
+  const { listOfBuildings, buildingPrice, isLoading } = buildings;
+  const { token } = useSelector((state) => state.auth);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [activeId, setActiveId] = useState('');
 
   useEffect(() => {
     dispatch(fetchBuildings(token));
@@ -68,16 +67,29 @@ function Buildings() {
     setActiveId(id);
   }
 
-  function addNewBuilding(type) {
-    dispatch(addBuildingSuccess(type));
-  }
-
-  if (error) {
-    return <ErrorPopup message={`Oops, ${error.message}`} />;
+  async function addNewBuilding(type) {
+    const { type: actionType, payload } = await dispatch(addBuilding(type, token));
+    if (actionType === ADD_BUILDING_FAILURE) {
+      Toast.show({
+        type: 'warning',
+        duration: 3000,
+        text: payload,
+        buttonText: 'Okay',
+      });
+    } else {
+      Toast.show({
+        type: 'success',
+        duration: 3000,
+        text: 'Building is succesfully added',
+        buttonText: 'Okay',
+      });
+    }
   }
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color={Colors.tealColor} />;
+    return (
+      <ActivityIndicator size="large" color={Colors.tealColor} />
+    );
   }
 
   return (
@@ -98,12 +110,13 @@ function Buildings() {
           ))}
         </ScrollView>
         <View style={styles.addBuildingContainer}>
-          {ADD_ICON_LIST.map((addBuildingIcon) => (
+          {ADD_ICON_LIST.map((addBuildingIcon, index) => (
             <AddBuildingItem
               key={addBuildingIcon.type}
               icon={addBuildingIcon.url}
               type={addBuildingIcon.type}
               onPress={() => addNewBuilding(addBuildingIcon.type)}
+              price={buildingPrice[index]}
             />
           ))}
         </View>

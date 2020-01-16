@@ -24,41 +24,32 @@ export function fetchBuildings(token) {
         }
         throw new Error('An error has occurred, please try later!');
       })
-      .then((response) => dispatch({ type: FETCH_BUILDINGS_SUCCESS, payload: response.buildings }))
+      .then((response) => dispatch({ type: FETCH_BUILDINGS_SUCCESS, payload: response }))
       .catch((error) => dispatch({ type: FETCH_BUILDINGS_FAILURE, payload: error }));
   };
 }
 
-let id = 1;
-
-const getMockedBuilding = (type) => {
-  id += 1;
-  return {
-    id: `temp-${id}`,
-    type,
-    level: 1,
-  };
-};
-
-export function addBuildingSuccess(type) {
-  return {
-    type: ADD_BUILDING_SUCCESS,
-    payload: getMockedBuilding(type),
-  };
-}
-
-// The following function is for linking to backend
-export function addBuildings() {
+export function addBuilding(type, token) {
   return (dispatch) => {
     dispatch({ type: ADD_BUILDING_REQUEST });
-    return fetch(URL)
+    return fetch(URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ type }),
+    })
+      .then((response) => response.json())
       .then((response) => {
-        if (response.status === 200) {
-          return response.json();
+        if (response.status === 400) {
+          return dispatch({ type: ADD_BUILDING_FAILURE, payload: response.message });
         }
-        throw new Error('An error has occurred, please try later!');
+        if (response.status === 200) {
+          return dispatch({ type: ADD_BUILDING_SUCCESS, payload: response });
+        }
+        throw new Error(response.status);
       })
-      .then((response) => dispatch({ type: ADD_BUILDING_SUCCESS, payload: response.buildings }))
       .catch((error) => dispatch({ type: ADD_BUILDING_FAILURE, payload: error }));
   };
 }
