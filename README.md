@@ -27,4 +27,5 @@ The user can list the top ranked users on the Leaderboard, and also see their ow
 ### Links
   * [JIRA board of the project](https://jira.greenfox.academy/projects/JSAB2/summary)
   * [Documentation](https://documenter.getpostman.com/view/5191128/SWLe6T93)
+  * [Battle logic](https://github.com/green-fox-academy/jsa-bloodstone-app/blob/JSAB2-60-battle-click-backend/backend/README.md)
 
