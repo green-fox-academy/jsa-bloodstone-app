@@ -167,8 +167,8 @@ function Settings() {
         />
 
         <View style={styles.buttonRow}>
-          <SubmitButton onPress={handleLogout} text="Logout" />
           <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} text="Save" />
+          <SubmitButton onPress={handleLogout} text="Logout" />
         </View>
       </View>
     </ImageBackground>
