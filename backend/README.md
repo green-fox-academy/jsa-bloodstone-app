@@ -7,4 +7,4 @@ There are three stages of the battle.
 - Otherwise, it will go to the next stage, the orbital striking.
 In this stage, the attacker will bomb the planet surface. The attacker troop will have no loss and the defending troop will suffer a minor loss.
 
-- Then it will go to the third stage, the landing operation. Once the attacker wins in this stage, they wins the whole battle otherwise they loss.
+- Then it will go to the third stage, the landing operation. Once the attacker wins in this stage, they win the whole battle, otherwise, they lose.
