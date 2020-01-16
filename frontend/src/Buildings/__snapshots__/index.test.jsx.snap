@@ -1,96 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Buildings /> Should render buildings and match the snapshot 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <CardView
-    style={
-      Object {
-        "flex": 1,
-        "marginBottom": 0,
-        "padding": 0,
-        "paddingBottom": 52,
-      }
-    }
-  >
-    <ScrollViewMock
-      bounces={true}
-      contentContainerStyle={
-        Object {
-          "flexDirection": "row",
-          "flexWrap": "wrap",
-        }
-      }
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Unknown
-        level={1}
-        onPress={[Function]}
-        type="Townhall"
-      />
-      <Unknown
-        level={1}
-        onPress={[Function]}
-        type="Academy"
-      />
-      <Unknown
-        level={1}
-        onPress={[Function]}
-        type="Farm"
-      />
-      <Unknown
-        level={1}
-        onPress={[Function]}
-        type="Mine"
-      />
-    </ScrollViewMock>
-    <View
-      style={
-        Object {
-          "borderTopColor": "rgba(0,0,0,0.08)",
-          "borderTopWidth": 1,
-          "bottom": 0,
-          "flexDirection": "row",
-          "justifyContent": "space-around",
-          "paddingVertical": 10,
-          "position": "absolute",
-          "width": "100%",
-        }
-      }
-    >
-      <Unknown
-        icon={1}
-        onPress={[Function]}
-        type="Farm"
-      />
-      <Unknown
-        icon={1}
-        onPress={[Function]}
-        type="Mine"
-      />
-    </View>
-  </CardView>
-  <Unknown
-    isVisible={false}
-    onClickClose={[Function]}
-    targetBuildingId=""
-  />
-</View>
-`;
-
 exports[`<Buildings /> Should render error and match the snapshot 1`] = `
-<ErrorPopup
-  message="Oops, test error"
-  title="System Error"
+<ActivityIndicator
+  animating={true}
+  color="#10978b"
+  hidesWhenStopped={true}
+  size="large"
 />
 `;
 
