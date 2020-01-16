@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
-    marginBottom: 0,
-    paddingBottom: 52,
+    marginBottom: 50,
   },
   scrollViewContainer: {
     flexDirection: 'row',
