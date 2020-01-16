@@ -48,14 +48,11 @@ const styles = StyleSheet.create({
 function OneBuilding({
   onClickClose, targetBuildingId, isVisible,
 }) {
-  if (!isVisible) {
-    return null;
-  }
   const { oneBuildingInfo, isLoading, error } = useSelector((state) => state.oneBuilding);
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  const { listOfTroops } = useSelector((state) => state.troops);
+  const { infoOfTroops } = useSelector((state) => state.troops);
   useEffect(() => {
     dispatch(fetchTroops(token));
   }, []);
@@ -68,8 +65,6 @@ function OneBuilding({
 
   useEffect(() => {
     dispatch(fetchResources(token));
-    const updateResourcesInterval = setInterval(() => dispatch(fetchResources(token)), 30000);
-    return () => clearInterval(updateResourcesInterval);
   }, []);
 
   const {
@@ -93,10 +88,10 @@ function OneBuilding({
 
   const { building: buildingDetailInfo } = oneBuildingInfo;
   const { buildingRules, troopsRules } = oneBuildingInfo.rules;
-  const [troop] = listOfTroops;
+
   let totalNumOfTroops = '?';
-  if (troop) {
-    totalNumOfTroops = troop.hp;
+  if (infoOfTroops) {
+    totalNumOfTroops = infoOfTroops.hp;
   }
 
   if (Object.keys(buildingDetailInfo).length === 0) {

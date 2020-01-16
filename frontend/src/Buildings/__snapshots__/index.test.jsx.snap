@@ -79,11 +79,6 @@ exports[`<Buildings /> Should render buildings and match the snapshot 1`] = `
       />
     </View>
   </CardView>
-  <Unknown
-    isVisible={false}
-    onClickClose={[Function]}
-    targetBuildingId=""
-  />
 </View>
 `;
 
