@@ -13,7 +13,6 @@ import { logout } from '../Login/actionCreator';
 import background from '../../assets/login/background.jpg';
 
 import { InputField } from '../common/components';
-// import ErrorPopup from '../ErrorPopup';
 import SubmitButton from './SubmitButton';
 import { changeSettings, CHANGE_SETTINGS_SUCCESS } from './actionCreator';
 
