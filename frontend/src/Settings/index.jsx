@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from 'react-navigation-hooks';
 import {
-  View, Text, Alert, StyleSheet, ImageBackground,
+  View, Text, StyleSheet,
+  ImageBackground, ActivityIndicator,
 } from 'react-native';
+import { Toast } from 'native-base';
 import validation from '../common/helper';
 import Colors from '../common/colors';
 import { logout } from '../Login/actionCreator';
@@ -11,8 +13,8 @@ import { logout } from '../Login/actionCreator';
 import background from '../../assets/login/background.jpg';
 
 import { InputField } from '../common/components';
-import ErrorPopup from '../ErrorPopup';
 import SubmitButton from './SubmitButton';
+import { changeSettings, CHANGE_SETTINGS_SUCCESS } from './actionCreator';
 
 const styles = StyleSheet.create({
   titleText: {
@@ -43,70 +45,80 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginBottom: 60,
-  },
-  logoutButton: {
-    width: 300,
-  },
 });
 
 function Settings() {
-  const error = useSelector((state) => state.settings.error);
-  const [emailInput, setEmailInput] = useState('');
-  const [usernameInput, setUsernameInput] = useState('');
-  const [kingdomNameInput, setKingdomNameInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
+  const { isLoading, error } = useSelector((state) => state.settings);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [kingdomName, setKingdomName] = useState('');
+  const [password, setPassword] = useState('');
+  const { token } = useSelector((state) => state.auth);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   function resetForm() {
-    setEmailInput('');
-    setUsernameInput('');
-    setKingdomNameInput('');
-    setPasswordInput('');
+    setEmail('');
+    setUsername('');
+    setKingdomName('');
+    setPassword('');
   }
 
   function showAlert(text) {
-    Alert.alert('Warning', text);
+    Toast.show({
+      type: 'Warning',
+      duration: 3000,
+      text,
+      buttonText: 'Okay',
+    });
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const settings = {};
-    let message = '';
-    if (emailInput) {
-      if (!validation(emailInput)) {
+    if (email) {
+      if (!validation(email)) {
         showAlert('Please reenter a valid email');
         return;
       }
-      settings.email = emailInput;
-      message += 'Your email has changed.\n';
+      settings.email = email;
     }
-    if (usernameInput) {
-      settings.username = usernameInput;
-      message += 'Your username has changed.\n';
+    if (username) {
+      if (username.length < 3) {
+        showAlert('Please reenter a valid username');
+      }
+      settings.username = username;
     }
-    if (kingdomNameInput) {
-      settings.kingdom = kingdomNameInput;
-      message += 'Your kingdom\'s name has changed.\n';
+    if (kingdomName) {
+      settings.kingdomName = kingdomName;
     }
-    if (passwordInput) {
-      if (passwordInput.length < 8) {
+    if (password) {
+      if (password.length < 8) {
         showAlert('Password must be at least 8 characters');
         return;
       }
-      settings.password = passwordInput;
-      message += 'Your password has changed.\n';
+      settings.password = password;
     }
-    Alert.alert('Settings', message);
+    const { type: actionType, payload } = await dispatch(changeSettings(settings, token));
+    let message = '';
+    if (actionType === CHANGE_SETTINGS_SUCCESS) {
+      if (payload.changes.length === 1) {
+        message += `${payload.changes[0]} is successfully changed!`;
+      } else if (payload.changes.length > 1) {
+        message += `${payload.changes.join(', ')} are successfully changed!`;
+      } else {
+        showAlert(payload);
+      }
+      Toast.show({
+        type: 'success',
+        duration: 3000,
+        text: message,
+        buttonText: 'Okay',
+      });
+    } else {
+      showAlert(error);
+      return;
+    }
     resetForm();
-  }
-
-  function handleCancel() {
-    navigation.navigate('Home');
   }
 
   function handleLogout() {
@@ -114,12 +126,10 @@ function Settings() {
     navigation.navigate('Auth');
   }
 
-  const submitButtonIsDisabled = emailInput === '' && usernameInput === '' && kingdomNameInput === '' && passwordInput === '';
+  const submitButtonIsDisabled = email === '' && username === '' && kingdomName === '' && password === '';
 
-  if (error) {
-    return (
-      <ErrorPopup message={`Oops, ${error.message}`} />
-    );
+  if (isLoading) {
+    return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
   return (
@@ -131,41 +141,34 @@ function Settings() {
       <View style={styles.container}>
         <Text style={styles.titleText}>Settings</Text>
 
-        <Text style={styles.labelText}>Email</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.email)}
-          value={emailInput}
-          onChangeText={(value) => setEmailInput(value)}
+          placeholder="Username"
+          value={username}
+          onChangeText={(value) => setUsername(value)}
         />
 
-        <Text style={styles.labelText}>Username</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.username)}
-          value={usernameInput}
-          onChangeText={(value) => setUsernameInput(value)}
+          placeholder="Email"
+          value={email}
+          onChangeText={(value) => setEmail(value)}
         />
 
-        <Text style={styles.labelText}>Enter your new Kingdom Name here</Text>
         <InputField
-          placeholder={useSelector((state) => state.settings.kingdomName)}
-          value={kingdomNameInput}
-          onChangeText={(value) => setKingdomNameInput(value)}
-        />
-
-        <Text style={styles.labelText}>Password</Text>
-        <InputField
-          placeholder="password123"
-          value={passwordInput}
-          onChangeText={(value) => setPasswordInput(value)}
+          placeholder="Password"
+          value={password}
+          onChangeText={(value) => setPassword(value)}
           secureTextEntry
+        />
+
+        <InputField
+          placeholder="Kingdom Name"
+          value={kingdomName}
+          onChangeText={(value) => setKingdomName(value)}
         />
 
         <View style={styles.buttonRow}>
           <SubmitButton onPress={handleSubmit} disabled={submitButtonIsDisabled} text="Save" />
-          <SubmitButton onPress={handleCancel} text="Cancel" />
-        </View>
-        <View style={styles.footer}>
-          <SubmitButton onPress={handleLogout} style={styles.logoutButton} text="Logout" />
+          <SubmitButton onPress={handleLogout} text="Logout" />
         </View>
       </View>
     </ImageBackground>

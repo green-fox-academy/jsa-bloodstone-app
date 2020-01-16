@@ -99,7 +99,7 @@ async function login(req, res, next) {
 }
 
 async function updateUserInfo(req, res, next) {
-  const { username: oldUsername } = req.user;
+  const { _id } = req.user;
   const {
     username: newUsername, email: newEmail, password: newPassword, kingdomName: newKingdomName,
   } = req.body;
@@ -112,7 +112,8 @@ async function updateUserInfo(req, res, next) {
       changedTarget.email = newEmail;
     }
     if (newPassword) {
-      changedTarget.password = newPassword;
+      const passwordHash = await bcrypt.hash(newPassword, 8);
+      changedTarget.password = passwordHash;
     }
     if (newKingdomName) {
       changedTarget.kingdomName = newKingdomName;
@@ -121,15 +122,15 @@ async function updateUserInfo(req, res, next) {
     if (changedValue.length === 0) {
       throw createError(400, 'Please fill at least one element');
     }
-    const user = await UserModel.findOneAndUpdate(
-      { username: oldUsername },
+    const user = await UserModel.findByIdAndUpdate(
+      _id,
       { $set: changedTarget },
       { new: true, fields: '-_id' },
     );
     if (!user) {
       throw createError(400, 'Can\'t find this username in database');
     }
-    res.status(202).send({ changes: Object.keys(changedTarget) });
+    res.status(202).send({ status: 202, changes: Object.keys(changedTarget) });
   } catch (error) {
     next(error);
   }
