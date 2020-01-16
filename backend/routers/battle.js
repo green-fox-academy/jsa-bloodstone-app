@@ -159,7 +159,7 @@ async function battle(req, res, next) {
   }
 }
 
-router.get('/:targetId', auth, battle);
+router.post('/:targetId', auth, battle);
 router.get('/planet/:planet', auth, getUsersOnPlanet);
 
 module.exports = router;
