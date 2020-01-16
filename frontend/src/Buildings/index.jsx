@@ -108,11 +108,15 @@ function Buildings() {
           ))}
         </View>
       </CardView>
-      <OneBuilding
-        isVisible={isModalVisible}
-        onClickClose={() => setModalVisible(false)}
-        targetBuildingId={activeId}
-      />
+      {isModalVisible
+        ? (
+          <OneBuilding
+            isVisible={isModalVisible}
+            onClickClose={() => setModalVisible(false)}
+            targetBuildingId={activeId}
+          />
+        )
+        : null}
     </View>
   );
 }

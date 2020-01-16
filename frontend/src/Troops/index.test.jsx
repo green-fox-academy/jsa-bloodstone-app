@@ -37,7 +37,7 @@ describe('<Troops />', () => {
   it('Should render loading and match the snapshot', () => {
     const mockedState = {
       troops: {
-        listOfTroops: myTroops,
+        infoOfTroops: myTroops,
         isLoading: true,
         error: undefined,
       },
@@ -54,7 +54,7 @@ describe('<Troops />', () => {
   it('Should render error and match the snapshot', () => {
     const mockedState = {
       troops: {
-        listOfTroops: myTroops,
+        infoOfTroops: myTroops,
         isLoading: true,
         error: new Error('test error'),
       },

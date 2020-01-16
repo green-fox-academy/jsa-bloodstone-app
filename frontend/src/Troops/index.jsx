@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  View, ActivityIndicator,
+  View, ActivityIndicator, ScrollView,
 } from 'react-native';
 import { CardView } from '../common/components';
 import Colors from '../common/colors';
@@ -20,38 +20,38 @@ function Troops() {
     dispatch(fetchTroops(token));
   }, []);
 
-  const { listOfTroops, isLoading, error } = useSelector((state) => state.troops);
-
-  const [troop] = listOfTroops;
+  const { infoOfTroops, isLoading, error } = useSelector((state) => state.troops);
 
   if (error) {
     return <ErrorPopup message={`Oops, ${error.message}`} />;
   }
 
-  if (isLoading || !troop) {
+  if (isLoading || Object.keys(infoOfTroops).length === 0) {
     return <ActivityIndicator size="large" color={Colors.tealColor} />;
   }
 
   const {
     attack, defence, hp: sustenance, countByLevel,
-  } = troop;
+  } = infoOfTroops;
 
   return (
-    <CardView style={{ flexDirection: 'column' }}>
-      <TroopInformation
-        attack={attack}
-        defence={defence}
-        sustenance={sustenance}
-      />
-      <View style={{ paddingVertical: 20 }}>
-        {countByLevel.map((item, index) => (
-          <TroopLevel
-            key={index}
-            level={item.level}
-            count={item.count}
-          />
-        ))}
-      </View>
+    <CardView style={{ flexDirection: 'column', marginBottom: 0 }}>
+      <ScrollView>
+        <TroopInformation
+          attack={attack}
+          defence={defence}
+          sustenance={sustenance}
+        />
+        <View style={{ paddingVertical: 20 }}>
+          {countByLevel.map((item, index) => (
+            <TroopLevel
+              key={index}
+              level={item.level}
+              count={item.count}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </CardView>
   );
 }

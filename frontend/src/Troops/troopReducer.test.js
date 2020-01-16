@@ -5,7 +5,7 @@ describe('troops reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(
       {
-        listOfTroops: [],
+        infoOfTroops: {},
         isLoading: false,
         error: undefined,
       },
@@ -16,7 +16,7 @@ describe('troops reducer', () => {
     expect(
       reducer(
         {
-          listOfTroops: [],
+          infoOfTroops: {},
           isLoading: false,
           error: undefined,
         },
@@ -26,7 +26,7 @@ describe('troops reducer', () => {
       ),
     ).toEqual(
       {
-        listOfTroops: [],
+        infoOfTroops: {},
         isLoading: true,
         error: undefined,
       },
@@ -37,7 +37,7 @@ describe('troops reducer', () => {
     expect(
       reducer(
         {
-          listOfTroops: [],
+          infoOfTroops: {},
           isLoading: true,
           error: undefined,
         },
@@ -48,7 +48,7 @@ describe('troops reducer', () => {
       ),
     ).toEqual(
       {
-        listOfTroops: ['test'],
+        infoOfTroops: 'test',
         isLoading: false,
         error: undefined,
       },
@@ -59,7 +59,7 @@ describe('troops reducer', () => {
     expect(
       reducer(
         {
-          listOfTroops: [],
+          infoOfTroops: {},
           isLoading: true,
           error: undefined,
         },
@@ -70,7 +70,7 @@ describe('troops reducer', () => {
       ),
     ).toEqual(
       {
-        listOfTroops: [],
+        infoOfTroops: {},
         isLoading: false,
         error: new Error('test'),
       },

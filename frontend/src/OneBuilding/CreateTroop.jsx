@@ -11,13 +11,13 @@ import troopIcon from '../../assets/troop/troop.png';
 import commonStyles from './styles';
 
 function CreateTroop({
-  createTroops,
+  createTroop,
   buildingLevel,
   createTroopGoldCost,
   createTroopTimeCost,
 }) {
   return (
-    <TouchableHighlight onPress={createTroops} style={{ padding: 3 }}>
+    <TouchableHighlight onPress={createTroop} style={{ padding: 3 }}>
       <SubCardView>
         <Image resizeMode="contain" source={troopIcon} style={commonStyles.imageStyle} />
         <View style={commonStyles.description}>
@@ -38,14 +38,14 @@ function CreateTroop({
 }
 
 CreateTroop.propTypes = {
-  createTroops: PropTypes.func,
+  createTroop: PropTypes.func,
   buildingLevel: PropTypes.number.isRequired,
   createTroopGoldCost: PropTypes.number.isRequired,
   createTroopTimeCost: PropTypes.number.isRequired,
 };
 
 CreateTroop.defaultProps = {
-  createTroops: null,
+  createTroop: null,
 };
 
 export default CreateTroop;
