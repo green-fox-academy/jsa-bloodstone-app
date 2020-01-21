@@ -6148,12 +6148,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-animate-number@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-animate-number/-/react-native-animate-number-0.1.2.tgz#d41c5a784e05f9d788dafbf7b158584c65e8cf47"
-  integrity sha1-1BxaeE4F+deI2vv3sVhYTGXoz0c=
-  dependencies:
-    react-timer-mixin "^0.13.3"
+react-native-animated-number@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-animated-number/-/react-native-animated-number-1.1.1.tgz#09d0ac108d24620d6a8515eea2f7d6643ba3d62a"
+  integrity sha512-DctpQ+h9wStPGmUeMkCuph7RQ828KcYXDgQtXQ3JtoRTK9kkv2vVwaNsefGXP8JBHtwAHoKLCegQxAdi1LhdbQ==
 
 react-native-css-gradient@^0.4.0:
   version "0.4.0"
@@ -6378,7 +6376,7 @@ react-test-renderer@~16.9.0:
     react-is "^16.9.0"
     scheduler "^0.15.0"
 
-react-timer-mixin@^0.13.3, react-timer-mixin@^0.13.4:
+react-timer-mixin@^0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
