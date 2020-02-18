@@ -22,7 +22,7 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-animate-number": "^0.1.2",
+    "react-native-animated-number": "^1.1.1",
     "react-native-css-gradient": "^0.4.0",
     "react-native-dotenv": "^0.2.0",
     "react-native-gesture-handler": "~1.5.0",
@@ -46,11 +46,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "fetch-mock": "^8.3.0",
     "jest": "^24.9.0",
     "jest-expo": "^36.0.1",
     "jest-junit": "^10.0.0",
     "react-test-renderer": "^16.12.0",
-    "fetch-mock": "^8.3.0",
     "redux-mock-store": "^1.5.4"
   },
   "private": true

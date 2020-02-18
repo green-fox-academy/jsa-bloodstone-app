@@ -3,7 +3,7 @@ import {
   View, Image, StyleSheet, Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import AnimateNumber from 'react-native-animate-number';
+import AnimatedNumber from 'react-native-animated-number';
 import Colors from '../common/colors';
 
 import cookieIcon from '../../assets/troop/cookie.png';
@@ -16,8 +16,7 @@ const ICONS = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 7,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -73,10 +72,9 @@ function ResourceItem({ type, amount, rate }) {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={styles.row}>
           <Image style={styles.iconStyle} source={icon} />
-          <AnimateNumber
+          <AnimatedNumber
             style={styles.text}
             value={amount}
-            timing="easeOut"
             formatter={handleAmount}
           />
         </View>
